@@ -10,7 +10,7 @@ class ProfileController extends Controller
     //
     public function getProfile(Request $request)
     {
-        $user = response()->json(auth()->user());
+        $user = response()->json(auth('api')->user());
         return $user;
     }
 }

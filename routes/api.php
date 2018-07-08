@@ -31,7 +31,7 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('me', 'Api\AuthController@me');
 
     });
-    Route::group(['middleware' => ['auth:api','UserRole']], function () {
+    Route::group(['middleware' => ['jwtauth','UserRole']], function () {
 
         /* Profile User */
         Route::get('profile/','Api\ProfileController@getProfile');
