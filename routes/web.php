@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', function () {
 
-    return view('welcome');
+Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
+
+    Route::get('/protect',function(){
+        return '/protect';
+    });
+
 });
