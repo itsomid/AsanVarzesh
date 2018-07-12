@@ -26,6 +26,15 @@ class CheckAuth extends BaseMiddleware
 
         try {
             $user = $this->auth->authenticate($token);
+            if($user->status == 'inactive') {
+                return response()->json([
+                    'status' => 'Please Active Account',
+                    'status' => 406,
+
+                ],406);
+            } else {
+
+            }
         } catch (TokenExpiredException $e) {
             return abort(401);
         } catch (JWTException $e) {

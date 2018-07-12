@@ -35,7 +35,7 @@ Route::group(['prefix' => '/v1'],function() {
 
         /* Profile User */
         Route::get('profile/','Api\ProfileController@getProfile');
-
+        Route::post('profile/set-avatar','Api\ProfileController@setAvatar');
 
     });
 
