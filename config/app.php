@@ -218,6 +218,9 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
+
+        // Helper
+        'Helper' => App\Helpers\Helper::class,
     ],
 
 ];

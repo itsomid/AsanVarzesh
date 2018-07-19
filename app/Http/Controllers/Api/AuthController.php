@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -15,8 +16,31 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','mobile']]);
     }
+
+    public function mobile(Request $request) {
+
+        $user = User::where('mobile',$request['mobile'])->first();
+        if(!$user) {
+
+            $user = new User();
+            $user->mobile = $request->mobile;
+            $user->save();
+        }
+
+        $code = $this->generateLoginCode();
+        $user->code = $code;
+        $user->save();
+
+        return response()->json([
+            'code' => $user->code,
+            'message' => 'کد ورود به شماره تلفن '.$user->mobile.' ارسال شد.',
+            'status' => 200
+        ],200);
+
+    }
+
 
     /**
      * Get a JWT via given credentials.
@@ -28,17 +52,29 @@ class AuthController extends Controller
 
         $credentials = request(['username', 'password']);
 
-        if(!is_numeric($credentials['username'])) {
-            $credentials = ['email' => $credentials['username'], 'password' => $credentials['password']];
-        } else {
-            $credentials = ['mobile' => $credentials['username'], 'password' => $credentials['password']];
+        if(!is_numeric($credentials['username']))
+        {
+            $user = User::where('email',$credentials['username'])->where('password',$credentials['password'])->first();
+        } else
+        {
+            $user = User::where('mobile',$credentials['username'])->where('code',$credentials['password'])->first();
         }
 
-        if (! $token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if(!$user) {
+            return response()->json(['status' => 404,'message' => 'یافت نشد!'],404);
         }
+
+        if (! $token = auth('api')->login($user) /*->attempt($credentials)*/) {
+            return response()->json(['status' => 401,'message' => 'Unauthorized'], 401);
+        }
+
+        $user->status = 'active';
+        $user->code = null;
+//        $user->last_login = '';
+        $user->save();
 
         return $this->respondWithToken($token);
+
     }
 
     /**
@@ -75,7 +111,13 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 72000000000
+            'expires_in' => auth('api')->factory()->getTTL() * 7200000000000000000000000
         ]);
+    }
+
+    protected function generateLoginCode() {
+
+        return mt_rand(10000,999999);
+
     }
 }

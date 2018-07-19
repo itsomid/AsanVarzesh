@@ -25,6 +25,7 @@ Route::group(['prefix' => '/v1'],function() {
 
     ], function ($router) {
 
+        Route::post('mobile','Api\AuthController@mobile');
         Route::post('login', 'Api\AuthController@login');
         Route::post('logout', 'Api\AuthController@logout');
         Route::post('refresh', 'Api\AuthController@refresh');
@@ -34,13 +35,15 @@ Route::group(['prefix' => '/v1'],function() {
     Route::group(['middleware' => ['jwtauth','UserRole']], function () {
 
         /* Profile User */
-        Route::get('profile/','Api\ProfileController@getProfile');
-        Route::post('profile/set-avatar','Api\ProfileController@setAvatar');
+        Route::get('profile/','Api\ProfileController@index');
+        Route::post('profile/store','Api\ProfileController@store');
+        Route::post('profile/update','Api\ProfileController@update');
+        Route::post('profile/avatar','Api\ProfileController@setAvatar');
 
     });
 
 });
 
-
-
-
+Route::get('login',function() {
+   return 1;
+})->name('login');

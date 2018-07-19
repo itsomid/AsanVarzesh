@@ -16,9 +16,8 @@ class Users extends Seeder
         $user->email = 'aajafari87@gmail.com';
         $user->mobile = '09354412285';
         $user->status = 'inactive';
+        $user->code = 0;
         $user->password = bcrypt('Jafari19870909AliA');
-        $user->first_name = 'Ali';
-        $user->last_name = 'A. Jafari';
         $user->save();
 
     }
