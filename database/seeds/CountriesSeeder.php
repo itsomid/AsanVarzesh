@@ -16,8 +16,5 @@ class CountriesSeeder extends Seeder
             ['summary' => 'IRI','title' => 'ایران']
         );
 
-
-
-
     }
 }

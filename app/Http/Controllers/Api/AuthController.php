@@ -21,12 +21,15 @@ class AuthController extends Controller
 
     public function mobile(Request $request) {
 
-        $user = User::where('mobile',$request['mobile'])->first();
+        $user = User::where('mobile',$request['username'])->first();
         if(!$user) {
 
             $user = new User();
             $user->mobile = $request->mobile;
             $user->save();
+
+            // Add Role to User
+            $user->roles()->attach(2);
         }
 
         $code = $this->generateLoginCode();

@@ -40,6 +40,13 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('profile/update','Api\ProfileController@update');
         Route::post('profile/avatar','Api\ProfileController@setAvatar');
 
+        /* Get Countries, States, Cities */
+        Route::get('geo/countries','Api\GeoController@getAllCountries');
+        Route::get('geo/states/{country_id}','Api\GeoController@getStates');
+        Route::get('geo/cities/{state_id}','Api\GeoController@getCities');
+
+        // Coachs
+
     });
 
 });
