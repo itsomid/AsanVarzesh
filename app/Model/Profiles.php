@@ -8,5 +8,10 @@ class Profiles extends Model
 {
     //
 
+    protected $casts = [
+        'photos' => 'array'
+    ];
+
+
 
 }

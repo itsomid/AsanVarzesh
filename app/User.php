@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password',
     ];
 
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -42,6 +43,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function Roles() {
         return $this->belongsToMany('App\Model\Role');
+    }
+
+    public function Coachs() {
+        return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
     }
 
     public function profile() {

@@ -62,10 +62,7 @@ Route::group(['prefix' => '/v1'],function() {
 
 
         // Choose Coach
-        Route::get('/coachs/{keywords}','Api\CoachController@search');
-
-        // Choose Training
-        /*Route::get('training/{sport_id}','Api\TrainingController@show');*/
+        Route::get('/coachs/search/{keywords}','Api\CoachController@search');
 
     });
 
