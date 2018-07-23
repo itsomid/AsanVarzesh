@@ -14,8 +14,9 @@ class TrainingMigrations extends Migration
     public function up()
     {
         //
-        Schema::create('training', function (Blueprint $table) {
+        Schema::create('trainings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->integer('sport_id');
             $table->json('steps');
             $table->enum('difficulty',['Very Easy','Easy','Normal','Hard','Difficult','Very Difficult']);

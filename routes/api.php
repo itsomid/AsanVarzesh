@@ -32,7 +32,11 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('me', 'Api\AuthController@me');
 
     });
-    Route::group(['middleware' => ['jwtauth','UserRole']], function () {
+    Route::group(
+        [
+            'middleware' => ['jwtauth','UserRole'],
+            'prefix' => 'user'
+        ], function () {
 
         /* Profile User */
         Route::get('profile/','Api\ProfileController@index');
@@ -42,10 +46,26 @@ Route::group(['prefix' => '/v1'],function() {
 
         /* Get Countries, States, Cities */
         Route::get('geo/countries','Api\GeoController@getAllCountries');
+        Route::get('geo/countries/{id}','Api\GeoController@countryItem');
         Route::get('geo/states/{country_id}','Api\GeoController@getStates');
         Route::get('geo/cities/{state_id}','Api\GeoController@getCities');
 
-        // Coachs
+        // Choose sport type
+        Route::get('/choose-sport-type','Api\SportTypeController@index');
+
+        // Choose Federation
+        Route::get('/federations','Api\FederationController@index');
+        Route::get('/federations/{federation_type}','Api\FederationController@show');
+
+        // Choose Sport
+        Route::get('/sports/{federation_id}','Api\SportController@show');
+
+
+        // Choose Coach
+        Route::get('/coachs/{keywords}','Api\CoachController@search');
+
+        // Choose Training
+        /*Route::get('training/{sport_id}','Api\TrainingController@show');*/
 
     });
 

@@ -25,7 +25,7 @@ class AuthController extends Controller
         if(!$user) {
 
             $user = new User();
-            $user->mobile = $request->mobile;
+            $user->mobile = $request->username;
             $user->save();
 
             // Add Role to User

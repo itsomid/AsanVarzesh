@@ -21,6 +21,14 @@ class GeoController extends Controller
 
     }
 
+    public function countryItem($country_id) {
+
+        $country = Countries::with('states.cities')->find($country_id);
+
+        return response()->json($country,200);
+
+    }
+
 
     public function getStates($country_id) {
 
