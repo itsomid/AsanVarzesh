@@ -44,6 +44,10 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('profile/update','Api\ProfileController@update');
         Route::post('profile/avatar','Api\ProfileController@setAvatar');
 
+        // Set & Get Step
+        Route::post('/save-step','Api\ProfileController@saveStep');
+        Route::get('/get-step','Api\ProfileController@getStep');
+
         /* Get Countries, States, Cities */
         Route::get('geo/countries','Api\GeoController@getAllCountries');
         Route::get('geo/countries/{id}','Api\GeoController@countryItem');
@@ -62,7 +66,10 @@ Route::group(['prefix' => '/v1'],function() {
 
 
         // Choose Coach
-        Route::get('/coachs/search/{keywords}','Api\CoachController@search');
+        Route::get('/coachs/search/{keywords}/sport/{sport_id}','Api\CoachController@search');
+        Route::get('/coachs/{coach_id}','Api\CoachController@show');
+
+
 
     });
 

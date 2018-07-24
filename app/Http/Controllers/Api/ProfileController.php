@@ -156,5 +156,25 @@ class ProfileController extends Controller
 
     }
 
+    public function saveStep(Request $request) {
+
+        $data = $request->all();
+
+        $user = auth('api')->user();
+        $user->steps = 'physical_info';
+        $user->save();
+
+        return response()->json(['status' => 200,'message' => 'Successful'],200);
+
+    }
+
+    public function getStep() {
+
+        $user = auth('api')->user();
+
+        return response()->json(['step' => $user->steps],200);
+
+    }
+
 
 }
