@@ -22,6 +22,7 @@ class AuthController extends Controller
     public function mobile(Request $request) {
 
         $user = User::where('mobile',$request['username'])->first();
+        $type = "registered before";
         if(!$user) {
 
             $user = new User();
@@ -30,6 +31,7 @@ class AuthController extends Controller
 
             // Add Role to User
             $user->roles()->attach(2);
+            $type = 'new user';
         }
 
         $code = $this->generateLoginCode();
@@ -39,7 +41,8 @@ class AuthController extends Controller
         return response()->json([
             'code' => $user->code,
             'message' => 'کد ورود به شماره تلفن '.$user->mobile.' ارسال شد.',
-            'status' => 200
+            'status' => 200,
+            'type' => $type
         ],200);
 
     }

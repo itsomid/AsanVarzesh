@@ -31,7 +31,7 @@ class UsersTable extends Migration
             $table->unique('email');
         });
 
-        
+
     }
 
     /**
