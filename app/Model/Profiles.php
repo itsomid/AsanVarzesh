@@ -9,7 +9,9 @@ class Profiles extends Model
     //
 
     protected $casts = [
-        'photos' => 'array'
+        'photos' => 'array',
+        'maim' => 'array',
+        'diseases' => 'array'
     ];
 
     public function user() {
