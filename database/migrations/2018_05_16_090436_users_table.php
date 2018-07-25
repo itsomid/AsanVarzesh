@@ -30,6 +30,8 @@ class UsersTable extends Migration
             $table->engine = 'InnoDB';
             $table->unique('email');
         });
+
+        
     }
 
     /**
