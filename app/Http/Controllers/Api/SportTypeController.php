@@ -11,9 +11,16 @@ class SportTypeController extends Controller
     public function index() {
 
         $sport_type =  [
-            'public' => 'عمومی',
-            'specialized' => 'تخصصی'
+            [
+                'title' => 'عمومی',
+                'value' => 'public'
+            ],
+            [
+                'title' => 'تخصصی',
+                'value' => 'specialized'
+            ]
         ];
+
 
         return response()->json($sport_type,200);
 
