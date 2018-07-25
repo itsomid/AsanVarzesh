@@ -1,2 +1,7 @@
 .idea/
 vendor/
+database/.gitignore
+public/storage/.gitignore
+storage/framework/.gitignore
+.gitignore
+public/storage/
