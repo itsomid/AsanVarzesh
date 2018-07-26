@@ -13,7 +13,7 @@ class CoachController extends Controller
 
     public function show($coach_id) {
 
-        $profile = Profiles::where('user_id',$coach_id)->first();
+        $profile = Profiles::where('id',$coach_id)->first();
         return response()->json($profile,200);
 
     }
