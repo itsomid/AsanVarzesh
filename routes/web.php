@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/',function() {
+   return 'index page';
+});
 
 Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
