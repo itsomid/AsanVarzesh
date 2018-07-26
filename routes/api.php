@@ -64,16 +64,15 @@ Route::group(['prefix' => '/v1'],function() {
         // Choose Sport
         Route::get('/sports/{federation_id}','Api\SportController@show');
 
-
         // Accessories
         Route::get('/accessories','Api\AccessoriesController@index');
-
-
 
         // Choose Coach
         Route::get('/coachs/search/{keywords}/sport/{sport_id}','Api\CoachController@search');
         Route::get('/coachs/{coach_id}','Api\CoachController@show');
 
+        // Programs
+        Route::post('programs/store','Api\ProgramsController@store');
 
 
     });

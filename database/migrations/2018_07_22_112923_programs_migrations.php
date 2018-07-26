@@ -19,10 +19,10 @@ class ProgramsMigrations extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('coach_id');
-            $table->integer('doctor_id');
-            $table->integer('currective_doctor_id');
-            $table->integer('subscription_id');
-            $table->dateTime('start_date');
+            $table->integer('doctor_id')->nullable();
+            $table->integer('currective_doctor_id')->nullable();
+            $table->integer('subscription_id')->nullable();
+            $table->dateTime('start_date')->nullable();
             $table->enum('status',['active','pending','inactive']);
             $table->text('configuration')->nullable();
             $table->timestamps();

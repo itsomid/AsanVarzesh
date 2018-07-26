@@ -18,13 +18,9 @@ class AddStepFieldtoUser extends Migration
             $table->enum('steps',[
                 'login_register',
                 'profile',
-                'choose_federation',
-                'choose_sport',
-                'choose_coach',
-                'physical_info',
-                'nutrition_info',
-                'waiting_for_confirmation',
-                'complete'
+                'sport_progress',
+                'info',
+                'program'
                 ])->after('permissions');
         });
     }
