@@ -12,7 +12,7 @@ class ProgramsController extends Controller
     // Assign a User & a Coach to Program
     public function store(Request $request) {
 
-        
+
 
     }
 }
