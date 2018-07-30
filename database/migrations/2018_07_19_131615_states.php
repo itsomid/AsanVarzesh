@@ -16,7 +16,7 @@ class States extends Migration
 
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
             $table->integer('country_id');
             $table->timestamps();
         });

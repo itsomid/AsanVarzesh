@@ -19,6 +19,7 @@ class ProfileMigration extends Migration
             $table->integer('user_id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->text('text')->nullable();
             $table->text('avatar')->nullable();
             $table->json('photos')->nullable();
             $table->float('height');
@@ -28,11 +29,28 @@ class ProfileMigration extends Migration
             $table->json('maim')->nullable();
             $table->integer('city_id');
             $table->text('address')->nullable();
-            $table->decimal('lat')->nullable();
-            $table->decimal('lng')->nullable();
+//            $table->json('lat_lng')->nullable();
+            $table->text('keywords')->nullable();
+            $table->text('nutrition_info')->nullable();
+            $table->enum('gender',['male','female']);
+            $table->string('birth_date')->nullable();
+            $table->integer('daily_activity')->nullable();
+            $table->json('selected_days_hours')->nullable();
+            $table->string('place_for_sport')->nullable();
+            $table->enum('level',['amateur','semi-professional','professional']);
+            $table->float('abdominal')->nullable();
+            $table->float('arm')->nullable();
+            $table->float('wrist')->nullable();
+            $table->float('hip')->nullable();
+            $table->float('waist')->nullable();
+            $table->text('target')->nullable();
             $table->timestamps();
 
+
         });
+
+        DB::statement('ALTER TABLE profiles ADD location POINT' );
+
     }
 
     /**
@@ -43,5 +61,6 @@ class ProfileMigration extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('profiles');
     }
 }

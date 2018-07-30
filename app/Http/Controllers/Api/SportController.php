@@ -18,4 +18,12 @@ class SportController extends Controller
         return response()->json($sports,200);
 
     }
+
+    public function publicSport() {
+
+        $sports = Sport::where('federation_id',1)->get();
+
+        return response()->json($sports,200);
+
+    }
 }
