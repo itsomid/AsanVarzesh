@@ -33,7 +33,6 @@ class CoachSeeder extends Seeder
         $profile->city_id = 117;
         $profile->address = 'فاطمی';
         $profile->location = [41.070611, 28.993083];
-
         $profile->save();
 
     }

@@ -74,6 +74,8 @@ Route::group(['prefix' => '/v1'],function() {
         // Programs
         Route::post('programs/store','Api\ProgramsController@store');
 
+        // Payment
+        // Todo: Add Payment Routes & Controller
 
     });
 
