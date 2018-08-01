@@ -18,6 +18,7 @@ class ProgramsMigrations extends Migration
 
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('sport_id');
             $table->integer('coach_id');
             $table->integer('doctor_id')->nullable();
             $table->integer('currective_doctor_id')->nullable();

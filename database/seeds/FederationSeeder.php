@@ -13,20 +13,8 @@ class FederationSeeder extends Seeder
     {
         //
 
-        $federation = new \App\Model\Federation();
-        $federation->name = 'فدراسیون پرورش اندام و وزنه برداری';
-        $federation->type = 'specialized';
-        $federation->save();
 
-        $federation = new \App\Model\Federation();
-        $federation->name = 'فدراسیون دوو میدانی';
-        $federation->type = 'public';
-        $federation->save();
 
-        $federation = new \App\Model\Federation();
-        $federation->name = 'فدراسیون ژیمناستیک';
-        $federation->type = 'specialized';
-        $federation->save();
 
     }
 }

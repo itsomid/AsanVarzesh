@@ -20,11 +20,11 @@ class CoachController extends Controller
 
     public function search($keyword,$sport_id) {
 
-        $profiles = Profiles::whereHas(
+        $profiles = Profiles::/*whereHas(
             'user.roles', function ($query) use ($sport_id) {
                 $query->where('sport_id', $sport_id);
             })
-            ->where('keywords','like','%'.$keyword.'%')
+            ->*/where('keywords','like','%'.$keyword.'%')
             ->get();
 
         /*$profiles = Profiles::with('user.roles')

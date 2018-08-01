@@ -42,7 +42,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function Roles() {
-        return $this->belongsToMany('App\Model\Role');
+        return $this->belongsToMany('App\Model\Role')->withPivot('sport_id');
     }
 
     public function Coachs() {

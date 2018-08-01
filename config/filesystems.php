@@ -54,6 +54,7 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+
         'avatars' => [
             'driver' => 'local',
             'root'   => storage_path('app/public/avatars'), // previously storage_path();

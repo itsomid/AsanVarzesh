@@ -48,6 +48,12 @@ class AccessoriesSeeder extends Seeder
         $accessory->img = '/images/accessories.jpg';
         $accessory->save();
 
+        $accessory = new \App\Model\Accessory();
+        $accessory->name = 'کفش رانینگ';
+        $accessory->img = '/images/accessories.jpg';
+        $accessory->save();
+
+
 
     }
 }
