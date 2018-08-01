@@ -130,15 +130,15 @@ class ProfileController extends Controller
         $profile->height = $data['height'];
         $profile->weight = $data['weight'];
         $profile->blood_type = $data['blood_type'];
-        //$profile->diseases = $data['diseases']; // Json
-        //$profile->maim = $data['maim']; // Json
+        $profile->diseases = $data['diseases']; // Json
+        $profile->maim = $data['maim']; // Json
         $profile->city_id = $data['city_id'];
         $profile->address = $data['address'];
         $profile->keywords =  implode(' - ',[$data['first_name'],$data['last_name'],$data['first_name'].' '.$data['last_name']]); // Add First Name & Last Name For Search
         $profile->gender = $data['gender'];
         $profile->birth_date = $data['birth_date'];
         $profile->daily_activity = $data['daily_activity'];
-        //$profile->selected_days_hours = $data['selected_days_hours']; // Json
+        $profile->selected_days_hours = $data['selected_days_hours']; // Json
         $profile->place_for_sport = $data['place_for_sport'];
         $profile->level = $data['level'];
         $profile->abdominal = $data['abdominal'];
@@ -154,19 +154,7 @@ class ProfileController extends Controller
         $status = 200;
 
         return response()->json([
-            'profile' => [
-                'first_name' => $profile->first_name,
-                'last_name' => $profile->last_name,
-                'height' => $profile->height,
-                'weight' => $profile->weight,
-                'blood_type' => $profile->blood_type,
-                'diseases' => $profile->diseases,
-                'maim' => $profile->maim,
-                'city_id' => $profile->city_id,
-                'address' => $profile->address,
-                'lat' => $profile->lat,
-                'lng' => $profile->lng
-            ],
+            'profile' => $profile,
             'status' => $status,
             'message' => $message
         ],200);
@@ -192,6 +180,7 @@ class ProfileController extends Controller
             $profile->save();
 
             return response()->json([
+                'profile' => $profile,
                 'avatar_url' => url('storage/avatars/'.$path),
                 'status' => 200
             ],200);

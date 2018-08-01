@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Model\Profiles;
+use App\Model\Sport;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +11,31 @@ use App\Http\Controllers\Controller;
 class CoachController extends Controller
 {
     //
+
+    public function bySport($sport_id,$keywords = null,$capacity_full = 'no') {
+
+        $sports = Sport::with('coachs.profile')->where('id',$sport_id)->first();
+        return $sports;
+    }
+
+    public function filter($sport_id,$keywords = null,$capacity_full = 'no') {
+
+        $sports = Sport::with(['coachs.profile' =>
+            function($query) use ($keywords) {
+                $query->where('keywords','like','%'.$keywords.'%');
+            }])->where('id',$sport_id)->first();
+
+        $coachs = [];
+
+        foreach ($sports->coachs as $coach) {
+            if($coach['profile']) {
+                array_push($coachs,$coach->profile);
+            }
+        }
+
+        return response()->json($coachs,200);
+
+    }
 
     public function show($coach_id) {
 

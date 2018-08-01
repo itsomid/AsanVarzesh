@@ -62,14 +62,21 @@ Route::group(['prefix' => '/v1'],function() {
         Route::get('/federations/{federation_type}','Api\FederationController@show');
 
         // Choose Sport
-        Route::get('/sports/{federation_id}','Api\SportController@show');
+        Route::get('/sports//{federation_id}','Api\SportController@show');
 
         // Accessories
         Route::get('/accessories','Api\AccessoriesController@index');
+        Route::post('/accessories/store','Api\AccessoriesController@store');
 
         // Choose Coach
-        Route::get('/coachs/search/{keywords}/sport/{sport_id}','Api\CoachController@search');
+//        Route::get('/coachs/by_sportid/{id}','Api\CoachController@bySport');
         Route::get('/coachs/{coach_id}','Api\CoachController@show');
+        Route::get('/coachs/filter/{sport_id}/{keywords?}/{capacity_full?}','Api\CoachController@filter');
+        //Route::get('/coachs/search/{keywords}/sport/{sport_id}','Api\CoachController@search');
+
+        // Plans
+        Route::get('plans/{plan_id}','Api\PlanController@show');
+        Route::get('plans/by_sport/{sport_id}','Api\PlanController@bySportId');
 
         // Programs
         Route::post('programs/store','Api\ProgramsController@store');
@@ -84,3 +91,4 @@ Route::group(['prefix' => '/v1'],function() {
 Route::get('login',function() {
    return 1;
 })->name('login');
+
