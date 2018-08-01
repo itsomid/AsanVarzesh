@@ -33,8 +33,7 @@ class ProgramsController extends Controller
         $program->save();
 
         // Add Subscription
-        /*$from = Carbon::create(2001, 4, 21, 12)->format('Y-m-d H:i:s'); // 1 month ago
-        return $to = Carbon::create(2001, 4, 21)->addDay(5);*/
+
         $start_date = explode('-',$data['start_date']);
         $from = Carbon::create($start_date[0],$start_date[1],$start_date[2])->format('Y-m-d H:i:s');
         $to = Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay('30');
@@ -49,6 +48,7 @@ class ProgramsController extends Controller
 
 
         // Add Payments
+
         $payment = new Payment();
         $payment->user_id = $user->id;
         $payment->subscription_id = $subscription->id;

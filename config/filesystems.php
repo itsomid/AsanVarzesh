@@ -60,6 +60,11 @@ return [
             'root'   => storage_path('app/public/avatars'), // previously storage_path();
         ],
 
+        'accessories' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/accessories'), // previously storage_path();
+        ],
+
 
         's3' => [
             'driver' => 's3',

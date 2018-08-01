@@ -15,6 +15,23 @@ class AccessoriesController extends Controller
         return $accessories;
     }
 
+    public function store(Request $request) {
+
+        $data = $request->all();
+
+        $ext = $request->img->getClientOriginalExtension();
+        $path = $request->img->storeAs('/', md5(time()).'.'.$ext, 'accessories');
+        $url = 'storage/accessories/'.$path;
+
+        $accessory = new Accessory();
+        $accessory->name = $data['name'];
+        $accessory->img = $url;
+        $accessory->save();
+
+        return response()->json(['status' => 200,'message' => 'successfull'],200);
+
+    }
+
 
 
 }
