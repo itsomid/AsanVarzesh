@@ -28,10 +28,14 @@ class SportSeeder extends Seeder
         $sport->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -44,10 +48,14 @@ class SportSeeder extends Seeder
         $training->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -78,10 +86,14 @@ class SportSeeder extends Seeder
         $sport->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -94,10 +106,14 @@ class SportSeeder extends Seeder
         $training->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -126,10 +142,14 @@ class SportSeeder extends Seeder
         $sport->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -159,10 +179,14 @@ class SportSeeder extends Seeder
         $sport->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training
@@ -191,10 +215,14 @@ class SportSeeder extends Seeder
         $sport->save();
 
         $steps = [
-            1 => ' ۱۵ دقیقه گرم کردن ',
-            2 => ' ۲۰ دقیقه دویدن به صورت کند ',
-            3 => ' ۲۰ دقیقه دقیقه دویدن به صورت تند ',
-            4 => ' ۱۰ دقیقه دویدن به صورت آهسته '
+            [
+                'text' => ' ۱۵ دقیقه گرم کردن ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ],
+            [
+                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+            ]
         ];
 
         // Add Training

@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CoachSeeder::class);
         $this->call(CountriesSeeder::class);
         $this->call(FederationSeeder::class);
-        $this->call(PlanSeeder::class);
+        //$this->call(PlanSeeder::class);
         $this->call(AccessoriesSeeder::class);
+        $this->call(DoctorSeeder::class);
+
     }
 }

@@ -25,9 +25,6 @@ Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
 Route::get('fake',function() {
 
-    //    $faker = \Faker\Factory::create('fa_IR');
-    //    for ($i=0; $i < 1; $i++) {
-    //        echo $faker->name, "\n";
-    //    }
+
 
 });

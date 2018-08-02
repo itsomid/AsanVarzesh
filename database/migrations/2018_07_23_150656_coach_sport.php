@@ -19,6 +19,7 @@ class CoachSport extends Migration
             $table->increments('id');
             $table->integer('coach_id');
             $table->integer('sport_id');
+            $table->integer('price');
             $table->timestamps();
 
         });

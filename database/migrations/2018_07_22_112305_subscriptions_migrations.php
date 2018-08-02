@@ -20,7 +20,7 @@ class SubscriptionsMigrations extends Migration
             $table->dateTime('from');
             $table->dateTime('to');
             $table->integer('program_id');
-            $table->integer('plan_id');
+            $table->integer('coach_sport_id');
             $table->timestamps();
         });
 

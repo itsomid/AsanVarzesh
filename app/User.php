@@ -49,6 +49,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
     }
 
+
+
     public function profile() {
 
         return $this->hasOne('App\Model\Profiles');
