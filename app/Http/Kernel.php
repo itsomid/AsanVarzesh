@@ -59,6 +59,9 @@ class Kernel extends HttpKernel
         /* User Role */
         'UserRole' => \App\Http\Middleware\UserRole::class,
 
+        /* Coach Role */
+        'CoachRole' => \App\Http\Middleware\CoachRole::class,
+
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

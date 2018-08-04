@@ -11,4 +11,14 @@ class Programs extends Model
         'items' => 'array',
         'configuration' => 'array'
     ];
+
+    public function user()
+    {
+        return $this->hasOne('App\User','id','user_id');
+    }
+
+    public function coach()
+    {
+        return $this->hasOne('App\User','id','coach_id');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Coach;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -117,7 +117,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 7200000000000000000000000
+            'expires_in' => auth('api')->factory()->getTTL()
         ]);
     }
 
