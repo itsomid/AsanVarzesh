@@ -30,7 +30,7 @@ class CoachSeeder extends Seeder
             $user->save();
 
             $sports = \App\Model\Sport::pluck('id')->toArray();
-            $sport_id = $sports[array_rand($sports,2)];
+            $sport_id = $sports[array_rand($sports,1)];
 
             $user->roles()->attach(3,['sport_id' => $sport_id]);
             $user->coachs()->attach(1,['price' => $faker->randomNumber(5)]);

@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(PlanSeeder::class);
         $this->call(AccessoriesSeeder::class);
         $this->call(DoctorSeeder::class);
+        $this->call(OrphanProgram::class);
+
 
     }
 }

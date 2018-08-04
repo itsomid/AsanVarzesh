@@ -20,11 +20,16 @@ class CalendarsMigrations extends Migration
             $table->integer('day_number');
             $table->integer('user_id');
             $table->json('items');
-            $table->integer('meal_id');
-            $table->enum('type',['active','inactive','pending']);
+            $table->integer('food_package_id')->nullable();
+            $table->integer('training_id')->nullable();
+            $table->integer('meal_id')->nullable(); // ??----------------------
+            $table->enum('type',['training','package']);
             $table->integer('program_id');
+            $table->text('description');
 
         });
+
+
     }
 
     /**

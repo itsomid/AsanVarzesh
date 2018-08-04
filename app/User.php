@@ -31,6 +31,7 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -41,19 +42,29 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function Roles() {
+    public function Roles()
+    {
         return $this->belongsToMany('App\Model\Role')->withPivot('sport_id');
     }
 
-    public function Coachs() {
+    public function Coachs()
+    {
         return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
     }
-
-
 
     public function profile() {
 
         return $this->hasOne('App\Model\Profiles');
 
+    }
+
+    public function programs_as_doctor()
+    {
+        return $this->hasMany('App\Model\Programs','doctor_id','id');
+    }
+
+    public function accessories()
+    {
+        return $this->belongsToMany('App\Model\Accessory');
     }
 }

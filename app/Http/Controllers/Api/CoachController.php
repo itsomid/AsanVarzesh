@@ -18,7 +18,11 @@ class CoachController extends Controller
         return $sports;
     }
 
-    public function filter($sport_id,$keywords = null,$capacity_full = 'no') {
+    public function filter($sport_id,Request $request) {
+
+        $keywords = $request->keywords;
+        $capacity_full = $request->capacity_full;
+        $by_price = $request->price;
 
         $sports = Sport::with(['coachs.profile' =>
             function($query) use ($keywords) {

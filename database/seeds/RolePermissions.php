@@ -32,6 +32,11 @@ class RolePermissions extends Seeder
         $owner->display_name = 'Doctor'; // optional
         $owner->save();
 
+        $owner = new \App\Model\Role();
+        $owner->name         = 'corrective-doctor';
+        $owner->display_name = 'Corrective Doctor'; // optional
+        $owner->save();
+
 
     }
 }

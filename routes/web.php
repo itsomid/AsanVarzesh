@@ -25,6 +25,10 @@ Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
 Route::get('fake',function() {
 
+    $user = \App\User::find(21);
 
+    $accessories = [1,2];
+
+    $user->accessories()->attach($accessories);
 
 });

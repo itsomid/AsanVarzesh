@@ -21,11 +21,11 @@ class ProgramsMigrations extends Migration
             $table->integer('sport_id');
             $table->integer('coach_id');
             $table->integer('doctor_id')->nullable();
-            $table->integer('currective_doctor_id')->nullable();
+            $table->integer('corrective_doctor_id')->nullable();
             $table->integer('subscription_id')->nullable();
             $table->dateTime('start_date')->nullable();
-            $table->enum('status',['active','pending','inactive']);
-            $table->text('configuration')->nullable();
+            $table->enum('status',['active','pending','inactive','orphan']);
+            $table->json('configuration')->nullable();
             $table->timestamps();
 
         });
