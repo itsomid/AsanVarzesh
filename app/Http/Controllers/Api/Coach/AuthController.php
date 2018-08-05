@@ -25,13 +25,16 @@ class AuthController extends Controller
         $type = "registered before";
         if(!$user) {
 
-            $user = new User();
+            /*$user = new User();
             $user->mobile = $request->username;
             $user->save();
 
             // Add Role to User
             $user->roles()->attach(2);
-            $type = 'new user';
+            $type = 'new user';*/
+
+            return response()->json(['status' => 404,'message' => 'این شماره موبایل یافت نشد'],404);
+
         }
 
         $code = $this->generateLoginCode();

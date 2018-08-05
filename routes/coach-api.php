@@ -42,6 +42,7 @@ Route::group(['prefix' => '/v1'],function() {
 
             // Program
             Route::get('programs/{program_id}','Api\Coach\ProgramController@show');
+            Route::post('programs/update/{program_id}','Api\Coach\ProgramController@update');
 
     });
 
