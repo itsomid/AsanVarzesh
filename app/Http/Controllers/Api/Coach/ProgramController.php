@@ -16,12 +16,13 @@ class ProgramController extends Controller
 
     public function update($program_id,Request $request)
     {
-        return $data = $request->all();
+        $data = $request->all();
         $program = Programs::find($program_id);
         $program->status = $data['status'];
-        $program->text = $data['text'];
+        $program->description = $data['description'];
         $program->save();
-        if ($program->status == 'active')
+
+        if ($program->status == 'accept')
         {
             $status = 'برنامه تائید شد';
         }
@@ -30,7 +31,8 @@ class ProgramController extends Controller
             $status = "برنامه از طرف شما رد شد";
         }
 
-        return response()->json(['message' => ''],200);
+
+        return response()->json(['message' => $status],200);
 
     }
 }
