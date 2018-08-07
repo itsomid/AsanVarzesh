@@ -27,6 +27,7 @@ class ActivitiesMigrations extends Migration
 
         });
 
+
         
     }
 
