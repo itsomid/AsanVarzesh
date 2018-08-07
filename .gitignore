@@ -5,3 +5,4 @@ public/storage/.gitignore
 storage/framework/.gitignore
 .gitignore
 public/storage/
+.env
