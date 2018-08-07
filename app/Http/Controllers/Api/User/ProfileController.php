@@ -150,6 +150,11 @@ class ProfileController extends Controller
         $profile->nutrition_info = $data['nutrition_info']; // Json
         $profile->save();
 
+
+        $user->steps = 'profile';
+        $user->save();
+
+
         $message = 'پروفایل برای این اکانت ساخته شد.';
         $status = 200;
 
