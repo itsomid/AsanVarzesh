@@ -26,6 +26,8 @@ class ActivitiesMigrations extends Migration
             $table->timestamps();
 
         });
+
+        
     }
 
     /**
