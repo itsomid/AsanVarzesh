@@ -25,5 +25,7 @@ class SportController extends Controller
 
         return response()->json($sports,200);
 
+
+
     }
 }
