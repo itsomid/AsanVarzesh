@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageFieldtoSport extends Migration
+class AddHoursofworkFieldtoProfile extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddImageFieldtoSport extends Migration
     public function up()
     {
 
-        Schema::table('sports', function ($table) {
-            $table->text('image')->nullable()->after('description');
+        Schema::table('profiles', function ($table) {
+            $table->string('hours_of_work')->nullable()->after('text');
         });
 
     }

@@ -51,6 +51,8 @@ class CoachSeeder extends Seeder
                 'https://www.tarafdari.com/sites/default/files/contents/user241416/content-note/mhrb-ftmy.jpg'
             ];
             $profile->city_id = 117;
+            $profile->hours_of_work = '8-15';
+            $profile->covered_area = 'گیشا - شهرآرا - ستارخان';
             $profile->address = $faker->address;
             $profile->keywords = implode(' - ',[$first_name,$last_name,$first_name.' '.$last_name]); // Add First Name & Last Name For Search
             $profile->location = [41.070611, 28.993083];

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Programs;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,9 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password',
     ];
 
+    protected $appends = [
+        'coachCountUser'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -67,4 +71,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany('App\Model\Accessory');
     }
+
+    public function getcoachCountUserAttribute()
+    {
+       return count(Programs::where('coach_id',$this->id)->get());
+    }
+
 }

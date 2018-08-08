@@ -13,17 +13,14 @@ class Sport extends Model
         'highestPrice'
     ];
 
-    public function coachs() {
-
-        return $this->belongsToMany('App\User','coach_sport','sport_id','coach_id');
-
+    public function coachs()
+    {
+        return $this->belongsToMany('App\User','coach_sport','sport_id','coach_id')->withPivot('price');
     }
 
-
-    public function coach_profile() {
-
+    public function coach_profile()
+    {
         return $user = $this->belongsToMany('App\User','coach_sport','sport_id','coach_id');
-
     }
 
 
@@ -37,18 +34,19 @@ class Sport extends Model
 
     }
 
-    public function gethighestPriceAttribute() {
-
+    public function gethighestPriceAttribute()
+    {
         $coach_sport = Coach_sport::whereRaw('price = (select max(`price`) from coach_sport)')->first(['price']);
         return $coach_sport->price;
-
     }
 
-    public function getlowestPriceAttribute() {
-
+    public function getlowestPriceAttribute()
+    {
         $coach_sport = Coach_sport::whereRaw('price = (select min(`price`) from coach_sport)')->first(['price']);
         return $coach_sport->price;
-
     }
+
+
+
 
 }
