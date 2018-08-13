@@ -22,10 +22,15 @@ class CalendarsMigrations extends Migration
             $table->json('items');
             $table->integer('food_package_id')->nullable();
             $table->integer('training_id')->nullable();
-            $table->integer('meal_id')->nullable(); // ??----------------------
+            $table->integer('meal_id')->nullable();
+            $table->dateTime('date')->nullable();
+            $table->dateTime('time_exercise_from')->nullable();
+            $table->dateTime('time_exercise_to')->nullable();
+            $table->enum('status',['done','delayed','did_not_do','cancelled']);
             $table->enum('type',['training','package']);
             $table->integer('program_id');
-            $table->text('description');
+            $table->string('comment')->nullable();
+            $table->string('description')->nullable();
 
         });
 

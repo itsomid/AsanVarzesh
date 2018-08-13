@@ -20,6 +20,7 @@ class FoodPackageMigrations extends Migration
             $table->integer('food_id');
             $table->string('unit');
             $table->float('size');
+            $table->string('keywords')->nullable(); // For Search
             $table->timestamps();
         });
     }

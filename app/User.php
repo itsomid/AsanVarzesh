@@ -26,6 +26,10 @@ class User extends Authenticatable implements JWTSubject
         'coachCountUser'
     ];
 
+    protected $casts = [
+        'team' => 'array'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

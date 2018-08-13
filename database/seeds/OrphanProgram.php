@@ -88,11 +88,12 @@ class OrphanProgram extends Seeder
             $orphan_program->user_id = 0;
             $orphan_program->sport_id = $sport->id;
             $orphan_program->coach_id = 0;
-            $orphan_program->doctor_id = 0;
+            $orphan_program->nutrition_doctor_id = 0;
             $orphan_program->corrective_doctor_id = 0;
             $orphan_program->subscription_id = 0;
             $orphan_program->start_date = null;
             $orphan_program->status = 'orphan';
+            $orphan_program->federation_id = 1;
             $orphan_program->configuration = $configuration;
             $orphan_program->save();
 

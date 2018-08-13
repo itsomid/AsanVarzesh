@@ -23,8 +23,8 @@ class ProgramsController extends Controller
     // Assign a User & a Coach to Program
     public function store(Request $request) {
 
+        return $data = $request->all();
         $user = auth('api')->user();
-        $data = $request->all();
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
         $orphan_program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHoursofworkFieldtoProfile extends Migration
+class CoachFavorites extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,12 @@ class AddHoursofworkFieldtoProfile extends Migration
     public function up()
     {
 
-        Schema::table('profiles', function ($table) {
-            $table->string('hours_of_work')->nullable()->after('text');
+        Schema::create('coach_favorite', function (Blueprint $table) {
+
+            $table->increments('id');
+            $table->integer('coach_id');
+            $table->integer('training_id');
+
         });
 
     }

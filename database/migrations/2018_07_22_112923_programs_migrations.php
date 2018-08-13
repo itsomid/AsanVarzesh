@@ -20,12 +20,26 @@ class ProgramsMigrations extends Migration
             $table->integer('user_id');
             $table->integer('sport_id');
             $table->integer('coach_id');
-            $table->integer('doctor_id')->nullable();
+            $table->integer('nutrition_doctor_id')->nullable();
             $table->integer('corrective_doctor_id')->nullable();
             $table->integer('subscription_id')->nullable();
             $table->dateTime('start_date')->nullable();
             $table->enum('status',['active','pending','inactive','orphan']);
+            $table->integer('federation_id');
             $table->json('configuration')->nullable();
+
+            // Sport Info
+            $table->decimal('weight')->nullable();
+            $table->float('abdominal')->nullable();
+            $table->float('arm')->nullable();
+            $table->float('wrist')->nullable();
+            $table->float('hip')->nullable();
+            $table->float('waist')->nullable();
+            $table->string('place_for_sport')->nullable();
+            $table->json('time_of_exercises')->nullable(); // Days of the week
+            $table->enum('level',['amateur','semi-professional','professional']);
+            $table->text('target')->nullable();
+
             $table->timestamps();
 
         });

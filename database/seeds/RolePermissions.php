@@ -28,8 +28,8 @@ class RolePermissions extends Seeder
         $owner->save();
 
         $owner = new \App\Model\Role();
-        $owner->name         = 'doctor';
-        $owner->display_name = 'Doctor'; // optional
+        $owner->name         = 'nutrition-doctor';
+        $owner->display_name = 'Nutrition Doctor'; // optional
         $owner->save();
 
         $owner = new \App\Model\Role();

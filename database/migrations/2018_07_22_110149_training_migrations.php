@@ -21,6 +21,7 @@ class TrainingMigrations extends Migration
             $table->json('steps');
             $table->enum('difficulty',['Very Easy','Easy','Normal','Hard','Difficult','Very Difficult']);
             $table->text('details');
+            $table->json('attribute')->nullable();
             $table->timestamps();
         });
     }

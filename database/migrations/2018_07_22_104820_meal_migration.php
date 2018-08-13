@@ -17,6 +17,7 @@ class MealMigration extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('keywords')->nullable(); // For Search
             $table->timestamps();
         });
     }

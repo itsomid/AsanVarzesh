@@ -25,8 +25,8 @@ class UsersTable extends Migration
             $table->string('referal_code')->nullable();
             $table->string('referer_id')->nullable();
             $table->timestamp('last_login')->nullable();
+            $table->json('team')->nullable();
             $table->timestamps();
-
             $table->engine = 'InnoDB';
             $table->unique('email');
         });

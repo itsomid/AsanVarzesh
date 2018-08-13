@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AccessoriesSeeder::class);
         $this->call(DoctorSeeder::class);
         $this->call(OrphanProgram::class);
+        $this->call(CoachTeam::class);
+
 
 
     }

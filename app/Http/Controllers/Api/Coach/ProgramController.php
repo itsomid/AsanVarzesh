@@ -10,7 +10,13 @@ class ProgramController extends Controller
 {
     public function show($program_id)
     {
-        $program = Programs::find($program_id);
+        return $program = Programs::find($program_id);
+        $caledar_template = [];
+        foreach ($program->configuration as $value) {
+
+            dd($value);
+
+        }
         return $program;
     }
 
