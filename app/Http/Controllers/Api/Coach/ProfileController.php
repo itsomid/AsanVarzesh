@@ -8,12 +8,12 @@ use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-    public function show($user_id)
+    public function index()
     {
 
-        $user = User::find($user_id);
+        $user = auth('api')->user();
 
-        return response()->json($user->profile,200);
+        return $user->profile;
 
     }
 }

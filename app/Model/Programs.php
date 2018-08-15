@@ -21,4 +21,11 @@ class Programs extends Model
     {
         return $this->hasOne('App\User','id','coach_id');
     }
+
+    public function sport()
+    {
+
+        return $this->hasOne('App\Model\Sport','id','sport_id');
+
+    }
 }

@@ -31,18 +31,28 @@ Route::group(['prefix' => '/v1'],function() {
     });
     Route::group(
         [
-            'middleware' => ['jwtauth','CoachRole'],
+            /*'middleware' => ['jwtauth','CoachRole'],*/
             'prefix' => 'coach'
         ], function () {
 
-            Route::get('dashboard/{status?}','Api\Coach\DashboardController@index');
+            Route::get('dashboard/{date?}','Api\Coach\DashboardController@index');
 
-            // Profile User
-            Route::get('profile/{user_id}','Api\Coach\ProfileController@show');
+            // Training By User
+            Route::get('user-training/{user_id}','Api\Coach\UserTrainingController@userTraining');
 
-            // Program
-            Route::get('programs/{program_id}','Api\Coach\ProgramController@show');
-            Route::post('programs/update/{program_id}','Api\Coach\ProgramController@update');
+            // Users By Sport
+            Route::get('users/sports','Api\Coach\SportTypeController@index');
+            Route::get('users/sports/{sport_id}','Api\Coach\SportTypeController@show');
+
+            // Users
+            Route::get('users/profile/{user_id}','Api\Coach\UserProfileController@show');
+
+            // Requests
+            Route::get('requests','Api\Coach\RequestsController@index');
+
+
+            // Coach Profile
+            Route::get('profile','Api\Coach\ProfileController@index');
 
     });
 
