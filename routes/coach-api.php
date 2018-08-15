@@ -31,7 +31,7 @@ Route::group(['prefix' => '/v1'],function() {
     });
     Route::group(
         [
-            /*'middleware' => ['jwtauth','CoachRole'],*/
+            'middleware' => ['jwtauth','CoachRole'],
             'prefix' => 'coach'
         ], function () {
 
