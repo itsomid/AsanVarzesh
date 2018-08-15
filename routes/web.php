@@ -26,9 +26,9 @@ Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 Route::get('fake',function() {
 
     $coach_role = \App\Model\Role::find(3);
-    $coaches = $coach_role->users;
+    return $coaches = $coach_role->users;
 
-    $nutrition_role = \App\Model\Role::find(4);
+    /*$nutrition_role = \App\Model\Role::find(4);
     $nutrition_doctor = $nutrition_role->users;
     $nutrition_doctor_arr = [];
     foreach ($nutrition_doctor as $value) {
@@ -51,7 +51,7 @@ Route::get('fake',function() {
 
     }
 
-    return $all;
+    return $all;*/
 
 
 });
