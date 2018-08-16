@@ -18,9 +18,11 @@ class FoodPackageMigrations extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('food_id');
+            $table->integer('package_id');
             $table->string('unit');
             $table->float('size');
             $table->string('keywords')->nullable(); // For Search
+
             $table->timestamps();
         });
     }

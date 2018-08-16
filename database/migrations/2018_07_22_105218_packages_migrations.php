@@ -20,6 +20,7 @@ class PackagesMigrations extends Migration
             $table->integer('meal_id');
             $table->string('unit');
             $table->float('size');
+            $table->integer('creator_id')->nullable(); // Who Created this Package
             $table->timestamps();
         });
     }
