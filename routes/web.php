@@ -28,6 +28,8 @@ Route::get('fake',function() {
     $coach_role = \App\Model\Role::find(3);
     return $coaches = $coach_role->users;
 
+
+
     /*$nutrition_role = \App\Model\Role::find(4);
     $nutrition_doctor = $nutrition_role->users;
     $nutrition_doctor_arr = [];
@@ -212,5 +214,14 @@ Route::get('default-program',function () {
         'trainings' => $training,
         'nutrition' => $perweek
     ];
+
+});
+
+
+Route::get('calendar',function() {
+
+    $calendars = \App\Model\Calendar::with('meal','food_package.package.foods')->get();
+
+    return $calendars;
 
 });

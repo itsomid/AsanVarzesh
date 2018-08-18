@@ -59,4 +59,29 @@ class UserProfileController extends Controller
         return $response_json;
 
     }
+
+    public function diet($user_id) {
+
+        $response_json = [];
+        $all_diets = [];
+        for ($i = 0;$i <=6;$i++) {
+            $a_day = [
+                'day_number' => $i,
+                'food_package' => [
+                    'package' => [
+
+                    ],
+                    'food' => [
+
+                    ]
+                ]
+            ];
+            array_push($all_diets,$a_day);
+
+
+        }
+
+        return $response_json = $all_diets;
+
+    }
 }

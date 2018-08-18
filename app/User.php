@@ -23,7 +23,8 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $appends = [
-        'coachCountUser'
+        'coachCountUser',
+        'turn_over'
     ];
 
     protected $casts = [
@@ -55,7 +56,12 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Model\Role')->withPivot('sport_id');
     }
 
-    public function Coachs()
+    public function Coaches()
+    {
+        return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
+    }
+
+    public function sports()
     {
         return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
     }
@@ -80,5 +86,12 @@ class User extends Authenticatable implements JWTSubject
     {
        return count(Programs::where('coach_id',$this->id)->get());
     }
+
+    public function getTurnOverAttribute()
+    {
+        return 26000;
+    }
+
+
 
 }

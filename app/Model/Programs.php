@@ -28,4 +28,14 @@ class Programs extends Model
         return $this->hasOne('App\Model\Sport','id','sport_id');
 
     }
+
+    public function nutrition_dr()
+    {
+        return $this->hasOne('App\User','id','nutrition_doctor_id');
+    }
+
+    public function corrective_dr()
+    {
+        return $this->hasOne('App\User','id','corrective_doctor_id');
+    }
 }

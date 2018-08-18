@@ -46,6 +46,7 @@ Route::group(['prefix' => '/v1'],function() {
 
             // Users
             Route::get('users/profile/{user_id}','Api\Coach\UserProfileController@show');
+            Route::get('users/profile/{user_id}/diet','Api\Coach\UserProfileController@diet');
 
             // Requests
             Route::get('requests','Api\Coach\RequestsController@index');
@@ -53,6 +54,7 @@ Route::group(['prefix' => '/v1'],function() {
 
             // Coach Profile
             Route::get('profile','Api\Coach\ProfileController@index');
+            Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
 
     });
 

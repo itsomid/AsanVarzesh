@@ -95,4 +95,6 @@ class SportTypeController extends Controller
         return $response_json;
     }
 
+
+
 }
