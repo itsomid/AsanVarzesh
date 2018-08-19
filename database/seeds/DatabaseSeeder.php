@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call(OrphanProgram::class);
         $this->call(CoachTeam::class);
 
+        $this->call(MealSeeder::class);
+        $this->call(FoodSeeder::class);
+        $this->call(PackageSeeder::class);
+
 
 
     }

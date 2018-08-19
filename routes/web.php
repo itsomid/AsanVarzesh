@@ -228,3 +228,16 @@ Route::get('calendar',function() {
 
 
 });
+
+Route::get('package',function() {
+    $package = new \App\Model\Package();
+    $package->title = 'پکیج صبحانه';
+    $package->meal_id = 1;
+    $package->unit = 'gr';
+    $package->size = 600;
+    $package->save();
+
+    $package->foods()->attach('1',['title' => 'صبحانه','unit' => 'gr','size' => 600]);
+    $package->foods()->attach('2',['title' => 'صبحانه','unit' => 'gr','size' => 600]);
+
+});
