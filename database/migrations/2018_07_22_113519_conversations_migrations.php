@@ -17,7 +17,7 @@ class ConversationsMigrations extends Migration
         Schema::create('conversations', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integer('title');
+            $table->text('title');
             $table->integer('started_by');
             $table->timestamps();
 

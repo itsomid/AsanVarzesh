@@ -13,8 +13,11 @@ class Calendar extends Model
 
     }
 
-    public function food_package()
+    public function package()
     {
-        return $this->hasOne('App\Model\FoodPackage','id','food_package_id');
+
+        return $this->hasOne('App\Model\Package','id','package_id');
+
     }
+
 }

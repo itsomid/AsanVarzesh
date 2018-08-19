@@ -92,6 +92,11 @@ class User extends Authenticatable implements JWTSubject
         return 26000;
     }
 
+    public function conversations() {
+
+        return $this->belongsToMany('App\Model\Conversation');
+
+    }
 
 
 }

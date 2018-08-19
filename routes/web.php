@@ -220,8 +220,11 @@ Route::get('default-program',function () {
 
 Route::get('calendar',function() {
 
-    $calendars = \App\Model\Calendar::with('meal','food_package.package.foods')->get();
+//    $calendars = \App\Model\Calendar::with('meal','package.foods')->get();
+//    return $calendars;
 
-    return $calendars;
+    $training = \App\Model\Training::find(1);
+    return $training;
+
 
 });

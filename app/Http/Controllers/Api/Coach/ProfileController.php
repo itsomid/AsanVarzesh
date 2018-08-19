@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Coach;
 
 use App\Model\Programs;
+use App\Model\Training;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,6 +49,15 @@ class ProfileController extends Controller
 
 
         }
+
+    }
+
+    public function basket()
+    {
+
+        $trainings = Training::with('sport')->get();
+
+        return $trainings;
 
     }
 }

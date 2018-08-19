@@ -47,15 +47,23 @@ Route::group(['prefix' => '/v1'],function() {
             // Users
             Route::get('users/profile/{user_id}','Api\Coach\UserProfileController@show');
             Route::get('users/profile/{user_id}/diet','Api\Coach\UserProfileController@diet');
+            Route::get('users/profile/{user_id}/training','Api\Coach\UserProfileController@trainings');
 
             // Requests
             Route::get('requests','Api\Coach\RequestsController@index');
+            Route::get('requests/{id}','Api\Coach\RequestsController@show');
+            Route::post('requests/{id}/{status}','Api\Coach\RequestsController@update');
 
 
             // Coach Profile
             Route::get('profile','Api\Coach\ProfileController@index');
             Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
+            Route::get('profile/basket','Api\Coach\ProfileController@basket');
 
+            // Conversations
+            Route::get('conversations','Api\Coach\ConversationController@index');
+            Route::get('conversations/show-messages/{conversation_id}','Api\Coach\ConversationController@showMessages');
+            Route::post('conversations/send-message/{conversation_id}','Api\Coach\ConversationController@sendMessage');
     });
 
 });

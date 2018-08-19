@@ -67,12 +67,25 @@ class UserProfileController extends Controller
         for ($i = 0;$i <=6;$i++) {
             $a_day = [
                 'day_number' => $i,
-                'food_package' => [
-                    'package' => [
-
-                    ],
-                    'food' => [
-
+                'package' => [
+                    'title' => "صبحانه ",
+                    'size' => 2,
+                    'unit' => "number",
+                    'foods' => [
+                        [
+                            "id" => 1,
+                            "title" => "تخم مرغ",
+                            "description" => "تخم مرغ",
+                            "details" => "تخم مرغ",
+                            "energy" => 35
+                        ],
+                        [
+                            "id" => 1,
+                            "title" => "نان سنگک",
+                            "description" => "نان سنگک",
+                            "details" => "نان سنگک",
+                            "energy" => 35
+                        ]
                     ]
                 ]
             ];
@@ -82,6 +95,69 @@ class UserProfileController extends Controller
         }
 
         return $response_json = $all_diets;
+
+    }
+
+    public function trainings($user_id) {
+
+        $response_json = [];
+
+        for ($i = 1; $i <= 15; $i++) {
+
+            $perday = [
+                'day_number' => $i,
+                'time_exercise_from' => '2018-08-1'.$i.' 08:00:00',
+                'time_exercise_to' => '2018-08-1'.$i.' 10:00:00',
+                'training' => [
+                    [
+                        'title' => 'دووی استقامت',
+                        'steps' => [
+                            [
+                                'text' => '۱۵ دقیقه گرم کردن',
+                                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+                            ]
+                        ],
+                        'difficulty' => 'Easy',
+                        'details' => '',
+                        'attribute' => [
+                            'distance' => 1000,
+                            'time' => 600,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => null
+                        ]
+                    ],
+                    [
+                        'title' => 'تمرینات کششی',
+                        'steps' => [
+                            [
+                                'text' => '۱۵ دقیقه گرم کردن',
+                                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+                            ]
+                        ],
+                        'difficulty' => 'Easy',
+                        'details' => '',
+                        'attribute' => [
+                            'distance' => 1000,
+                            'time' => 600,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => null
+                        ]
+                    ]
+                ]
+            ];
+
+
+            array_push($response_json,$perday);
+
+        }
+
+        return $response_json;
 
     }
 }

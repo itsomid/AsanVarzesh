@@ -14,7 +14,7 @@ class AddValueToStatusProgram extends Migration
     public function up()
     {
         //
-        DB::statement("ALTER TABLE `programs` CHANGE `status` `status` ENUM('active','pending','inactive','orphan','accept','failed')");
+        DB::statement("ALTER TABLE `programs` CHANGE `status` `status` ENUM('active','pending','inactive','orphan','accept','reject')");
     }
 
     /**
