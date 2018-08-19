@@ -70,8 +70,8 @@ Route::group(['prefix' => '/v1'],function() {
 
         // Choose Coach
 //        Route::get('/coachs/by_sportid/{id}','Api\CoachController@bySport');
-        Route::get('/coachs/{coach_id}','Api\CoachController@show');
-        Route::get('/coachs/filter/{sport_id}/','Api\CoachController@filter');
+        Route::get('/coaches/{coach_id}','Api\CoachController@show');
+        Route::get('/coaches/filter/{sport_id}/','Api\CoachController@filter');
         //Route::get('/coachs/search/{keywords}/sport/{sport_id}','Api\CoachController@search');
 
         // Plans

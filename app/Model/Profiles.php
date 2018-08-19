@@ -32,7 +32,7 @@ class Profiles extends Model
         return $matches[1];
     }
 
-    public function coachs() {
+    public function coaches() {
 
         return $this->hasMany('App\Model\Role','user_id','role_id');
 

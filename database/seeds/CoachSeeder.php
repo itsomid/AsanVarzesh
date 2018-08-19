@@ -33,7 +33,7 @@ class CoachSeeder extends Seeder
             $sport_id = $sports[array_rand($sports,1)];
 
             $user->roles()->attach(3,['sport_id' => $sport_id]);
-            $user->coachs()->attach(1,['price' => $faker->randomNumber(5)]);
+            $user->coaches()->attach(1,['price' => $faker->randomNumber(5)]);
 
 
             $first_name = $faker->firstName();

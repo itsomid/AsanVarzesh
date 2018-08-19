@@ -23,11 +23,11 @@ class Federation extends Model
 
     public function getcoachCountAttribute()
     {
-        $sports = $this->hasMany('App\Model\Sport')->with('coachs')->get();
+        $sports = $this->hasMany('App\Model\Sport')->with('coaches')->get();
         $count = 0;
         foreach ($sports as $sport) {
-            $coachs = $sport->coachs;
-            $count += count($sport->coachs);
+            $coachs = $sport->coaches;
+            $count += count($sport->coaches);
         }
 
         return $count;

@@ -13,7 +13,7 @@ class SportController extends Controller
 
 
         // Show Sports by Federations
-        $sports = Sport::withCount('coachs')->where('federation_id',$federation_id)->get();
+        $sports = Sport::withCount('coaches')->where('federation_id',$federation_id)->get();
 
         return response()->json($sports,200);
 

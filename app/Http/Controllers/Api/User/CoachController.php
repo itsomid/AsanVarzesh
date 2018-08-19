@@ -14,7 +14,7 @@ class CoachController extends Controller
 
     public function bySport($sport_id,$keywords = null,$capacity_full = 'no') {
 
-        $sports = Sport::with('coachs.profile')->where('id',$sport_id)->first();
+        $sports = Sport::with('coaches.profile')->where('id',$sport_id)->first();
         return $sports;
     }
 
@@ -24,22 +24,22 @@ class CoachController extends Controller
         $capacity_full = $request->capacity_full;
         $by_price = $request->price;
 
-        return $sports = Sport::with(['coachs.profile' =>
+        return $sports = Sport::with(['coaches.profile' =>
             function($query) use ($keywords) {
 
                 $query->where('keywords','like','%'.$keywords.'%');
 
             }])->where('id',$sport_id)->first();
 
-        $coachs = [];
+        $coaches = [];
 
-        foreach ($sports->coachs as $coach) {
+        foreach ($sports->coaches as $coach) {
             if($coach['profile']) {
-                array_push($coachs,$coach->profile);
+                array_push($coaches,$coach->profile);
             }
         }
 
-        return response()->json($coachs,200);
+        return response()->json($coaches,200);
 
     }
 

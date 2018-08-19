@@ -13,7 +13,7 @@ class Sport extends Model
         'highestPrice'
     ];
 
-    public function coachs()
+    public function coaches()
     {
         return $this->belongsToMany('App\User','coach_sport','sport_id','coach_id')->withPivot('price');
     }
