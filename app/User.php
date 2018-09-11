@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Model\Programs;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -98,5 +99,34 @@ class User extends Authenticatable implements JWTSubject
 
     }
 
+    public function has_conversation_with_user()
+    {
+        return $this->belongsToMany('App\Model\Conversation')->wherePivotIn('user_id', [1]);
+    }
+
+    public function sport_by_coach()
+    {
+        $coach = auth('api')->user();
+        return $this->belongsTo('App\Model\Programs','id','user_id')->where('coach_id',$coach->id);
+    }
+
+    public function active_programs()
+    {
+        return $this->hasMany('App\Model\Programs')->where('status','active')->orWhere('status','accept');
+    }
+
+    public function basket()
+    {
+        return $this->belongsToMany('App\Model\Training','coach_favorite','coach_id','training_id');
+    }
+
+    public function today_training()
+    {
+
+        //$today_date = Carbon::today()->format('y-m-d').' 00:00:00';
+        $today_date = '2018-09-10 00:00:00';
+        return $this->hasMany('App\Model\Calendar','user_id','id')->where('date',$today_date);
+
+    }
 
 }

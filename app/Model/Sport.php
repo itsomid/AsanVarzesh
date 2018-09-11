@@ -5,6 +5,16 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * App\Model\Sport
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $coach_profile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $coaches
+ * @property-read mixed $url_image
+ * @property-read mixed $highest_price
+ * @property-read mixed $lowest_price
+ * @mixin \Eloquent
+ */
 class Sport extends Model
 {
     protected $appends = [

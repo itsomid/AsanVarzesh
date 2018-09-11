@@ -4,6 +4,14 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Model\Federation
+ *
+ * @property-read mixed $coach_count
+ * @property-read mixed $sport_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Sport[] $sports
+ * @mixin \Eloquent
+ */
 class Federation extends Model
 {
     //

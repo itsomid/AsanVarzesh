@@ -58,7 +58,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-
+        
         $credentials = request(['username', 'password']);
 
         if(!is_numeric($credentials['username']))

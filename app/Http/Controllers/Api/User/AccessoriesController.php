@@ -30,6 +30,8 @@ class AccessoriesController extends Controller
 
         return response()->json(['status' => 200,'message' => 'successfull'],200);
 
+
+
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Model\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,7 @@ class SportTypeController extends Controller
     public function index()
     {
 
-        $response_json = [];
+    /*    $response_json = [];
 
         $response_json = [
 
@@ -36,14 +37,18 @@ class SportTypeController extends Controller
 
         ];
 
-        return $response_json;
+        return $response_json;*/
+
+        $coach = auth('api')->user();
+        return $coach->sports;
+
 
     }
 
     public function show($sport_id)
     {
 
-        $response_json = [];
+        /*$response_json = [];
 
         $response_json = [
 
@@ -92,7 +97,19 @@ class SportTypeController extends Controller
             ]
 
         ];
-        return $response_json;
+        return $response_json;*/
+
+        $coach = auth('api')->user();
+
+        $programs = Programs::where('sport_id',$sport_id)
+                            ->where('coach_id',$coach->id)
+                            ->orderby('id','DESC')
+                            ->with('user.profile')
+                            ->get();
+
+        return $programs;
+
+
     }
 
 

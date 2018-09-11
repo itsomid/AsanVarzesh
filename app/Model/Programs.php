@@ -4,12 +4,24 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Model\Programs
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Calendar[] $calendar
+ * @property-read \App\User $coach
+ * @property-read \App\User $corrective_dr
+ * @property-read \App\User $nutrition_dr
+ * @property-read \App\Model\Sport $sport
+ * @property-read \App\User $user
+ * @mixin \Eloquent
+ */
 class Programs extends Model
 {
     //
     protected $casts = [
         'items' => 'array',
-        'configuration' => 'array'
+        'configuration' => 'array',
+        'time_of_exercises' => 'array'
     ];
 
     public function user()
@@ -37,5 +49,15 @@ class Programs extends Model
     public function corrective_dr()
     {
         return $this->hasOne('App\User','id','corrective_doctor_id');
+    }
+
+    public function calendar()
+    {
+        return $this->hasMany('App\Model\Calendar','program_id','id');
+    }
+
+    public function conversations()
+    {
+        return $this->belongsTo('App\Model\Conversation','program_id','id');
     }
 }

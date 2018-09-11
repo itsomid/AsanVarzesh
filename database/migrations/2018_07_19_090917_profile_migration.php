@@ -19,6 +19,8 @@ class ProfileMigration extends Migration
             $table->integer('user_id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('expertise')->nullable();
+            $table->string('coach_rate')->nullable();
             $table->text('text')->nullable();
             $table->text('avatar')->nullable();
             $table->json('photos')->nullable();

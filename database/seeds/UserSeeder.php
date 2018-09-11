@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CoachSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,7 @@ class CoachSeeder extends Seeder
         //
 
         $faker = \Faker\Factory::create('fa_IR');
+
 
 
 
@@ -32,8 +33,8 @@ class CoachSeeder extends Seeder
             $sports = \App\Model\Sport::pluck('id')->toArray();
             $sport_id = $sports[array_rand($sports,1)];
 
-            $user->roles()->attach(3,['sport_id' => $sport_id]);
-            $user->coaches()->attach(1,['price' => $faker->randomNumber(5)]);
+            $user->roles()->attach(2);
+            //$user->coaches()->attach(1,['price' => $faker->randomNumber(5)]);
 
 
             $first_name = $faker->firstName();
@@ -43,10 +44,8 @@ class CoachSeeder extends Seeder
             $profile->user_id = $user->id;
             $profile->first_name = $first_name;
             $profile->last_name = $last_name;
-            $profile->expertise = 'بدن سازی تخصصی';
-            $profile->coach_rate = 'professional';
             $profile->avatar = 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg';
-            //$profile->height = 190;
+            $profile->height = 190;
             //$profile->weight = 110;
             $profile->photos = [
                 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg',

@@ -5,6 +5,15 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * App\Model\Profiles
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Role[] $coaches
+ * @property mixed $location
+ * @property-read mixed $weight
+ * @property-read \App\User $user
+ * @mixin \Eloquent
+ */
 class Profiles extends Model
 {
     //
@@ -15,6 +24,18 @@ class Profiles extends Model
         'diseases' => 'array',
         'selected_days_hours' => 'array'
     ];
+    protected $appends = [
+        'weight'
+    ];
+
+    public function getweightAttribute()
+    {
+        $program = Programs::where('user_id',$this->id)->orderby('id','DESC')->first();
+        if($program != null) {
+            return $program->weight;
+        }
+
+    }
 
     public function user() {
 
@@ -33,9 +54,7 @@ class Profiles extends Model
     }
 
     public function coaches() {
-
         return $this->hasMany('App\Model\Role','user_id','role_id');
-
     }
 
 

@@ -23,6 +23,7 @@ class MessagesMigrations extends Migration
             //$table->enum('status');
             $table->text('attachment');
             $table->text('type',['video','audio','text','picture','file']);
+            $table->json('read_status');
             $table->timestamps();
 
         });

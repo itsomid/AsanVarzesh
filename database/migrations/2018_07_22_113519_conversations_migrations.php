@@ -18,7 +18,10 @@ class ConversationsMigrations extends Migration
 
             $table->increments('id');
             $table->text('title');
-            $table->integer('started_by');
+            $table->integer('program_id')->nullable();
+            $table->integer('started_by')->nullable();
+            $table->enum('type',['private','group']);
+            $table->json('read_status');
             $table->timestamps();
 
         });

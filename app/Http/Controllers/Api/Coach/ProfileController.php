@@ -7,6 +7,7 @@ use App\Model\Training;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -15,7 +16,7 @@ class ProfileController extends Controller
 
         $user = auth('api')->user();
 
-        $user = User::with(['profile','sports'])->where('id',$user->id)->first();
+        return $user = User::with(['profile','sports'])->where('id',$user->id)->first();
 
         return $user;
 
@@ -55,9 +56,31 @@ class ProfileController extends Controller
     public function basket()
     {
 
-        $trainings = Training::with('sport')->get();
+        $coach = auth('api')->user();
+        $user = User::with('basket.sport')->find($coach->id);
+        return $user->basket;
 
-        return $trainings;
+
+    }
+
+    public function uploadImage(Request $request) {
+
+        $coach = auth('api')->user();
+
+        $validator = Validator::make($request->all(), [
+            'photo' => 'required|image'
+        ]);
+
+        $ext = $request->photo->getClientOriginalExtension();
+        $path = $request->photo->storeAs('/', $coach->id.'-'.md5(microtime()).'.'.$ext, 'photos');
+        $url = 'storage/photos/'.$path;
+
+        $profile = $coach->profile;
+        $photos = $profile->photos;
+        array_push($photos,$url);
+
+        $profile->photos = $photos;
+        $profile->save();
 
     }
 }

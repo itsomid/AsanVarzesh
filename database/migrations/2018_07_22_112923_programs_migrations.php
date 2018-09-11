@@ -27,6 +27,7 @@ class ProgramsMigrations extends Migration
             $table->enum('status',['active','pending','inactive','orphan']);
             $table->integer('federation_id');
             $table->json('configuration')->nullable();
+            $table->text('text')->nullable();
 
             // Sport Info
             $table->decimal('weight')->nullable();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Model\Conversation;
+use App\Model\FoodPackage;
 use App\Model\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -87,8 +89,12 @@ class RequestsController extends Controller
         }
 
 
-        return $response_json;
+//        return $response_json;
 
+        $coach = auth('api')->user();
+        $programs = Programs::with('user.profile','sport')->where('coach_id',$coach->id)->where('status','pending')->orderby('id','DESC')->get();
+
+        return $programs;
     }
 
 
@@ -189,18 +195,69 @@ class RequestsController extends Controller
 
         ];
 
+        //return $response_json;
 
+        $coach = auth('api')->user();
+        $programs = Programs::with('user.profile','sport')
+            ->where('id',$program_id)
+            ->where('coach_id',$coach->id)
+            ->where('status','pending')
+            ->orderby('id','DESC')
+            ->first()->toArray();
 
-        return $response_json;
+        $nutrition_calendar = [];
+        foreach ($programs['configuration']['nutrition'] as $perday) {
+            $nutrition_perday = ['day_number' => '', 'meals' => []];
+            $nutrition_perday['day_number'] = $perday['day_number'];
+            $all_meals = [];
+            foreach ($perday['meals'] as $meal) {
+                $per_meal = [];
+                $food_package = FoodPackage::with('package.foods')->where('id',$meal['food_package_id'])->first()->toArray();
+
+                array_push($nutrition_perday['meals'],$food_package);
+            }
+
+            array_push($nutrition_calendar,$nutrition_perday);
+        }
+
+        $programs['configuration']['nutrition'] = $nutrition_calendar;
+
+        return $programs;
 
     }
 
-    public function update($status) {
+    public function update($program_id,$status,Request $request) {
 
-        return [
+        $data = $request->all();
+        $program = Programs::find($program_id);
+        $program->status = $status;
+        $program->text = $data['text'];
+        $program->save();
+        if($status == 'accept') {
+
+            // Create Conversation Group
+            $conversation = new Conversation();
+            $conversation->program_id = $program->id;
+            $conversation->started_by = null;
+            $conversation->title = 'گفتگوی گروهی';
+            $conversation->save();
+            $conversation->user()
+                        ->sync([
+                            $program->coach_id,
+                            $program->user_id,
+                            $program->nutrition_doctor_id,
+                            $program->corrective_doctor_id
+                        ]);
+
+            // TODO: Generate Calendar
+
+        }
+
+        return response()->json([
             'message' => 'عملیات مورد نظر انجام شد',
             'status' => 200
-        ];
+        ],200);
+
 
     }
 }

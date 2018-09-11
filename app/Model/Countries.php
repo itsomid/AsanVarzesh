@@ -4,6 +4,12 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Model\Countries
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\States[] $states
+ * @mixin \Eloquent
+ */
 class Countries extends Model
 {
 

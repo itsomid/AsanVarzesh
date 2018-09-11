@@ -65,6 +65,16 @@ return [
             'root'   => storage_path('app/public/accessories'), // previously storage_path();
         ],
 
+        'file_message' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/file_message'), // previously storage_path();
+        ],
+
+        'photos' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/photos'), // previously storage_path();
+        ],
+
 
         's3' => [
             'driver' => 's3',

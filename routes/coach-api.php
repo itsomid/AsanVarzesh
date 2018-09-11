@@ -52,18 +52,24 @@ Route::group(['prefix' => '/v1'],function() {
             // Requests
             Route::get('requests','Api\Coach\RequestsController@index');
             Route::get('requests/{id}','Api\Coach\RequestsController@show');
-            Route::post('requests/{id}/{status}','Api\Coach\RequestsController@update');
+            Route::post('requests/{program_id}/{status}','Api\Coach\RequestsController@update');
 
 
             // Coach Profile
             Route::get('profile','Api\Coach\ProfileController@index');
             Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
+            Route::post('profile/upload-photo','Api\Coach\ProfileController@uploadImage');
 
             // Conversations
             Route::get('conversations','Api\Coach\ConversationController@index');
+            Route::post('conversations/create','Api\Coach\ConversationController@createConversation');
             Route::get('conversations/show-messages/{conversation_id}','Api\Coach\ConversationController@showMessages');
-            Route::post('conversations/send-message/{conversation_id}','Api\Coach\ConversationController@sendMessage');
+            Route::post('conversations/send-message/','Api\Coach\ConversationController@sendMessage');
+
+            // Programs
+            Route::get('programs/{id}','Api\Coach\ProgramController@show');
+
     });
 
 });
