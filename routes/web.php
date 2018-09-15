@@ -348,9 +348,12 @@ Route::get('default-program',function () {
         'nutrition' => $perweek
     ];
 
-    $program = \App\Model\Programs::find(32);
-    $program->configuration = $comp;
-    $program->save();
+    $programs = \App\Model\Programs::where('status','orphan')->get();
+    foreach ($programs as $program) {
+        $program->configuration = $comp;
+        $program->save();
+    }
+
 
 });
 
@@ -381,8 +384,16 @@ Route::get('package',function() {
 
 
 Route::get('gettoken',function() {
-    $ik = new \App\Helpers\IranKish();
-    return $ik->getToken();
+    /*$ik = new \App\Helpers\IranKish();
+    return $ik->getToken();*/
+
+    $generated = new \App\Helpers\GenerateCalendar();
+    return $generated->generate(78,1);
 
 
+});
+
+Route::get('fake_coaches',function () {
+    $coach_role = \App\Model\Role::find(3);
+    return $coaches = $coach_role->users;
 });

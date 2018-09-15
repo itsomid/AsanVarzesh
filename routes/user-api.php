@@ -84,6 +84,10 @@ Route::group(['prefix' => '/v1'],function() {
         // Payment
         Route::get('payments/check/{reference}','Api\User\PaymentController@check');
 
+        // Dashboard
+        Route::get('dashboard','Api\User\DashboardController@index');
+
+
     });
 
 });

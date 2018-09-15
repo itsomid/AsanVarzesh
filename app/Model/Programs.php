@@ -60,4 +60,9 @@ class Programs extends Model
     {
         return $this->belongsTo('App\Model\Conversation','program_id','id');
     }
+
+    public function subscription()
+    {
+        return $this->hasOne('App\Model\Subscription','program_id','id');
+    }
 }

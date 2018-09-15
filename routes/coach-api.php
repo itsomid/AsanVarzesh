@@ -49,6 +49,14 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('users/profile/{user_id}/diet','Api\Coach\UserProfileController@diet');
             Route::get('users/profile/{user_id}/training','Api\Coach\UserProfileController@trainings');
 
+            // User Calendar ( Show Program Calendar by Selected Times & Day & Its Update)
+            Route::get('users/calendar/trainings/{program_id}','Api\Coach\UserCalendarTrainingsController@showTrainings');
+            Route::post('users/calendar/trainings/update','Api\Coach\UserCalendarTrainingsController@updateTrainings');
+
+            Route::get('users/calendar/meals/{program_id}','Api\Coach\UserCalendarMealsController@showMeals');
+            Route::post('users/calendar/meals/update','Api\Coach\UserCalendarMealsController@updateMeals');
+
+
             // Requests
             Route::get('requests','Api\Coach\RequestsController@index');
             Route::get('requests/{id}','Api\Coach\RequestsController@show');
@@ -69,6 +77,8 @@ Route::group(['prefix' => '/v1'],function() {
 
             // Programs
             Route::get('programs/{id}','Api\Coach\ProgramController@show');
+
+
 
     });
 

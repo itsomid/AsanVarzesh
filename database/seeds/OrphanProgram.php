@@ -15,70 +15,270 @@ class OrphanProgram extends Seeder
         $sports = \App\Model\Sport::all();
 
 
-        $configuration = [
+        $training = [
+            [
+                'day_number' => 0,
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
+            ],
             [
                 'day_number' => 1,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
             [
                 'day_number' => 2,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
             [
                 'day_number' => 3,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
             [
                 'day_number' => 4,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
             [
                 'day_number' => 5,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
             [
                 'day_number' => 6,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+                'training' => [
+                    [
+                        'training_id' => 2,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ],
+                    [
+                        'training_id' => 3,
+                        'attribute' => [
+                            'distance' => null,
+                            'time' => 30,
+                            'speed' => '44',
+                            'unit_speed' => 'km',
+                            'set' => 4,
+                            'each_set' => 10,
+                            'time_each_set' => 65
+                        ]
+                    ]
+                ]
             ],
-            [
-                'day_number' => 7,
-                'items' => [],
-                'food_package_id' => null,
-                'training_id' => 2,
-                'meal_id' => null,
-                'type' => 'training',
-                'description' => 'lorem ipsum...'
+
+
+        ];
+
+        $nutrition_perday = [
+            'day_number' => 0,
+            'meals' => [
+                [
+
+                    'meal_id' => 1,
+                    'food_package_id' => 2,
+                    'energy' => 250,
+                    'unit' => 'gr',
+                    'size' => null,
+                    'time' => '08:00'
+
+                ],
+                [
+
+                    'meal_id' => 2,
+                    'food_package_id' => 2,
+                    'energy' => 250,
+                    'unit' => 'gr',
+                    'size' => null,
+                    'time' => '11:00'
+
+                ],
+                [
+
+                    'meal_id' => 3,
+                    'food_package_id' => 2,
+                    'energy' => 250,
+                    'unit' => 'gr',
+                    'size' => null,
+                    'time' => '13:00'
+
+                ],
+                [
+
+                    'meal_id' => 4,
+                    'food_package_id' => 2,
+                    'energy' => 250,
+                    'unit' => 'gr',
+                    'size' => null,
+                    'time' => '20:00'
+
+                ]
             ]
+        ];
+
+        $perweek = [];
+        for ($i = 0;$i <= 6 ; $i++) {
+            $nutrition_perday['day_number'] = $i;
+            array_push($perweek,$nutrition_perday);
+
+        }
+
+        $comp = [
+            'trainings' => $training,
+            'nutrition' => $perweek
         ];
 
 
@@ -94,7 +294,7 @@ class OrphanProgram extends Seeder
             $orphan_program->start_date = null;
             $orphan_program->status = 'orphan';
             $orphan_program->federation_id = 1;
-            $orphan_program->configuration = $configuration;
+            $orphan_program->configuration = $comp;
             $orphan_program->save();
 
         }

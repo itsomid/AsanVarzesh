@@ -7,6 +7,7 @@ use App\Model\Payment;
 use App\Model\Plan;
 use App\Model\Programs;
 use App\Model\Role;
+use App\Model\Sport;
 use App\Model\Subscription;
 use App\User;
 use Carbon\Carbon;
@@ -23,7 +24,8 @@ class ProgramsController extends Controller
     // Assign a User & a Coach to Program
     public function store(Request $request) {
 
-        return $data = $request->all();
+        $data = $request->all();
+
         $user = auth('api')->user();
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
@@ -33,18 +35,33 @@ class ProgramsController extends Controller
         // Add Accessories
 
 
-
-
         // Add Program
+
+        $sport = Sport::with('federation')->find($data['sport_id']);
+        $coach = User::find($data['coach_id']);
         $program = new Programs();
         $program->user_id = $user->id;
         $program->coach_id = $data['coach_id'];
         $program->sport_id = $data['sport_id'];
-        $program->doctor_id = $this->findDoctor();
-        $program->corrective_doctor_id = $this->findcorrectiveDoctor();
+        $program->nutrition_doctor_id = $coach->team['nutrition_doctor'];
+        $program->corrective_doctor_id = $coach->team['corrective_doctor'];
         $program->start_date = $data['start_date'];
-        $program->status = 'active';
+        $program->status = 'pending';
+        $program->time_of_exercises = $data['time_of_exercises'];
         $program->configuration = $orphan_program->configuration;
+        $program->federation_id = $sport->federation->id;
+        $program->target = $data['target'];
+        $program->level = $data['level'];
+
+        // Physical Information
+        $program->weight = $data['weight'];
+        $program->abdominal = $data['abdominal'];
+        $program->arm = $data['arm'];
+        $program->wrist = $data['wrist'];
+        $program->hip = $data['hip'];
+        $program->waist = $data['waist'];
+        $program->place_for_sport = $data['place_for_sport'];
+
         $program->save();
 
         // Add Subscription
@@ -58,12 +75,14 @@ class ProgramsController extends Controller
         $subscription->to = $to;
         $subscription->program_id = $program->id;
         $subscription->coach_sport_id = $coach_sport->id;
+
         $subscription->save();
 
 
         // Add Payments
         $payment = new Payment();
         $payment->user_id = $user->id;
+
         $payment->subscription_id = $subscription->id;
         $payment->price = $coach_sport->price;
         $payment->via = 'zarinpal';
@@ -90,31 +109,4 @@ class ProgramsController extends Controller
         
     }
 
-    public function findDoctor() {
-
-        $doctors = Role::find(4);
-        $doctors->users;
-        foreach ($doctors->users as $user) {
-
-            if(count($user->programs_as_doctor) <= $this->assignment_capacity_for_doctor) {
-                return $user->id;
-            }
-
-        }
-    }
-
-    public function findcorrectiveDoctor() {
-
-        $doctors = Role::find(5);
-        $doctors->users;
-        foreach ($doctors->users as $user) {
-
-            if(count($user->programs_as_doctor) <= $this->assignment_capacity_for_doctor) {
-                return $user->id;
-            }
-
-        }
-
-
-    }
 }

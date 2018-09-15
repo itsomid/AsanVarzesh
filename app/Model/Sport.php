@@ -33,6 +33,10 @@ class Sport extends Model
         return $user = $this->belongsToMany('App\User','coach_sport','sport_id','coach_id');
     }
 
+    public function federation()
+    {
+        return $user = $this->hasOne('App\Model\Federation','id','federation_id');
+    }
 
     public function getUrlImageAttribute()
     {

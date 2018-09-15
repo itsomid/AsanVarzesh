@@ -198,7 +198,7 @@ class RequestsController extends Controller
         //return $response_json;
 
         $coach = auth('api')->user();
-        $programs = Programs::with('user.profile','sport')
+        return $programs = Programs::with('user.profile','sport')
             ->where('id',$program_id)
             ->where('coach_id',$coach->id)
             ->where('status','pending')
