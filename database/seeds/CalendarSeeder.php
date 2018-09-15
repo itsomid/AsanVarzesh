@@ -14,12 +14,13 @@ class CalendarSeeder extends Seeder
 
         $user_role = \App\Model\Role::find(2);
         $users = $user_role->users;
-
-        foreach ($users as $user)
+        $program = \App\Model\Programs::where('status','orphan')->find(1);
+        $conf = $program->configuration;
+        foreach ($users as $keys => $user)
         {
 
             /* Create A Program */
-            $date = '2018-09-09';
+            $date = \Carbon\Carbon::today();
             $program = new \App\Model\Programs();
             $program->user_id = $user->id;
             $program->sport_id = 1;
@@ -27,7 +28,7 @@ class CalendarSeeder extends Seeder
             $program->nutrition_doctor_id = 13;
             $program->corrective_doctor_id = 16;
             $program->start_date = $date;
-            $program->status = 'active';
+            $program->status = 'pending';
             $program->federation_id = 1;
             $program->configuration = array();
             $program->weight = 90;
@@ -37,16 +38,37 @@ class CalendarSeeder extends Seeder
             $program->hip = 1;
             $program->waist = 1;
             $program->place_for_sport = 'خانه';
-            $program->time_of_exercises = array();
+            $time_of_exercises = [
+                [
+                    'day_number' => 2,
+                    'start_time' => '8:30',
+                    'end_time' => '11:30'
+                ],
+                [
+                    'day_number' => 4,
+                    'start_time' => '8:30',
+                    'end_time' => '11:30'
+                ],
+                [
+                    'day_number' => 6,
+                    'start_time' => '8:30',
+                    'end_time' => '11:30'
+                ]
+            ];
+            $program->configuration = $conf;
+            $program->time_of_exercises = $time_of_exercises;
             $program->level = 'amateur';
             $program->target = 'تناسب اندام';
             $program->description = '';
             $program->save();
 
+
+
+
             // Add Subscription
-            $start_date = explode('-',$date);
-            $from = \Carbon\Carbon::create($start_date[0],$start_date[1],$start_date[2])->format('Y-m-d H:i:s');
-            $to = \Carbon\Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay('30');
+            //$start_date = explode('-',$date);
+            $from = \Carbon\Carbon::parse($date)->format('Y-m-d H:i:s');
+            $to = \Carbon\Carbon::parse($date)->addDay('30');
 
             $subscription = new \App\Model\Subscription();
             $subscription->user_id = $user->id;
@@ -56,8 +78,16 @@ class CalendarSeeder extends Seeder
             $subscription->coach_sport_id = 1;
             $subscription->save();
 
-            /* Create Calendar User */
-            $this->generateCalendar($user->id,$program->id,$date);
+            $program->subscription_id = $subscription->id;
+            $program->save();
+
+            /* Create Calendar for first User */
+            if($keys == 0) {
+
+                $generateCalendar = new \App\Helpers\GenerateCalendar();
+                $generateCalendar->generate($program->id,1);
+
+            }
 
         }
 
@@ -74,10 +104,6 @@ class CalendarSeeder extends Seeder
         for ($i = 1; $i <= 30; $i++) {
 
             // Add A Training
-
-
-
-
             $carbon_date_hour1 = \Carbon\Carbon::parse($date);
             $from_hour = $carbon_date_hour1->addHours(8);
             $carbon_date_hour2 = \Carbon\Carbon::parse($date);

@@ -16,7 +16,7 @@ class ProfileController extends Controller
 {
     //
 
-    public function index() {
+    public function index($program_id = null) {
 
         $user = auth('api')->user();
         if(!$user->profile) {
@@ -26,7 +26,16 @@ class ProfileController extends Controller
                 ],
                 404);
         }
-        return response()->json($user->profile,200);
+
+        $user = User::with([
+            'profile',
+            'programs.corrective_doctor',
+            'programs.nutrition_doctor',
+            'programs.coach',
+            'programs.sport',
+            //'activities'
+        ])->find($user->id);
+        return response()->json($user,200);
 
     }
 

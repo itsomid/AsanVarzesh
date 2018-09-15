@@ -27,8 +27,13 @@ class Training extends Model
         return $this->hasOne('App\Model\Sport','id','sport_id');
     }
 
+    public function accessories()
+    {
+        return $this->belongsToMany('App\Model\Accessory');
+    }
+
     public function getImageAttribute() {
-        return 'http://asanvarzesh.lhost/images/placeholder.png';
+        return url('/images/placeholder.png');
     }
 
 

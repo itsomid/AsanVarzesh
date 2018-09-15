@@ -16,7 +16,7 @@ class FoodPackageMigrations extends Migration
         //
         Schema::create('food_package', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->integer('food_id');
             $table->integer('package_id');
             $table->string('unit');

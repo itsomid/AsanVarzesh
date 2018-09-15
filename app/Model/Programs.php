@@ -34,6 +34,16 @@ class Programs extends Model
         return $this->hasOne('App\User','id','coach_id');
     }
 
+    public function nutrition_doctor()
+    {
+        return $this->hasOne('App\User','id','nutrition_doctor_id');
+    }
+
+    public function corrective_doctor()
+    {
+        return $this->hasOne('App\User','id','corrective_doctor_id');
+    }
+
     public function sport()
     {
 
@@ -41,15 +51,6 @@ class Programs extends Model
 
     }
 
-    public function nutrition_dr()
-    {
-        return $this->hasOne('App\User','id','nutrition_doctor_id');
-    }
-
-    public function corrective_dr()
-    {
-        return $this->hasOne('App\User','id','corrective_doctor_id');
-    }
 
     public function calendar()
     {

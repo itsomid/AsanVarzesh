@@ -74,10 +74,20 @@ Route::group(['prefix' => '/v1'],function() {
             Route::post('conversations/create','Api\Coach\ConversationController@createConversation');
             Route::get('conversations/show-messages/{conversation_id}','Api\Coach\ConversationController@showMessages');
             Route::post('conversations/send-message/','Api\Coach\ConversationController@sendMessage');
+            Route::post('conversations/read/','Api\Coach\ConversationController@readConversation');
 
             // Programs
             Route::get('programs/{id}','Api\Coach\ProgramController@show');
 
+            // Packages
+            Route::get('packages','Api\Coach\PackageController@index');
+            Route::get('packages/{id}','Api\Coach\PackageController@show');
+            Route::get('packages/foods/all','Api\Coach\PackageController@foods');
+            Route::get('packages/meals/all','Api\Coach\PackageController@meals');
+            Route::post('packages/store','Api\Coach\PackageController@store');
+
+            // Payments
+            Route::get('payments','Api\Coach\PaymentController@index');
 
 
     });

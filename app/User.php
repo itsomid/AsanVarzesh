@@ -115,6 +115,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Model\Programs')->where('status','active')->orWhere('status','accept');
     }
 
+    public function programs() {
+        return $this->hasMany('App\Model\Programs');
+    }
+
     public function basket()
     {
         return $this->belongsToMany('App\Model\Training','coach_favorite','coach_id','training_id');
@@ -128,5 +132,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Model\Calendar','user_id','id')->where('date',$today_date);
 
     }
+
+    public function activities()
+    {
+        $this->hasMany('App\Model\Activity');
+    }
+
 
 }

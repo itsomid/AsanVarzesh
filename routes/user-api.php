@@ -32,17 +32,23 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('me', 'Api\User\AuthController@me');
 
     });
+
     Route::group(
         [
             'middleware' => ['jwtauth','UserRole'],
             'prefix' => 'user'
         ], function () {
 
-        /* Profile User */
-        Route::get('profile/','Api\User\ProfileController@index');
-        Route::post('profile/store','Api\User\ProfileController@store');
-        Route::post('profile/update','Api\User\ProfileController@update');
-        Route::post('profile/avatar','Api\User\ProfileController@setAvatar');
+
+
+                /* Profile User */
+                Route::get('profile/','Api\User\ProfileController@index');
+                Route::post('profile/store','Api\User\ProfileController@store');
+                Route::post('profile/update','Api\User\ProfileController@update');
+                Route::post('profile/avatar','Api\User\ProfileController@setAvatar');
+
+
+
 
         // Set & Get Step
         Route::post('/save-step','Api\User\ProfileController@saveStep');
@@ -78,14 +84,37 @@ Route::group(['prefix' => '/v1'],function() {
         Route::get('plans/{plan_id}','Api\User\PlanController@show');
         Route::get('plans/by_sport/{sport_id}','Api\User\PlanController@bySportId');
 
+
+
         // Programs
+        Route::get('programs/','Api\User\ProgramsController@index');
+        Route::get('programs/{id}/calendar','Api\User\ProgramsController@calendar');
         Route::post('programs/store','Api\User\ProgramsController@store');
 
-        // Payment
-        Route::get('payments/check/{reference}','Api\User\PaymentController@check');
+        // Motivate
+        Route::get('motivational/random','Api\User\MotivationalController@random');
 
-        // Dashboard
-        Route::get('dashboard','Api\User\DashboardController@index');
+        Route::group(['middleware' => ['checkSubscription']], function () {
+
+            // Calendars
+            //Route::get('calendars/','Api\User\CalendarController@index');
+            Route::post('calendars/update','Api\User\CalendarController@update');
+
+            // Payment
+            Route::get('payments','Api\User\PaymentController@index');
+            Route::get('payments/check/{reference}','Api\User\PaymentController@check');
+
+            // Dashboard
+            Route::get('dashboard/{date?}','Api\User\DashboardController@index');
+
+            // Conversations
+            Route::get('conversations','Api\User\ConversationController@index');
+            Route::post('conversations/create','Api\User\ConversationController@createConversation');
+            Route::get('conversations/show-messages/{conversation_id}','Api\User\ConversationController@showMessages');
+            Route::post('conversations/send-message/','Api\User\ConversationController@sendMessage');
+            Route::post('conversations/read/','Api\User\ConversationController@readConversation');
+
+        });
 
 
     });

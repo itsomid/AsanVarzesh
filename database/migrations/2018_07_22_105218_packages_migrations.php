@@ -18,9 +18,10 @@ class PackagesMigrations extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('meal_id');
-            $table->string('unit');
-            $table->float('size');
+            $table->string('unit')->nullable();
+            $table->float('size')->nullable();
             $table->integer('creator_id')->nullable(); // Who Created this Package
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

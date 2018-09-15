@@ -12,7 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Conversation extends Model
 {
-    //
+    protected $casts = [
+        'read_status' => 'array'
+    ];
 
     public function user()
     {
@@ -31,5 +33,10 @@ class Conversation extends Model
 
         return $this->hasMany('App\Model\Message')->orderBy('id','DESC');
 
+    }
+
+    public function lastMessage()
+    {
+        return $this->hasOne('App\Model\Message')->orderBy('id','DESC');
     }
 }

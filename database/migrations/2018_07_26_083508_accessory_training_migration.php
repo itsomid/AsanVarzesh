@@ -15,6 +15,7 @@ class AccessoryTrainingMigration extends Migration
     {
 
         Schema::create('accessory_training', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('accessory_id');
             $table->integer('training_id');
             $table->timestamps();

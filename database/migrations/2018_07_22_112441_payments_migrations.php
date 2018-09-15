@@ -18,11 +18,12 @@ class PaymentsMigrations extends Migration
 
             $table->increments('id');
             $table->integer('user_id');
+            $table->integer('program_id')->nullable();
+            $table->integer('coach_id')->nullable();
             $table->integer('subscription_id')->nullable();
-            $table->integer('price');
+            $table->integer('price')->nullable();
             $table->string('via')->nullable();
-            $table->integer('type'); /* Will Confirm */
-            $table->enum('status',['initializing', 'failed', 'pending', 'success']);
+            $table->enum('status',['failed', 'pending', 'success']);
             $table->string('reference_id')->nullable();
             $table->integer('promotion_id')->nullable();
             $table->timestamps();

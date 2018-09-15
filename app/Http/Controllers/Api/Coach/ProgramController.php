@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Coach;
 
 use App\Model\FoodPackage;
 use App\Model\Meal;
+use App\Model\Package;
 use App\Model\Programs;
 use App\Model\Training;
 use Illuminate\Http\Request;
@@ -50,12 +51,11 @@ class ProgramController extends Controller
             foreach ($item['meals'] as $value) {
 
                 $meal = Meal::find($value['meal_id']);
-                $foods = FoodPackage::with('package.foods')->where('id',$value['food_package_id'])->first();
-                $foods->package->foods;
+                $foods = Package::with('foods')->where('id',$value['package_id'])->first();
 
                 $nutrition_item = [];
                 $nutrition_item['meal'] = $meal;
-                $nutrition_item['foods'] = $foods->package->foods;
+                $nutrition_item['foods'] = $foods->foods;
 
                 array_push($aDay_nutritions['meals'],$nutrition_item);
 

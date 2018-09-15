@@ -86,7 +86,7 @@ class UserCalendarTrainingsController extends Controller
 
         $data = $request->all();
         $program = Programs::find($data['program_id']);
-        if($program->trainings_confirmation == false) {
+        if($program->trainings_confirmation == false && $program->status == 'accept') {
 
             $program->configuration = ['trainings' => $data['trainings'],'nutrition' => $program->configuration['nutrition']];
             $program->trainings_confirmation = true;
@@ -97,7 +97,9 @@ class UserCalendarTrainingsController extends Controller
                 $program->status = 'accept';
                 $program->save();
 
-                // Todo: Create Training Calendar
+                $generateCalendar = new \App\Helpers\GenerateCalendar();
+                return $generateCalendar->generate($program->id,1);
+
 
             }
 

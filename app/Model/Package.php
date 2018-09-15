@@ -16,7 +16,7 @@ class Package extends Model
     public function foods()
     {
 
-        return $this->belongsToMany('App\Model\Food');
+        return $this->belongsToMany('App\Model\Food')->withPivot(['unit','size']);
 
     }
 

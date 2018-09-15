@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 class Calendar extends Model
 {
     protected $casts = [
-        'items' => 'array'
+        'attributes' => 'array'
     ];
     public function meal()
     {
@@ -42,6 +42,11 @@ class Calendar extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function familiar()
+    {
+        return $this->belongsToMany('App\Model\Package','calendar_package');
     }
 
 }

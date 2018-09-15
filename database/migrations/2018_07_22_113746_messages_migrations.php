@@ -19,11 +19,11 @@ class MessagesMigrations extends Migration
             $table->increments('id');
             $table->integer('conversation_id');
             $table->integer('user_id');
-            $table->text('text');
+            $table->text('text')->nullable();
             //$table->enum('status');
-            $table->text('attachment');
-            $table->text('type',['video','audio','text','picture','file']);
-            $table->json('read_status');
+            $table->text('attachment')->nullable();
+            $table->enum('type',['video','audio','text','picture','file']);
+            $table->json('read_status')->nullable();
             $table->timestamps();
 
         });

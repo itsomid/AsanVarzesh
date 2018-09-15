@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Coach;
+namespace App\Http\Controllers\Api\User;
 
 use App\Model\Conversation;
 use App\Model\Message;
@@ -49,7 +49,6 @@ class ConversationController extends Controller
         } else {
 
             // Must Create
-
             $conversation = new Conversation();
             $conversation->started_by = $coach->id;
             $conversation->program_id = null;

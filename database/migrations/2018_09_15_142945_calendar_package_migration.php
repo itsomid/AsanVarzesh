@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FamiliarMigrations extends Migration
+class CalendarPackageMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class FamiliarMigrations extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('familiar', function (Blueprint $table) {
+        Schema::create('calendar_package', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('package_id');
-            $table->integer('familiar_id');
+            $table->string('package_id');
+            $table->integer('calendar_id');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -30,6 +28,6 @@ class FamiliarMigrations extends Migration
      */
     public function down()
     {
-        //
+
     }
 }

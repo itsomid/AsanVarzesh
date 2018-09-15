@@ -19,7 +19,7 @@ class CalendarsMigrations extends Migration
             $table->increments('id');
             $table->integer('day_number');
             $table->integer('user_id');
-            $table->json('items');
+            $table->json('attributes')->nullable();
             $table->integer('package_id')->nullable();
             $table->integer('training_id')->nullable();
             $table->integer('meal_id')->nullable();

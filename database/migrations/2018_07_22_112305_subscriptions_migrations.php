@@ -19,8 +19,8 @@ class SubscriptionsMigrations extends Migration
             $table->integer('user_id');
             $table->dateTime('from');
             $table->dateTime('to');
-            $table->integer('program_id');
-            $table->integer('coach_sport_id');
+            $table->integer('program_id')->nullable();
+            $table->integer('coach_sport_id')->nullable();
             $table->timestamps();
         });
 

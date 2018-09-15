@@ -22,12 +22,14 @@ class DatabaseSeeder extends Seeder
         $this->call(DoctorSeeder::class);
         $this->call(OrphanProgram::class);
         $this->call(CoachTeam::class);
-
         $this->call(MealSeeder::class);
         $this->call(FoodSeeder::class);
         $this->call(PackageSeeder::class);
-
-
+        $this->call(UserSeeder::class);
+        $this->call(CalendarSeeder::class);
+        $this->call(ConversationSeeder::class);
+        $this->call(PaymentsSeeder::class);
+        $this->call(MotivationalSeeder::class);
 
     }
 }

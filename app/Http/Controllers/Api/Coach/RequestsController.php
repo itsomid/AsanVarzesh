@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Coach;
 
 use App\Model\Conversation;
 use App\Model\FoodPackage;
+use App\Model\Package;
 use App\Model\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -198,7 +199,7 @@ class RequestsController extends Controller
         //return $response_json;
 
         $coach = auth('api')->user();
-        return $programs = Programs::with('user.profile','sport')
+        $programs = Programs::with('user.profile','sport')
             ->where('id',$program_id)
             ->where('coach_id',$coach->id)
             ->where('status','pending')
@@ -212,13 +213,14 @@ class RequestsController extends Controller
             $all_meals = [];
             foreach ($perday['meals'] as $meal) {
                 $per_meal = [];
-                $food_package = FoodPackage::with('package.foods')->where('id',$meal['food_package_id'])->first()->toArray();
+                $food_package = Package::with('foods')->where('id',$meal['package_id'])->first()->toArray();
 
                 array_push($nutrition_perday['meals'],$food_package);
             }
 
             array_push($nutrition_calendar,$nutrition_perday);
         }
+
 
         $programs['configuration']['nutrition'] = $nutrition_calendar;
 
@@ -233,28 +235,9 @@ class RequestsController extends Controller
         $program->status = $status;
         $program->text = $data['text'];
         $program->save();
-        if($status == 'accept') {
-
-            // Create Conversation Group
-            $conversation = new Conversation();
-            $conversation->program_id = $program->id;
-            $conversation->started_by = null;
-            $conversation->title = 'گفتگوی گروهی';
-            $conversation->save();
-            $conversation->user()
-                        ->sync([
-                            $program->coach_id,
-                            $program->user_id,
-                            $program->nutrition_doctor_id,
-                            $program->corrective_doctor_id
-                        ]);
-
-            // TODO: Generate Calendar
-
-        }
 
         return response()->json([
-            'message' => 'عملیات مورد نظر انجام شد',
+            'message' => 'کلیت برنامه مورد نظر انجام شد',
             'status' => 200
         ],200);
 

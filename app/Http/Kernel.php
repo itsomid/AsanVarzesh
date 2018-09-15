@@ -56,6 +56,9 @@ class Kernel extends HttpKernel
 
         //'CheckAuth' => \App\Http\Middleware\CheckAuth::class,
 
+        /* Check Subscription */
+        'checkSubscription' => \App\Http\Middleware\checkSubscription::class,
+
         /* User Role */
         'UserRole' => \App\Http\Middleware\UserRole::class,
 

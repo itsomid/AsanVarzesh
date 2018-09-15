@@ -357,43 +357,121 @@ Route::get('default-program',function () {
 
 });
 
+Route::get('test',function() {
 
-Route::get('calendar',function() {
+    /*$program = \App\Model\Programs::first();
+    $nut = $program->configuration['nutrition'];
 
-//    $calendars = \App\Model\Calendar::with('meal','package.foods')->get();
-//    return $calendars;
+    foreach ($nut[1]['meals'] as $meal) {
+        if(isset($meal['familiar'])) {
+            echo json_encode($meal);
+        }
+    }
+    $calendar = \App\Model\Calendar::where('package_id','!=',null)->first();
 
-    $training = \App\Model\Training::find(1);
-    return $training;
+    $calendar->familiar()->attach($nut[1]['meals'][1]['familiar']);*/
 
-
-});
-
-Route::get('package',function() {
-    $package = new \App\Model\Package();
-    $package->title = 'پکیج صبحانه';
-    $package->meal_id = 1;
-    $package->unit = 'gr';
-    $package->size = 600;
-    $package->save();
-
-    $package->foods()->attach('1',['title' => 'صبحانه','unit' => 'gr','size' => 600]);
-    $package->foods()->attach('2',['title' => 'صبحانه','unit' => 'gr','size' => 600]);
+//    $program = \App\Model\Programs::find(6);
+//    return $program->coach->sport;
+    $today = \Carbon\Carbon::today()->addDay(3);
 
 });
 
+Route::get('generate-calendar',function() {
 
-Route::get('gettoken',function() {
-    /*$ik = new \App\Helpers\IranKish();
-    return $ik->getToken();*/
+    $programs = \App\Model\Programs::where('status','!=','orphan')->first();
+    /*foreach ($programs as $program)
+    {
+        $nutrition = $program->configuration['nutrition'];
+        $nutrition[0]['meals'][0]['familiar'] = [1,4];
+        $nutrition[1]['meals'][2]['familiar'] = [4,6];
+        $program->configuration = ['trainings' => $program->configuration['trainings'],'nutrition' => $nutrition];
+        $program->save();
 
-    $generated = new \App\Helpers\GenerateCalendar();
-    return $generated->generate(78,1);
+    }*/
 
+    $generateCalendar = new \App\Helpers\GenerateCalendar();
+    $generateCalendar->generate($programs->id,1);
 
 });
+
+
+
+
 
 Route::get('fake_coaches',function () {
     $coach_role = \App\Model\Role::find(3);
     return $coaches = $coach_role->users;
+});
+
+Route::get('coaches',function() {
+    $coach_role = \App\Model\Role::find(3);
+
+    $coaches = [];
+    foreach ($coach_role->users as $user) {
+        $a_coach = [];
+
+        $a_coach['id'] = $user->id;
+        $a_coach['mobile'] = $user->mobile;
+
+        $program = \App\Model\Programs::where('coach_id',$user->id)->get();
+        if(count($program) > 0) {
+            $a_coach['has_program'] = true;
+        } else {
+            $a_coach['has_program'] = false;
+        }
+
+        $conversations = \App\Model\Message::where('user_id',$user->id)->get();
+        if(count($conversations) > 0) {
+            $a_coach['has_conversation'] = true;
+        } else {
+            $a_coach['has_conversation'] = false;
+        }
+        array_push($coaches,$a_coach);
+    }
+
+    return $coaches;
+
+});
+
+Route::get('users',function () {
+
+    $user_role = \App\Model\Role::find(2);
+    $users = [];
+    foreach ($user_role->users as $user) {
+
+        $a_user = [];
+
+        $a_user['id'] = $user->id;
+        $a_user['mobile'] = $user->mobile;
+
+        $program = \App\Model\Programs::where('user_id',$user->id)->get();
+        if(count($program) > 0) {
+            $a_user['has_program'] = true;
+        } else {
+            $a_user['has_program'] = false;
+        }
+
+        $conversations = \App\Model\Message::where('user_id',$user->id)->get();
+        if(count($conversations) > 0) {
+            $a_user['has_conversation'] = true;
+        } else {
+            $a_user['has_conversation'] = false;
+        }
+
+        $calendar = \App\Model\Calendar::where('user_id',$user->id)->get();
+        if(count($calendar)) {
+
+            $a_user['has_calendar'] = true;
+
+        } else {
+            $a_user['has_calendar'] = false;
+        }
+        array_push($users,$a_user);
+
+
+    }
+
+    return $users;
+
 });

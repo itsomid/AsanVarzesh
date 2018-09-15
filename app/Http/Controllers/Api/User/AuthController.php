@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Model\Subscription;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -32,6 +34,15 @@ class AuthController extends Controller
             // Add Role to User
             $user->roles()->attach(2);
             $type = 'new user';
+
+            // Trial Subscription
+            $today = Carbon::today();
+            $subscription = new Subscription();
+            $subscription->user_id = $user->id;
+            $subscription->from = $today;
+            $subscription->to = $today->addDay(3);
+            $subscription->save();
+
         }
 
         $code = $this->generateLoginCode();

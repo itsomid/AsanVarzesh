@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Model\Calendar;
 use App\Model\Coach_sport;
 use App\Model\Payment;
 use App\Model\Plan;
@@ -20,12 +21,51 @@ class ProgramsController extends Controller
     protected $assignment_capacity_for_doctor = 20;
     protected $assignment_capacity_for_corrective = 20;
 
+    public function index()
+    {
+
+        $user = auth('api')->user();
+
+        $programs = Programs::with([
+                                    'sport',
+                                    'coach.profile',
+                                    'corrective_doctor.profile',
+                                    'nutrition_doctor.profile'
+                                ])->where('user_id',$user->id)->orderby('id','DESC')->get();
+
+        return response()->json($programs,200);
+
+    }
+
+    public function calendar($program_id)
+    {
+
+        $calendar_trainings = Calendar::with('training.accessories')
+                                        ->where('type','training')
+                                        ->where('program_id',$program_id)
+                                        ->orderby('id','DESC')
+                                        ->get()
+                                        ->groupBy('date')->toArray();
+
+        $calendar_nutrition = Calendar::with('package','familiar.foods')
+            ->where('type','package')
+            ->where('program_id',$program_id)
+            ->orderby('id','DESC')
+            ->get()
+            ->groupBy('date')->toArray();
+
+        return response()->json([
+            'trainings' => $calendar_trainings,
+            'nutrition' => $calendar_nutrition
+        ],200);
+
+    }
 
     // Assign a User & a Coach to Program
     public function store(Request $request) {
 
         $data = $request->all();
-
+        return $data['time_of_exercises'];
         $user = auth('api')->user();
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
@@ -64,10 +104,13 @@ class ProgramsController extends Controller
 
         $program->save();
 
+
         // Add Subscription
         $start_date = explode('-',$data['start_date']);
         $from = Carbon::create($start_date[0],$start_date[1],$start_date[2])->format('Y-m-d H:i:s');
         $to = Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay('30');
+
+
 
         $subscription = new Subscription();
         $subscription->user_id = $user->id;
@@ -78,18 +121,22 @@ class ProgramsController extends Controller
 
         $subscription->save();
 
+        $program->subscription_id = $subscription->id;
+        $program->save();
+
 
         // Add Payments
-        $payment = new Payment();
-        $payment->user_id = $user->id;
-
-        $payment->subscription_id = $subscription->id;
-        $payment->price = $coach_sport->price;
-        $payment->via = 'zarinpal';
-        $payment->type = 0;
+        $payment = new \App\Model\Payment();
+        $payment->user_id = $program->user_id;
+        $payment->program_id = $program->id;
+        $payment->coach_id = $program->coach_id;
+        $payment->subscription_id = $program->subscription_id;
+        $payment->price = 25000;
+        $payment->via = 'Iran Kish';
         $payment->status = 'success';
-        $reference = md5('ZarinPal-Test'.time());
-        $payment->reference_id = $reference;
+        $payment->reference_id = md5(time());
+        $payment->promotion_id = null;
+        $payment->save();
         if(isset($data['promotion_code'])) {
 
             // Todo: Add Promotion Model & find it by id

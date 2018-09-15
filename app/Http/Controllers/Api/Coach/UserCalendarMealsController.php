@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Coach;
 
 use App\Model\FoodPackage;
+use App\Model\Package;
 use App\Model\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class UserCalendarMealsController extends Controller
 
             foreach ($item['meals'] as $meal) {
 
-                $food_package = FoodPackage::with('package.foods')->where('id',$meal['food_package_id'])->first();
+                $food_package = Package::with('foods')->where('id',$meal['package_id'])->first();
 
                 array_push($meals_day['meals'],$food_package);
 
@@ -45,7 +46,7 @@ class UserCalendarMealsController extends Controller
         $data = $request->all();
         $program = Programs::find($data['program_id']);
         $data['nutrition'];
-        if($program->meals_confirmation == false) {
+        if($program->meals_confirmation == false && $program->status == 'accept') {
 
             $program->configuration = ['trainings' => $program->configuration['trainings'], 'nutrition' => $data['nutrition']];
             $program->meals_confirmation = true;
@@ -55,7 +56,8 @@ class UserCalendarMealsController extends Controller
                 $program->status = 'accept';
                 $program->save();
 
-                // Todo: Create Meals Calendar
+                $generateCalendar = new \App\Helpers\GenerateCalendar();
+                return $generateCalendar->generate($program->id,1);
 
             }
 

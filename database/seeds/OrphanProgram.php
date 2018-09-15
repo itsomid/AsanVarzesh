@@ -229,41 +229,45 @@ class OrphanProgram extends Seeder
                 [
 
                     'meal_id' => 1,
-                    'food_package_id' => 2,
+                    'package_id' => 2,
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '08:00'
+                    'time' => '08:00',
+
 
                 ],
                 [
 
                     'meal_id' => 2,
-                    'food_package_id' => 2,
+                    'package_id' => 3,
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '11:00'
+                    'time' => '11:00',
+                    'familiar' => [1,3]
 
                 ],
                 [
 
                     'meal_id' => 3,
-                    'food_package_id' => 2,
+                    'package_id' => 4,
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '13:00'
+                    'time' => '13:00',
+
 
                 ],
                 [
 
                     'meal_id' => 4,
-                    'food_package_id' => 2,
+                    'package_id' => 5,
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '20:00'
+                    'time' => '20:00',
+                    'familiar' => [1,3]
 
                 ]
             ]

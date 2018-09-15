@@ -43,8 +43,8 @@ class ProfileController extends Controller
             $response_json = [];
 
             $program = Programs::find($program_id);
-            $response_json['nutrition_doctor'] = $program->nutrition_dr->profile;
-            $response_json['corrective_doctor'] = $program->corrective_dr->profile;
+            $response_json['nutrition_doctor'] = $program->nutrition_doctor->profile;
+            $response_json['corrective_doctor'] = $program->corrective_doctor->profile;
 
             return $response_json;
 

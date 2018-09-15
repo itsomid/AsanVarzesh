@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FamiliarCalendar extends Migration
+class MotivationalMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class FamiliarCalendar extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('familiar_calendar', function (Blueprint $table) {
-
+        Schema::create('motivationals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('calendar_id');
-            $table->integer('package_id');
-
+            $table->text('phrase');
+            $table->timestamps();
         });
     }
 

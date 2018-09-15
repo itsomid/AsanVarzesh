@@ -57,5 +57,10 @@ class Profiles extends Model
         return $this->hasMany('App\Model\Role','user_id','role_id');
     }
 
+    public function sports()
+    {
+        return $this->belongsToMany('App\Model\Sport');
+    }
+
 
 }

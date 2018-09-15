@@ -19,9 +19,9 @@ class ActivitiesMigrations extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->json('activities')->nullable();
-            $table->integer('type'); /* Which Training */
-            $table->float('energy');
-            $table->integer('time'); /* Per Second */
+            //$table->integer('type'); /* Which training */
+            $table->float('energy')->nullable();
+            $table->integer('time')->nullable(); /* Per Second */
             $table->integer('calendar_id');
             $table->timestamps();
 
