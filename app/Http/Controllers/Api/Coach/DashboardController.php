@@ -14,8 +14,11 @@ class DashboardController extends Controller
 {
     public function index($date = null) {
         $coach = auth('api')->user();
+
         if($date == null) {
-            $date = Carbon::today()->format('y-m-d');
+            $date_carbon = Carbon::today();
+        } else {
+            $date_carbon = Carbon::parse($date);
         }
 
 //        $profiles = Profiles::take(10)->get();
@@ -120,7 +123,7 @@ class DashboardController extends Controller
 
             $calendars_by_user = Calendar::with(['training','user.profile'])
                 ->whereIn('program_id',$programs_by_type)
-                ->where('date','2018-09-10 00:00:00')
+                ->where('date',$date)
                 ->where('training_id','!=',null)
                 ->get()->groupBy('user_id');
 

@@ -40,7 +40,7 @@ class DashboardController extends Controller
 
 
         }
-        
+
         $calendar_nutrition = Calendar::where('user_id',$user->id)
             ->with('training.accessories')
             ->where('type','training')
