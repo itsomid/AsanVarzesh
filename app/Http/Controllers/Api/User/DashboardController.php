@@ -19,7 +19,7 @@ class DashboardController extends Controller
             $date_carbon = Carbon::parse($date);
         }
         $calendar_trainings = Calendar::where('user_id',$user->id)
-            ->with('training.accessories')
+            ->with(['training.accessories','training.sport'])
             ->where('type','training')
             ->where('date',$date_carbon)
             ->orderby('id','DESC')
