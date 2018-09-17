@@ -42,7 +42,7 @@ class DashboardController extends Controller
         }
 
         $calendar_nutrition = Calendar::where('user_id',$user->id)
-            ->with(['meal','package','familiar'])
+            ->with(['meal','package.foods','familiar.foods'])
             ->where('type','package')
             ->where('package_id','!=',null)
             ->where('training_id','=',null)
