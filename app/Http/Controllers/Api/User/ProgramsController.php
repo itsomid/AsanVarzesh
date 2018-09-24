@@ -65,7 +65,7 @@ class ProgramsController extends Controller
     public function store(Request $request) {
 
         $data = $request->all();
-        return $data['time_of_exercises'];
+        $data['time_of_exercises'];
         $user = auth('api')->user();
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
@@ -126,6 +126,7 @@ class ProgramsController extends Controller
 
 
         // Add Payments
+        $reference = md5(time());
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
         $payment->program_id = $program->id;
@@ -134,7 +135,7 @@ class ProgramsController extends Controller
         $payment->price = 25000;
         $payment->via = 'Iran Kish';
         $payment->status = 'success';
-        $payment->reference_id = md5(time());
+        $payment->reference_id = $reference;
         $payment->promotion_id = null;
         $payment->save();
         if(isset($data['promotion_code'])) {
