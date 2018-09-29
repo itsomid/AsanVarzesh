@@ -38,7 +38,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('dashboard/{date?}','Api\Coach\DashboardController@index');
 
             // Training By User
-            Route::get('user-training/{user_id}','Api\Coach\UserTrainingController@userTraining');
+            Route::get('user-training/{user_id}/{date?}','Api\Coach\UserTrainingController@userTraining');
 
             // Users By Sport
             Route::get('users/sports','Api\Coach\SportTypeController@index');

@@ -12,54 +12,7 @@ class UserProfileController extends Controller
 {
     public function show($user_id)
     {
-
-        /*$response_json = [];
-
-        $response_json = [
-            'user' => [
-                'id' => 2,
-                'profile' => [
-                    'first_name' => 'محمد',
-                    'last_name' => 'ریاحی',
-                    'avatar' => 'http://asanvarzesh.lhost/images/placeholder.png',
-                    'birth_date' => '1987-09-09',
-                    'city' => 'تهران',
-                    'height' => '180',
-
-                ],
-                'sport_by_coach' => [
-                    'id' => 1,
-                    'title' => 'تناسب اندام',
-                    'image' => 'http://asanvarzesh.lhost/images/placeholder.png'
-
-                ],
-                'active_programs' => [
-                    [
-                        'id' => 1,
-                        'sport' => [
-                            'title' => 'تناسب اندام',
-                            'image' => 'http://asanvarzesh.lhost/images/placeholder.png'
-                        ],
-                        'start_date' => '2018-08-15 08:30:00',
-                        'level' => 'amateur'
-                    ],
-                    [
-                        'id' => 2,
-                        'sport' => [
-                            'title' => 'ژیمناستیک',
-                            'image' => 'http://asanvarzesh.lhost/images/placeholder.png'
-                        ],
-                        'start_date' => '2018-08-15 08:30:00',
-                        'level' => 'professional'
-                    ]
-                ]
-            ],
-            'activities' => []
-
-        ];
-
-        return $response_json;*/
-
+        
         $coach = auth('api')->user();
 
         $user = User::with([
@@ -91,46 +44,22 @@ class UserProfileController extends Controller
 
     public function diet($user_id) {
 
-        /*$response_json = [];
-        $all_diets = [];
-        for ($i = 0;$i <=6;$i++) {
-            $a_day = [
-                'day_number' => $i,
-                'package' => [
-                    'title' => "صبحانه ",
-                    'size' => 2,
-                    'unit' => "number",
-                    'foods' => [
-                        [
-                            "id" => 1,
-                            "title" => "تخم مرغ",
-                            "description" => "تخم مرغ",
-                            "details" => "تخم مرغ",
-                            "energy" => 35
-                        ],
-                        [
-                            "id" => 1,
-                            "title" => "نان سنگک",
-                            "description" => "نان سنگک",
-                            "details" => "نان سنگک",
-                            "energy" => 35
-                        ]
-                    ]
-                ]
-            ];
-            array_push($all_diets,$a_day);
-
-
-        }
-
-        return $response_json = $all_diets;*/
-
         $calendars = Calendar::where('user_id',$user_id)
             ->where('training_id','=',null)
             ->orderby('id','DESC')
             ->with(['training','meal','package.foods'])
             ->get()->groupBy('date','user_id');
-        return $calendars;
+
+        $transformed_calendars = [];
+
+        foreach ($calendars as $calendar) {
+
+            array_push($transformed_calendars,$calendar);
+
+        }
+
+        return $transformed_calendars;
+        //return $calendars;
 
     }
 
@@ -200,6 +129,17 @@ class UserProfileController extends Controller
                             ->orderby('id','DESC')
                             ->with('training')
                             ->get()->groupBy('date','user_id');
+
+        $transformed_calendars = [];
+
+        foreach ($calendars as $calendar) {
+
+            array_push($transformed_calendars,$calendar);
+
+        }
+
+        return $transformed_calendars;
+
         return $calendars;
 
     }

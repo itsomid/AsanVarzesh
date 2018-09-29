@@ -46,7 +46,7 @@ class UserCalendarMealsController extends Controller
         $data = $request->all();
         $program = Programs::find($data['program_id']);
         $data['nutrition'];
-        if($program->meals_confirmation == false && $program->status == 'accept') {
+        if($program != null /*&& $program->meals_confirmation == false && $program->status == 'accept'*/) {
 
             $program->configuration = ['trainings' => $program->configuration['trainings'], 'nutrition' => $data['nutrition']];
             $program->meals_confirmation = true;
@@ -66,6 +66,11 @@ class UserCalendarMealsController extends Controller
                 'message' => 'برنامه غذایی تائید شد'
             ]);
 
+        } else {
+            return response()->json([
+                'status' => 200,
+                'message' => 'رکوردی وجود ندارد'
+            ]);
         }
 
 
