@@ -92,6 +92,9 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('programs/factor','Api\User\ProgramsController@programFactor');
         Route::post('programs/store','Api\User\ProgramsController@store');
 
+        Route::get('activities','Api\User\ActivityController@index');
+        Route::post('activities/store','Api\User\ActivityController@store');
+
         // Motivate
         Route::get('motivational/random','Api\User\MotivationalController@random');
 

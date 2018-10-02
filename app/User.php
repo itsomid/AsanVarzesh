@@ -135,7 +135,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function activities()
     {
-        $this->hasMany('App\Model\Activity');
+        return $this->hasMany('App\Model\Activity')->orderBy('id','DESC');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Model\Payment');
     }
 
 

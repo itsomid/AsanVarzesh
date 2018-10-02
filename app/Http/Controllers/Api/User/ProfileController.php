@@ -33,7 +33,8 @@ class ProfileController extends Controller
             'programs.nutrition_doctor',
             'programs.coach',
             'programs.sport',
-            //'activities'
+            'activities',
+            'payments'
         ])->find($user->id);
         return response()->json($user,200);
 

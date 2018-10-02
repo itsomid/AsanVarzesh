@@ -75,16 +75,28 @@ class ProgramsController extends Controller
                                         ->get()
                                         ->groupBy('date')->toArray();
 
-        $calendar_nutrition = Calendar::with('package.foods')
+        $calendar_trainings_arr = [];
+
+        foreach ($calendar_trainings as $training) {
+            array_push($calendar_trainings_arr,$training);
+        }
+
+        $calendar_nutrition = Calendar::with('package.foods','meal')
             ->where('type','package')
             ->where('program_id',$program_id)
             ->orderby('id','DESC')
             ->get()
             ->groupBy('date')->toArray();
 
+
+        $calendar_nutrition_arr = [];
+        foreach ($calendar_nutrition as $nutrition) {
+            array_push($calendar_nutrition_arr,$nutrition);
+        }
+
         return response()->json([
-            'trainings' => $calendar_trainings,
-            'nutrition' => $calendar_nutrition
+            'trainings' => $calendar_trainings_arr,
+            'nutrition' => $calendar_nutrition_arr
         ],200);
 
     }

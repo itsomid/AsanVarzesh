@@ -18,7 +18,7 @@ class ActivitiesMigrations extends Migration
 
             $table->increments('id');
             $table->integer('user_id');
-            $table->float('energy')->nullable();
+            //$table->float('energy')->nullable();
             $table->float('distance')->nullable();
             $table->float('calorie')->nullable();
             $table->integer('time')->nullable(); /* Per Second */
