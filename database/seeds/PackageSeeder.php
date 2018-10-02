@@ -18,6 +18,11 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 600;
+        $package->nutritional_value = [
+            'چربی' => '200 گرم',
+            'کلسیم' => '10',
+            'پروتئین' => '100'
+        ];
         $package->save();
 
         $package->foods()->attach('1',['title' => 'صبحانه','unit' => 'gr','size' => 600]);
@@ -29,6 +34,11 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->nutritional_value = [
+            'چربی' => '200 گرم',
+            'کلسیم' => '10',
+            'پروتئین' => '100'
+        ];
         $package->save();
 
         $package->foods()->attach('5',['title' => 'ناهار','unit' => 'gr','size' => 600]);
@@ -40,6 +50,11 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->nutritional_value = [
+            'چربی' => '200 گرم',
+            'کلسیم' => '10',
+            'پروتئین' => '100'
+        ];
         $package->save();
 
         $package->foods()->attach('7',['title' => 'ناهار','unit' => 'gr','size' => 600]);
@@ -52,6 +67,11 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->nutritional_value = [
+            'چربی' => '200 گرم',
+            'کلسیم' => '10',
+            'پروتئین' => '100'
+        ];
         $package->save();
 
         $package->foods()->attach('6',['title' => 'ناهار','unit' => 'gr','size' => 600]);
@@ -63,6 +83,11 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->nutritional_value = [
+            'چربی' => '200 گرم',
+            'کلسیم' => '10',
+            'پروتئین' => '100'
+        ];
         $package->save();
 
         $package->foods()->attach('6',['title' => 'ناهار','unit' => 'gr','size' => 600]);

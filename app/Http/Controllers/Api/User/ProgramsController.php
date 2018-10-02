@@ -27,13 +27,41 @@ class ProgramsController extends Controller
         $user = auth('api')->user();
 
         $programs = Programs::with([
-                                    'sport',
+                                    'sport.trainings',
                                     'coach.profile',
                                     'corrective_doctor.profile',
                                     'nutrition_doctor.profile'
                                 ])->where('user_id',$user->id)->orderby('id','DESC')->get();
 
         return response()->json($programs,200);
+
+    }
+
+    public function programFactor(Request $request) {
+
+        $data = $request->all();
+
+        $coach = User::find($data['coach_id']);
+
+        $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
+                                    ->where('sport_id',$data['sport_id'])
+                                    ->first();
+
+        if($coach_price != null) {
+
+            $response = [
+                'coach_price' => $coach_price->price,
+                'tax' => $coach_price->price * 0.09,
+                'insurance' => 1000
+            ];
+
+            return response()->json($response,200);
+
+        } else {
+
+            return response()->json(['message' => 'not Found'],404);
+
+        }
 
     }
 
@@ -70,15 +98,30 @@ class ProgramsController extends Controller
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
         $orphan_program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
-
-
-        // Add Accessories
-
-
-        // Add Program
-
         $sport = Sport::with('federation')->find($data['sport_id']);
         $coach = User::find($data['coach_id']);
+
+        if($data['trial'] == true) {
+            $reference = 'trial';
+
+            $to_days = 7;
+            $price = 0;
+            if($coach->trial == false) {
+                return response()->json([
+                    'message' => 'برای داشتن برنامه با این مربی مجاز به استفاده از نسخه Trial نیستید'
+                ],400);
+            }
+
+        } else {
+            $reference = md5(time()); /* Get Reference ID From Payment Gateway, It's Test Now */
+            $to_days = 30;
+            $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
+                ->where('sport_id',$data['sport_id'])
+                ->first();
+            $price = ($coach_price->price * 0.09) + 1000;
+        }
+
+        // Add Program
         $program = new Programs();
         $program->user_id = $user->id;
         $program->coach_id = $data['coach_id'];
@@ -101,16 +144,13 @@ class ProgramsController extends Controller
         $program->hip = $data['hip'];
         $program->waist = $data['waist'];
         $program->place_for_sport = $data['place_for_sport'];
-
         $program->save();
 
 
         // Add Subscription
         $start_date = explode('-',$data['start_date']);
         $from = Carbon::create($start_date[0],$start_date[1],$start_date[2])->format('Y-m-d H:i:s');
-        $to = Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay('30');
-
-
+        $to = Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay($to_days);
 
         $subscription = new Subscription();
         $subscription->user_id = $user->id;
@@ -118,21 +158,19 @@ class ProgramsController extends Controller
         $subscription->to = $to;
         $subscription->program_id = $program->id;
         $subscription->coach_sport_id = $coach_sport->id;
-
         $subscription->save();
-
         $program->subscription_id = $subscription->id;
         $program->save();
 
 
         // Add Payments
-        $reference = md5(time());
+
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
         $payment->program_id = $program->id;
         $payment->coach_id = $program->coach_id;
         $payment->subscription_id = $program->subscription_id;
-        $payment->price = 25000;
+        $payment->price = $price;
         $payment->via = 'Iran Kish';
         $payment->status = 'success';
         $payment->reference_id = $reference;
@@ -143,7 +181,6 @@ class ProgramsController extends Controller
             // Todo: Add Promotion Model & find it by id
             $promotion_id = 1;
             $payment->promotion_id = $promotion_id;
-
 
         }
         $payment->save();

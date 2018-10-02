@@ -11,5 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Food extends Model
 {
-    //
+    public function category() {
+        return $this->hasOne('App\Model\FoodCategory','id','food_category_id');
+    }
 }

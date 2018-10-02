@@ -46,11 +46,8 @@ class Programs extends Model
 
     public function sport()
     {
-
         return $this->hasOne('App\Model\Sport','id','sport_id');
-
     }
-
 
     public function calendar()
     {

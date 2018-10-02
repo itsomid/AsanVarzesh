@@ -27,6 +27,7 @@ class CoachSeeder extends Seeder
             $user->status = 'active';
             $user->code = 0;
             $user->password = bcrypt($mobile);
+            $user->trial = true;
             $user->save();
 
             $sports = \App\Model\Sport::pluck('id')->toArray();

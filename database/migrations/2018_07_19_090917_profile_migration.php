@@ -21,7 +21,6 @@ class ProfileMigration extends Migration
             $table->string('last_name');
             $table->string('expertise')->nullable();
             $table->string('coach_rate')->nullable();
-            $table->string('education')->nullable();
             $table->text('text')->nullable();
             $table->text('avatar')->nullable();
             $table->json('photos')->nullable();
@@ -35,7 +34,13 @@ class ProfileMigration extends Migration
             $table->text('nutrition_info')->nullable();
             $table->enum('gender',['male','female']);
             $table->string('birth_date')->nullable();
-
+            $table->text('national_code')->nullable();
+            $table->enum('education',['diploma','Associate_Degree','Bachelor','MA']);
+            $table->string('education_title')->nullable();
+            $table->text('experiences')->nullable();
+            $table->enum('military_services',['the_end_of_service','did_not_do','bought']);
+            $table->text('budget')->nullable();
+            $table->text('appetite')->nullable();
             $table->timestamps();
 
 

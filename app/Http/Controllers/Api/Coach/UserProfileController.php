@@ -12,7 +12,7 @@ class UserProfileController extends Controller
 {
     public function show($user_id)
     {
-        
+
         $coach = auth('api')->user();
 
         $user = User::with([

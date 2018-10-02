@@ -27,8 +27,9 @@ class UsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->json('team')->nullable();
             $table->timestamps();
-            $table->engine = 'InnoDB';
+            $table->boolean('trial',true)->nullable();
             $table->unique('email');
+            $table->engine = 'InnoDB';
         });
 
 

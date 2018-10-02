@@ -31,6 +31,7 @@ class ProgramsMigrations extends Migration
             $table->json('configuration')->nullable();
             $table->text('text')->nullable();
 
+
             // Sport Info
             $table->decimal('weight')->nullable();
             $table->float('abdominal')->nullable();
@@ -42,6 +43,10 @@ class ProgramsMigrations extends Migration
             $table->json('time_of_exercises')->nullable(); // Days of the week
             $table->enum('level',['amateur','semi-professional','professional']);
             $table->text('target')->nullable();
+            $table->text('sport_habits')->nullable();
+
+            $table->text('nutrition_desc')->nullable();
+            $table->text('sport_desc')->nullable();
 
             $table->timestamps();
 

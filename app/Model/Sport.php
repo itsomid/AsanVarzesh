@@ -60,6 +60,12 @@ class Sport extends Model
         return $coach_sport->price;
     }
 
+    public function trainings() {
+
+        return $this->hasMany('App\Model\Training');
+
+    }
+
 
 
 

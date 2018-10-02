@@ -16,6 +16,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 100;
+        $food->food_category_id = 2;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -23,6 +24,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 150;
+        $food->food_category_id = 2;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -30,6 +32,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 100;
+        $food->food_category_id = 2;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -37,6 +40,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 200;
+        $food->food_category_id = 2;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -44,6 +48,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 500;
+        $food->food_category_id = 3;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -51,6 +56,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 400;
+        $food->food_category_id = 3;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -58,6 +64,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 350;
+        $food->food_category_id = 1;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -65,6 +72,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 250;
+        $food->food_category_id = 3;
         $food->save();
 
         $food = new \App\Model\Food();
@@ -72,6 +80,7 @@ class FoodSeeder extends Seeder
         $food->description = '';
         $food->details = '';
         $food->energy = 150;
+        $food->food_category_id = 3;
         $food->save();
 
     }

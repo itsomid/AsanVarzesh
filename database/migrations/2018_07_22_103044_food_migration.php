@@ -20,6 +20,7 @@ class FoodMigration extends Migration
             $table->text('description')->nullable();
             $table->text('details')->nullable();
             $table->float('energy');
+            $table->integer('food_category_id');
             $table->timestamps();
         });
     }

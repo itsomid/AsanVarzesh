@@ -24,10 +24,10 @@ class Calendar extends Model
         return $this->hasOne('App\Model\Meal','id','meal_id');
     }
 
-    public function package()
-    {
-        return $this->hasOne('App\Model\Package','id','package_id');
-    }
+//    public function package()
+//    {
+//        return $this->hasOne('App\Model\Package','id','package_id');
+//    }
 
     public function training()
     {
@@ -44,7 +44,7 @@ class Calendar extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function familiar()
+    public function package()
     {
         return $this->belongsToMany('App\Model\Package','calendar_package');
     }

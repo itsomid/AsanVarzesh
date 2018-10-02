@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Package extends Model
 {
+    protected $casts = [
+        'nutritional_value' => 'array'
+    ];
 
     public function foods()
     {

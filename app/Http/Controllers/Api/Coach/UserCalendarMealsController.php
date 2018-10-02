@@ -26,7 +26,6 @@ class UserCalendarMealsController extends Controller
             foreach ($item['meals'] as $meal) {
 
                 $food_package = Package::with('foods')->where('id',$meal['package_id'])->first();
-
                 array_push($meals_day['meals'],$food_package);
 
             }

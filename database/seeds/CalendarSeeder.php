@@ -114,7 +114,7 @@ class CalendarSeeder extends Seeder
             $calendar_item->day_number = $i;
             $calendar_item->user_id = $user_id;
             $calendar_item->items = [];
-            $calendar_item->package_id = null;
+            //$calendar_item->package_id = null;
             $calendar_item->training_id = array_random($trainings,1)[0];
             $calendar_item->meal_id = null;
             $calendar_item->date = $date->addDay(1);
@@ -131,7 +131,7 @@ class CalendarSeeder extends Seeder
             $calendar_item->day_number = $i;
             $calendar_item->user_id = $user_id;
             $calendar_item->items = [];
-            $calendar_item->package_id = null;
+            //$calendar_item->package_id = null;
             $calendar_item->training_id = array_random($trainings,1)[0];
             $calendar_item->meal_id = null;
             $calendar_item->date = $date;
@@ -144,13 +144,13 @@ class CalendarSeeder extends Seeder
             $calendar_item->description = $i;
             $calendar_item->save();
 
-
             // Add a Food Package
             $calendar_item = new \App\Model\Calendar();
             $calendar_item->day_number = $i;
             $calendar_item->user_id = $user_id;
             $calendar_item->items = [];
-            $calendar_item->package_id = array_random($packages,1)[0];
+            $calendar_item->
+            //package_id = array_random($packages,1)[0];
             $calendar_item->training_id = null;
             $calendar_item->meal_id = 1;
             $calendar_item->date = $date;
@@ -162,6 +162,8 @@ class CalendarSeeder extends Seeder
             $calendar_item->comment = $i;
             $calendar_item->description = $i;
             $calendar_item->save();
+
+            // Todo: Relation Between Calendar & package_id
 
 
         }

@@ -93,7 +93,7 @@ class GenerateCalendar
                     $new_calendar_item->day_number = $training['day_number']+1;
                     $new_calendar_item->user_id = $program->user_id;
                     $new_calendar_item->attributes = $training_item['attribute'];
-                    $new_calendar_item->package_id = null;
+                    //$new_calendar_item->package_id = null;
                     $new_calendar_item->training_id = $training_item['training_id'];
                     $new_calendar_item->meal_id = null;
                     $new_calendar_item->date = $date;
@@ -114,7 +114,7 @@ class GenerateCalendar
                 $new_calendar_item->day_number = $training['day_number']+1;
                 $new_calendar_item->user_id = $program->user_id;
                 $new_calendar_item->attributes = array();
-                $new_calendar_item->package_id = null;
+                //$new_calendar_item->package_id = null;
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = null;
                 $new_calendar_item->date = $date;
@@ -144,7 +144,7 @@ class GenerateCalendar
                 $new_calendar_item->day_number = $item['day_number']+1;
                 $new_calendar_item->user_id = $program->user_id;
                 $new_calendar_item->attributes = $meal;
-                $new_calendar_item->package_id = $meal['package_id'];
+                //$new_calendar_item->package_id = $meal['package_id'];
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = $meal['meal_id'];
                 $new_calendar_item->date = $date;

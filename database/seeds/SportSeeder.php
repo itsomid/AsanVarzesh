@@ -18,6 +18,7 @@ class SportSeeder extends Seeder
         $federation = new \App\Model\Federation();
         $federation->name = 'فدراسیون ورزش های عمومی و سلامتی';
         $federation->type = 'public';
+        $federation->image = 'https://via.placeholder.com/650x300';
         $federation->save();
 
         // Add Sport
@@ -25,6 +26,7 @@ class SportSeeder extends Seeder
         $sport->title = 'تناسب اندام';
         $sport->description = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $sport->federation_id = $federation->id;
+        $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
         $steps = [
@@ -77,7 +79,9 @@ class SportSeeder extends Seeder
         // Add Federation
         $federation = new \App\Model\Federation();
         $federation->name = 'فدراسیون پرورش اندام و وزنه برداری';
+        $federation->image = 'https://via.placeholder.com/650x300';
         $federation->type = 'specialized';
+
         $federation->save();
 
         // Add Sport
@@ -85,6 +89,7 @@ class SportSeeder extends Seeder
         $sport->title = 'بادی بیلدینگ';
         $sport->description = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $sport->federation_id = $federation->id;
+        $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
         $steps = [
@@ -136,6 +141,7 @@ class SportSeeder extends Seeder
         $federation = new \App\Model\Federation();
         $federation->name = 'فدراسیون ژیمناستیک';
         $federation->type = 'specialized';
+        $federation->image = 'https://via.placeholder.com/650x300';
         $federation->save();
 
         // Add Sport
@@ -143,6 +149,7 @@ class SportSeeder extends Seeder
         $sport->title = 'ورزش ژیمناستیک';
         $sport->description = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $sport->federation_id = $federation->id;
+        $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
         $steps = [
@@ -174,6 +181,7 @@ class SportSeeder extends Seeder
         $federation = new \App\Model\Federation();
         $federation->name = 'فدراسیون کشتی';
         $federation->type = 'specialized';
+        $federation->image = 'https://via.placeholder.com/650x300';
         $federation->save();
 
         // Add Sport
@@ -181,6 +189,7 @@ class SportSeeder extends Seeder
         $sport->title = 'کشتی فرنگی';
         $sport->description = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $sport->federation_id = $federation->id;
+        $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
         $steps = [
@@ -219,6 +228,7 @@ class SportSeeder extends Seeder
         $sport->title = 'کشتی آزاد';
         $sport->description = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $sport->federation_id = $federation->id;
+        $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
         $steps = [

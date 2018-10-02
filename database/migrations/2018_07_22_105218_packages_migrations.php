@@ -22,6 +22,8 @@ class PackagesMigrations extends Migration
             $table->float('size')->nullable();
             $table->integer('creator_id')->nullable(); // Who Created this Package
             $table->text('description')->nullable();
+            $table->text('image')->nullable();
+            $table->json('nutritional_value');
             $table->timestamps();
         });
     }

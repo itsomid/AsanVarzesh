@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageFieldtoSport extends Migration
+class FoodCategory extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class AddImageFieldtoSport extends Migration
      */
     public function up()
     {
-
-        Schema::table('sports', function ($table) {
-            $table->text('image')->nullable()->after('description');
+        Schema::create('food_category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('title');
+            $table->timestamps();
         });
-
     }
 
     /**

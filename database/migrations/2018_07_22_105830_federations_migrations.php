@@ -18,6 +18,7 @@ class FederationsMigrations extends Migration
             $table->increments('id');
             $table->string('name');
             $table->enum('type',['public','specialized']);
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class SportsMigrations extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('federation_id');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

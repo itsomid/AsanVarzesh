@@ -83,7 +83,6 @@ class ProfileController extends Controller
 
         $data = $request->all();
         $user = auth('api')->user();
-
         $profile = Profiles::where('user_id',$user->id)->first();
         $message = 'پروفایل برای اکانت شما قبلا ساخته شده است.';
         $status = 301;
@@ -113,15 +112,22 @@ class ProfileController extends Controller
         $profile->gender = $data['gender'];
         $profile->location = $data['height'];
         $profile->location = [ $data['location'][0],$data['location'][1] ]; // Point
+        $profile->national_code = $data['national_code'];
+        $profile->education = $data['education'];
+        $profile->education_title = $data['education_title'];
         $profile->save();
 
-
         $user->steps = 'profile';
+        $user->height = $data['height'];
+        $user->diseases = $data['diseases'];
         $user->save();
+
 
 
         $message = 'پروفایل برای این اکانت ساخته شد.';
         $status = 200;
+
+
 
         return response()->json([
             'profile' => $profile,

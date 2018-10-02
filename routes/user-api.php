@@ -89,6 +89,7 @@ Route::group(['prefix' => '/v1'],function() {
         // Programs
         Route::get('programs/','Api\User\ProgramsController@index');
         Route::get('programs/{id}/calendar','Api\User\ProgramsController@calendar');
+        Route::post('programs/factor','Api\User\ProgramsController@programFactor');
         Route::post('programs/store','Api\User\ProgramsController@store');
 
         // Motivate
