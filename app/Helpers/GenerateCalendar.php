@@ -157,7 +157,7 @@ class GenerateCalendar
                 $new_calendar_item->description = '';
                 $new_calendar_item->save();
                 if(isset($meal['familiar'])) {
-                    $new_calendar_item->familiar()->attach($meal['familiar']);
+                    $new_calendar_item->package()->attach($meal['familiar']);
                 }
 
             }
