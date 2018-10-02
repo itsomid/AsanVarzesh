@@ -18,11 +18,11 @@ class ActivitiesMigrations extends Migration
 
             $table->increments('id');
             $table->integer('user_id');
-            $table->json('activities')->nullable();
-            //$table->integer('type'); /* Which training */
             $table->float('energy')->nullable();
+            $table->float('distance')->nullable();
+            $table->float('calorie')->nullable();
             $table->integer('time')->nullable(); /* Per Second */
-            $table->integer('calendar_id');
+            $table->integer('calendar_id')->nullable();
             $table->timestamps();
 
         });

@@ -75,7 +75,7 @@ class ProgramsController extends Controller
                                         ->get()
                                         ->groupBy('date')->toArray();
 
-        $calendar_nutrition = Calendar::with('package','familiar.foods')
+        $calendar_nutrition = Calendar::with('package.foods')
             ->where('type','package')
             ->where('program_id',$program_id)
             ->orderby('id','DESC')
