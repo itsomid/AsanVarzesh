@@ -38,7 +38,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('dashboard/{date?}','Api\Coach\DashboardController@index');
 
             // Training By User
-            Route::get('user-training/{user_id}/{date?}','Api\Coach\UserTrainingController@userTraining');
+            Route::get('user-training/{user_id}','Api\Coach\UserTrainingController@userTraining');
 
             // Users By Sport
             Route::get('users/sports','Api\Coach\SportTypeController@index');
@@ -67,6 +67,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('profile','Api\Coach\ProfileController@index');
             Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
+            Route::post('profile/add-to-basket','Api\Coach\ProfileController@addtoBasket');
             Route::post('profile/upload-photo','Api\Coach\ProfileController@uploadImage');
 
             // Conversations

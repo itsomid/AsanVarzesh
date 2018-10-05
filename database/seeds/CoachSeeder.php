@@ -45,7 +45,9 @@ class CoachSeeder extends Seeder
             $profile->first_name = $first_name;
             $profile->last_name = $last_name;
             $profile->expertise = 'بدن سازی تخصصی';
+            $profile->experiences = 'سوابق مربی ';
             $profile->coach_rate = 'professional';
+            $profile->birth_date = '1987-09-09';
             $profile->avatar = 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg';
             //$profile->height = 190;
             //$profile->weight = 110;

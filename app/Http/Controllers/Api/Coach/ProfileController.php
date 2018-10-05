@@ -53,6 +53,18 @@ class ProfileController extends Controller
 
     }
 
+    public function addtoBasket(Request $request) {
+
+        $data = $request->all();
+        $user = auth('api')->user();
+        $user->basket()->attach($data['training_id']);
+
+        return response()->json([
+            'message' => 'added'
+        ],200);
+
+    }
+
     public function basket()
     {
 

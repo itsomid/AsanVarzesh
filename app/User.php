@@ -112,7 +112,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function active_programs()
     {
-        return $this->hasMany('App\Model\Programs')->where('status','active')->orWhere('status','accept');
+        return $this->hasMany('App\Model\Programs')->where('status','pending')->orwhere('status','active')->orWhere('status','accept');
     }
 
     public function programs() {
@@ -128,8 +128,13 @@ class User extends Authenticatable implements JWTSubject
     {
 
         //$today_date = Carbon::today()->format('y-m-d').' 00:00:00';
-        $today_date = '2018-09-19 00:00:00';
-        return $this->hasMany('App\Model\Calendar','user_id','id')->where('date',$today_date);
+        $today_date = '2018-10-09 00:00:00';
+        return $this->hasMany('App\Model\Calendar','user_id','id')
+            ->where('training_id','!=',null)
+            ->where('type','training')
+            ->orderBy('id','DESC')
+            ->where('day_number',7)
+            /*->where('date',$today_date)*/;
 
     }
 
