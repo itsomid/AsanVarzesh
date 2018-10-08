@@ -19,9 +19,18 @@ class PackageSeeder extends Seeder
         $package->unit = 'gr';
         $package->size = 600;
         $package->nutritional_value = [
-            'چربی' => '200 گرم',
-            'کلسیم' => '10',
-            'پروتئین' => '100'
+            [
+                'چربی',
+                '200 گرم'
+            ],
+            [
+                'کلسیم',
+                '200 گرم'
+            ],
+            [
+                'پروتئین',
+                '200 گرم'
+            ]
         ];
         $package->save();
 
@@ -35,9 +44,18 @@ class PackageSeeder extends Seeder
         $package->unit = 'gr';
         $package->size = 800;
         $package->nutritional_value = [
-            'چربی' => '200 گرم',
-            'کلسیم' => '10',
-            'پروتئین' => '100'
+            [
+                'چربی',
+                '200 گرم'
+            ],
+            [
+                'کلسیم',
+                '200 گرم'
+            ],
+            [
+                'پروتئین',
+                '200 گرم'
+            ]
         ];
         $package->save();
 
@@ -51,9 +69,18 @@ class PackageSeeder extends Seeder
         $package->unit = 'gr';
         $package->size = 800;
         $package->nutritional_value = [
-            'چربی' => '200 گرم',
-            'کلسیم' => '10',
-            'پروتئین' => '100'
+            [
+                'چربی',
+                '200 گرم'
+            ],
+            [
+                'کلسیم',
+                '200 گرم'
+            ],
+            [
+                'پروتئین',
+                '200 گرم'
+            ]
         ];
         $package->save();
 
@@ -68,9 +95,18 @@ class PackageSeeder extends Seeder
         $package->unit = 'gr';
         $package->size = 800;
         $package->nutritional_value = [
-            'چربی' => '200 گرم',
-            'کلسیم' => '10',
-            'پروتئین' => '100'
+            [
+                'چربی',
+                '200 گرم'
+            ],
+            [
+                'کلسیم',
+                '200 گرم'
+            ],
+            [
+                'پروتئین',
+                '200 گرم'
+            ]
         ];
         $package->save();
 
@@ -84,9 +120,18 @@ class PackageSeeder extends Seeder
         $package->unit = 'gr';
         $package->size = 800;
         $package->nutritional_value = [
-            'چربی' => '200 گرم',
-            'کلسیم' => '10',
-            'پروتئین' => '100'
+            [
+                'چربی',
+                '200 گرم'
+            ],
+            [
+                'کلسیم',
+                '200 گرم'
+            ],
+            [
+                'پروتئین',
+                '200 گرم'
+            ]
         ];
         $package->save();
 
