@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             $profile->last_name = $last_name;
             $profile->avatar = 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg';
             $profile->height = 190;
-            //$profile->weight = 110;
+            $profile->birth_date = '1987-09-09';
             $profile->photos = [
                 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg',
                 'https://www.tarafdari.com/sites/default/files/contents/user241416/content-note/mhrb-ftmy.jpg'

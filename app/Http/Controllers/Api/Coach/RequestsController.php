@@ -210,12 +210,15 @@ class RequestsController extends Controller
         foreach ($programs['configuration']['nutrition'] as $perday) {
             $nutrition_perday = ['day_number' => '', 'meals' => []];
             $nutrition_perday['day_number'] = $perday['day_number'];
-            $all_meals = [];
-            foreach ($perday['meals'] as $meal) {
-                $per_meal = [];
-                $food_package = Package::with('foods')->where('id',$meal['package_id'])->first()->toArray();
 
-                array_push($nutrition_perday['meals'],$food_package);
+            foreach ($perday['meals'] as $meal) {
+                $packages = [];
+                foreach ($meal['familiar'] as $item) {
+                    $food_package = Package::with('foods')->where('id',$item)->first()->toArray();
+                    array_push($packages,$food_package);
+                }
+
+                array_push($nutrition_perday['meals'],$packages);
             }
 
             array_push($nutrition_calendar,$nutrition_perday);

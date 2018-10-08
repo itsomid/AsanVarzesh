@@ -234,7 +234,7 @@ class OrphanProgram extends Seeder
                     'unit' => 'gr',
                     'size' => null,
                     'time' => '08:00',
-
+                    'familiar' => [1,3,2]
 
                 ],
                 [
