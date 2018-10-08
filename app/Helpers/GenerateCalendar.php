@@ -92,7 +92,12 @@ class GenerateCalendar
                     $new_calendar_item = new Calendar();
                     $new_calendar_item->day_number = $training['day_number']+1;
                     $new_calendar_item->user_id = $program->user_id;
-                    $new_calendar_item->attributes = $training_item['attribute'];
+                    if(count($training_item['attribute']) == 0) {
+                        $att = [];
+                    } else {
+                        $att = $training_item['attribute'];
+                    }
+                    $new_calendar_item->attributes = $att;
                     //$new_calendar_item->package_id = null;
                     $new_calendar_item->training_id = $training_item['training_id'];
                     $new_calendar_item->meal_id = null;
@@ -107,13 +112,15 @@ class GenerateCalendar
                     //return $new_calendar_item;
                     //$new_calendar_item->save();
                     $new_calendar_item->save();
+
+
                 }
 
             } else {
                 $new_calendar_item = new Calendar();
                 $new_calendar_item->day_number = $training['day_number']+1;
                 $new_calendar_item->user_id = $program->user_id;
-                $new_calendar_item->attributes = array();
+                $new_calendar_item->attributes = '';
                 //$new_calendar_item->package_id = null;
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = null;
