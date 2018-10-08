@@ -93,7 +93,7 @@ class GenerateCalendar
                     $new_calendar_item->day_number = $training['day_number']+1;
                     $new_calendar_item->user_id = $program->user_id;
                     if(count($training_item['attribute']) == 0) {
-                        $att = [];
+                        $att = null;
                     } else {
                         $att = $training_item['attribute'];
                     }
