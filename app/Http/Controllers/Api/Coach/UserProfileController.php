@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Coach;
 
 use App\Model\Calendar;
+use App\Model\Conversation_user;
 use App\Model\Programs;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,11 +17,15 @@ class UserProfileController extends Controller
         $coach = auth('api')->user();
 
         $user = User::with([
-            'profile',
+            'profile.city',
             'activities',
             'active_programs.sport',
+            'conversations',
+            'conversations_private',
             'sport_by_coach' =>function($q){$q->with('sport');},
             ])->where('id',$user_id)->first()->toArray();
+
+
 
         $program = Programs::where('user_id',$user_id)
                             ->where('coach_id',$coach->id)
@@ -36,7 +41,6 @@ class UserProfileController extends Controller
 
         $user['first_day'] = $first_day;
         $user['last_day'] = $last_day;
-
         $user['nutrition_calendar'] = $this->diet($user['id']);
 
         return $user;

@@ -38,9 +38,11 @@ class Profiles extends Model
     }
 
     public function user() {
-
         return $this->hasOne('App\User','id','user_id');
+    }
 
+    public function city() {
+        return $this->hasOne('App\Model\Cities','id','city_id');
     }
 
     public function setLocationAttribute($value) {

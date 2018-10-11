@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ConversationSeeder::class);
         $this->call(PaymentsSeeder::class);
         $this->call(MotivationalSeeder::class);
+        $this->call(ActivitiesSeeder::class);
+
 
     }
 }

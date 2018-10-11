@@ -17,6 +17,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 100;
         $food->food_category_id = 2;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -25,6 +26,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 150;
         $food->food_category_id = 2;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -33,6 +35,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 100;
         $food->food_category_id = 2;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -41,6 +44,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 200;
         $food->food_category_id = 2;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -49,6 +53,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 500;
         $food->food_category_id = 3;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -57,6 +62,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 400;
         $food->food_category_id = 3;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -65,6 +71,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 350;
         $food->food_category_id = 1;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -73,6 +80,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 250;
         $food->food_category_id = 3;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
         $food = new \App\Model\Food();
@@ -81,6 +89,7 @@ class FoodSeeder extends Seeder
         $food->details = '';
         $food->energy = 150;
         $food->food_category_id = 3;
+        $food->image = 'https://5.imimg.com/data5/OX/VQ/MY-37032104/fresh-honey-500x500.jpg';
         $food->save();
 
     }

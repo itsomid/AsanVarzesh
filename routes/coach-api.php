@@ -90,6 +90,9 @@ Route::group(['prefix' => '/v1'],function() {
             // Payments
             Route::get('payments','Api\Coach\PaymentController@index');
 
+            // Trainings
+            Route::get('trainings/{sport_id}','Api\Coach\TrainingController@trainings');
+
 
     });
 

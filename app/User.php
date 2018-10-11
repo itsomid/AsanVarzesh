@@ -47,6 +47,8 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
+
+
     public function getJWTCustomClaims()
     {
         return [];
@@ -68,9 +70,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function profile() {
-
         return $this->hasOne('App\Model\Profiles');
-
     }
 
     public function programs_as_doctor()
@@ -94,14 +94,11 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function conversations() {
-
         return $this->belongsToMany('App\Model\Conversation');
-
     }
 
-    public function has_conversation_with_user()
-    {
-        return $this->belongsToMany('App\Model\Conversation')->wherePivotIn('user_id', [1]);
+    public function conversations_private() {
+        return $this->belongsToMany('App\Model\Conversation')->where('type','private');
     }
 
     public function sport_by_coach()
@@ -126,8 +123,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function today_training()
     {
-
-        //$today_date = Carbon::today()->format('y-m-d').' 00:00:00';
+        // Todo: After completed Apps query with today_date
         $today_date = '2018-10-09 00:00:00';
         return $this->hasMany('App\Model\Calendar','user_id','id')
             ->where('training_id','!=',null)

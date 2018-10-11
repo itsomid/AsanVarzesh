@@ -18,11 +18,15 @@ class ActivitiesMigrations extends Migration
 
             $table->increments('id');
             $table->integer('user_id');
-            //$table->float('energy')->nullable();
-            $table->float('distance')->nullable();
-            $table->float('calorie')->nullable();
-            $table->integer('time')->nullable(); /* Per Second */
+            $table->float('energy')->nullable();
             $table->integer('calendar_id')->nullable();
+            $table->float('time')->nullable();
+            $table->float('speed')->nullable();
+            $table->string('unit_speed')->nullable();
+            $table->float('set')->nullable();
+            $table->float('each_set')->nullable();
+            $table->float('time_each_set')->nullable();
+            $table->float('distance')->nullable();
             $table->timestamps();
 
         });
