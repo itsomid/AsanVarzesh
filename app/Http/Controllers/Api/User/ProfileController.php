@@ -116,11 +116,11 @@ class ProfileController extends Controller
         $profile->national_code = $data['national_code'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
+        $profile->height = $data['height'];
         $profile->save();
 
         $user->steps = 'profile';
-        $user->height = $data['height'];
-        $user->diseases = $data['diseases'];
+
         $user->save();
 
 
