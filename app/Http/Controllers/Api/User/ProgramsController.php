@@ -108,6 +108,11 @@ class ProgramsController extends Controller
         $data = $request->all();
         $data['time_of_exercises'];
         $user = auth('api')->user();
+        $user->appetite = $data['appetite'];
+        $user->budget = $data['budget'];
+        $user->military_services = $data['military_services'];
+        $user->save();
+
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
         $orphan_program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
@@ -158,6 +163,9 @@ class ProgramsController extends Controller
         $program->waist = $data['waist'];
         $program->place_for_sport = $data['place_for_sport'];
         $program->save();
+
+
+
 
 
         // Add Subscription

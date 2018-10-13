@@ -24,6 +24,12 @@ class Programs extends Model
         'time_of_exercises' => 'array'
     ];
 
+    protected $appends = [
+        'militaryservices',
+        'budget',
+        'appetite'
+    ];
+
     public function user()
     {
         return $this->hasOne('App\User','id','user_id');
@@ -62,5 +68,23 @@ class Programs extends Model
     public function subscription()
     {
         return $this->hasOne('App\Model\Subscription','program_id','id');
+    }
+
+    public function getmilitaryservicesAttribute()
+    {
+        $profile = Profiles::where('id',$this->user_id)->first(['military_services']);
+        return $profile->military_services;
+    }
+
+    public function getbudgetAttribute()
+    {
+        $profile = Profiles::where('id',$this->user_id)->first(['budget']);
+        return $profile->budget;
+    }
+
+    public function getappetiteAttribute()
+    {
+        $profile = Profiles::where('id',$this->user_id)->first(['appetite']);
+        return $profile->appetite;
     }
 }
