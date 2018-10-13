@@ -29,43 +29,40 @@ class SportSeeder extends Seeder
         $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
-        $steps = [
-            [
-                'text' => ' ۱۵ دقیقه گرم کردن ',
-                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
-            ],
-            [
-                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
-                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
-            ]
-        ];
+//        $steps = [
+//            'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4',
+//            'steps' => [
+//                ' ۱۵ دقیقه گرم کردن ',
+//                '۲۰ دقیقه دویدن به صورت کند'
+//            ]
+//        ];
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'دووی استقامت';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
         $training->accessories()->attach([1,2]);
 
-        $steps = [
-            [
-                'text' => ' ۱۵ دقیقه گرم کردن ',
-                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
-            ],
-            [
-                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
-                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
-            ]
-        ];
+//        $steps = [
+//            [
+//                'text' => ' ۱۵ دقیقه گرم کردن ',
+//                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+//            ],
+//            [
+//                'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
+//                'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
+//            ]
+//        ];
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'وزنه زدن';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -92,7 +89,7 @@ class SportSeeder extends Seeder
         $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
-        $steps = [
+        /*$steps = [
             [
                 'text' => ' ۱۵ دقیقه گرم کردن ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -101,19 +98,19 @@ class SportSeeder extends Seeder
                 'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
             ]
-        ];
+        ];*/
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'دووی استقامت';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
         $training->accessories()->attach([1,2]);
 
-        $steps = [
+        /*$steps = [
             [
                 'text' => ' ۱۵ دقیقه گرم کردن ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -122,13 +119,13 @@ class SportSeeder extends Seeder
                 'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
             ]
-        ];
+        ];*/
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'وزنه زدن';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -152,7 +149,7 @@ class SportSeeder extends Seeder
         $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
-        $steps = [
+        /*$steps = [
             [
                 'text' => ' ۱۵ دقیقه گرم کردن ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -161,13 +158,13 @@ class SportSeeder extends Seeder
                 'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
             ]
-        ];
+        ];*/
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'تمرینات کششی';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -192,7 +189,7 @@ class SportSeeder extends Seeder
         $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
-        $steps = [
+        /*$steps = [
             [
                 'text' => ' ۱۵ دقیقه گرم کردن ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -201,13 +198,13 @@ class SportSeeder extends Seeder
                 'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
             ]
-        ];
+        ];*/
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'اشکل گربه';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -217,7 +214,7 @@ class SportSeeder extends Seeder
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'خورجین تکون';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -231,7 +228,7 @@ class SportSeeder extends Seeder
         $sport->image = 'https://via.placeholder.com/650x300';
         $sport->save();
 
-        $steps = [
+        /*$steps = [
             [
                 'text' => ' ۱۵ دقیقه گرم کردن ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -240,13 +237,13 @@ class SportSeeder extends Seeder
                 'text' => ' ۲۰ دقیقه دویدن به صورت کند ',
                 'attachment' => 'http://techslides.com/demos/sample-videos/small.mp4'
             ]
-        ];
+        ];*/
 
         // Add Training
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'زیر یه خم';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();
@@ -256,7 +253,7 @@ class SportSeeder extends Seeder
         $training = new \App\Model\Training();
         $training->sport_id = $sport->id;
         $training->title = 'زیر بغل';
-        $training->steps = $steps;
+        $training->attachment = 'http://techslides.com/demos/sample-videos/small.mp4';
         $training->difficulty = 'Normal';
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->save();

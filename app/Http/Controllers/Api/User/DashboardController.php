@@ -26,10 +26,12 @@ class DashboardController extends Controller
         $all_trainings_by_sport = [];
         foreach ($programs as $program)
         {
-//            $program['sport']['trainings'] = [];
+
             $calendar_trainings = Calendar::where('user_id',$user->id)
                 ->with(['training.accessories','training.sport'])
                 ->where('type','training')
+                ->where('meal_id','=',null)
+                ->where('training_id','!=',null)
                 ->where('date',$date_carbon)
                 ->where('program_id',$program['id'])
                 ->orderby('id','DESC')
@@ -46,6 +48,7 @@ class DashboardController extends Controller
             ->where('type','package')
             //->where('package_id','!=',null)
             ->where('training_id','=',null)
+            ->where('meal_id','!=',null)
             ->where('date',$date_carbon)
             ->orderby('id','DESC')
             ->get()
