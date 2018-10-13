@@ -35,7 +35,7 @@ class ProfileMigration extends Migration
             $table->enum('gender',['male','female']);
             $table->string('birth_date')->nullable();
             $table->text('national_code')->nullable();
-            $table->enum('education',['diploma','Associate_Degree','Bachelor','MA']);
+            $table->string('education'/*,['diploma','Associate_Degree','Bachelor','MA']*/)->nullable();
             $table->string('education_title')->nullable();
             $table->text('experiences')->nullable();
             $table->enum('military_services',['the_end_of_service','did_not_do','bought']);
