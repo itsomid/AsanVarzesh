@@ -35,7 +35,7 @@ class ConversationController extends Controller
         $coach = auth('api')->user();
         $user = User::where('id',$data['user_id'])->first();
 
-        $check_exist_conversation = $this->checkExistConversation($coach->conversations,$user->conversations);
+        $check_exist_conversation = $this->checkExistConversation($coach->conversations_private,$user->conversations_private);
 
         if(is_array($check_exist_conversation)) {
 
@@ -49,7 +49,6 @@ class ConversationController extends Controller
         } else {
 
             // Must Create
-
             $conversation = new Conversation();
             $conversation->started_by = $coach->id;
             $conversation->program_id = null;
@@ -77,46 +76,6 @@ class ConversationController extends Controller
     public function showMessages($conversation_id) {
 
         $conversation = Conversation::with('messages.user.profile')->find($conversation_id);
-
-//        $response_json = [
-//            [
-//                "id" => 2,
-//                "conversation_id" => 1,
-//                "user_id" => 10,
-//                "text" => "متن پیغام",
-//                "attachment" => "",
-//                "type" => "text",
-//                'user' => [
-//                    "id" => 10,
-//                    "profile" => [
-//                        "id" => 10,
-//                        "user_id" => 10,
-//                        "first_name" => "ناز",
-//                        "last_name" => "باستانی",
-//                        "avatar" => "http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg",
-//                    ]
-//                ]
-//            ],
-//            [
-//                "id" => 2,
-//                "conversation_id" => 1,
-//                "user_id" => 10,
-//                "text" => "متن پیغام",
-//                "attachment" => "",
-//                "type" => "text",
-//                'user' => [
-//                    "id" => 10,
-//                    "profile" => [
-//                        "id" => 10,
-//                        "user_id" => 12,
-//                        "first_name" => "ناز",
-//                        "last_name" => "باستانی",
-//                        "avatar" => "http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg",
-//                    ]
-//                ]
-//            ]
-//        ];
-
         return $conversation;
 
     }
@@ -183,8 +142,8 @@ class ConversationController extends Controller
             }
         }
 
-        //Compare
 
+        //Compare
         foreach ($coach_conversations_array as $item) {
             if(in_array($item,$user_conversations_array)) {
                 return [

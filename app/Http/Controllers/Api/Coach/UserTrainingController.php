@@ -12,9 +12,7 @@ class UserTrainingController extends Controller
     public function userTraining($user_id)
     {
 
-
-        $user = User::with(['profile','today_training.training'])->find($user_id);
-
+        $user = User::with(['profile','today_training.training','today_nutrition.package','today_nutrition.meal'])->find($user_id);
         return $user;
 
     }

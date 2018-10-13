@@ -42,7 +42,6 @@ class UserProfileController extends Controller
         $user['first_day'] = $first_day;
         $user['last_day'] = $last_day;
         $user['nutrition_calendar'] = $this->diet($user['id']);
-
         return $user;
 
 

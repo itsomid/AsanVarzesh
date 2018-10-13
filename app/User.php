@@ -134,6 +134,19 @@ class User extends Authenticatable implements JWTSubject
 
     }
 
+    public function today_nutrition()
+    {
+        // Todo: After completed Apps query with today_date
+        $today_date = '2018-10-09 00:00:00';
+        return $this->hasMany('App\Model\Calendar','user_id','id')
+            ->where('meal_id','!=',null)
+            ->where('type','package')
+            ->orderBy('id','DESC')
+            ->where('day_number',7)
+            /*->where('date',$today_date)*/;
+
+    }
+
     public function activities()
     {
         return $this->hasMany('App\Model\Activity')->orderBy('id','DESC');
