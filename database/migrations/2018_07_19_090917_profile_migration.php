@@ -38,7 +38,7 @@ class ProfileMigration extends Migration
             $table->string('education'/*,['diploma','Associate_Degree','Bachelor','MA']*/)->nullable();
             $table->string('education_title')->nullable();
             $table->text('experiences')->nullable();
-            $table->enum('military_services')->nullable();
+            $table->string('military_services')->nullable();
             $table->text('budget')->nullable();
             $table->text('appetite')->nullable();
             $table->timestamps();
