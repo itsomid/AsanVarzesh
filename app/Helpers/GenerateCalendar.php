@@ -92,6 +92,7 @@ class GenerateCalendar
                     $new_calendar_item = new Calendar();
                     $new_calendar_item->day_number = $training['day_number']+1;
                     $new_calendar_item->user_id = $program->user_id;
+
                     if(count($training_item['attribute']) == 0) {
                         $att = null;
                     } else {
@@ -120,7 +121,7 @@ class GenerateCalendar
                 $new_calendar_item = new Calendar();
                 $new_calendar_item->day_number = $training['day_number']+1;
                 $new_calendar_item->user_id = $program->user_id;
-                $new_calendar_item->attributes = '';
+                $new_calendar_item->attributes = null;
                 //$new_calendar_item->package_id = null;
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = null;
