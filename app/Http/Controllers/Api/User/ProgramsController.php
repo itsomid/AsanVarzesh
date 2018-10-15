@@ -71,7 +71,7 @@ class ProgramsController extends Controller
         $calendar_trainings = Calendar::with('training.accessories')
                                         ->where('type','training')
                                         ->where('program_id',$program_id)
-                                        ->where('training_id','!=',null)
+                                        /*->where('training_id','!=',null)*/
                                         ->orderby('id','DESC')
                                         ->get()
                                         ->groupBy('date')->toArray();
