@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Food_Package extends Seeder
+class Food_Category extends Seeder
 {
     /**
      * Run the database seeds.

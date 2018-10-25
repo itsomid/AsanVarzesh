@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentsSeeder::class);
         $this->call(MotivationalSeeder::class);
         $this->call(ActivitiesSeeder::class);
+        $this->call(Food_Category::class);
 
 
     }
