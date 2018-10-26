@@ -16,7 +16,7 @@ class ProfileController extends Controller
 
         $user = auth('api')->user();
 
-        return $user = User::with(['profile','sports'])->where('id',$user->id)->first();
+        return $user = User::with(['profile','sports','Roles'])->where('id',$user->id)->first();
 
         return $user;
 
