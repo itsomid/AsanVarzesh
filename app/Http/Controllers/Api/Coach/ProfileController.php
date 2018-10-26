@@ -94,5 +94,9 @@ class ProfileController extends Controller
         $profile->photos = $photos;
         $profile->save();
 
+        return response()->json([
+            'message' => 'آلبوم عکس شما به روز شد.'
+        ],200);
+
     }
 }
