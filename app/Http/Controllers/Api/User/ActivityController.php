@@ -29,24 +29,29 @@ class ActivityController extends Controller
 
             $has_activity = Activity::where('calendar_id',$data['calendar_id'])->first();
             if($has_activity != null OR $has_activity != '' OR !empty($has_activity) ) {
-                $activity = new Activity();
-                $activity->user_id = $user->id;
-                $activity->distance = $data['distance'];
-                $activity->energy = $data['energy'];
-                $activity->time  = $data['time'];
-                $activity->speed = $data['speed'];
-                $activity->calendar_id = $data['calendar_id'];
-                $activity->save();
-
                 if($data['calendar_id'] != null) {
                     $calendar = Calendar::find($data['calendar_id']);
                     $calendar->status = 'done';
                     $calendar->save();
                 }
 
+                if($calendar->type == 'training') {
+                    $activity = new Activity();
+                    $activity->user_id = $user->id;
+                    $activity->distance = $data['distance'];
+                    $activity->energy = $data['energy'];
+                    $activity->time  = $data['time'];
+                    $activity->speed = $data['speed'];
+                    $activity->calendar_id = $data['calendar_id'];
+                    $activity->save();
+                }
+
                 return response()->json(['message' => 'activity added'],200);
+
             } else {
+
                 return response()->json(['message' => 'added before'],406);
+                
             }
 
         } else {

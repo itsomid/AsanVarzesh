@@ -55,9 +55,7 @@ class GenerateCalendar
         }
 
         $trainings = $program->configuration['trainings'];
-
         $nutrition = $program->configuration['nutrition'];
-
 
         if ($cycle == 1) {
             $start_date = $program->subscription->from;
@@ -98,8 +96,12 @@ class GenerateCalendar
                     } else {
                         $att = $training_item['attribute'];
                     }
+
+
                     $new_calendar_item->attributes = $att;
-                    //$new_calendar_item->package_id = null;
+
+                    $desc = $training_item['day_description'];
+                    $new_calendar_item->description = $desc;
                     $new_calendar_item->training_id = $training_item['training_id'];
                     $new_calendar_item->meal_id = null;
                     $new_calendar_item->date = $date;
@@ -109,7 +111,6 @@ class GenerateCalendar
                     $new_calendar_item->type = 'training';
                     $new_calendar_item->program_id = $program->id;
                     $new_calendar_item->comment = '';
-                    $new_calendar_item->description = '';
                     //return $new_calendar_item;
                     //$new_calendar_item->save();
                     $new_calendar_item->save();
@@ -121,6 +122,7 @@ class GenerateCalendar
                 $new_calendar_item = new Calendar();
                 $new_calendar_item->day_number = $training['day_number']+1;
                 $new_calendar_item->user_id = $program->user_id;
+                $new_calendar_item->description = 1;
                 $new_calendar_item->attributes = null;
                 //$new_calendar_item->package_id = null;
                 $new_calendar_item->training_id = null;

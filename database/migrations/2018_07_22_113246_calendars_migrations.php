@@ -30,7 +30,7 @@ class CalendarsMigrations extends Migration
             $table->enum('type',['training','package']);
             $table->integer('program_id');
             $table->string('comment')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
 
         });

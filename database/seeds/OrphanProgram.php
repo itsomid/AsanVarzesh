@@ -21,6 +21,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -33,6 +34,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -50,6 +52,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -62,6 +65,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -79,6 +83,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -91,6 +96,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -108,6 +114,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -120,6 +127,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -137,6 +145,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -149,6 +158,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -166,6 +176,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -178,6 +189,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -195,6 +207,7 @@ class OrphanProgram extends Seeder
                 'training' => [
                     [
                         'training_id' => 2,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,
@@ -207,6 +220,7 @@ class OrphanProgram extends Seeder
                     ],
                     [
                         'training_id' => 3,
+                        'day_description' => 'توضیحات',
                         'attribute' => [
                             'distance' => null,
                             'time' => 30,

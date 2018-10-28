@@ -26,12 +26,13 @@ class ProgramsController extends Controller
 
         $user = auth('api')->user();
 
-        $programs = Programs::with([
-                                    'sport.trainings',
+        $programs = Programs::with(['sport.trainings',
                                     'coach.profile',
                                     'corrective_doctor.profile',
-                                    'nutrition_doctor.profile'
-                                ])->where('user_id',$user->id)->orderby('id','DESC')->get();
+                                    'nutrition_doctor.profile'])
+            ->where('user_id',$user->id)
+            ->orderby('id','DESC')
+            ->get();
 
         return response()->json($programs,200);
 
