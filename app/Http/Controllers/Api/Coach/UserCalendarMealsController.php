@@ -12,28 +12,46 @@ class UserCalendarMealsController extends Controller
 {
     public function showMeals($program_id) {
 
-        $program = Programs::with('subscription')->find($program_id);
-        $meals_default = $program->configuration['nutrition'];
+//        $program = Programs::with('subscription')->find($program_id);
+//        $meals_default = $program->configuration['nutrition'];
+//
+//        $meals = [];
+//        foreach ($meals_default as $item)
+//        {
+//            $meals_day = [];
+//
+//            $meals_day['day_number'] = $item['day_number'];
+//            $meals_day['meals'] = [];
+//
+//            foreach ($item['meals'] as $meal) {
+//
+//                $food_package = Package::with('foods')->whereIn('id',$meal['familiar'])->get();
+//                array_push($meals_day['meals'],$food_package);
+//
+//            }
+//
+//            array_push($meals,$meals_day);
+//        }
+//
+//        return $meals;
 
-        $meals = [];
-        foreach ($meals_default as $item)
-        {
-            $meals_day = [];
+        $calendar_nutrition = Calendar::with('package.foods','meal')
+            ->where('type','package')
+            ->where('program_id',$program_id)
+            ->orderby('id','DESC')
+            ->get()
+            ->groupBy('date')->toArray();
 
-            $meals_day['day_number'] = $item['day_number'];
-            $meals_day['meals'] = [];
 
-            foreach ($item['meals'] as $meal) {
-
-                $food_package = Package::with('foods')->whereIn('id',$meal['familiar'])->get();
-                array_push($meals_day['meals'],$food_package);
-
-            }
-
-            array_push($meals,$meals_day);
+        $calendar_nutrition_arr = [];
+        foreach ($calendar_nutrition as $nutrition) {
+            array_push($calendar_nutrition_arr,$nutrition);
         }
 
-        return $meals;
+        return response()->json([
+            //'trainings' => $calendar_trainings_arr,
+            'nutrition' => $calendar_nutrition_arr
+        ],200);
 
     }
 

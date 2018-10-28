@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Model\Calendar;
 use App\Model\Programs;
 use App\Model\Training;
 use Carbon\Carbon;
@@ -14,64 +15,26 @@ class UserCalendarTrainingsController extends Controller
     public function showTrainings($program_id)
     {
 
-        $program = Programs::with('subscription')->find($program_id);
-        $times_date = $program->time_of_exercises;
-        $times_date_arr = [];
-        foreach ($times_date as $item) {
-            array_push($times_date_arr,$item['day_number']);
-        }
-        $trainings_default = $program->configuration['trainings'];
-        $start_date = $program->start_date;
-        /*$selected_start_days = [];
-        foreach ($times_date as $item) {
-            array_push($selected_start_days, strtotime('next '.$this->week_days( $item['day_number']), strtotime($start_date)));
-        }
+        $calendar_trainings = Calendar::with('training.accessories')
+            ->where('type','training')
+            ->where('program_id',$program_id)
+            /*->where('training_id','!=',null)*/
+            ->orderby('id','DESC')
+            ->get()
+            ->groupBy('date')->toArray();
 
-        sort($selected_start_days);
-        $selected_start_days_date = [];
+        $calendar_trainings_arr = [];
 
-        $date = new \DateTime();
-
-        foreach ($selected_start_days as $day)
-        {
-            array_push($selected_start_days_date,date('Y-m-d 00:00:00', $day));
+        foreach ($calendar_trainings as $training) {
+            array_push($calendar_trainings_arr,$training);
         }
 
 
-        // Update Subscription if first selected start day Bigger than Subscription Start Date
 
-        if(strtotime($selected_start_days_date[0]) >= strtotime($program->subscription->from)) {
-
-            $to = Carbon::parse($selected_start_days_date[0])->addDay(30);
-            $program->subscription->from = $selected_start_days_date[0];
-            $program->subscription->to = $to;
-            $program->subscription->save();
-
-        }*/
-
-        $trainings_transformed = [];
-
-        foreach ($trainings_default as $training_day) {
-            $training_day_array['trainings'] = [];
-            $training_day_array['day_number'] = $training_day['day_number'];
-
-            if(in_array($training_day['day_number'],$times_date_arr)) {
-
-                foreach ($training_day['training'] as $training) {
-                    $training_item = Training::find($training['training_id'])->toArray();
-
-                    $training_item['attributes'] = $training['attribute'];
-                    array_push($training_day_array['trainings'],$training_item);
-                }
-                array_push($trainings_transformed,$training_day_array);
-            } else {
-                array_push($trainings_transformed,$training_day_array);
-            }
-
-
-        }
-
-        return $trainings_transformed;
+        return response()->json([
+            'trainings' => $calendar_trainings_arr,
+            //'nutrition' => $calendar_nutrition_arr
+        ],200);
 
 
 
