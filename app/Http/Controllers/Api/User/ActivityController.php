@@ -13,7 +13,7 @@ class ActivityController extends Controller
 
         $user = auth('api')->user();
 
-        $activities = Activity::where('user_id',$user->id)->orderby('id','DESC')->get();
+        $activities = Activity::with('calendar.training')->where('user_id',$user->id)->orderby('id','DESC')->get();
 
         return response()->json($activities,200);
 
@@ -27,8 +27,8 @@ class ActivityController extends Controller
 
         if($data['calendar_id'] != null) {
 
-            $has_activity = Activity::where('calendar_id',$data['calendar_id'])->first();
-            if($has_activity != null OR $has_activity != '' OR !empty($has_activity) ) {
+            $has_activity = Activity::where('calendar_id',$data['calendar_id'])->where('user_id',$user->id)->first();
+            if($has_activity == null OR $has_activity == '' OR empty($has_activity) ) {
                 if($data['calendar_id'] != null) {
                     $calendar = Calendar::find($data['calendar_id']);
                     $calendar->status = 'done';
@@ -51,7 +51,7 @@ class ActivityController extends Controller
             } else {
 
                 return response()->json(['message' => 'added before'],406);
-                
+
             }
 
         } else {
