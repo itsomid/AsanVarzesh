@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Model\Calendar;
 use App\Model\FoodPackage;
 use App\Model\Package;
 use App\Model\Programs;
