@@ -29,11 +29,10 @@ class ActivityController extends Controller
 
             $has_activity = Activity::where('calendar_id',$data['calendar_id'])->where('user_id',$user->id)->first();
             if($has_activity == null OR $has_activity == '' OR empty($has_activity) ) {
-                if($data['calendar_id'] != null) {
-                    $calendar = Calendar::find($data['calendar_id']);
-                    $calendar->status = 'done';
-                    $calendar->save();
-                }
+
+                $calendar = Calendar::find($data['calendar_id']);
+                $calendar->status = 'done';
+                $calendar->save();
 
                 if($calendar->type == 'training') {
                     $activity = new Activity();
