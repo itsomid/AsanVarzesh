@@ -34,7 +34,8 @@ class ProgramController extends Controller
                 $training_item = [];
 
                 $training_item['training'] = $training;
-                $training_item['attribute'] = $value['attribute'];
+                //$training['attribute'] = $value['attribute'];
+                $training_item['training']['attribute'] = $value['attribute'];
                 array_push($aDay_trainings['trainings'],$training_item);
 
 
