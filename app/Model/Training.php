@@ -15,7 +15,8 @@ class Training extends Model
 {
     //
     protected $casts = [
-        'steps' => 'array'
+        'steps' => 'array',
+        'attribute' => 'array'
     ];
 
     protected $appends = [
