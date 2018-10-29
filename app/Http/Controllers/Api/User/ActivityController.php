@@ -13,7 +13,7 @@ class ActivityController extends Controller
 
         $user = auth('api')->user();
 
-        $activities = Activity::with('calendar.training')->where('user_id',$user->id)->orderby('id','DESC')->get();
+        $activities = Activity::where('user_id',$user->id)->orderby('id','DESC')->get();
 
         return response()->json($activities,200);
 
