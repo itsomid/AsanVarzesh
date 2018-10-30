@@ -18,7 +18,8 @@ class Activity extends Model
 
     public function gettitleAttribute(){
 
-        return $calendar = Calendar::where('id',$this->calendar_id)->first();
+        $calendar = Calendar::where('id',$this->calendar_id)->first();
+        return $calendar->training->title;
 //        if($calendar->training_id != null && $calendar->type == 'training') {
 //            return $calendar->training->title;
 //        } else {
