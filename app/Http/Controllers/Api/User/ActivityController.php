@@ -46,6 +46,9 @@ class ActivityController extends Controller
                     $activity->calendar_id = $data['calendar_id'];
                     $activity->save();
 
+                } else {
+                    $calendar->used_package_id = $data['package_id'];
+                    $calendar->save();
                 }
 
                 return response()->json(['message' => 'activity added'],200);
