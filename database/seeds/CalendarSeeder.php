@@ -30,7 +30,6 @@ class CalendarSeeder extends Seeder
             $program->start_date = $date;
             $program->status = 'pending';
             $program->federation_id = 1;
-            $program->configuration = array();
             $program->weight = 90;
             $program->abdominal = 1;
             $program->arm = 1;

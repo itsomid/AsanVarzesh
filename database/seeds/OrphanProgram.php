@@ -23,26 +23,29 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
+
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -54,26 +57,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -85,26 +90,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -116,26 +123,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -147,26 +156,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -178,26 +189,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]
@@ -209,26 +222,28 @@ class OrphanProgram extends Seeder
                         'training_id' => 2,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ],
                     [
                         'training_id' => 3,
                         'day_description' => 'توضیحات',
                         'attribute' => [
-                            'distance' => null,
-                            'time' => 30,
-                            'speed' => '44',
-                            'unit_speed' => 'km',
-                            'set' => 4,
-                            'each_set' => 10,
-                            'time_each_set' => 65
+                            "distance" => null,
+                            "time" => 30,
+                            "speed" => "44",
+                            "unit_speed" => "m",
+                            "set" => 4,
+                            "each_set" => 10,
+                            "time_each_set" => 65,
+                            'energy' => 350
                         ]
                     ]
                 ]

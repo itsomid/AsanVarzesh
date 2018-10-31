@@ -48,10 +48,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -78,10 +79,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -129,10 +131,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -159,10 +162,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -207,10 +211,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -256,10 +261,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -275,10 +281,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -313,10 +320,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -332,10 +340,11 @@ class SportSeeder extends Seeder
             "distance" => null,
             "time" => 30,
             "speed" => "44",
-            "unit_speed" => "km",
+            "unit_speed" => "m",
             "set" => 4,
             "each_set" => 10,
-            "time_each_set" => 65
+            "time_each_set" => 65,
+            'energy' => 350
         ];
         $training->save();
         $training->accessories()->attach([1,2]);

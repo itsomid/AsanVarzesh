@@ -33,16 +33,19 @@ class ActivityController extends Controller
                 $calendar = Calendar::find($data['calendar_id']);
                 $calendar->status = 'done';
                 $calendar->save();
+                $attributes = $calendar->attributes;
 
                 if($calendar->type == 'training') {
+
                     $activity = new Activity();
                     $activity->user_id = $user->id;
-                    $activity->distance = $data['distance'];
-                    $activity->energy = $data['energy'];
-                    $activity->time  = $data['time'];
-                    $activity->speed = $data['speed'];
+                    $activity->distance = $attributes['distance'];
+                    $activity->energy = $attributes['energy'];
+                    $activity->time  = $attributes['time'];
+                    $activity->speed = $attributes['speed'];
                     $activity->calendar_id = $data['calendar_id'];
                     $activity->save();
+
                 }
 
                 return response()->json(['message' => 'activity added'],200);
@@ -61,7 +64,7 @@ class ActivityController extends Controller
             $activity->energy = $data['energy'];
             $activity->time  = $data['time'];
             $activity->speed = $data['speed'];
-            $activity->calendar_id = $data['calendar_id'];
+            $activity->calendar_id = null;
             $activity->save();
 
             return response()->json(['message' => 'activity added'],200);
