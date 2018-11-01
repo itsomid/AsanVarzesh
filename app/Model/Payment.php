@@ -11,6 +11,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Payment extends Model
 {
+
+    public static function tax() {
+        return 0.9;
+    }
+
+    public static function calTax($price) {
+        return $price * self::tax();
+    }
+
+    public static function insurance() {
+        return 10000;
+    }
+
     public function program()
     {
         return $this->hasOne('App\Model\Programs','id','program_id');
@@ -30,5 +43,13 @@ class Payment extends Model
     {
         return $this->hasOne('App\Model\Subscription','id','program_id');
     }
+
+    public static function calculatePrice($price,$promotion) {
+
+        return round(  ( $price + ($price * self::tax()) + self::insurance() ) - $promotion );
+
+    }
+
+
 
 }

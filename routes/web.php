@@ -475,3 +475,10 @@ Route::get('users',function () {
     return $users;
 
 });
+
+Route::get('/discount-code',function() {
+
+    $promotions = \App\Model\Promotion::all(['code']);
+    return $promotions;
+
+});

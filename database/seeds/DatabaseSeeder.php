@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MotivationalSeeder::class);
         $this->call(ActivitiesSeeder::class);
         $this->call(Food_Category::class);
+        $this->call(PromotionSeeder::class);
 
 
     }

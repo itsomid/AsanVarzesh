@@ -7,6 +7,7 @@ use App\Model\Coach_sport;
 use App\Model\Payment;
 use App\Model\Plan;
 use App\Model\Programs;
+use App\Model\Promotion;
 use App\Model\Role;
 use App\Model\Sport;
 use App\Model\Subscription;
@@ -43,17 +44,37 @@ class ProgramsController extends Controller
         $data = $request->all();
 
         $coach = User::find($data['coach_id']);
+        $user = auth('api')->user();
 
         $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                                     ->where('sport_id',$data['sport_id'])
                                     ->first();
 
+        $discount = 0;
+        if($data['discount_code'] != null) {
+            $promotion = Promotion::where('code',$data['discount_code'])->first();
+            if($promotion == null) {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'not found'
+                ],404);
+            }
+            $discount = $promotion->apply($user->id,$promotion->code,$coach_price->price,$coach->id,$data['sport_id']);
+            if($discount == false) {
+                return response()->json(['status' => 406,'message' => 'discount code is not valid'],406);
+            }
+        }
+
+
+
         if($coach_price != null) {
 
             $response = [
                 'coach_price' => $coach_price->price,
-                'tax' => $coach_price->price * 0.09,
-                'insurance' => 1000
+                'tax' => Payment::calTax($coach_price->price),
+                'insurance' => Payment::insurance(),
+                'discount' => $discount,
+                'total' => Payment::calculatePrice($coach_price->price,$discount)
             ];
 
             return response()->json($response,200);
