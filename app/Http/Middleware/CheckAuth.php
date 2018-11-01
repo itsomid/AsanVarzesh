@@ -19,6 +19,8 @@ class CheckAuth extends BaseMiddleware
     public function handle($request, \Closure $next)
     {
         //return dd(response()->json(auth()->user()));
+
+        //return dd('a');
         $token = $this->auth->setRequest($request)->getToken();
         if (!$token = $this->auth->setRequest($request)->getToken()) {
             return $this->respond('tymon.jwt.absent', 'token_not_provided', 400);
@@ -26,9 +28,15 @@ class CheckAuth extends BaseMiddleware
 
         try {
             $user = $this->auth->authenticate($token);
+            if($user == null) {
+                return response()->json([
+                    'message' => 'Not Found with this token',
+                    'status' => 401,
+                ],401);
+            }
             if($user->status == 'inactive') {
                 return response()->json([
-                    'status' => 'Please Active Account',
+                    'message' => 'Please Active Account',
                     'status' => 406,
 
                 ],406);
