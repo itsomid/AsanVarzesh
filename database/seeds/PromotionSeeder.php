@@ -25,5 +25,5 @@ class PromotionSeeder extends Seeder
         }
 
     }
-    
+
 }

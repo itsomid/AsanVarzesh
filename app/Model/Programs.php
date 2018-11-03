@@ -70,6 +70,11 @@ class Programs extends Model
         return $this->hasOne('App\Model\Subscription','program_id','id');
     }
 
+    public function payment()
+    {
+        return $this->hasOne('App\Model\Payment','program_id','id');
+    }
+
     public function getmilitaryservicesAttribute()
     {
         $profile = Profiles::where('id',$this->user_id)->first(['military_services']);

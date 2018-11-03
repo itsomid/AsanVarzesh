@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\Coach;
 use App\Model\Conversation;
 use App\Model\FoodPackage;
 use App\Model\Package;
+use App\Model\Payment;
 use App\Model\Programs;
+use App\Model\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -233,16 +235,58 @@ class RequestsController extends Controller
 
     public function update($program_id,$status,Request $request) {
 
-        $data = $request->all();
-        $program = Programs::find($program_id);
-        $program->status = $status;
-        $program->text = $data['text'];
-        $program->save();
 
-        return response()->json([
-            'message' => 'کلیت برنامه مورد نظر انجام شد',
-            'status' => 200
-        ],200);
+        $data = $request->all();
+        $program = Programs::with('subscription','payment')->where('id',$program_id)->first();
+
+        $payment = $program->payment;
+
+        if($status == 'reject' && $payment != null && $program->status != 'reject') {
+
+            $credit_payment = new Payment();
+            $credit_payment->user_id = $payment->user_id;
+            $credit_payment->program_id = $payment->program_id;
+            $credit_payment->coach_id = $payment->coach_id;
+            $credit_payment->subscription_id = $payment->subscription_id;
+            $credit_payment->price = $payment->price;
+            $credit_payment->type = 'credit';
+            $credit_payment->status = 'return';
+            $credit_payment->save();
+
+            $subscription = Subscription::find($program->subscription_id);
+            $subscription->delete();
+
+
+            $program->status = $status;
+            $program->text = $data['text'];
+            $program->save();
+
+            return response()->json([
+                'message' => 'برنامه رد شد و هزینه دریافتی به کیف پول کاربر اضافه شد',
+                'status' => 200
+            ],200);
+
+
+        } elseif($program->status == 'pending' && $status == 'accept') {
+
+            $program->status = $status;
+            $program->text = $data['text'];
+            $program->save();
+
+
+            return response()->json([
+                'message' => 'کلیت برنامه مورد نظر انجام شد',
+                'status' => 200
+            ],200);
+
+        } else {
+            return response()->json([
+                'message' => 'وضعیت این برنامه قبلا مشخص شده است',
+                'status' => 200
+            ],200);
+        }
+
+
 
 
     }

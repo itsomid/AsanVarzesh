@@ -22,8 +22,9 @@ class PaymentsMigrations extends Migration
             $table->integer('coach_id')->nullable();
             $table->integer('subscription_id')->nullable();
             $table->integer('price')->nullable();
+            $table->enum('type',['credit','debit']);
             $table->string('via')->nullable();
-            $table->enum('status',['failed', 'pending', 'success']);
+            $table->enum('status',['failed', 'pending', 'success','return']);
             $table->string('reference_id')->nullable();
             $table->integer('promotion_id')->nullable();
             $table->timestamps();
