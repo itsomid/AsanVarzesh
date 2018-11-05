@@ -52,12 +52,14 @@ class ProgramController extends Controller
 
             foreach ($item['meals'] as $value) {
                 $packages = [];
+
                 $meal = Meal::find($value['meal_id']);
-                $foods = Package::with('foods')->whereIn('id',$value['familiar'])->first();
+                $foods = Package::with('foods')->whereIn('id',$value['familiar'])->get();
                 $nutrition_item = [];
                 $nutrition_item['meal'] = $meal;
-                $nutrition_item['package']['id'] = $foods->id;
-                $nutrition_item['package']['foods'] = $foods->foods;
+//                $nutrition_item['package']['id'] = $foods->id;
+                $nutrition_item['package'] = $foods;
+                //$nutrition_item['package']['foods'] = $foods->foods;
 
                 array_push($aDay_nutritions['meals'],$nutrition_item);
 
