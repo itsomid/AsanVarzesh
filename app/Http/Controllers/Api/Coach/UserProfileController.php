@@ -55,12 +55,11 @@ class UserProfileController extends Controller
             ->where('training_id','=',null)
             ->orderby('id','DESC')
             ->with(['training','meal','package.foods'])
-            ->get()->groupBy('date','user_id');
+            ->get()->groupBy('date');
 
         $transformed_calendars = [];
 
         foreach ($calendars as $calendar) {
-
             array_push($transformed_calendars,$calendar);
 
         }

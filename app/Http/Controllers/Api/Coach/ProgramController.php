@@ -30,7 +30,7 @@ class ProgramController extends Controller
             $aDay_trainings['trainings'] = [];
             foreach ($item['training'] as $value) {
 
-                $training = Training::where('id',$value['training_id'])->first()->toArray();
+                $training = Training::with('sport')->where('id',$value['training_id'])->first()->toArray();
                 $training_item = [];
 
                 $training_item['training'] = $training;
@@ -56,7 +56,8 @@ class ProgramController extends Controller
                 $foods = Package::with('foods')->whereIn('id',$value['familiar'])->first();
                 $nutrition_item = [];
                 $nutrition_item['meal'] = $meal;
-                $nutrition_item['foods'] = $foods->foods;
+                $nutrition_item['package']['id'] = $foods->id;
+                $nutrition_item['package']['foods'] = $foods->foods;
 
                 array_push($aDay_nutritions['meals'],$nutrition_item);
 
