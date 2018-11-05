@@ -139,6 +139,7 @@ class DashboardController extends Controller
                 $performed = 0;
                 foreach ($calendar as $item) {
                     $item['training']['calendar_id'] = $item['id'];
+                    $item['training']['status'] = $item['status'];
                     array_push($trainings,$item['training']);
                     if($item['status'] == 'done')
                     {

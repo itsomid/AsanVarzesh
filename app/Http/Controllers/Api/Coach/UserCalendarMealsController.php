@@ -63,7 +63,6 @@ class UserCalendarMealsController extends Controller
 
         $data = $request->all();
         $program = Programs::find($data['program_id']);
-        $data['nutrition'];
         if($program != null /*&& $program->meals_confirmation == false && $program->status == 'accept'*/) {
 
             $program->configuration = ['trainings' => $program->configuration['trainings'], 'nutrition' => $data['nutrition']];
