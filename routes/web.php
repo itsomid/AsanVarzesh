@@ -357,25 +357,6 @@ Route::get('default-program',function () {
 
 });
 
-Route::get('test',function() {
-
-    /*$program = \App\Model\Programs::first();
-    $nut = $program->configuration['nutrition'];
-
-    foreach ($nut[1]['meals'] as $meal) {
-        if(isset($meal['familiar'])) {
-            echo json_encode($meal);
-        }
-    }
-    $calendar = \App\Model\Calendar::where('package_id','!=',null)->first();
-
-    $calendar->familiar()->attach($nut[1]['meals'][1]['familiar']);*/
-
-//    $program = \App\Model\Programs::find(6);
-//    return $program->coach->sport;
-    $today = \Carbon\Carbon::today()->addDay(3);
-
-});
 
 Route::get('generate-calendar',function() {
 

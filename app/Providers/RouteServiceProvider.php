@@ -38,6 +38,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
         $this->mapUserApiRoutes();
         $this->mapCoachApiRoutes();
+        $this->mapPanelApiRoutes();
     }
 
     /**
@@ -75,5 +76,13 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/coach-api.php'));
+    }
+
+    protected function mapPanelApiRoutes()
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/panel-api.php'));
     }
 }

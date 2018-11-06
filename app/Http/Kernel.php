@@ -65,6 +65,9 @@ class Kernel extends HttpKernel
         /* Coach Role */
         'CoachRole' => \App\Http\Middleware\CoachRole::class,
 
+        /* Control Panel */
+        'AdminRole' =>  \App\Http\Middleware\AdminRole::class,
+
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
