@@ -372,7 +372,7 @@ Route::get('generate-calendar',function() {
     }*/
 
     $generateCalendar = new \App\Helpers\GenerateCalendar();
-    $generateCalendar->generate($programs->id,1);
+    return $generateCalendar->generate($programs->id,1);
 
 });
 

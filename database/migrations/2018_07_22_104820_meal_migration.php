@@ -18,6 +18,8 @@ class MealMigration extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('keywords')->nullable(); // For Search
+            $table->string('time_from')->nullable();
+            $table->string('time_to')->nullable();
             $table->timestamps();
         });
     }

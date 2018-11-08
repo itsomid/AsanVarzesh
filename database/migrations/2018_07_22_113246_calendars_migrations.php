@@ -24,8 +24,10 @@ class CalendarsMigrations extends Migration
             $table->integer('training_id')->nullable();
             $table->integer('meal_id')->nullable();
             $table->dateTime('date')->nullable();
-            $table->dateTime('time_exercise_from')->nullable();
-            $table->dateTime('time_exercise_to')->nullable();
+//            $table->dateTime('time_exercise_from')->nullable();
+            $table->dateTime('time_from')->nullable();
+//            $table->dateTime('time_exercise_to')->nullable();
+            $table->dateTime('time_to')->nullable();
             $table->enum('status',['done','delayed','did_not_do','cancelled']);
             $table->enum('type',['training','package']);
             $table->integer('program_id');

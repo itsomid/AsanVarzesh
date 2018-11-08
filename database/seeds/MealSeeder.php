@@ -13,18 +13,26 @@ class MealSeeder extends Seeder
     {
         $meal = new \App\Model\Meal();
         $meal->title = 'صبحانه';
+        $meal->time_from = '09:30';
+        $meal->time_to = '10:30';
         $meal->save();
 
         $meal = new \App\Model\Meal();
         $meal->title = 'ناهار';
+        $meal->time_from = '12:30';
+        $meal->time_to = '13:30';
         $meal->save();
 
         $meal = new \App\Model\Meal();
         $meal->title = 'شام';
+        $meal->time_from = '20:30';
+        $meal->time_to = '21:30';
         $meal->save();
 
         $meal = new \App\Model\Meal();
         $meal->title = 'میان وعده';
+        $meal->time_from = '17:30';
+        $meal->time_to = '18:30';
         $meal->save();
     }
 }

@@ -21,6 +21,7 @@ class FoodMigration extends Migration
             $table->text('details')->nullable();
             $table->float('energy');
             $table->integer('food_category_id');
+            $table->json('nutritional_value')->nullable();
             $table->text('image');
             $table->timestamps();
         });

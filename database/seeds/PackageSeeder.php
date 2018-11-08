@@ -18,18 +18,22 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 600;
+        $package->how_to_cooking = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. ';
         $package->nutritional_value = [
             [
-                'چربی',
-                '200 گرم'
+                'title' => 'چربی',
+                'size' => '200',
+                'unit' => 'گرم',
             ],
             [
-                'کلسیم',
-                '200 گرم'
+                'title' => 'کلسیم',
+                'unit' => 'گرم',
+                'size' => '200'
             ],
             [
-                'پروتئین',
-                '200 گرم'
+                'title' => 'پروتئین',
+                'unit' => 'گرم',
+                'size' => '200'
             ]
         ];
         $package->save();
@@ -45,16 +49,19 @@ class PackageSeeder extends Seeder
         $package->size = 800;
         $package->nutritional_value = [
             [
-                'چربی',
-                '200 گرم'
+                'title' => 'چربی',
+                'size' => '200',
+                'unit' => 'گرم',
             ],
             [
-                'کلسیم',
-                '200 گرم'
+                'title' => 'کلسیم',
+                'unit' => 'گرم',
+                'size' => '200'
             ],
             [
-                'پروتئین',
-                '200 گرم'
+                'title' => 'پروتئین',
+                'unit' => 'گرم',
+                'size' => '200'
             ]
         ];
         $package->save();
@@ -68,18 +75,22 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->how_to_cooking = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. ';
         $package->nutritional_value = [
             [
-                'چربی',
-                '200 گرم'
+                'title' => 'چربی',
+                'size' => '200',
+                'unit' => 'گرم',
             ],
             [
-                'کلسیم',
-                '200 گرم'
+                'title' => 'کلسیم',
+                'unit' => 'گرم',
+                'size' => '200'
             ],
             [
-                'پروتئین',
-                '200 گرم'
+                'title' => 'پروتئین',
+                'unit' => 'گرم',
+                'size' => '200'
             ]
         ];
         $package->save();
@@ -96,16 +107,19 @@ class PackageSeeder extends Seeder
         $package->size = 800;
         $package->nutritional_value = [
             [
-                'چربی',
-                '200 گرم'
+                'title' => 'چربی',
+                'size' => '200',
+                'unit' => 'گرم',
             ],
             [
-                'کلسیم',
-                '200 گرم'
+                'title' => 'کلسیم',
+                'unit' => 'گرم',
+                'size' => '200'
             ],
             [
-                'پروتئین',
-                '200 گرم'
+                'title' => 'پروتئین',
+                'unit' => 'گرم',
+                'size' => '200'
             ]
         ];
         $package->save();
@@ -119,18 +133,23 @@ class PackageSeeder extends Seeder
         $package->meal_id = 1;
         $package->unit = 'gr';
         $package->size = 800;
+        $package->how_to_cooking = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. ';
+
         $package->nutritional_value = [
             [
-                'چربی',
-                '200 گرم'
+                'title' => 'چربی',
+                'size' => '200',
+                'unit' => 'گرم',
             ],
             [
-                'کلسیم',
-                '200 گرم'
+                'title' => 'کلسیم',
+                'unit' => 'گرم',
+                'size' => '200'
             ],
             [
-                'پروتئین',
-                '200 گرم'
+                'title' => 'پروتئین',
+                'unit' => 'گرم',
+                'size' => '200'
             ]
         ];
         $package->save();
