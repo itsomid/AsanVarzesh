@@ -222,7 +222,7 @@ class GenerateCalendar
             $date = Carbon::parse($start_date)->addDay($item['day_number']);
             foreach ($item['meals'] as $meal) {
 
-                $meal = Meal::find($meal['meal_id']);
+                $meal_item = Meal::find($meal['meal_id']);
 
                 $new_calendar_item = new Calendar();
                 $new_calendar_item->day_number = $item['day_number'];
@@ -232,16 +232,16 @@ class GenerateCalendar
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = $meal['meal_id'];
                 $new_calendar_item->date = $date;
-                $new_calendar_item->time_from = Carbon::parse($date->format('Y-m-d').' '.$meal->time_from);
-                $new_calendar_item->time_to = Carbon::parse($date->format('Y-m-d').' '.$meal->time_to);
+                $new_calendar_item->time_from = Carbon::parse($date->format('Y-m-d').' '.$meal_item->time_from);
+                $new_calendar_item->time_to = Carbon::parse($date->format('Y-m-d').' '.$meal_item->time_to);
                 $new_calendar_item->status = 'did_not_do';
                 $new_calendar_item->type = 'package';
                 $new_calendar_item->program_id = $program->id;
                 $new_calendar_item->comment = '';
                 $new_calendar_item->description = '';
                 $new_calendar_item->save();
-                if(isset($meal['familiar'])) {
-                    $new_calendar_item->package()->attach($meal['familiar']);
+                if(isset($meal['package'])) {
+                    $new_calendar_item->package()->attach($meal['package']);
                 }
 
             }

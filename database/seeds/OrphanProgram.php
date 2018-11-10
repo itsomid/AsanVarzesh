@@ -371,8 +371,7 @@ class OrphanProgram extends Seeder
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '08:00',
-                    'familiar' => [1,3,2]
+                    'package' => [1,3,2]
 
                 ],
                 [
@@ -382,8 +381,7 @@ class OrphanProgram extends Seeder
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '11:00',
-                    'familiar' => [1,3,2]
+                    'package' => [1,3,2]
 
                 ],
                 [
@@ -393,8 +391,7 @@ class OrphanProgram extends Seeder
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '13:00',
-                    'familiar' => [1,3,5]
+                    'package' => [1,3,5]
 
                 ],
                 [
@@ -404,8 +401,7 @@ class OrphanProgram extends Seeder
                     'energy' => 250,
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '20:00',
-                    'familiar' => [1,3,5]
+                    'package' => [1,3,5]
 
                 ]
             ]

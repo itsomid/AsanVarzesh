@@ -52,10 +52,13 @@ Route::group(['prefix' => '/v1'],function() {
             // User Calendar ( Show Program Calendar by Selected Times & Day & Its Update)
             Route::get('users/calendar/trainings/{program_id}','Api\Coach\UserCalendarTrainingsController@showTrainings');
             Route::post('users/calendar/trainings/update','Api\Coach\UserCalendarTrainingsController@updateTrainings');
+            Route::post('users/calendar/trainings/item/update','Api\Coach\UserCalendarTrainingsController@updateItem');
+            Route::post('users/calendar/trainings/item/create','Api\Coach\UserCalendarTrainingsController@createItem');
 
             Route::get('users/calendar/meals/{program_id}','Api\Coach\UserCalendarMealsController@showMeals');
             Route::post('users/calendar/meals/update','Api\Coach\UserCalendarMealsController@updateMeals');
-
+            Route::post('users/calendar/meals/item/update','Api\Coach\UserCalendarMealsController@updateItem');
+            Route::post('users/calendar/meals/item/create','Api\Coach\UserCalendarMealsController@createItem');
 
             // Requests
             Route::get('requests','Api\Coach\RequestsController@index');

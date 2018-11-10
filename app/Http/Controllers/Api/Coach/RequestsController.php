@@ -215,7 +215,7 @@ class RequestsController extends Controller
 
             foreach ($perday['meals'] as $meal) {
                 $packages = [];
-                foreach ($meal['familiar'] as $item) {
+                foreach ($meal['package'] as $item) {
                     $food_package = Package::with('foods')->where('id',$item)->first()->toArray();
                     array_push($packages,$food_package);
                 }
