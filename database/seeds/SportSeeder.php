@@ -46,13 +46,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -77,13 +77,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -129,13 +129,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -160,13 +160,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -209,13 +209,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -259,13 +259,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -279,13 +279,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -318,13 +318,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
@@ -338,13 +338,13 @@ class SportSeeder extends Seeder
         $training->details = 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. ';
         $training->attribute = [
             "distance" => null,
-            "time" => '30',
+            "time" => "30",
             "speed" => "44",
             "unit_speed" => "m",
-            "set" => '4',
-            "each_set" => '10',
-            "time_each_set" => '65',
-            'energy' => '350'
+            "set" => "4",
+            "each_set" =>"10",
+            "time_each_set" => "65",
+            'energy' => "350"
         ];
         $training->save();
         $training->accessories()->attach([1,2]);
