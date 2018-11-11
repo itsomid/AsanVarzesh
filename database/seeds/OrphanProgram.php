@@ -328,7 +328,7 @@ class OrphanProgram extends Seeder
                     'attribute' => [
                         "distance" => null,
                         "time" => 30,
-                        "speed" => "44",
+                        "speed" => 44,
                         "unit_speed" => "m",
                         "set" => 4,
                         "each_set" => 10,
@@ -343,7 +343,7 @@ class OrphanProgram extends Seeder
                     'attribute' => [
                         "distance" => null,
                         "time" => 30,
-                        "speed" => "44",
+                        "speed" => 44,
                         "unit_speed" => "m",
                         "set" => 4,
                         "each_set" => 10,
