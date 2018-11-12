@@ -19,7 +19,8 @@ class DashboardController extends Controller
         } else {
             $date_carbon = Carbon::parse($date);
         }
-
+        
+        $date = $date_carbon->format('Y-m-d').' 00:00:00';
 
         $programs = Programs::with('sport')->where('user_id',$user->id)->orderby('id','DESC')->get()->toArray();
 
@@ -32,7 +33,7 @@ class DashboardController extends Controller
                 ->where('type','training')
                 ->where('meal_id','=',null)
                 ->where('training_id','!=',null)
-                ->where('date',$date_carbon)
+                ->where('date',$date)
                 ->where('program_id',$program['id'])
                 ->orderby('id','DESC')
                 ->get()
@@ -49,7 +50,7 @@ class DashboardController extends Controller
             //->where('package_id','!=',null)
             ->where('training_id','=',null)
             ->where('meal_id','!=',null)
-            ->where('date',$date_carbon)
+            ->where('date',$date)
             ->orderby('id','DESC')
             ->get()
             ->toArray();
