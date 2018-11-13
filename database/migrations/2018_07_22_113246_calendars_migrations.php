@@ -33,6 +33,7 @@ class CalendarsMigrations extends Migration
             $table->integer('program_id');
             $table->string('comment')->nullable();
             $table->text('description')->nullable();
+            $table->integer('order')->nullable();
             $table->timestamps();
 
         });
