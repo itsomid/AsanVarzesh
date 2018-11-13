@@ -28,11 +28,5 @@ class MealSeeder extends Seeder
         $meal->time_from = '20:30';
         $meal->time_to = '21:30';
         $meal->save();
-
-        $meal = new \App\Model\Meal();
-        $meal->title = 'میان وعده';
-        $meal->time_from = '17:30';
-        $meal->time_to = '18:30';
-        $meal->save();
     }
 }

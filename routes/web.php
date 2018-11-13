@@ -80,6 +80,13 @@ Route::get('fake',function() {
 
 });
 
+Route::get('gender',function() {
+
+    $faker = \Faker\Factory::create('fa_IR');
+    $gender = $faker->randomElements(['male', 'female']);
+    return [$faker->firstName('female')];
+});
+
 Route::get('default-program',function () {
 
     $training = [

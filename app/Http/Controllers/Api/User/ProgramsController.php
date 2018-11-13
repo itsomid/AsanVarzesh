@@ -168,7 +168,7 @@ class ProgramsController extends Controller
         $program->sport_id = $data['sport_id'];
         $program->nutrition_doctor_id = $coach->team['nutrition_doctor'];
         $program->corrective_doctor_id = $coach->team['corrective_doctor'];
-        $program->start_date = $data['start_date'];
+        $program->start_date = Carbon::today();
         $program->status = 'pending';
         $program->time_of_exercises = $data['time_of_exercises'];
         $program->configuration = $orphan_program->configuration;
@@ -192,8 +192,8 @@ class ProgramsController extends Controller
 
         // Add Subscription
         $start_date = explode('-',$data['start_date']);
-        $from = Carbon::create($start_date[0],$start_date[1],$start_date[2])->format('Y-m-d H:i:s');
-        $to = Carbon::create($start_date[0],$start_date[1],$start_date[2])->addDay($to_days);
+        $from = Carbon::today()->format('Y-m-d H:i:s');
+        $to = Carbon::today()->addDay($to_days);
 
         $subscription = new Subscription();
         $subscription->user_id = $user->id;

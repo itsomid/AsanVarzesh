@@ -18,6 +18,7 @@ class TrainingMigrations extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('sport_id');
+            //$table->text('image')->nullable();
             $table->text('attachment')->nullable();
             $table->enum('difficulty',['Very Easy','Easy','Normal','Hard','Difficult','Very Difficult']);
             $table->text('details')->nullable();;

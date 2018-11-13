@@ -32,7 +32,6 @@ class ProfileMigration extends Migration
             $table->text('address')->nullable();
             $table->text('keywords')->nullable();
             $table->text('nutrition_info')->nullable();
-            $table->enum('gender',['male','female']);
             $table->string('birth_date')->nullable();
             $table->text('national_code')->nullable();
             $table->string('education'/*,['diploma','Associate_Degree','Bachelor','MA']*/)->nullable();
@@ -41,6 +40,7 @@ class ProfileMigration extends Migration
             $table->string('military_services')->nullable();
             $table->text('budget')->nullable();
             $table->text('appetite')->nullable();
+            $table->enum('gender',['male','female']);
             $table->timestamps();
 
 

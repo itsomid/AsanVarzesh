@@ -18,8 +18,8 @@ class CoachSeeder extends Seeder
 
 
         for ($i=0; $i < 10; $i++) {
-            echo $faker->name, "\n";
-
+            //echo $faker->name, "\n";
+            $gender = $faker->randomElements(['male', 'female']);
 
             $user = new \App\User();
             $mobile = $faker->mobileNumber;
@@ -36,8 +36,7 @@ class CoachSeeder extends Seeder
             $user->roles()->attach(3,['sport_id' => $sport_id]);
             $user->coaches()->attach(1,['price' => $faker->randomNumber(5)]);
 
-
-            $first_name = $faker->firstName();
+            $first_name = $faker->firstName($gender[0]);
             $last_name = $faker->lastName();
 
             $profile = new \App\Model\Profiles();
@@ -48,13 +47,24 @@ class CoachSeeder extends Seeder
             $profile->experiences = 'سوابق مربی ';
             $profile->coach_rate = 'professional';
             $profile->birth_date = '1987-09-09';
-            $profile->avatar = 'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg';
+            $male_avatar = url('images/fitness_man.jpg');
+            $female_avatar = url('images/fitness_woman.jpg');
+            $profile->avatar =  $gender[0] == 'male' ? $male_avatar : $female_avatar;
+            $profile->gender = $gender[0];
             //$profile->height = 190;
             //$profile->weight = 110;
-            $profile->photos = [
-                'http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg',
-                'https://www.tarafdari.com/sites/default/files/contents/user241416/content-note/mhrb-ftmy.jpg'
+
+            $female_photos = [
+                url('images/amadegi_jesmani_woman.jpg'),
+                url('images/fitness_woman.jpg.jpg')
             ];
+
+            $male_photos = [
+                url('images/kesheshi_man.jpg'),
+                url('images/fitness_man.jpg')
+            ];
+
+            $profile->photos = $gender[0] == 'male' ? $male_photos : $female_photos;
             $profile->city_id = 117;
             //$profile->hours_of_work = '8-15';
             $profile->covered_area = 'گیشا - شهرآرا - ستارخان';

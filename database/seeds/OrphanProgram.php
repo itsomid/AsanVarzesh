@@ -89,16 +89,6 @@ class OrphanProgram extends Seeder
                     'size' => null,
                     'package' => ['1','3','2']
 
-                ],
-                [
-
-                    'meal_id' => '4',
-                    //'package_id' => 3,
-                    'energy' => '250',
-                    'unit' => 'gr',
-                    'size' => null,
-                    'package' => ['1','3','2']
-
                 ]
             ]
         ];
