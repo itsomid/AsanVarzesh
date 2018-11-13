@@ -9,6 +9,7 @@ namespace App\Helpers;
 
 use App\Model\Calendar;
 use App\Model\Conversation;
+use App\Model\Meal;
 use App\Model\Programs;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -63,32 +64,30 @@ class GenerateCalendar
 
         }
 
+        $selected_days_by_name = [];
+        foreach ($times_date as $day) {
+            array_push($selected_days_by_name,$this->week_days($day['day_number']));
+        }
+
+
+
         foreach ($trainings as $training)
         {
 
             $date = Carbon::parse($start_date)->addDay($training['day_number']);
             $start_time_training = $date;
             $end_time_training = $date;
-            /*if(in_array($date,$selected_start_days_date)) {
-                echo $date.'<br/>';
-            }*/
+            if(in_array($date->dayName,$selected_days_by_name)) {
 
-            foreach ($times_date as $item) {
-                if($item['day_number'] == $training['day_number']) {
-                    $date->format('Y-m-d').' '.$item['start_time'];
-                    $start_time_training  = Carbon::parse($date->format('Y-m-d').' '.$item['start_time']);
-                    $end_time_training = Carbon::parse($date->format('Y-m-d').' '.$item['end_time']);
-                }
-            }
+                $start_time_training  = Carbon::parse($date->format('Y-m-d').' '.$item['start_time']);
+                $end_time_training = Carbon::parse($date->format('Y-m-d').' '.$item['end_time']);
 
-            $trainings_day = $training['training'];
-
-            if(in_array($training['day_number'],$times_date_arr)) {
+                $trainings_day = $training['training'];
 
                 foreach ($trainings_day as $training_item) {
 
                     $new_calendar_item = new Calendar();
-                    $new_calendar_item->day_number = $training['day_number']+1;
+                    $new_calendar_item->day_number = $training['day_number'];
                     $new_calendar_item->user_id = $program->user_id;
 
                     if(count($training_item['attribute']) == 0) {
@@ -105,8 +104,8 @@ class GenerateCalendar
                     $new_calendar_item->training_id = $training_item['training_id'];
                     $new_calendar_item->meal_id = null;
                     $new_calendar_item->date = $date;
-                    $new_calendar_item->time_exercise_from = $start_time_training;
-                    $new_calendar_item->time_exercise_to = $end_time_training;
+                    $new_calendar_item->time_from = $start_time_training;
+                    $new_calendar_item->time_to = $end_time_training;
                     $new_calendar_item->status = 'did_not_do';
                     $new_calendar_item->type = 'training';
                     $new_calendar_item->program_id = $program->id;
@@ -120,7 +119,7 @@ class GenerateCalendar
 
             } else {
                 $new_calendar_item = new Calendar();
-                $new_calendar_item->day_number = $training['day_number']+1;
+                $new_calendar_item->day_number = $training['day_number'];
                 $new_calendar_item->user_id = $program->user_id;
                 $new_calendar_item->description = 1;
                 $new_calendar_item->attributes = null;
@@ -128,18 +127,91 @@ class GenerateCalendar
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = null;
                 $new_calendar_item->date = $date;
-                $new_calendar_item->time_exercise_from = null;
-                $new_calendar_item->time_exercise_to = null;
+                $new_calendar_item->time_from = null;
+                $new_calendar_item->time_to = null;
                 $new_calendar_item->status = 'did_not_do';
                 $new_calendar_item->type = 'training';
                 $new_calendar_item->program_id = $program->id;
                 $new_calendar_item->comment = '';
                 $new_calendar_item->description = '';
-
                 $new_calendar_item->save();
-
-
             }
+
+//            $date = Carbon::parse($start_date)->addDay($training['day_number']);
+//            $start_time_training = $date;
+//            $end_time_training = $date;
+//            /*if(in_array($date,$selected_start_days_date)) {
+//                echo $date.'<br/>';
+//            }*/
+//
+//            foreach ($times_date as $item) {
+//
+//                if($item['day_number'] == $training['day_number']) {
+//                    $date->format('Y-m-d').' '.$item['start_time'];
+//                    $start_time_training  = Carbon::parse($date->format('Y-m-d').' '.$item['start_time']);
+//                    $end_time_training = Carbon::parse($date->format('Y-m-d').' '.$item['end_time']);
+//                }
+//            }
+//
+//            $trainings_day = $training['training'];
+//
+//            if(in_array($training['day_number'],$times_date_arr)) {
+//
+//                foreach ($trainings_day as $training_item) {
+//
+//                    $new_calendar_item = new Calendar();
+//                    $new_calendar_item->day_number = $training['day_number'];
+//                    $new_calendar_item->user_id = $program->user_id;
+//
+//                    if(count($training_item['attribute']) == 0) {
+//                        $att = null;
+//                    } else {
+//                        $att = $training_item['attribute'];
+//                    }
+//
+//
+//                    $new_calendar_item->attributes = $att;
+//
+//                    $desc = $training_item['day_description'];
+//                    $new_calendar_item->description = $desc;
+//                    $new_calendar_item->training_id = $training_item['training_id'];
+//                    $new_calendar_item->meal_id = null;
+//                    $new_calendar_item->date = $date;
+//                    $new_calendar_item->time_from = $start_time_training;
+//                    $new_calendar_item->time_to = $end_time_training;
+//                    $new_calendar_item->status = 'did_not_do';
+//                    $new_calendar_item->type = 'training';
+//                    $new_calendar_item->program_id = $program->id;
+//                    $new_calendar_item->comment = '';
+//                    //return $new_calendar_item;
+//                    //$new_calendar_item->save();
+//                    $new_calendar_item->save();
+//
+//
+//                }
+//
+//            } else {
+//                $new_calendar_item = new Calendar();
+//                $new_calendar_item->day_number = $training['day_number'];
+//                $new_calendar_item->user_id = $program->user_id;
+//                $new_calendar_item->description = 1;
+//                $new_calendar_item->attributes = null;
+//                //$new_calendar_item->package_id = null;
+//                $new_calendar_item->training_id = null;
+//                $new_calendar_item->meal_id = null;
+//                $new_calendar_item->date = $date;
+//                $new_calendar_item->time_from = null;
+//                $new_calendar_item->time_to = null;
+//                $new_calendar_item->status = 'did_not_do';
+//                $new_calendar_item->type = 'training';
+//                $new_calendar_item->program_id = $program->id;
+//                $new_calendar_item->comment = '';
+//                $new_calendar_item->description = '';
+//
+//                $new_calendar_item->save();
+//
+//
+//            }
 
 
 
@@ -150,24 +222,26 @@ class GenerateCalendar
             $date = Carbon::parse($start_date)->addDay($item['day_number']);
             foreach ($item['meals'] as $meal) {
 
+                $meal_item = Meal::find($meal['meal_id']);
+
                 $new_calendar_item = new Calendar();
-                $new_calendar_item->day_number = $item['day_number']+1;
+                $new_calendar_item->day_number = $item['day_number'];
                 $new_calendar_item->user_id = $program->user_id;
                 $new_calendar_item->attributes = $meal;
                 //$new_calendar_item->package_id = $meal['package_id'];
                 $new_calendar_item->training_id = null;
                 $new_calendar_item->meal_id = $meal['meal_id'];
                 $new_calendar_item->date = $date;
-                $new_calendar_item->time_exercise_from = null;
-                $new_calendar_item->time_exercise_to = null;
+                $new_calendar_item->time_from = Carbon::parse($date->format('Y-m-d').' '.$meal_item->time_from);
+                $new_calendar_item->time_to = Carbon::parse($date->format('Y-m-d').' '.$meal_item->time_to);
                 $new_calendar_item->status = 'did_not_do';
                 $new_calendar_item->type = 'package';
                 $new_calendar_item->program_id = $program->id;
                 $new_calendar_item->comment = '';
                 $new_calendar_item->description = '';
                 $new_calendar_item->save();
-                if(isset($meal['familiar'])) {
-                    $new_calendar_item->package()->attach($meal['familiar']);
+                if(isset($meal['package'])) {
+                    $new_calendar_item->package()->attach($meal['package']);
                 }
 
             }

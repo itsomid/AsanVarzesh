@@ -130,10 +130,10 @@ class ProgramsController extends Controller
         $data = $request->all();
         $data['time_of_exercises'];
         $user = auth('api')->user();
-        $user->appetite = $data['appetite'];
-        $user->budget = $data['budget'];
-        $user->military_services = $data['military_services'];
-        $user->save();
+        $user->profile->appetite = $data['appetite'];
+        $user->profile->budget = $data['budget'];
+        $user->profile->military_services = $data['military_services'];
+        $user->profile->save();
 
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();

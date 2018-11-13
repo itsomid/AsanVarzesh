@@ -15,303 +15,104 @@ class OrphanProgram extends Seeder
         $sports = \App\Model\Sport::all();
 
 
-        $training = [
-            [
-                'day_number' => 0,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
+        $training_perday = [
+            'day_number' => '0',
+            'training' => [
+                [
+                    'training_id' => '2',
+                    'day_description' => 'توضیحات',
+                    'attribute' => [
+                        "distance" => null,
+                        "time" => '30',
+                        "speed" => '44',
+                        "unit_speed" => "m",
+                        "set" => '4',
+                        "each_set" => '10',
+                        "time_each_set" => '65',
+                        'energy' => '350'
 
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
+                    ]
+                ],
+                [
+                    'training_id' => '3',
+                    'day_description' => 'توضیحات',
+                    'attribute' => [
+                        "distance" => null,
+                        "time" => '30',
+                        "speed" => '44',
+                        "unit_speed" => "m",
+                        "set" => '4',
+                        "each_set" => '10',
+                        "time_each_set" => '65',
+                        'energy' => '350'
                     ]
                 ]
-            ],
-            [
-                'day_number' => 1,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'day_number' => 2,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'day_number' => 3,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'day_number' => 4,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'day_number' => 5,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'day_number' => 6,
-                'training' => [
-                    [
-                        'training_id' => 2,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ],
-                    [
-                        'training_id' => 3,
-                        'day_description' => 'توضیحات',
-                        'attribute' => [
-                            "distance" => null,
-                            "time" => 30,
-                            "speed" => "44",
-                            "unit_speed" => "m",
-                            "set" => 4,
-                            "each_set" => 10,
-                            "time_each_set" => 65,
-                            'energy' => 350
-                        ]
-                    ]
-                ]
-            ],
-
-
+            ]
         ];
+
+        $training_permonth = [];
+        for ($i = 1;$i <= 30 ; $i++) {
+            $training_perday['day_number'] = $i;
+            array_push($training_permonth,$training_perday);
+
+        }
 
         $nutrition_perday = [
             'day_number' => 0,
             'meals' => [
                 [
 
-                    'meal_id' => 1,
+                    'meal_id' => '1',
                     //'package_id' => 2,
-                    'energy' => 250,
+                    'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '08:00',
-                    'familiar' => [1,3,2]
+                    'package' => ['1','3','2']
 
                 ],
                 [
 
-                    'meal_id' => 2,
+                    'meal_id' => '2',
                     //'package_id' => 3,
-                    'energy' => 250,
+                    'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '11:00',
-                    'familiar' => [1,3,2]
+                    'package' => ['1','3','2']
 
                 ],
                 [
 
-                    'meal_id' => 3,
-                    //'package_id' => 4,
-                    'energy' => 250,
+                    'meal_id' => '3',
+                    //'package_id' => 3,
+                    'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '13:00',
-                    'familiar' => [1,3,5]
+                    'package' => ['1','3','2']
 
                 ],
                 [
 
-                    'meal_id' => 4,
-//                    'package_id' => 5,
-                    'energy' => 250,
+                    'meal_id' => '4',
+                    //'package_id' => 3,
+                    'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'time' => '20:00',
-                    'familiar' => [1,3,5]
+                    'package' => ['1','3','2']
 
                 ]
             ]
         ];
 
-        $perweek = [];
-        for ($i = 0;$i <= 6 ; $i++) {
+        $nutrition_permonth = [];
+        for ($i = 1;$i <= 30 ; $i++) {
             $nutrition_perday['day_number'] = $i;
-            array_push($perweek,$nutrition_perday);
+            array_push($nutrition_permonth,$nutrition_perday);
 
         }
 
         $comp = [
-            'trainings' => $training,
-            'nutrition' => $perweek
+            'trainings' => $training_permonth,
+            'nutrition' => $nutrition_permonth
         ];
 
 

@@ -215,7 +215,7 @@ class RequestsController extends Controller
 
             foreach ($perday['meals'] as $meal) {
                 $packages = [];
-                foreach ($meal['familiar'] as $item) {
+                foreach ($meal['package'] as $item) {
                     $food_package = Package::with('foods')->where('id',$item)->first()->toArray();
                     array_push($packages,$food_package);
                 }
@@ -239,16 +239,14 @@ class RequestsController extends Controller
         $data = $request->all();
         $program = Programs::with('subscription','payment')->where('id',$program_id)->first();
 
-        $payment = $program->payment;
-
-        if($status == 'reject' && $payment != null && $program->status != 'reject') {
+        if($status == 'reject' && $program->payment != null && $program->status != 'reject') {
 
             $credit_payment = new Payment();
-            $credit_payment->user_id = $payment->user_id;
-            $credit_payment->program_id = $payment->program_id;
-            $credit_payment->coach_id = $payment->coach_id;
-            $credit_payment->subscription_id = $payment->subscription_id;
-            $credit_payment->price = $payment->price;
+            $credit_payment->user_id = $program->payment->user_id;
+            $credit_payment->program_id = $program->payment->program_id;
+            $credit_payment->coach_id = $program->payment->coach_id;
+            $credit_payment->subscription_id = $program->payment->subscription_id;
+            $credit_payment->price = $program->payment->price;
             $credit_payment->type = 'credit';
             $credit_payment->status = 'return';
             $credit_payment->save();
@@ -273,11 +271,15 @@ class RequestsController extends Controller
             $program->text = $data['text'];
             $program->save();
 
+            $generateCalendar = new \App\Helpers\GenerateCalendar();
+            $generateCalendar->generate($program->id,1);
 
             return response()->json([
                 'message' => 'کلیت برنامه مورد نظر انجام شد',
                 'status' => 200
             ],200);
+
+
 
         } else {
             return response()->json([

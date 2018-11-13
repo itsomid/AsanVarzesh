@@ -65,16 +65,14 @@ class UserCalendarMealsController extends Controller
         $program = Programs::find($data['program_id']);
         if($program != null /*&& $program->meals_confirmation == false && $program->status == 'accept'*/) {
 
-            $program->configuration = ['trainings' => $program->configuration['trainings'], 'nutrition' => $data['nutrition']];
+            //$program->configuration = ['trainings' => $program->configuration['trainings'], 'nutrition' => $data['nutrition']];
             $program->meals_confirmation = true;
             $program->save();
 
             if($program->trainings_confirmation == true && $program->meals_confirmation == true) {
+
                 $program->status = 'accept';
                 $program->save();
-
-                $generateCalendar = new \App\Helpers\GenerateCalendar();
-                return $generateCalendar->generate($program->id,1);
 
             }
 
@@ -90,12 +88,42 @@ class UserCalendarMealsController extends Controller
             ]);
         }
 
+    }
+
+    public function createItem(Request $request) {
+        $data = $request->all();
+
+        $calendar = new Calendar();
+        foreach ($data['items'] as $item) {
+            $program = Programs::find($item['program_id']);
+            $calendar->day_number = $item['day_number'];
+            $calendar->program_id = $item['program_id'];
+            $calendar->meal_id = $item['meal_id'];
+            $calendar->type = 'package';
+            $calendar->user_id = $program->user_id;
+            $calendar->save();
+            $calendar->package()->sync($item['package']);
+        }
+
+        return response()->json([
+            'message' => 'آیتم جدید اضافه شد'
+        ],200);
+
+    }
+
+    public function updateItem(Request $request) {
+        $data = $request->all();
+        foreach ($data['items'] as $item) {
+            $calendar = Calendar::where('id',$item['calendar_id'])->first();
+            $calendar->meal_id = $item['meal_id'];
+            $calendar->package()->sync($item['package']);
+            $calendar->save();
+        }
 
 
-
-
-
-
+        return response()->json([
+            'message' => 'آیتم مورد نظر تغییر کرد'
+        ],200);
 
     }
 }

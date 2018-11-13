@@ -149,8 +149,8 @@ class DashboardController extends Controller
 
                 $calendar_per_user = [
                     'day_number' => $calendar[0]['day_number'],
-                    'time_exercise_from' => $calendar[0]['time_exercise_from'],
-                    'time_exercise_to' => $calendar[0]['time_exercise_to'],
+                    'time_from' => $calendar[0]['time_from'],
+                    'time_to' => $calendar[0]['time_to'],
                     'cycle' => 2,
                     'number_of_training' => $number_of_training,
                     'performed' => $performed,

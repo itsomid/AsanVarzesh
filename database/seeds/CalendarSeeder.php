@@ -83,6 +83,9 @@ class CalendarSeeder extends Seeder
             /* Create Calendar for first User */
             if($keys == 0) {
 
+                $program->status = 'active';
+                $program->save();
+
                 $generateCalendar = new \App\Helpers\GenerateCalendar();
                 $generateCalendar->generate($program->id,1);
 
@@ -117,8 +120,8 @@ class CalendarSeeder extends Seeder
             $calendar_item->training_id = array_random($trainings,1)[0];
             $calendar_item->meal_id = null;
             $calendar_item->date = $date->addDay(1);
-            $calendar_item->time_exercise_from = $from_hour;
-            $calendar_item->time_exercise_to = $to_hour;
+            $calendar_item->time_from = $from_hour;
+            $calendar_item->time_to = $to_hour;
             $calendar_item->status = 'done';
             $calendar_item->type = 'training';
             $calendar_item->program_id = $program_id;
@@ -134,8 +137,8 @@ class CalendarSeeder extends Seeder
             $calendar_item->training_id = array_random($trainings,1)[0];
             $calendar_item->meal_id = null;
             $calendar_item->date = $date;
-            $calendar_item->time_exercise_from = $from_hour;
-            $calendar_item->time_exercise_to = $to_hour;
+            $calendar_item->time_from = $from_hour;
+            $calendar_item->time_to = $to_hour;
             $calendar_item->status = 'done';
             $calendar_item->type = 'training';
             $calendar_item->program_id = $program_id;
@@ -153,8 +156,8 @@ class CalendarSeeder extends Seeder
             $calendar_item->training_id = null;
             $calendar_item->meal_id = 1;
             $calendar_item->date = $date;
-            $calendar_item->time_exercise_from = null;
-            $calendar_item->time_exercise_to = null;
+            $calendar_item->time_from = null;
+            $calendar_item->time_to = null;
             $calendar_item->status = 'done';
             $calendar_item->type = 'package';
             $calendar_item->program_id = $program_id;

@@ -51,18 +51,15 @@ class UserCalendarTrainingsController extends Controller
         $program = Programs::find($data['program_id']);
         if($program->trainings_confirmation == false && $program->status == 'accept') {
 
-            $program->configuration = ['trainings' => $data['trainings'],'nutrition' => $program->configuration['nutrition']];
+            //$program->configuration = ['trainings' => $data['trainings'],'nutrition' => $program->configuration['nutrition']];
             $program->trainings_confirmation = true;
             $program->save();
 
 
             if($program->trainings_confirmation == true && $program->meals_confirmation == true) {
+
                 $program->status = 'accept';
                 $program->save();
-
-                $generateCalendar = new \App\Helpers\GenerateCalendar();
-                return $generateCalendar->generate($program->id,1);
-
 
             }
 
@@ -89,22 +86,41 @@ class UserCalendarTrainingsController extends Controller
 
     }
 
-    protected function week_days($index) {
+    public function createItem(Request $request) {
+        $data = $request->all();
 
-        $days = [
-            0 => 'Saturday',
-            1 => 'Sunday',
-            2 => 'Monday',
-            3 => 'Tuesday',
-            4 => 'Wednesday',
-            5 => 'Thursday',
-            6 => 'Friday',
-        ];
+        $calendar = new Calendar();
 
-//        $date = new \DateTime();
-//        $date->modify('next '.$days[$index]);
-//        $date->format('Y-m-d 00:00:00');
-        return $days[$index];
+        foreach ($data['items'] as $item) {
+            $program = Programs::find($item['program_id']);
+            $calendar->day_number = $item['day_number'];
+            $calendar->program_id = $item['program_id'];
+            $calendar->training_id = $item['training_id'];
+            $calendar->attributes = $item['attributes'];
+            $calendar->type = 'training';
+            $calendar->user_id = $program->user_id;
+            $calendar->save();
+        }
+
+
+        return response()->json([
+            'message' => 'آیتم جدید اضافه شد'
+        ],200);
+
+    }
+
+    public function updateItem(Request $request) {
+        $data = $request->all();
+        foreach ($data['items'] as $item) {
+            $calendar = Calendar::where('id', $item['calendar_id'])->first();
+            $calendar->training_id = $item['training_id'];
+            $calendar->attributes = $item['attributes'];
+            $calendar->save();
+        }
+        return response()->json([
+            'message' => 'آیتم مورد نظر تغییر کرد'
+        ],200);
+
     }
 
 
