@@ -41,8 +41,8 @@ class PackageController extends Controller
         $package = new Package();
         $package->title = $user->id;
         $package->meal_id = $user->id;
-        $package->unit = $user->id;
-        $package->size = $user->id;
+        //$package->unit = $user->id;
+        //$package->size = $user->id;
         $package->description = $user->id;
         $package->creator_id = $user->id;
         $package->save();
