@@ -67,7 +67,7 @@ class OrphanProgram extends Seeder
                     'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'package' => ['1','3','2']
+                    'package' => ['1','2']
 
                 ],
                 [
@@ -77,7 +77,7 @@ class OrphanProgram extends Seeder
                     'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'package' => ['1','3','2']
+                    'package' => ['3','4']
 
                 ],
                 [
@@ -87,7 +87,7 @@ class OrphanProgram extends Seeder
                     'energy' => '250',
                     'unit' => 'gr',
                     'size' => null,
-                    'package' => ['1','3','2']
+                    'package' => ['4','5']
 
                 ]
             ]
