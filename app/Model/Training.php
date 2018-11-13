@@ -19,9 +19,9 @@ class Training extends Model
         'attribute' => 'array'
     ];
 
-//    protected $appends = [
-//        'image'
-//    ];
+    protected $appends = [
+        'image'
+    ];
 
     public function sport()
     {
@@ -33,9 +33,9 @@ class Training extends Model
         return $this->belongsToMany('App\Model\Accessory');
     }
 
-//    public function getImageAttribute() {
-//        return url('/images/placeholder.png');
-//    }
+    public function getImageAttribute() {
+        return null;
+    }
 
 
 }
