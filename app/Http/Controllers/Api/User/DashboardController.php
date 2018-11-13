@@ -22,24 +22,34 @@ class DashboardController extends Controller
         
         $date = $date_carbon->format('Y-m-d').' 00:00:00';
 
-        $programs = Programs::with('sport')->where('user_id',$user->id)->orderby('id','DESC')->get()->toArray();
+        $programs = Programs::with('sport')->where('status','active')->where('user_id',$user->id)->orderby('id','DESC')->get()->toArray();
 
         $all_trainings_by_sport = [];
         foreach ($programs as $program)
         {
 
-            $calendar_trainings = Calendar::where('user_id',$user->id)
-                ->with(['training.accessories','training.sport'])
-                ->where('type','training')
-                ->where('meal_id','=',null)
-                ->where('training_id','!=',null)
-                ->where('date',$date)
-                ->where('program_id',$program['id'])
-                ->orderby('id','DESC')
-                ->get()
-                ->toArray();
-            $program['sport']['trainings'] = $calendar_trainings;
-            array_push($all_trainings_by_sport,$program['sport']);
+            if($date >= $program['start_date']) {
+                $calendar_trainings = Calendar::where('user_id',$user->id)
+                    ->with(['training.accessories','training.sport'])
+                    ->where('type','training')
+                    ->where('meal_id','=',null)
+                    ->where('training_id','!=',null)
+                    ->where('date',$date)
+                    ->where('program_id',$program['id'])
+                    ->orderby('id','DESC')
+                    ->get()
+                    ->toArray();
+                $program['sport']['trainings'] = $calendar_trainings;
+                array_push($all_trainings_by_sport,$program['sport']);
+            } else {
+
+                $program['sport'] = [];
+                array_push($all_trainings_by_sport,$program['sport']);
+
+            }
+
+
+
 
 
         }

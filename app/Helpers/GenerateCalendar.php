@@ -250,6 +250,9 @@ class GenerateCalendar
 
         $conv = Conversation::where('program_id',$program->id)->first();
         if($conv == null) {
+
+
+            // Group Conversation
             $read_status = [
                 $program->user->id => false,
                 $program->coach->id => false,
@@ -261,6 +264,7 @@ class GenerateCalendar
             $conversation->started_by = null;
             $conversation->title = 'گفتگوی گروهی';
             $conversation->read_status = $read_status;
+            $conversation->type = 'group';
             $conversation->save();
             $conversation->user()
                 ->sync([
@@ -270,6 +274,43 @@ class GenerateCalendar
                     $program->corrective_doctor_id
                 ]);
 
+            $users = [
+                $program->user->id,
+                $program->coach->id,
+                $program->nutrition_doctor->id,
+                $program->corrective_doctor->id
+
+            ];
+
+            foreach ($users as $user) {
+
+                foreach ($users as $second_user) {
+
+                    if($second_user > $user) {
+
+                        $read_status = [
+                            $second_user => false,
+                            $user => false
+                        ];
+                        $conversation = new Conversation();
+                        $conversation->program_id = $program->id;
+                        $conversation->started_by = null;
+                        $conversation->title = 'مکالمه خصوصی';
+                        $conversation->read_status = $read_status;
+                        $conversation->program_id = $program->id;
+                        $conversation->save();
+                        $conversation->user()
+                            ->sync([
+                                $second_user,
+                                $user
+                            ]);
+
+                    }
+
+
+                }
+
+            }
         }
 
 

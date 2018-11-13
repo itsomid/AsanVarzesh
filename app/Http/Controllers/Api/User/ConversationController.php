@@ -14,15 +14,15 @@ class ConversationController extends Controller
 
     public function index() {
 
-        $coach = auth('api')->user();
+        $user = auth('api')->user();
 
         return $coach = User::with([
-                                'conversations.program.sport',
-                                'conversations.user.profile',
-                                'conversations.user.Roles',
-                                'conversations.lastMessage'
+                                'conversations_public.program.sport',
+                                'conversations_public.user.profile',
+                                'conversations_public.user.Roles',
+                                'conversations_public.lastMessage'
                             ])
-                            ->where('id',$coach->id)
+                            ->where('id',$user->id)
                             ->first();
 
 
@@ -75,46 +75,16 @@ class ConversationController extends Controller
 
     public function showMessages($conversation_id) {
 
-        $conversation = Conversation::with('messages.user.profile')->find($conversation_id);
+        $user = auth('api')->user();
 
-//        $response_json = [
-//            [
-//                "id" => 2,
-//                "conversation_id" => 1,
-//                "user_id" => 10,
-//                "text" => "متن پیغام",
-//                "attachment" => "",
-//                "type" => "text",
-//                'user' => [
-//                    "id" => 10,
-//                    "profile" => [
-//                        "id" => 10,
-//                        "user_id" => 10,
-//                        "first_name" => "ناز",
-//                        "last_name" => "باستانی",
-//                        "avatar" => "http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg",
-//                    ]
-//                ]
-//            ],
-//            [
-//                "id" => 2,
-//                "conversation_id" => 1,
-//                "user_id" => 10,
-//                "text" => "متن پیغام",
-//                "attachment" => "",
-//                "type" => "text",
-//                'user' => [
-//                    "id" => 10,
-//                    "profile" => [
-//                        "id" => 10,
-//                        "user_id" => 12,
-//                        "first_name" => "ناز",
-//                        "last_name" => "باستانی",
-//                        "avatar" => "http://cdn.isna.ir/d/2016/06/20/3/57306107.jpg",
-//                    ]
-//                ]
-//            ]
-//        ];
+        $conversation = Conversation::with(['messages.user.profile','user'])->find($conversation_id)->toArray();
+        //return $conversation;
+
+        if($conversation['type'] == 'group') {
+            $private_conversation = $user->conversations;
+            $conversation['private_conversations'] = $private_conversation;
+        }
+
 
         return $conversation;
 

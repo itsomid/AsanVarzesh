@@ -97,6 +97,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Model\Conversation');
     }
 
+    public function conversations_public() {
+        return $this->belongsToMany('App\Model\Conversation')->where('type','group');
+    }
+
     public function conversations_private() {
         return $this->belongsToMany('App\Model\Conversation')->where('type','private');
     }

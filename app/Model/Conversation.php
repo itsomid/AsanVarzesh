@@ -28,6 +28,7 @@ class Conversation extends Model
         //}
     }
 
+
     public function messages()
     {
 

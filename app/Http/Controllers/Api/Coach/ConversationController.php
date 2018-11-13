@@ -17,10 +17,10 @@ class ConversationController extends Controller
         $coach = auth('api')->user();
 
         return $coach = User::with([
-                                'conversations.program.sport',
-                                'conversations.user.profile',
-                                'conversations.user.Roles',
-                                'conversations.lastMessage'
+                                'conversations_public.program.sport',
+                                'conversations_public.user.profile',
+                                'conversations_public.user.Roles',
+                                'conversations_public.lastMessage'
                             ])
                             ->where('id',$coach->id)
                             ->first();
@@ -75,9 +75,18 @@ class ConversationController extends Controller
 
     public function showMessages($conversation_id) {
 
-        $conversation = Conversation::with('messages.user.profile')->find($conversation_id);
-        return $conversation;
+        $coach = auth('api')->user();
 
+        $conversation = Conversation::with(['messages.user.profile','user'])->find($conversation_id)->toArray();
+        //return $conversation;
+
+        if($conversation['type'] == 'group') {
+            $private_conversation = $coach->conversations()->with('user')->where('program_id',$conversation->program_id)->where('type','private')->get();
+            $conversation['private_conversations'] = $private_conversation;
+        }
+
+
+        return $conversation;
     }
 
     public function sendMessage(Request $request) {
@@ -90,7 +99,6 @@ class ConversationController extends Controller
             $ext = $request->attachment->getClientOriginalExtension();
             $path = $request->attachment->storeAs('/', md5(time()).'.'.$ext, 'file_message');
             $url_file = 'storage/accessories/'.$path;
-
         }
 
 
