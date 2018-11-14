@@ -81,7 +81,7 @@ class ConversationController extends Controller
         //return $conversation;
 
         if($conversation['type'] == 'group') {
-            $private_conversation = $coach->conversations()->with('user')->where('program_id',$conversation->program_id)->where('type','private')->get();
+            $private_conversation = $coach->conversations()->with('user.profile')->where('program_id',$conversation['program_id'])->where('type','private')->get();;
             $conversation['private_conversations'] = $private_conversation;
         }
 
