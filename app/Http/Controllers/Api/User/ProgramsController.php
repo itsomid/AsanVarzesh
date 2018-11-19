@@ -128,8 +128,21 @@ class ProgramsController extends Controller
     public function store(Request $request) {
 
         $data = $request->all();
-        $data['time_of_exercises'];
+
         $user = auth('api')->user();
+
+        $check_prevs_programs = Programs::where('sport_id',$data['sport_id'])
+                                                ->where('user_id',$user->id)
+                                                ->whereIn('status',['accept','active','pending'])
+                                                ->count();
+
+        if($check_prevs_programs >= 1) {
+
+            return response()->json(['message' => 'شما در این رشته ورزشی یک برنامه فعال دارید'],400);
+
+        }
+
+
         $user->profile->appetite = $data['appetite'];
         $user->profile->budget = $data['budget'];
         $user->profile->military_services = $data['military_services'];

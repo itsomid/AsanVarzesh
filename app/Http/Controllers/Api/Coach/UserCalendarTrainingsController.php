@@ -123,5 +123,26 @@ class UserCalendarTrainingsController extends Controller
 
     }
 
+    public function deleteItem($calendar_id) {
+
+        $calendar = Calendar::find($calendar_id);
+
+        $calendars_by_daynumber = Calendar::where('day_number',$calendar->day_number)
+                                            ->where('program_id',$calendar->program_id)
+                                            ->where('type',$calendar->type)
+                                            ->count();
+        if($calendars_by_daynumber > 1) {
+
+            $calendar->delete();
+            return response()->json(['message' => 'Calendar Item was deleted'],200);
+
+        } else {
+
+            return response()->json(['message' => 'امکان از بین بردن این آیتم برنامه وجود ندارد'],400);
+
+        }
+
+    }
+
 
 }

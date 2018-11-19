@@ -22,34 +22,46 @@ class ProfileController extends Controller
 
     }
 
-    public function team($program_id = null) {
+    public function team($user_id) {
 
-        $user = auth('api')->user();
+//        $user = auth('api')->user();
+//
+//        if($program_id == null) {
+//
+//            $co_workers = [];
+//            $co_workers_id = $user->team;
+//            foreach ($co_workers_id as $item) {
+//
+//                $user = User::with('profile')->find($item);
+//                array_push($co_workers,$user);
+//
+//            }
+//            return $co_workers;
+//
+//        } else {
+//
+//            $response_json = [];
+//
+//            $program = Programs::find($program_id);
+//            $response_json['nutrition_doctor'] = $program->nutrition_doctor->profile;
+//            $response_json['corrective_doctor'] = $program->corrective_doctor->profile;
+//
+//            return $response_json;
+//
+//
+//        }
 
-        if($program_id == null) {
-
-            $co_workers = [];
-            $co_workers_id = $user->team;
-            foreach ($co_workers_id as $item) {
-
-                $user = User::with('profile')->find($item);
-                array_push($co_workers,$user);
-
-            }
-            return $co_workers;
-
-        } else {
-
-            $response_json = [];
-
-            $program = Programs::find($program_id);
-            $response_json['nutrition_doctor'] = $program->nutrition_doctor->profile;
-            $response_json['corrective_doctor'] = $program->corrective_doctor->profile;
-
-            return $response_json;
-
-
-        }
+        $program = Programs::with([
+            'nutrition_doctor.profile',
+            'nutrition_doctor.roles',
+            'corrective_doctor.profile',
+            'corrective_doctor.roles',
+            'coach.profile',
+            'coach.roles',
+            'user.profile',
+            'user.roles',
+        ])->where('user_id',$user_id)->get();
+        return $program;
 
     }
 

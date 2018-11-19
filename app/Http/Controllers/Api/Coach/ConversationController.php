@@ -16,14 +16,13 @@ class ConversationController extends Controller
 
         $coach = auth('api')->user();
 
-        return $coach = User::with([
-                                'conversations_public.program.sport',
-                                'conversations_public.user.profile',
-                                'conversations_public.user.Roles',
-                                'conversations_public.lastMessage'
-                            ])
-                            ->where('id',$coach->id)
-                            ->first();
+        return $user = User::with([
+            'conversations_public.program.sport',
+            'conversations_public.user.profile',
+            'conversations_public.user.Roles',
+            'conversations_public.lastMessage'
+        ])->where('id',$coach->id)
+        ->first();
 
 
 
