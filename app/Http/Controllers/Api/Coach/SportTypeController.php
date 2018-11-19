@@ -15,6 +15,7 @@ class SportTypeController extends Controller
 
         $coach = auth('api')->user();
         return $coach->sports;
+        
 
 
     }
@@ -27,7 +28,7 @@ class SportTypeController extends Controller
 
         $programs = Programs::where('sport_id',$sport_id)
                             ->where('coach_id',$coach->id)
-                            ->where('status','!=','rejectc')
+                            ->where('status','!=','reject')
                             ->orderby('id','DESC')
                             ->with('user.profile')
                             ->get();
