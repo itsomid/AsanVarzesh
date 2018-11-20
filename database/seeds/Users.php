@@ -19,6 +19,7 @@ class Users extends Seeder
         $user->code = 0;
         $user->password = bcrypt('ali123456');
         $user->save();
+        $user->roles()->attach(1);
 
     }
 }

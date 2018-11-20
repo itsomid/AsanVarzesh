@@ -51,7 +51,7 @@ class ProfileController extends Controller
 //
 //        }
 
-        $program = Programs::with([
+        $programs = Programs::with([
             'nutrition_doctor.profile',
             'nutrition_doctor.roles',
             'corrective_doctor.profile',
@@ -61,7 +61,20 @@ class ProfileController extends Controller
             'user.profile',
             'user.roles',
         ])->where('user_id',$user_id)->get();
-        return $program;
+
+        $co_workers = [];
+
+        foreach ($programs as $program)
+        {
+
+            array_push($co_workers,$program->nutrition_doctor);
+            array_push($co_workers,$program->corrective_doctor);
+            array_push($co_workers,$program->coach);
+//            array_push($co_workers,$program->nutrition_doctor);
+
+        }
+
+        return $co_workers;
 
     }
 

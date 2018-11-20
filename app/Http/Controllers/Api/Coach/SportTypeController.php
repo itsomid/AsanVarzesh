@@ -15,7 +15,7 @@ class SportTypeController extends Controller
 
         $coach = auth('api')->user();
         return $coach->sports;
-        
+
 
 
     }

@@ -21,7 +21,7 @@ Route::group(['prefix' => '/v1'],function() {
 
     //Route::post('control-panel/auth/login','Api\Panel\AuthController@login');
 
-    Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
+    Route::group(['middleware' => 'api','prefix' => 'control-panel/auth'], function ($router) {
 
         Route::post('login', 'Api\Panel\AuthController@login');
         Route::post('logout', 'Api\Panel\AuthController@logout');
@@ -37,9 +37,13 @@ Route::group(['prefix' => '/v1'],function() {
         ], function () {
 
 
+            Route::get('/athletes','Api\Panel\AthletesController@index');
+            Route::get('/athletes/{user_id}','Api\Panel\AthletesController@show');
+            Route::post('/athletes/create','Api\Panel\AthletesController@create');
+            Route::get('/athletes/{user_id}/update','Api\Panel\AthletesController@create');
 
 
-        }
+    }
     );
 
 });
