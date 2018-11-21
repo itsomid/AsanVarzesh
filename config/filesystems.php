@@ -75,6 +75,11 @@ return [
             'root'   => storage_path('app/public/photos'), // previously storage_path();
         ],
 
+        'videos' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/videos'), // previously storage_path();
+        ],
+
 
         's3' => [
             'driver' => 's3',

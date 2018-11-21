@@ -77,18 +77,27 @@ class Programs extends Model
 
     public function getmilitaryservicesAttribute()
     {
+        if($this->user_id == null) {
+            return null;
+        }
         $profile = Profiles::where('id',$this->user_id)->first(['military_services']);
         return $profile->military_services;
     }
 
     public function getbudgetAttribute()
     {
+        if($this->user_id == null) {
+            return null;
+        }
         $profile = Profiles::where('id',$this->user_id)->first(['budget']);
         return $profile->budget;
     }
 
     public function getappetiteAttribute()
     {
+        if($this->user_id == null) {
+            return null;
+        }
         $profile = Profiles::where('id',$this->user_id)->first(['appetite']);
         return $profile->appetite;
     }

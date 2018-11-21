@@ -15,7 +15,7 @@ class Users extends Seeder
         $user = new \App\User();
         $user->email = 'aajafari87@gmail.com';
         $user->mobile = '09354412285';
-        $user->status = 'inactive';
+        $user->status = 'active';
         $user->code = 0;
         $user->password = bcrypt('ali123456');
         $user->save();

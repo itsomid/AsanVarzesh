@@ -16,4 +16,9 @@ class Message extends Model
     {
         return $this->hasOne('App\User','id','user_id');
     }
+
+    public function conversation()
+    {
+        return $this->hasOne('App\Model\Conversation','id','conversation_id');
+    }
 }

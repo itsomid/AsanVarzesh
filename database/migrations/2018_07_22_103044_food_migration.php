@@ -19,7 +19,7 @@ class FoodMigration extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('details')->nullable();
-            $table->float('energy');
+            $table->float('energy')->nullable();
             $table->integer('food_category_id');
             $table->json('nutritional_value')->nullable();
             $table->text('image');

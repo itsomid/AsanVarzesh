@@ -23,6 +23,7 @@ class TrainingMigrations extends Migration
             $table->enum('difficulty',['Very Easy','Easy','Normal','Hard','Difficult','Very Difficult']);
             $table->text('details')->nullable();;
             $table->json('attribute')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

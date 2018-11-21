@@ -120,6 +120,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Model\Programs');
     }
 
+    public function programs_by_coach()
+    {
+        return $this->hasMany('App\Model\Programs','coach_id','id');
+    }
+
     public function basket()
     {
         return $this->belongsToMany('App\Model\Training','coach_favorite','coach_id','training_id');
@@ -159,6 +164,11 @@ class User extends Authenticatable implements JWTSubject
     public function payments()
     {
         return $this->hasMany('App\Model\Payment');
+    }
+
+    public function payments_by_coach()
+    {
+        return $this->hasMany('App\Model\Payment','coach_id','id');
     }
 
 

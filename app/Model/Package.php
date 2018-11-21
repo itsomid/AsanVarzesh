@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Package extends Model
 {
+
+    protected $appends = [
+        'url_image'
+    ];
+
     protected $casts = [
         'nutritional_value' => 'array'
     ];
@@ -20,6 +25,16 @@ class Package extends Model
     {
 
         return $this->belongsToMany('App\Model\Food')->withPivot(['unit','size']);
+
+    }
+
+    public function getUrlImageAttribute()
+    {
+        if($this->image == '') {
+            return url('images/placeholder.png');
+        } else {
+            return url($this->image);
+        }
 
     }
 

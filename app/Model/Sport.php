@@ -43,7 +43,7 @@ class Sport extends Model
         if($this->image == '') {
             return url('images/placeholder.png');
         } else {
-            return $this->image;
+            return url($this->image);
         }
 
     }

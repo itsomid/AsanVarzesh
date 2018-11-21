@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\Model\Training
  *
- * @property-read mixed $image
  * @property-read \App\Model\Sport $sport
  * @mixin \Eloquent
  */
@@ -19,9 +18,9 @@ class Training extends Model
         'attribute' => 'array'
     ];
 
-    protected $appends = [
-        'image'
-    ];
+//    protected $appends = [
+//        'image'
+//    ];
 
     public function sport()
     {
@@ -33,9 +32,9 @@ class Training extends Model
         return $this->belongsToMany('App\Model\Accessory');
     }
 
-    public function getImageAttribute() {
-        return null;
-    }
+//    public function getImageAttribute() {
+//        return null;
+//    }
 
 
 }
