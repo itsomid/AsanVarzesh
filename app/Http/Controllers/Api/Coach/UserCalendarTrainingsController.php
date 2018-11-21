@@ -123,24 +123,34 @@ class UserCalendarTrainingsController extends Controller
 
     }
 
-    public function deleteItem($calendar_id) {
+    public function deleteItem($calendar_ids) {
 
-        $calendar = Calendar::find($calendar_id);
+        $not_allowed = [];
+        foreach ($calendar_ids as $calendar_id)
+        {
 
-        $calendars_by_daynumber = Calendar::where('day_number',$calendar->day_number)
-                                            ->where('program_id',$calendar->program_id)
-                                            ->where('type',$calendar->type)
-                                            ->count();
-        if($calendars_by_daynumber > 1) {
+            $calendar = Calendar::find($calendar_id);
+            $calendars_by_daynumber = Calendar::where('day_number',$calendar->day_number)
+                ->where('program_id',$calendar->program_id)
+                ->where('type',$calendar->type)
+                ->count();
 
-            $calendar->delete();
-            return response()->json(['message' => 'Calendar Item was deleted'],200);
+            if($calendars_by_daynumber > 1) {
 
-        } else {
+                $calendar->delete();
 
-            return response()->json(['message' => 'امکان از بین بردن این آیتم برنامه وجود ندارد'],400);
+            } else {
+
+                array_push($not_allowed,$calendar_id);
+                return response()->json(['message' => 'امکان از بین بردن این آیتم برنامه وجود ندارد'],400);
+
+            }
 
         }
+
+
+        return response()->json(['message' => 'Calendar Item was deleted','not_allowed_item' => $not_allowed],200);
+
 
     }
 
