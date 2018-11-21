@@ -130,6 +130,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany('App\Model\Training','coach_favorite','coach_id','training_id');
     }
 
+    public function PackageBasket()
+    {
+        return $this->belongsToMany('App\Model\Package','coach_package','coach_id','package_id');
+    }
+
     public function today_training()
     {
         // Todo: After completed Apps query with today_date

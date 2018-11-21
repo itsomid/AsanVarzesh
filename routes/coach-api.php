@@ -93,6 +93,9 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('packages/foods/all','Api\Coach\PackageController@foods');
             Route::get('packages/meals/all','Api\Coach\PackageController@meals');
             Route::post('packages/store','Api\Coach\PackageController@store');
+            Route::post('packages/add-to-package','Api\Coach\PackageController@AddtoBasket');
+            Route::get('packages/basket/all','Api\Coach\PackageController@packageBasket');
+
 
             // Payments
             Route::get('payments','Api\Coach\PaymentController@index');

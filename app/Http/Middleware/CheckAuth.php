@@ -20,7 +20,7 @@ class CheckAuth extends BaseMiddleware
     {
         //return dd(response()->json(auth()->user()));
 
-        //return dd('a');
+
         $token = $this->auth->setRequest($request)->getToken();
         if (!$token = $this->auth->setRequest($request)->getToken()) {
             return $this->respond('tymon.jwt.absent', 'token_not_provided', 400);
@@ -43,8 +43,11 @@ class CheckAuth extends BaseMiddleware
             } else {
 
             }
+
+
         } catch (TokenExpiredException $e) {
             return abort(401);
+
         } catch (JWTException $e) {
             return abort(401);
         }
@@ -52,6 +55,7 @@ class CheckAuth extends BaseMiddleware
         if (!$user) {
             return $this->respond('tymon.jwt.user_not_found', 'user_not_found', 401);
         }
+
 
 
         return $next($request);

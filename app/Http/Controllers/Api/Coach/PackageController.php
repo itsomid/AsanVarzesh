@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Api\Coach;
-
 use App\Model\Food;
 use App\Model\Meal;
 use App\Model\Package;
@@ -54,4 +53,23 @@ class PackageController extends Controller
         return response()->json(['package' => $package],200);
 
     }
+
+
+    public function AddtoBasket(Request $request) {
+
+        $data = $request->all();
+        $coach  = auth('api')->user();
+        $coach->PackageBasket()->attach($data['package_id']);
+
+        return response()->json(['message' => 'package added'],200);
+
+    }
+
+    public function packageBasket() {
+        $coach  = auth('api')->user();
+        return $coach->PackageBasket()->with('foods')->get();
+
+    }
+
+
 }
