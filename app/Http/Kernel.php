@@ -68,7 +68,7 @@ class Kernel extends HttpKernel
         /* Control Panel */
         'AdminRole' =>  \App\Http\Middleware\AdminRole::class,
 
-
+        'cors' => \App\Http\Middleware\Cors::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
