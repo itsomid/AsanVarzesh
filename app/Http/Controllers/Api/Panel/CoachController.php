@@ -16,7 +16,7 @@ class CoachController extends Controller
 
 
         $user_role = \App\Model\Role::find(3);
-        $coaches = $user_role->users()->with('profile')->orderby('id','DESC')->get();
+        $coaches = $user_role->users()->with(['profile','programs_by_coach'])->orderby('id','DESC')->get();
 
         return response()->json($coaches,200);
 
