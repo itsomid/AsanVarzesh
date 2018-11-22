@@ -62,7 +62,7 @@ class DoctorController extends Controller
     public function show($coach_id)
     {
 
-        $user = User::with(['profile'])->where('id',$coach_id)->first();
+        $user = User::with(['profile','programs_by_coach.sport','programs_by_coach.user.profile'])->where('id',$coach_id)->first();
         return response()->json($user,200);
 
     }
