@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::group(['middleware' => ['api', 'cors'],'prefix' => '/v1'],function() {
+Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() {
 
     //Route::post('control-panel/auth/login','Api\Panel\AuthController@login');
 
