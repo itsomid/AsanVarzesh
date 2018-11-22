@@ -14,8 +14,13 @@ class DoctorController extends Controller
     public function index($role_id)
     {
 
+        if($role_id == '4') {
+            $relation = 'programs_by_nutrition_doctor';
+        } else {
+            $relation = 'programs_by_corrective_doctor';
+        }
         $user_role = \App\Model\Role::find($role_id);
-        $doctors = $user_role->users()->with('profile')->orderby('id','DESC')->get();
+        $doctors = $user_role->users()->with(['profile',$relation.'.sport',$relation.'.user.profile'])->orderby('id','DESC')->get();
 
         return response()->json($doctors,200);
 
@@ -68,7 +73,7 @@ class DoctorController extends Controller
             $relation = 'programs_by_corrective_doctor';
         }
         $user = User::with(['profile',$relation.'.sport',$relation.'.user.profile'])->where('id',$coach_id)->first()->toArray();
-                
+
         return response()->json($user,200);
 
     }
