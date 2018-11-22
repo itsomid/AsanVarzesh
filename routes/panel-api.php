@@ -52,7 +52,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/coaches/{coach_id}/programs/{status?}','Api\Panel\CoachController@programs');
 
             Route::get('/doctors/{role_id}','Api\Panel\DoctorController@index');
-            Route::get('/doctors/{doctor_id}','Api\Panel\DoctorController@show');
+            Route::get('/doctors/{role_id}/{doctor_id}','Api\Panel\DoctorController@show');
             Route::post('/doctors/store','Api\Panel\DoctorController@store');
             Route::get('/doctors/{dr_id}/athletes','Api\Panel\DoctorController@athletes');
 

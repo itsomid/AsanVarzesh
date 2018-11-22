@@ -59,10 +59,16 @@ class DoctorController extends Controller
 
     }
 
-    public function show($coach_id)
+    public function show($role_id,$coach_id)
     {
 
-        $user = User::with(['profile','programs_by_coach.sport','programs_by_coach.user.profile'])->where('id',$coach_id)->first();
+        if($role_id == '4') {
+            $relation = 'programs_by_nutrition_doctor';
+        } else {
+            $relation = 'programs_by_corrective_doctor';
+        }
+        $user = User::with(['profile',$relation.'.sport',$relation.'.user.profile'])->where('id',$coach_id)->first()->toArray();
+                
         return response()->json($user,200);
 
     }

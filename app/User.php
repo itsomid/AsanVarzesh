@@ -125,6 +125,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Model\Programs','coach_id','id');
     }
 
+    public function programs_by_corrective_doctor()
+    {
+        return $this->hasMany('App\Model\Programs','corrective_doctor_id','id');
+    }
+
+    public function programs_by_nutrition_doctor()
+    {
+        return $this->hasMany('App\Model\Programs','nutrition_doctor_id','id');
+    }
+
     public function basket()
     {
         return $this->belongsToMany('App\Model\Training','coach_favorite','coach_id','training_id');
