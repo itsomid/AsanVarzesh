@@ -12,7 +12,7 @@ class ConversationsController extends Controller
 
     public function index() {
 
-        $conversations = Conversation::with(['user.profile','program.sport','program.user.profile','program.user.coach','lastMessage'])->orderby('id','DESC')->get();
+        $conversations = Conversation::with(['user.profile','program.sport','program.user.profile','program.coach.profile','lastMessage'])->orderby('id','DESC')->get();
         return response()->json($conversations,200);
 
     }
