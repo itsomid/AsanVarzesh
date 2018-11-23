@@ -10,7 +10,7 @@ class RequestsController extends Controller
 {
     public function index() {
 
-        $requests = Programs::with(['sport','user.profile'])->where('status','pending')->get();
+        $requests = Programs::with(['sport','user.profile','coach.profile','nutrition_doctor.profile','corrective_doctor.profile'])->where('status','pending')->get();
         return $requests;
 
     }
