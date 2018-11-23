@@ -36,6 +36,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             'prefix' => 'control-panel'
         ], function () {
 
+            Route::get('/profile','Api\Panel\ProfileController@index');
 
             Route::get('/athletes','Api\Panel\AthletesController@index');
             Route::get('/athletes/{user_id}','Api\Panel\AthletesController@show');
