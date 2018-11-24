@@ -80,7 +80,7 @@ class Programs extends Model
         if($this->user_id == null) {
             return null;
         }
-        $profile = Profiles::where('id',$this->user_id)->first(['military_services']);
+        $profile = Profiles::where('user_id',$this->user_id)->first(['military_services']);
         return $profile->military_services;
     }
 
@@ -89,7 +89,7 @@ class Programs extends Model
         if($this->user_id == null) {
             return null;
         }
-        $profile = Profiles::where('id',$this->user_id)->first(['budget']);
+        $profile = Profiles::where('user_id',$this->user_id)->first(['budget']);
         return $profile->budget;
     }
 
@@ -98,7 +98,7 @@ class Programs extends Model
         if($this->user_id == null) {
             return null;
         }
-        $profile = Profiles::where('id',$this->user_id)->first(['appetite']);
+        $profile = Profiles::where('user_id',$this->user_id)->first(['appetite']);
         return $profile->appetite;
     }
 }
