@@ -32,7 +32,7 @@ class AthletesController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
+        return $data = $request->all();
 
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users'
