@@ -21,6 +21,7 @@ class OrphanProgram extends Seeder
                 [
                     'training_id' => '2',
                     'day_description' => 'توضیحات',
+                    'order' => 0,
                     'attribute' => [
                         "distance" => null,
                         "time" => '30',
@@ -35,6 +36,7 @@ class OrphanProgram extends Seeder
                 ],
                 [
                     'training_id' => '3',
+                    'order' => 0,
                     'day_description' => 'توضیحات',
                     'attribute' => [
                         "distance" => null,
