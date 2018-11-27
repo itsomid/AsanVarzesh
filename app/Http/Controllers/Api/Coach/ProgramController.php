@@ -26,7 +26,7 @@ class ProgramController extends Controller
 
         $calendar_trainings_transformed = [];
         foreach ($calendar_trainings as $key => $day) {
-            $aDay['day_number'] = $key;
+            $aDay['day_number'] = $day[0]['day_number'];
             $aDay['calendar_item'] = $day;
             array_push($calendar_trainings_transformed,$aDay);
         }
