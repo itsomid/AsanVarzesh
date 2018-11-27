@@ -33,16 +33,22 @@ class UserProfileController extends Controller
                             ->orderBy('id','DESC')
                             ->first();
 
-        $calendar = $program->calendar->groupBy('date')->toArray();
-        reset($calendar);
-        $first_day = key($calendar);
+        if(count($program->calendar->groupBy('date')) > 0) {
+            $calendar = $program->calendar->groupBy('date')->toArray();
+            reset($calendar);
+            $first_day = key($calendar);
 
-        end($calendar);
-        $last_day = key($calendar);
+            end($calendar);
+            $last_day = key($calendar);
 
-        $user['first_day'] = $first_day;
-        $user['last_day'] = $last_day;
-        $user['nutrition_calendar'] = $this->diet($user['id']);
+            $user['first_day'] = $first_day;
+            $user['last_day'] = $last_day;
+            $user['nutrition_calendar'] = $this->diet($user['id']);
+            return $user;
+        } else {
+            $user['nutrition_calendar'] = [];
+        }
+
         return $user;
 
 
