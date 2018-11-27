@@ -33,8 +33,9 @@ class UserProfileController extends Controller
                             ->orderBy('id','DESC')
                             ->first();
 
-        return $program;
-        if($program->calendar->groupBy('date')) {
+
+        if($program) {
+
             $calendar = $program->calendar->groupBy('date')->toArray();
             reset($calendar);
             $first_day = key($calendar);
@@ -48,9 +49,10 @@ class UserProfileController extends Controller
             return $user;
         } else {
             $user['nutrition_calendar'] = [];
+            return $user;
+
         }
 
-        return $user;
 
 
 
