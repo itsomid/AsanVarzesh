@@ -17,19 +17,19 @@ class ProgramController extends Controller
     {
 
         $calendar_trainings = Calendar::with('training.accessories')
-                                        ->where('type','training')
-                                        ->where('program_id',$program_id)
-                                        /*->where('training_id','!=',null)*/
-                                        ->orderby('id','DESC')
-                                        ->get()
-                                        ->groupBy('date')->toArray();
+            ->where('type','training')
+            ->where('program_id',$program_id)
+            /*->where('training_id','!=',null)*/
+            ->orderby('id','DESC')
+            ->get()
+            ->groupBy('date')->toArray();
 
         $calendar_trainings_transformed = [];
-        foreach ($calendar_trainings as $key => $day) {
-            $aDay['day_number'] = $key;
-            $aDay['calendar_item'] = $day;
-            array_push($calendar_trainings_transformed,$aDay);
+
+        foreach ($calendar_trainings as $training) {
+            array_push($calendar_trainings_transformed,$training);
         }
+
 
 
         $calendar_nutrition = Calendar::with('meal','package.foods')
