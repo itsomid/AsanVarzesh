@@ -20,7 +20,7 @@ class ProgramController extends Controller
                                         ->where('type','training')
                                         ->where('program_id',$program_id)
                                         ->where('training_id','!=',null)
-                                        ->orderby('id','DESC')
+                                        ->orderby('id','ASC')
                                         ->get()
                                         ->groupBy('date')->toArray();
 
