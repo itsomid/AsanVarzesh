@@ -25,7 +25,7 @@ class SportTypeController extends Controller
 
 
         $coach = auth('api')->user();
-        $field = $coach->getField;
+        $field = $coach->getField();
         $programs = Programs::where('sport_id',$sport_id)
                             ->where($field,$coach->id)
                             ->where('status','!=','reject')
