@@ -95,7 +95,8 @@ class RequestsController extends Controller
 //        return $response_json;
 
         $coach = auth('api')->user();
-        $programs = Programs::with('user.profile','sport')->where('coach_id',$coach->id)->where('status','pending')->orderby('id','DESC')->get();
+        $field = $coach->getField;
+        $programs = Programs::with('user.profile','sport')->where($field,$coach->id)->where('status','pending')->orderby('id','DESC')->get();
 
         return $programs;
     }
@@ -104,11 +105,12 @@ class RequestsController extends Controller
     public function show($program_id)
     {
 
-
         $coach = auth('api')->user();
+        $field = $coach->getField;
+
         $programs = Programs::with('user.profile','sport')
             ->where('id',$program_id)
-            ->where('coach_id',$coach->id)
+            ->where($field,$coach->id)
             ->where('status','pending')
             ->orderby('id','DESC')
             ->first()->toArray();

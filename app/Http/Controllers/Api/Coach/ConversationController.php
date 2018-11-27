@@ -118,6 +118,7 @@ class ConversationController extends Controller
 
     public function SendingMessagePermission($user_id,$program_id) {
 
+
         $program = Programs::where($program_id)
                             ->orWhere('user_id',$user_id)
                             ->orWhere('coach_id',$user_id)

@@ -13,7 +13,8 @@ class PaymentController extends Controller
     {
 
         $user = auth('api')->user();
-        $payments = Payment::with(['program.subscription','user'])->where('coach_id',$user->id)->orderby('id','DESC')->get();
+        $field = $user->getField;
+        $payments = Payment::with(['program.subscription','user'])->where($field,$user->id)->orderby('id','DESC')->get();
 
         return response()->json($payments,200);
 

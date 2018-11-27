@@ -15,13 +15,15 @@ class DashboardController extends Controller
     public function index($date = null) {
         $coach = auth('api')->user();
 
+        $field = $coach->getField();
+
         if($date == null) {
             $date_carbon = Carbon::today();
         } else {
             $date_carbon = Carbon::parse($date);
         }
 
-        $coach_programs = Programs::where('coach_id',$coach->id)->get();
+        $coach_programs = Programs::where($field,$coach->id)->get();
         $programs_by_types['public'] = [];
         $programs_by_types['specialized'] = [];
 

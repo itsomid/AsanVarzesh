@@ -186,5 +186,18 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Model\Payment','coach_id','id');
     }
 
+    public function getField() {
+
+        $role_name = $this->roles[0]->name;
+
+        if($role_name == 'coach') {
+            return 'coach_id';
+        } elseif($role_name == 'nutrition-doctor') {
+            return 'nutrition_doctor_id';
+        } elseif($role_name == 'corrective-doctor') {
+            return 'corrective_doctor_id';
+        }
+
+    }
 
 }

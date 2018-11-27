@@ -15,6 +15,7 @@ class UserProfileController extends Controller
     {
 
         $coach = auth('api')->user();
+        $field = $coach->getField;
 
         $user = User::with([
             'profile.city',
@@ -28,7 +29,7 @@ class UserProfileController extends Controller
 
 
         $program = Programs::where('user_id',$user_id)
-                            ->where('coach_id',$coach->id)
+                            ->where($field,$coach->id)
                             ->orderBy('id','DESC')
                             ->first();
 
