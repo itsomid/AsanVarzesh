@@ -21,7 +21,6 @@ class Profiles extends Model
     protected $casts = [
         'photos' => 'array',
         'maim' => 'array',
-        'diseases' => 'array',
         'selected_days_hours' => 'array'
     ];
     protected $appends = [

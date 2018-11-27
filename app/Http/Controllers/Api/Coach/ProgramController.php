@@ -17,13 +17,12 @@ class ProgramController extends Controller
     {
 
         $calendar_trainings = Calendar::with('training.accessories')
-                                            ->where('type','training')
-                                            ->where('training_id','!=',null)
-                                            ->where('program_id',$program_id)
-                                            /*->where('training_id','!=',null)*/
-                                            ->orderby('day_number','ASC')
-                                            ->get()
-                                            ->groupBy('day_number')->toArray();
+                                        ->where('type','training')
+                                        ->where('program_id',$program_id)
+                                        /*->where('training_id','!=',null)*/
+                                        ->orderby('id','DESC')
+                                        ->get()
+                                        ->groupBy('date')->toArray();
 
         $calendar_trainings_transformed = [];
         foreach ($calendar_trainings as $key => $day) {

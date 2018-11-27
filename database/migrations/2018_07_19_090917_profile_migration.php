@@ -26,7 +26,7 @@ class ProfileMigration extends Migration
             $table->json('photos')->nullable();
             $table->float('height')->nullable();
             $table->enum('blood_type',['O-','O+','A-','+A','B-','B+','AB-','AB+']);
-            $table->json('diseases')->nullable();
+            $table->text('diseases')->nullable();
             $table->json('maim')->nullable();
             $table->integer('city_id');
             $table->text('address')->nullable();
