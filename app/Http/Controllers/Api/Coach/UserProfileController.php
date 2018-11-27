@@ -33,7 +33,7 @@ class UserProfileController extends Controller
                             ->orderBy('id','DESC')
                             ->first();
 
-        
+        return $program;
         if($program->calendar->groupBy('date')) {
             $calendar = $program->calendar->groupBy('date')->toArray();
             reset($calendar);
