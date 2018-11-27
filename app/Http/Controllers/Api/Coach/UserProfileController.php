@@ -32,7 +32,7 @@ class UserProfileController extends Controller
                             ->where($field,$coach->id)
                             ->orderBy('id','DESC')
                             ->first();
-
+        return $program->calendar();
         if(count($program->calendar->groupBy('date')) > 0) {
             $calendar = $program->calendar->groupBy('date')->toArray();
             reset($calendar);
