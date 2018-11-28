@@ -6,6 +6,7 @@ use App\Model\Profiles;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class AthletesController extends Controller
@@ -33,15 +34,7 @@ class AthletesController extends Controller
     {
 
         return $data = $request->all();
-
-        $validator = Validator::make($request->all(), [
-            'mobile' => 'required|numeric|unique:users'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => 'با این موبایل قبلا ثبت نام شده است'],406);
-        }
-
+        $request->file('avatar')->store('images', 'public');
 
         $user = new User();
         $user->mobile = $data['mobile'];
@@ -50,8 +43,6 @@ class AthletesController extends Controller
         $user->password = bcrypt($data['mobile']);
         $user->save();
         $user->roles()->attach(2);
-
-
 
         $ext = $request->avatar->getClientOriginalExtension();
         $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
