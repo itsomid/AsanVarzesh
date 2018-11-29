@@ -26,6 +26,7 @@ class AthletesController extends Controller
     {
 
         $user = User::with(['activities','programs.calendar.training','programs.sport','profile'])->where('id',$user_id)->first();
+
         return response()->json($user,200);
 
     }
@@ -33,14 +34,22 @@ class AthletesController extends Controller
     public function store(Request $request)
     {
 
-        return $data = $request->all();
-        $request->file('avatar')->store('images', 'public');
+        $data = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|numeric|unique:users'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => ' با این موبایل قبلا ثبت نام شده است'],406);
+        }
 
         $user = new User();
         $user->mobile = $data['mobile'];
         $user->status = 'active';
         $user->code = 0;
         $user->password = bcrypt($data['mobile']);
+
         $user->save();
         $user->roles()->attach(2);
 
@@ -55,8 +64,18 @@ class AthletesController extends Controller
         $profile->avatar = $avatar_url;
         $profile->height = $data['height'];
         $profile->birth_date = $data['birth_date'];
-        //$profile->photos = null;
-        $profile->city_id = $data['city_id'];
+        $profile->appetite = $data['appetite'];
+        $profile->blood_type = $data['blood_type'];
+        $profile->budget = $data['budget'];
+        $profile->city_id = $data['city'];
+        $profile->diseases = $data['diseases'];
+        $profile->education = $data['education'];
+        $profile->education_title = $data['education_title'];
+        $profile->gender = $data['gender'];
+        $profile->height = (float) $data['height'];
+        $profile->maim = $data['maim'];
+        $profile->military_services = $data['military_services'];
+        $profile->national_code = $data['national_code'];
         $profile->save();
 
         return response()->json(['message' => 'کاربر جدید اضافه شد'],200);

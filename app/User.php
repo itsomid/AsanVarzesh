@@ -70,7 +70,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function profile() {
-        return $this->hasOne('App\Model\Profiles');
+        return $this->hasOne('App\Model\Profiles','user_id','id');
     }
 
     public function programs_as_doctor()

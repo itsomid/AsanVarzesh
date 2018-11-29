@@ -30,6 +30,9 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
 
     });
 
+    Route::get('geo/states/{country_id}','Api\User\GeoController@getStates');
+    Route::get('geo/cities/{state_id}','Api\User\GeoController@getCities');
+
     Route::group(
         [
             'middleware' => ['jwtauth','AdminRole'],

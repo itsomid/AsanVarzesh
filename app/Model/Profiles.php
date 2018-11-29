@@ -23,15 +23,20 @@ class Profiles extends Model
         'maim' => 'array',
         'selected_days_hours' => 'array'
     ];
+
     protected $appends = [
         'weight'
     ];
+
+
 
     public function getweightAttribute()
     {
         $program = Programs::where('user_id',$this->id)->orderby('id','DESC')->first();
         if($program != null) {
             return $program->weight;
+        } else {
+            return $this->attributes['weight'];
         }
 
     }
