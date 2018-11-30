@@ -16,20 +16,20 @@ class ProgramController extends Controller
     public function show($program_id)
     {
 
-//        $calendar_trainings = Calendar::with('training.accessories')
-//                                        ->where('type','training')
-//                                        ->where('program_id',$program_id)
-//                                        ->where('training_id','!=',null)
-//                                        ->orderby('id','ASC')
-//                                        ->get()
-//                                        ->groupBy('date')->toArray();
-//
-//        $calendar_trainings_transformed = [];
-//        foreach ($calendar_trainings as $key => $day) {
-//            $aDay['day_number'] = $day[0]['day_number'];
-//            $aDay['calendar_item'] = $day;
-//            array_push($calendar_trainings_transformed,$aDay);
-//        }
+        قثفعقد$calendar_trainings = Calendar::with('training.accessories')
+                                        ->where('type','training')
+                                        ->where('program_id',$program_id)
+                                        ->where('training_id','!=',null)
+                                        ->orderby('id','ASC')
+                                        ->get()
+                                        ->groupBy('date')->toArray();
+
+        $calendar_trainings_transformed = [];
+        foreach ($calendar_trainings as $key => $day) {
+            $aDay['day_number'] = $day[0]['day_number'];
+            $aDay['calendar_item'] = $day;
+            array_push($calendar_trainings_transformed,$aDay);
+        }
 
 //        $calendar_trainings = Calendar::with('training.accessories')
 //            ->where('type','training')
@@ -47,25 +47,25 @@ class ProgramController extends Controller
 //        }
 
 
-//        $calendar_nutrition = Calendar::with('meal','package.foods')
-//            ->where('type','package')
-//            ->where('program_id',$program_id)
-//            ->orderby('day_number','ASC')
-//            ->get()
-//            ->groupBy('day_number')->toArray();
-//
-//
-//        $calendar_nutrition_transformed = [];
-//        foreach ($calendar_nutrition as $key => $day) {
-//            $aDay['day_number'] = $key;
-//            $aDay['calendar_item'] = $day;
-//            array_push($calendar_nutrition_transformed,$aDay);
-//        }
-//
-//        return [
-//            'trainings' => $calendar_trainings_transformed,
-//            'nutrition' => $calendar_nutrition_transformed
-//        ];
+        $calendar_nutrition = Calendar::with('meal','package.foods')
+            ->where('type','package')
+            ->where('program_id',$program_id)
+            ->orderby('day_number','ASC')
+            ->get()
+            ->groupBy('day_number')->toArray();
+
+
+        $calendar_nutrition_transformed = [];
+        foreach ($calendar_nutrition as $key => $day) {
+            $aDay['day_number'] = $key;
+            $aDay['calendar_item'] = $day;
+            array_push($calendar_nutrition_transformed,$aDay);
+        }
+
+        return [
+            'trainings' => $calendar_trainings_transformed,
+            'nutrition' => $calendar_nutrition_transformed
+        ];
 
 
 
