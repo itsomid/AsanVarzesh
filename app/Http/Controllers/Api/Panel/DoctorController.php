@@ -29,7 +29,7 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
 
-        return $data = $request->all();
+        $data = $request->all();
 
         $user = new User();
         $user->mobile = $data['mobile'];
@@ -39,22 +39,25 @@ class DoctorController extends Controller
         $user->save();
         $user->roles()->attach($data['dr_role_id']);
 
+        $ext = $request->avatar->getClientOriginalExtension();
+        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+        $avatar_url = 'storage/avatars'.$path;
+
         $profile = new Profiles();
+        $profile->avatar = $avatar_url;
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
-        $profile->expertise = $data['expertise'];
-        $profile->coach_rate = $data['coach_rate'];
-        $profile->covered_area = $data['covered_area'];
-        $profile->address = $data['address'];
-        $profile->city_id = $data['city_id'];
-        $profile->keywords = $data['keywords'];
         $profile->birth_date = $data['birth_date'];
-        $profile->national_code = $data['national_code'];
+        $profile->city_id = $data['city'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->experiences = $data['experiences'];
-        $profile->location = $data['location'];
+        $profile->expertise = $data['expertise'];
+        $profile->gender = $data['gender'];
+        $profile->height = $data['height'];
+        $profile->national_code = $data['national_code'];
+        $profile->weight = $data['weight'];
         $profile->save();
 
 

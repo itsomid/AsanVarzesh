@@ -38,7 +38,12 @@ class CoachController extends Controller
         $user->roles()->attach(3,['sport_id' => $data['sport']]);
         $user->Coaches()->attach($data['sport'],['price' => $data['price']]);
 
+        $ext = $request->avatar->getClientOriginalExtension();
+        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+        $avatar_url = 'storage/avatars'.$path;
+
         $profile = new Profiles();
+        $profile->avatar = $avatar_url;
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];

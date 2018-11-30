@@ -58,7 +58,7 @@ class UserCalendarTrainingsController extends Controller
 
             if($program->trainings_confirmation == true && $program->meals_confirmation == true) {
 
-                $program->status = 'accept';
+                $program->status = 'active';
                 $program->save();
 
             }

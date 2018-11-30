@@ -28,7 +28,7 @@ class SportTypeController extends Controller
         $field = $coach->getField();
         $programs = Programs::where('sport_id',$sport_id)
                             ->where($field,$coach->id)
-                            ->where('status','!=','reject')
+                            ->whereIn('status',['accept','active'])
                             ->orderby('id','DESC')
                             ->with('user.profile')
                             ->get();
