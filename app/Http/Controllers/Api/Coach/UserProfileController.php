@@ -27,7 +27,7 @@ class UserProfileController extends Controller
         $user_arr = $user->toArray();
         $user_arr['private_conversations'] = $user->conversations()->where('type','private')->with(['user.profile','user.roles'])->get();
         $user_arr['group_conversations'] = $user->conversations()->where('type','group')->with(['user.profile','user.roles'])->get();
-        
+
         $program = Programs::where('user_id',$user_id)
                             ->where($field,$coach->id)
                             ->orderBy('id','DESC')

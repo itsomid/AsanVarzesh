@@ -33,7 +33,51 @@ class AthletesController extends Controller
 
     public function store(Request $request)
     {
-	
+        $data = $request->all();
+
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|numeric|unique:users'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => ' با این موبایل قبلا ثبت نام شده است'],406);
+        }
+
+        $user = new User();
+        $user->mobile = $data['mobile'];
+        $user->status = 'active';
+        $user->code = 0;
+        $user->password = bcrypt($data['mobile']);
+
+        $user->save();
+        $user->roles()->attach(2);
+
+        $ext = $request->avatar->getClientOriginalExtension();
+        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+        $avatar_url = 'storage/avatars'.$path;
+
+        $profile = new Profiles();
+        $profile->user_id = $user->id;
+        $profile->first_name = $data['first_name'];
+        $profile->last_name = $data['last_name'];
+        $profile->avatar = $avatar_url;
+        $profile->height = $data['height'];
+        $profile->birth_date = $data['birth_date'];
+        $profile->appetite = $data['appetite'];
+        $profile->blood_type = $data['blood_type'];
+        $profile->budget = $data['budget'];
+        $profile->city_id = $data['city'];
+        $profile->diseases = $data['diseases'];
+        $profile->education = $data['education'];
+        $profile->education_title = $data['education_title'];
+        $profile->gender = $data['gender'];
+        $profile->height = (float) $data['height'];
+        $profile->maim = $data['maim'];
+        $profile->military_services = $data['military_services'];
+        $profile->national_code = $data['national_code'];
+        $profile->save();
+
+        return response()->json(['message' => 'کاربر جدید اضافه شد'],200);
     }
 
     public function update(Request $request, $user_id)
