@@ -16,7 +16,7 @@ class ProgramController extends Controller
     public function show($program_id)
     {
 
-        قثفعقد$calendar_trainings = Calendar::with('training.accessories')
+       $calendar_trainings = Calendar::with('training.accessories')
                                         ->where('type','training')
                                         ->where('program_id',$program_id)
                                         ->where('training_id','!=',null)
