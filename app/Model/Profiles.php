@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Role[] $coaches
  * @property mixed $location
- * @property-read mixed $weight
+ * @property mixed $weight
  * @property-read \App\User $user
  * @mixin \Eloquent
  */
@@ -23,15 +23,20 @@ class Profiles extends Model
         'maim' => 'array',
         'selected_days_hours' => 'array'
     ];
+
     protected $appends = [
         'weight'
     ];
+
+
 
     public function getweightAttribute()
     {
         $program = Programs::where('user_id',$this->id)->orderby('id','DESC')->first();
         if($program != null) {
             return $program->weight;
+        } else {
+            return $this->attributes['weight'];
         }
 
     }

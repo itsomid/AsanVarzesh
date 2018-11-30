@@ -21,13 +21,13 @@ class UserProfileController extends Controller
             'profile.city',
             'activities',
             'active_programs.sport',
-            'conversations',
-            'conversations_private',
             'sport_by_coach' =>function($q){$q->with('sport');},
-            ])->where('id',$user_id)->first()->toArray();
+            ])->where('id',$user_id)->first();/*->toArray();*/
 
-
-
+        $user_arr = $user->toArray();
+        $user_arr['private_conversations'] = $user->conversations()->where('type','private')->with(['user.profile','user.roles'])->get();
+        $user_arr['group_conversations'] = $user->conversations()->where('type','group')->with(['user.profile','user.roles'])->get();
+        
         $program = Programs::where('user_id',$user_id)
                             ->where($field,$coach->id)
                             ->orderBy('id','DESC')
@@ -43,13 +43,13 @@ class UserProfileController extends Controller
             end($calendar);
             $last_day = key($calendar);
 
-            $user['first_day'] = $first_day;
-            $user['last_day'] = $last_day;
-            $user['nutrition_calendar'] = $this->diet($user['id']);
-            return $user;
+            $user_arr['first_day'] = $first_day;
+            $user_arr['last_day'] = $last_day;
+            $user_arr['nutrition_calendar'] = $this->diet($user['id']);
+            return $user_arr;
         } else {
             $user['nutrition_calendar'] = [];
-            return $user;
+            return $user_arr;
 
         }
 

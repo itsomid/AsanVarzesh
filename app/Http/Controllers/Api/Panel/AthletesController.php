@@ -6,6 +6,7 @@ use App\Model\Profiles;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class AthletesController extends Controller
@@ -25,49 +26,14 @@ class AthletesController extends Controller
     {
 
         $user = User::with(['activities','programs.calendar.training','programs.sport','profile'])->where('id',$user_id)->first();
+
         return response()->json($user,200);
 
     }
 
     public function store(Request $request)
     {
-
-        $data = $request->all();
-
-        $validator = Validator::make($request->all(), [
-            'mobile' => 'required|numeric|unique:users'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => 'با این موبایل قبلا ثبت نام شده است'],406);
-        }
-
-        $user = new User();
-        $user->mobile = $data['mobile'];
-        $user->status = 'active';
-        $user->code = 0;
-        $user->password = bcrypt($data['mobile']);
-        $user->save();
-        $user->roles()->attach(2);
-
-        $ext = $request->file('avatar')->getClientOriginalExtension();
-        $path = $request->file('avatar')->storeAs('/', $user->id.'.'.$ext, 'avatars');
-        $avatar_url = 'storage/avatars'.$path;
-
-        $profile = new Profiles();
-        $profile->user_id = $user->id;
-        $profile->first_name = $data['first_name'];
-        $profile->last_name = $data['last_name'];
-        $profile->avatar = $avatar_url;
-        $profile->height = $data['height'];
-        $profile->birth_date = $data['birth_date'];
-        //$profile->photos = null;
-        $profile->city_id = $data['city_id'];
-        $profile->save();
-
-        return response()->json(['message' => 'کاربر جدید اضافه شد'],200);
-
-
+	
     }
 
     public function update(Request $request, $user_id)
