@@ -33,6 +33,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
     Route::get('geo/states/{country_id}','Api\User\GeoController@getStates');
     Route::get('geo/cities/{state_id}','Api\User\GeoController@getCities');
 
+
+
     Route::group(
         [
             'middleware' => ['jwtauth','AdminRole'],
@@ -45,7 +47,6 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/athletes/{user_id}','Api\Panel\AthletesController@show');
             Route::post('/athletes/store','Api\Panel\AthletesController@store');
             Route::post('/athletes/update/{user_id}','Api\Panel\AthletesController@update');
-
 
             Route::get('/coaches','Api\Panel\CoachController@index');
             Route::get('/coaches/{coach_id}','Api\Panel\CoachController@show');

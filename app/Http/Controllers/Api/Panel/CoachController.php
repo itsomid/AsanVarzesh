@@ -32,31 +32,29 @@ class CoachController extends Controller
         $user->password = bcrypt($data['mobile']);
         $user->email = $data['email'];
         $user->code = 0;
+        $user->team = ['nutrition_doctor' => $data['nutrition_doctor'],'corrective_doctor' => $data['corrective_doctor']];
         $user->save();
 
-        foreach ($data['sport_ids'] as $sport_id) {
-
-            $user->roles()->attach(3,['sport_id' => $sport_id]);
-        }
-
-        $user->coaches()->attach(1,['price' => $data['price']]);
+        $user->roles()->attach(3,['sport_id' => $data['sport']]);
+        $user->Coaches()->attach($data['sport'],['price' => $data['price']]);
 
         $profile = new Profiles();
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
-        $profile->expertise = $data['expertise'];
+        $profile->city_id = $data['city'];
+        $profile->address = $data['address'];
+        $profile->birth_date = $data['birth_date'];
         $profile->coach_rate = $data['coach_rate'];
         $profile->covered_area = $data['covered_area'];
-        $profile->address = $data['address'];
-        $profile->city_id = $data['city_id'];
-        $profile->keywords = $data['keywords'];
-        $profile->birth_date = $data['birth_date'];
-        $profile->national_code = $data['national_code'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->experiences = $data['experiences'];
-        $profile->location = $data['location'];
+        $profile->expertise = $data['expertise'];
+        $profile->gender = $data['gender'];
+        $profile->height = $data['height'];
+        $profile->national_code = $data['national_code'];
+        $profile->weight = $data['weight'];
         $profile->save();
 
 

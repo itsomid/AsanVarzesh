@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Role[] $coaches
  * @property mixed $location
- * @property-read mixed $weight
+ * @property mixed $weight
  * @property-read \App\User $user
  * @mixin \Eloquent
  */
