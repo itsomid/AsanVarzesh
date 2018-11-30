@@ -16,14 +16,15 @@ class ProfileController extends Controller
 {
     //
 
-    public function index($program_id = null) {
+    public function index($program_id = null)
+    {
 
         $user = auth('api')->user();
-        if(!$user->profile) {
+        if (!$user->profile) {
             return response()->json([
                 'status' => 404,
                 'message' => 'پروفایلی برای این اکانت وجود ندارد'
-                ],
+            ],
                 404);
         }
 
@@ -36,23 +37,24 @@ class ProfileController extends Controller
             'activities',
             'payments'
         ])->find($user->id);
-        return response()->json($user,200);
+        return response()->json($user, 200);
 
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         $data = $request->all();
         $user = auth('api')->user();
 
-        $profile = Profiles::where('user_id',$user->id)->first();
-        if(!$profile) {
+        $profile = Profiles::where('user_id', $user->id)->first();
+        if (!$profile) {
 
             return response()->json([
                     'status' => 404,
                     'message' => 'پروفایلی برای اکانت شما وجود ندارد'
                 ]
-                ,404);
+                , 404);
 
         }
 
@@ -69,33 +71,34 @@ class ProfileController extends Controller
         $profile->gender = $data['gender'];
         $profile->height = $data['height'];
         $profile->weight = $data['weight'];
-        $profile->location = [ $data['location'][0],$data['location'][1] ]; // Point
+        $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->save();
 
         return response()->json([
-            'profile' => $profile,
-            'status' => 200,
-            'message' => 'پروفایل شما بروز شد'
-        ]
-        ,200);
+                'profile' => $profile,
+                'status' => 200,
+                'message' => 'پروفایل شما بروز شد'
+            ]
+            , 200);
 
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $data = $request->all();
         $user = auth('api')->user();
-        $profile = Profiles::where('user_id',$user->id)->first();
+        $profile = Profiles::where('user_id', $user->id)->first();
         $message = 'پروفایل برای اکانت شما قبلا ساخته شده است.';
         $status = 301;
 
-        if($profile) {
+        if ($profile) {
 
             return response()->json([
                     'status' => 301,
                     'message' => 'پروفایل قبلا برای اکانت شما ساخته شده است'
                 ]
-                ,301);
+                , 301);
 
         }
 
@@ -112,7 +115,7 @@ class ProfileController extends Controller
         $profile->address = $data['address'];
         $profile->nutrition_info = $data['nutrition_info'];
         $profile->gender = $data['gender'];
-        $profile->location = [ $data['location'][0],$data['location'][1] ]; // Point
+        $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->national_code = $data['national_code'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
@@ -125,21 +128,20 @@ class ProfileController extends Controller
         $user->save();
 
 
-
         $message = 'پروفایل برای این اکانت ساخته شد.';
         $status = 200;
-
 
 
         return response()->json([
             'profile' => $profile,
             'status' => $status,
             'message' => $message
-        ],200);
+        ], 200);
 
     }
 
-    public function setAvatar(Request $request) {
+    public function setAvatar(Request $request)
+    {
         $data = $request->all();
         $user = auth('api')->user();
 
@@ -150,29 +152,30 @@ class ProfileController extends Controller
         if (!$validator->fails()) {
 
             $ext = $request->avatar->getClientOriginalExtension();
-            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-            $url = 'storage/avatars'.$path;
+            $path = $request->avatar->storeAs('/', $user->id . '.' . $ext, 'avatars');
+            $url = 'storage/avatars' . $path;
 
-            $profile = Profiles::where('user_id',$user->id)->first();
+            $profile = Profiles::where('user_id', $user->id)->first();
             $profile->avatar = $url;
             $profile->save();
 
             return response()->json([
                 'profile' => $profile,
-                'avatar_url' => url('storage/avatars/'.$path),
+                'avatar_url' => url('storage/avatars/' . $path),
                 'status' => 200
-            ],200);
+            ], 200);
 
         } else {
             return response()->json([
                 'msg' => 'فرمت فایل مورد نظر معتبر نیست.',
                 'status' => 400
-            ],400 );
+            ], 400);
         }
 
     }
 
-    public function saveStep(Request $request) {
+    public function saveStep(Request $request)
+    {
 
         $data = $request->all();
 
@@ -180,15 +183,16 @@ class ProfileController extends Controller
         $user->steps = 'physical_info';
         $user->save();
 
-        return response()->json(['status' => 200,'message' => 'Successful'],200);
+        return response()->json(['status' => 200, 'message' => 'Successful'], 200);
 
     }
 
-    public function getStep() {
+    public function getStep()
+    {
 
         $user = auth('api')->user();
 
-        return response()->json(['step' => $user->steps],200);
+        return response()->json(['step' => $user->steps], 200);
 
     }
 

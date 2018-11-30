@@ -23,6 +23,13 @@ Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
 });
 
+Route::get('orphan',function() {
+
+    $program = \App\Model\Programs::find(1);
+    return $program->configuration['trainings'];
+
+});
+
 Route::get('fake',function() {
     $date = '2018-09-09';
     $start_date = explode('-',$date);

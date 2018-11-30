@@ -66,6 +66,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('/requests/store','Api\Panel\RequestsController@store');
 
             Route::get('/sports','Api\Panel\SportsController@index');
+            Route::get('/federations','Api\Panel\SportsController@federations');
             Route::post('/sports/store','Api\Panel\SportsController@store');
 
             Route::get('conversations','Api\Panel\ConversationsController@index');
