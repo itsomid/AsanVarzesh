@@ -67,7 +67,8 @@ class ProfileController extends Controller
         $profile->address = $data['address'];
         $profile->nutrition_info = $data['nutrition_info'];
         $profile->gender = $data['gender'];
-        $profile->location = $data['height'];
+        $profile->height = $data['height'];
+        $profile->weight = $data['weight'];
         $profile->location = [ $data['location'][0],$data['location'][1] ]; // Point
         $profile->save();
 
@@ -111,12 +112,12 @@ class ProfileController extends Controller
         $profile->address = $data['address'];
         $profile->nutrition_info = $data['nutrition_info'];
         $profile->gender = $data['gender'];
-        $profile->location = $data['height'];
         $profile->location = [ $data['location'][0],$data['location'][1] ]; // Point
         $profile->national_code = $data['national_code'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->height = $data['height'];
+        $profile->weight = $data['weight'];
         $profile->save();
 
         $user->steps = 'profile';
