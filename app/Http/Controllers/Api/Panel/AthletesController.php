@@ -32,7 +32,7 @@ class AthletesController extends Controller
     public function store(Request $request)
     {
 
-        return $data = $request->all();
+        $data = $request->all();
 
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users'
@@ -42,7 +42,6 @@ class AthletesController extends Controller
             return response()->json(['message' => 'با این موبایل قبلا ثبت نام شده است'],406);
         }
 
-
         $user = new User();
         $user->mobile = $data['mobile'];
         $user->status = 'active';
@@ -51,10 +50,8 @@ class AthletesController extends Controller
         $user->save();
         $user->roles()->attach(2);
 
-
-
-        $ext = $request->avatar->getClientOriginalExtension();
-        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+        $ext = $request->file('avatar')->getClientOriginalExtension();
+        $path = $request->file('avatar')->storeAs('/', $user->id.'.'.$ext, 'avatars');
         $avatar_url = 'storage/avatars'.$path;
 
         $profile = new Profiles();
