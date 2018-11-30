@@ -29,7 +29,7 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->all();
+        return $data = $request->all();
 
         $user = new User();
         $user->mobile = $data['mobile'];
