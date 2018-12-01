@@ -26,10 +26,17 @@ class ProgramsController extends Controller
     {
 
         $data = $request->all();
+
+
         $program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
         if($program != null ) {
             return response()->json(['message' => 'برای این ورزش یک برنامه پیش فرض ساخته شده است'],406);
         }
+
+        $conf = [
+            'trainings' => $data['trainings'],
+            'nutrition' => $data['nutrition']
+        ];
 
         $orphan_program = new \App\Model\Programs();
         $orphan_program->user_id = 0;
@@ -41,7 +48,7 @@ class ProgramsController extends Controller
         $orphan_program->start_date = null;
         $orphan_program->status = 'orphan';
         $orphan_program->federation_id = 1;
-        $orphan_program->configuration = $data['configuration'];
+        $orphan_program->configuration = $conf;
         $orphan_program->save();
 
         return response()->json(['message' => 'برنامه پیش فرض ساخته شد'],200);

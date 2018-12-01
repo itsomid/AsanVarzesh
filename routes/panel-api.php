@@ -80,6 +80,9 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('trainings/store','Api\Panel\TrainingsController@store');
 
 
+            Route::get('meals','Api\Panel\MealsController@index');
+
+
             Route::get('packages','Api\Panel\PackageController@index');
             Route::post('packages/store','Api\Panel\PackageController@store');
 

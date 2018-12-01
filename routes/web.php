@@ -25,7 +25,7 @@ Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
 Route::get('orphan',function() {
 
-    $program = \App\Model\Programs::find(1);
+    $program = \App\Model\Programs::orderby('id','DESC')->first();
     return $program->configuration['trainings'];
 
 });
