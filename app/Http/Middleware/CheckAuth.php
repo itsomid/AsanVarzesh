@@ -21,12 +21,21 @@ class CheckAuth extends BaseMiddleware
         //return dd(response()->json(auth()->user()));
 
 
+
         $token = $this->auth->setRequest($request)->getToken();
         if (!$token = $this->auth->setRequest($request)->getToken()) {
-            return $this->respond('tymon.jwt.absent', 'token_not_provided', 400);
+            return response()->json([
+                'message' => 'token is empty',
+                'status' => 401,
+            ],401);
+            //return $this->respond('tymon.jwt.absent', 'token_not_provided', 400);
         }
 
+
+
         try {
+
+
             $user = $this->auth->authenticate($token);
             if($user == null) {
                 return response()->json([
