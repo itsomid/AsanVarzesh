@@ -47,21 +47,21 @@ class CoachSeeder extends Seeder
             $profile->experiences = 'سوابق مربی ';
             $profile->coach_rate = 'professional';
             $profile->birth_date = '1987-09-09';
-            $male_avatar = url('images/fitness_man.jpg');
-            $female_avatar = url('images/fitness_woman.jpg');
+            $male_avatar = 'images/fitness_man.jpg';
+            $female_avatar = 'images/fitness_woman.jpg';
             $profile->avatar =  $gender[0] == 'male' ? $male_avatar : $female_avatar;
             $profile->gender = $gender[0];
             //$profile->height = 190;
             //$profile->weight = 110;
 
             $female_photos = [
-                url('images/amadegi_jesmani_woman.jpg'),
-                url('images/fitness_woman.jpg.jpg')
+                'images/amadegi_jesmani_woman.jpg',
+                'images/fitness_woman.jpg.jpg'
             ];
 
             $male_photos = [
-                url('images/kesheshi_man.jpg'),
-                url('images/fitness_man.jpg')
+                'images/kesheshi_man.jpg',
+                'images/fitness_man.jpg'
             ];
 
             $profile->photos = $gender[0] == 'male' ? $male_photos : $female_photos;

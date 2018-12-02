@@ -41,15 +41,32 @@ class Profiles extends Model
 
     }
 
-    public function user() {
+    public function getavatarAttribute()
+    {
+        return url($this->attributes['avatar']);
+    }
+
+    public function getphotosAttribute()
+    {
+        $photos = [];
+        foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
+            array_push($photos,url($item));
+        }
+        return $photos;
+    }
+
+    public function user()
+    {
         return $this->hasOne('App\User','id','user_id');
     }
 
-    public function city() {
+    public function city()
+    {
         return $this->hasOne('App\Model\Cities','id','city_id');
     }
 
-    public function setLocationAttribute($value) {
+    public function setLocationAttribute($value)
+    {
         $this->attributes['location'] = DB::raw("POINT($value[0],$value[1])");
     }
 
