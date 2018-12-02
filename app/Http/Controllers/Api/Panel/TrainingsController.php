@@ -17,6 +17,8 @@ class TrainingsController extends Controller
 
         $data = $request->all();
 
+
+
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
         $training_image = 'storage/photos/'.$path;

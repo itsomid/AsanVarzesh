@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Food_Category::class);
         $this->call(PromotionSeeder::class);
         $this->call(Users::class);
-
+        $this->call(SettingSeeder::class);
 
     }
 }

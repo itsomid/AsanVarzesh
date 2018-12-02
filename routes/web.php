@@ -30,6 +30,11 @@ Route::get('orphan',function() {
 
 });
 
+Route::get('package',function () {
+    $package = \App\Model\Package::with('foods')->first();
+    return $package;
+});
+
 Route::get('fake',function() {
     $date = '2018-09-09';
     $start_date = explode('-',$date);
