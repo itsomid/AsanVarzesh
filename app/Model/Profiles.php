@@ -50,7 +50,7 @@ class Profiles extends Model
     {
         $photos = [];
         foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
-            array_push($photos,url($item));
+            array_push($photos,url().$item);
         }
         return $photos;
     }
