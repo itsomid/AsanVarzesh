@@ -61,7 +61,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::post('users/calendar/meals/item/create','Api\Coach\UserCalendarMealsController@createItem');
 
             // Delete Calendar Item
-            Route::post('users/calendar/item/{calendar_id}/delete','Api\Coach\UserCalendarTrainingsController@deleteItem');
+            Route::post('users/calendar/item/delete','Api\Coach\UserCalendarTrainingsController@deleteItem');
 
 
         // Requests

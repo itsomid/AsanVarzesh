@@ -123,10 +123,10 @@ class UserCalendarTrainingsController extends Controller
 
     }
 
-    public function deleteItem($calendar_ids) {
-
+    public function deleteItem(Request $request) {
+        $data = $request->all();
         $not_allowed = [];
-        foreach ($calendar_ids as $calendar_id)
+        foreach ($data['calendar_id'] as $calendar_id)
         {
 
             $calendar = Calendar::find($calendar_id);

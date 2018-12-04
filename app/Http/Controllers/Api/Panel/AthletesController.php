@@ -25,7 +25,7 @@ class AthletesController extends Controller
     public function show($user_id)
     {
 
-        $user = User::with(['activities','programs.calendar.training','programs.sport','profile'])->where('id',$user_id)->first();
+        $user = User::with(['activities','programs.calendar.training','programs.sport','profile','payments'])->where('id',$user_id)->first();
 
         return response()->json($user,200);
 
