@@ -171,6 +171,10 @@ class User extends Authenticatable implements JWTSubject
 
     }
 
+    public function nutrition_programs() {
+        return $this->hasMany('App\Model\Calendar','user_id','id');
+    }
+
     public function activities()
     {
         return $this->hasMany('App\Model\Activity')->orderBy('id','DESC');

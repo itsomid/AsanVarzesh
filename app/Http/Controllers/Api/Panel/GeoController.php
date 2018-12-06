@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Api\Panel;
 
+use App\Model\Cities;
 use App\Model\Countries;
 use App\Model\States;
 use Illuminate\Http\Request;
@@ -39,10 +40,17 @@ class GeoController extends Controller
     }
 
 
-    public function getCities($state_id) {
+    public function getCities($state_id = null) {
 
-        $state = States::find($state_id);
-        return $state->cities;
+        if($state_id != null) {
+            $state = States::find($state_id);
+            return $state->cities;
+        } else {
+            $cities = Cities::all();
+            return $cities;
+        }
+
+
 
     }
 }

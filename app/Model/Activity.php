@@ -12,7 +12,7 @@ class Activity extends Model
     ];
     public function calendar() {
 
-        return $this->hasMany('App\Model\Calendar','id','calendar_id');
+        return $this->hasOne('App\Model\Calendar','id','calendar_id');
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Panel;
 
+use App\Model\Calendar;
 use App\Model\Profiles;
 use App\User;
 use Illuminate\Http\Request;
@@ -25,9 +26,28 @@ class AthletesController extends Controller
     public function show($user_id)
     {
 
-        $user = User::with(['activities','programs.calendar.training','programs.sport','profile','payments'])->where('id',$user_id)->first();
+        $user = User::with([
+            'profile',
+            'nutrition_programs',
+            'activities.calendar.training',
+            'programs.calendar.training',
+            'programs.sport',
+            'programs.coach.profile',
+            'programs.nutrition_doctor.profile',
+            'programs.corrective_doctor.profile',
+            'payments.program.sport',
+            'payments.subscription'])->where('id',$user_id)->first();
 
-        return response()->json($user,200);
+        $user_arr = $user->toArray();
+        $calendar = $user->nutrition_programs()->with('package','meal')->orderBy('id','DESC')->get()->groupBy('day_number')->toArray();
+        $calendar_nutrition_transformed = [];
+        foreach ($calendar as $key => $day) {
+            $aDay['day_number'] = $key;
+            $aDay['calendar_item'] = $day;
+            array_push($calendar_nutrition_transformed,$aDay);
+        }
+        $user_arr['nutrition_programs'] = $calendar_nutrition_transformed;
+        return response()->json($user_arr,200);
 
     }
 
@@ -86,14 +106,21 @@ class AthletesController extends Controller
         $data = $request->all();
 
         $user = User::findorFail($user_id);
-        $user->mobile = $data['mobile'];
+        ///$user->mobile = $data['mobile'];
 
         $user->profile->first_name = $data['first_name'];
         $user->profile->last_name = $data['last_name'];
         $user->profile->birth_date = $data['birth_date'];
-        $user->profile->height = $data['height'];
+        $user->profile->height = (float) $data['height'];
         $user->profile->city_id = $data['city_id'];
+        $user->profile->weight = $data['weight'];
+        $user->profile->appetite = $data['appetite'];
         $user->profile->blood_type = $data['blood_type'];
+        $user->profile->budget = $data['budget'];
+        $user->profile->diseases = $data['diseases'];
+        $user->profile->education = $data['education'];
+        $user->profile->education_title = $data['education_title'];
+        $user->profile->maim = $data['maim'];
 
         $user->profile->save();
 

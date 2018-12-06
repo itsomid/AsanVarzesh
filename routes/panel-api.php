@@ -30,8 +30,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
 
     });
 
-    Route::get('geo/states/{country_id}','Api\User\GeoController@getStates');
-    Route::get('geo/cities/{state_id}','Api\User\GeoController@getCities');
+    Route::get('geo/states/{country_id}','Api\Panel\GeoController@getStates');
+    Route::get('geo/cities/{state_id?}','Api\Panel\GeoController@getCities');
 
 
 
@@ -79,9 +79,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('trainings','Api\Panel\TrainingsController@index');
             Route::post('trainings/store','Api\Panel\TrainingsController@store');
 
-
             Route::get('meals','Api\Panel\MealsController@index');
-
 
             Route::get('packages','Api\Panel\PackageController@index');
             Route::post('packages/store','Api\Panel\PackageController@store');
