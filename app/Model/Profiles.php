@@ -43,7 +43,7 @@ class Profiles extends Model
 
     public function getheightAttribute()
     {
-        return (string) $this->height;
+        return (string) $this->attributes['height'];
 
     }
 
