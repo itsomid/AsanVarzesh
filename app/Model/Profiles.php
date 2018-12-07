@@ -41,6 +41,12 @@ class Profiles extends Model
 
     }
 
+    public function getheightAttribute()
+    {
+        return (string) $this->height;
+
+    }
+
     public function getavatarAttribute()
     {
         if($this->attributes['avatar'] != null OR $this->attributes['avatar'] != '') {
