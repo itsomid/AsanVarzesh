@@ -34,9 +34,9 @@ class Profiles extends Model
     {
         $program = Programs::where('user_id',$this->id)->orderby('id','DESC')->first();
         if($program != null) {
-            return $program->weight;
+            return (string) $program->weight;
         } else {
-            return $this->attributes['weight'];
+            return (string) $this->attributes['weight'];
         }
 
     }
