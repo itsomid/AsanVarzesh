@@ -7,6 +7,7 @@ use App\Model\Programs;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CoachController extends Controller
 {
@@ -26,6 +27,27 @@ class CoachController extends Controller
     {
 
         $data = $request->all();
+
+        $messsages = array(
+            'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
+            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'city_id.required'=>'شهر را انتخاب کنید',
+            'avatar.required'=>'آواتار را انتخاب کنید',
+        );
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|numeric|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'city_id' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
 
         $user = new User();
         $user->mobile = $data['mobile'];
@@ -69,10 +91,74 @@ class CoachController extends Controller
 
     }
 
+    public function update(Request $request, $user_id)
+    {
+
+        $data = $request->all();
+
+        $messsages = array(
+            'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
+            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'city_id.required'=>'شهر را انتخاب کنید',
+            'avatar.required'=>'آواتار را انتخاب کنید',
+        );
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|numeric|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'city_id' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
+
+        $user = User::findorFail($user_id);
+
+        $user->profile->first_name = $data['first_name'];
+        $user->profile->last_name = $data['last_name'];
+        $user->profile->birth_date = $data['birth_date'];
+        $user->profile->height = (float) $data['height'];
+        $user->profile->city_id = $data['city_id'];
+        $user->profile->weight = $data['weight'];
+        $user->profile->appetite = $data['appetite'];
+        $user->profile->blood_type = $data['blood_type'];
+        $user->profile->budget = $data['budget'];
+        $user->profile->diseases = $data['diseases'];
+        $user->profile->education = $data['education'];
+        $user->profile->education_title = $data['education_title'];
+        $user->profile->address = $data['address'];
+        $user->profile->coach_rate = $data['coach_rate'];
+        $user->profile->covered_area = $data['covered_area'];
+        $user->profile->education = $data['education'];
+        $user->profile->education_title = $data['education_title'];
+        $user->profile->experiences = $data['experiences'];
+        $user->profile->expertise = $data['expertise'];
+        $user->profile->maim = $data['maim'];
+
+        $user->profile->save();
+
+        return response()->json(['message' => 'پروفایل کاربر ویرایش شد'],200);
+
+    }
+
     public function show($coach_id)
     {
 
-        $user = User::with(['profile','programs_by_coach.sport','programs_by_coach.user.profile'])->where('id',$coach_id)->first();
+        $user = User::with([
+            'profile',
+            'programs_by_coach.sport',
+            'programs_by_coach.user.profile',
+            'programs_by_coach.coach.profile',
+            'programs_by_coach.corrective_doctor.profile',
+            'programs_by_coach.nutrition_doctor.profile',
+            'payments_by_coach.program.sport'
+
+        ])->where('id',$coach_id)->first();
         return response()->json($user,200);
 
     }

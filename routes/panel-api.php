@@ -41,6 +41,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             'prefix' => 'control-panel'
         ], function () {
 
+            Route::get('dashboard','Api\Panel\DashboardController@index');
+
             Route::get('/profile','Api\Panel\ProfileController@index');
 
             Route::get('/athletes','Api\Panel\AthletesController@index');
@@ -51,6 +53,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/coaches','Api\Panel\CoachController@index');
             Route::get('/coaches/{coach_id}','Api\Panel\CoachController@show');
             Route::post('/coaches/store','Api\Panel\CoachController@store');
+            Route::post('/coaches/update/{user_id}','Api\Panel\CoachController@update');
             Route::get('/coaches/{coach_id}/athletes','Api\Panel\CoachController@athletes');
             Route::get('/coaches/{coach_id}/payments','Api\Panel\CoachController@payments');
             Route::get('/coaches/{coach_id}/sports','Api\Panel\CoachController@sports');

@@ -6,6 +6,7 @@ use App\Model\Meal;
 use App\Model\Package;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
 {
@@ -37,13 +38,26 @@ class PackageController extends Controller
         $user = auth('api')->user();
         $data = $request->all();
 
+        $messsages = array(
+            'title.required'=>'فیلد عنوان را پر کنید',
+            'meal_id.required'=>'وعده غذایی را انتخاب کنید',
+            'description.required'=>'توضیحات را انتخاب کنید',
+        );
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|numeric|unique:users',
+            'meal_id' => 'required',
+            'description' => 'required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()],406);
+        }
+
         $package = new Package();
         $package->title = $user->id;
-        $package->meal_id = $user->id;
-        //$package->unit = $user->id;
-        //$package->size = $user->id;
-        $package->description = $user->id;
-        $package->creator_id = $user->id;
+        $package->meal_id = $data['meal_id'];
+        $package->description = $data['description'];
+        $package->creator_id = $data['creator_id'];
         $package->save();
 
         foreach ($data['foods'] as $food) {

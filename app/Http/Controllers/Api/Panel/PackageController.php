@@ -18,7 +18,26 @@ class PackageController extends Controller
     public function store(Request $request)
     {
 
-         $data = $request->all();
+        $data = $request->all();
+
+        $messsages = array(
+            'title.required'=>'پرکردن فیلد عنوان الزامی ست',
+            'description.required'=>'پرکردن فیلد نام الزامی ست',
+            'how_to_cooking.required'=>'پرکردن فیلد نحوه پخت الزامی ست',
+            'image.required'=>'تصویر را انتخاب کنید'
+        );
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|numeric|unique:users',
+            'description' => 'required',
+            'how_to_cooking' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
 
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
@@ -35,7 +54,7 @@ class PackageController extends Controller
         $package->nutritional_value = $this->nutValues(\GuzzleHttp\json_decode($data['foods'],1));;
         $package->save();
 
-        foreach (\GuzzleHttp\json_decode($data['foods'],1) as $food) {
+        foreach (\GuzzleHttp\json_decode($data['foods'],1)  as $food) {
             $package->foods()->attach($food['food_id'],['title' => $data['title'],'unit' => $food['unit'],'size' => $food['size']]);
         }
 

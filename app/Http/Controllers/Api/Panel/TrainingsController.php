@@ -17,7 +17,27 @@ class TrainingsController extends Controller
 
         $data = $request->all();
 
+        $messsages = array(
+            'title.required'=>'پرکردن فیلد عنوان الزامی ست',
+            'sport_id.required'=>'انتخاب ورزش الزامی ست',
+            'image.required'=>'تصویر را انتخاب کنید',
+            'attachment.required'=>'ویدیو را انتخاب کنید',
+            'difficulty.required'=>'میزان سختی را انتخاب کنید',
+        );
 
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|numeric|unique:users',
+            'sport_id' => 'required',
+            'image' => 'required',
+            'attachment' => 'required',
+            'difficulty' =>'required',
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
 
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');

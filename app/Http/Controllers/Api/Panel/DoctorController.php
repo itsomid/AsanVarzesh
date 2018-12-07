@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Panel;
 use App\Model\Profiles;
 use App\Model\Programs;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,6 +31,27 @@ class DoctorController extends Controller
     {
 
         $data = $request->all();
+
+        $messsages = array(
+            'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
+            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'city_id.required'=>'شهر را انتخاب کنید',
+            'avatar.required'=>'آواتار را انتخاب کنید',
+        );
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|numeric|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'city_id' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
 
         $user = new User();
         $user->mobile = $data['mobile'];
@@ -75,7 +97,13 @@ class DoctorController extends Controller
         } else {
             $relation = 'programs_by_corrective_doctor';
         }
-        $user = User::with(['profile',$relation.'.sport',$relation.'.user.profile'])->where('id',$coach_id)->first()->toArray();
+        $user = User::with([
+            'profile',$relation.'.sport',
+            $relation.'.user.profile',
+            $relation.'.coach.profile',
+            $relation.'.corrective_doctor.profile',
+            $relation.'.nutrition_doctor.profile',
+        ])->where('id',$coach_id)->first()->toArray();
 
         return response()->json($user,200);
 

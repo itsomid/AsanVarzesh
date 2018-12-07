@@ -28,6 +28,23 @@ class SportsController extends Controller
 
         $data = $request->all();
 
+        $messsages = array(
+            'title.required'=>'پرکردن فیلد عنوان الزامی ست',
+            'description.required'=>'پرکردن فیلد توضیحات الزامی ست',
+            'federation_id.required'=>'فدراسیون را انتخاب کنید',
+        );
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|numeric|unique:users',
+            'description' => 'required',
+            'federation_id' => 'required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
+
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
         $sport_url = 'storage/photos/'.$path;

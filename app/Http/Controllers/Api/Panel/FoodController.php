@@ -6,6 +6,7 @@ use App\Model\Food;
 use App\Model\FoodCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class FoodController extends Controller
 {
@@ -27,6 +28,25 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        $messsages = array(
+            'title.required'=>'پرکردن فیلد عنوان الزامی ست',
+            'description.required'=>'پرکردن فیلد نام الزامی ست',
+            'food_category_id.required'=>'پرکردن فیلد دسته بندی الزامی ست',
+            'image.required'=>'تصویر را انتخاب کنید'
+        );
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|numeric|unique:users',
+            'description' => 'required',
+            'food_category_id' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
+        if ($validator->fails()) {
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
+        }
 
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');

@@ -22,6 +22,8 @@ class SettingController extends Controller
         foreach ($data as $item) {
             $item = \GuzzleHttp\json_decode($item,1);
 
+
+
             $setting = Setting::where('title',$item['title'])->first();
             $setting->value = $item['value'];
             $setting->save();

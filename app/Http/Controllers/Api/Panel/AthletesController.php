@@ -7,7 +7,6 @@ use App\Model\Profiles;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class AthletesController extends Controller
@@ -51,16 +50,32 @@ class AthletesController extends Controller
 
     }
 
+
+
     public function store(Request $request)
     {
         $data = $request->all();
 
+        $messsages = array(
+            'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
+            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'city_id.required'=>'شهر را انتخاب کنید',
+            'avatar.required'=>'آواتار را انتخاب کنید',
+        );
         $validator = Validator::make($request->all(), [
-            'mobile' => 'required|numeric|unique:users'
-        ]);
+            'mobile' => 'required|numeric|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'city_id' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+        ],$messsages);
+
 
         if ($validator->fails()) {
-            return response()->json(['message' => ' با این موبایل قبلا ثبت نام شده است'],406);
+
+            return response()->json(['message' => $validator->errors()->first()],406);
+
         }
 
         $user = new User();
