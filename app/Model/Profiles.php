@@ -43,7 +43,11 @@ class Profiles extends Model
 
     public function getavatarAttribute()
     {
-        return url($this->attributes['avatar']);
+        if($this->attributes['avatar'] != null OR $this->attributes['avatar'] != '') {
+            return url($this->attributes['avatar']);
+        }
+        return null;
+
     }
 
     public function getphotosAttribute()
