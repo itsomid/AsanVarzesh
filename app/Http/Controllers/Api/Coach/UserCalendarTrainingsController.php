@@ -93,11 +93,16 @@ class UserCalendarTrainingsController extends Controller
 
         foreach ($data['items'] as $item) {
             $program = Programs::find($item['program_id']);
+            $calendar = Calendar::where('program_id',$item['program_id'])->where('day_number',$item['day_number'])->first();
             $calendar->day_number = $item['day_number'];
             $calendar->program_id = $item['program_id'];
             $calendar->training_id = $item['training_id'];
             $calendar->attributes = $item['attributes'];
+            $calendar->date = $calendar->date;
+            $calendar->time_from = $calendar->time_from;
+            $calendar->time_to = $calendar->time_to;
             $calendar->type = 'training';
+            $calendar->status = 'did_not_do';
             $calendar->user_id = $program->user_id;
             $calendar->save();
         }
