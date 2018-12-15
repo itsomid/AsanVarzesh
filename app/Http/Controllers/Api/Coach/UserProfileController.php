@@ -24,9 +24,11 @@ class UserProfileController extends Controller
             'sport_by_coach' =>function($q){$q->with('sport');},
             ])->where('id',$user_id)->first();/*->toArray();*/
 
+        $programs = Programs::where('user_id',$user->id)->where($field,$coach->id)->pluck('id');
+
         $user_arr = $user->toArray();
-        $user_arr['private_conversations'] = $coach->conversations()->where('type','private')->with(['user.profile','user.roles'])->get();
-        $user_arr['group_conversations'] = $coach->conversations()->where('type','group')->with(['user.profile','user.roles'])->get();
+        $user_arr['private_conversations'] = $coach->conversations()->whereIn('program_id',$programs)->where('type','private')->with(['user.profile','user.roles'])->get();
+        $user_arr['group_conversations'] = $coach->conversations()->whereIn('program_id',$programs)->where('type','group')->with(['user.profile','user.roles'])->get();
 
         $program = Programs::where('user_id',$user_id)
                             ->where($field,$coach->id)
