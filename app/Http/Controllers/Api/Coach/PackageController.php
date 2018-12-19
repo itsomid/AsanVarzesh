@@ -42,7 +42,7 @@ class PackageController extends Controller
         $package->title = $user->id;
         $package->meal_id = $data['meal_id'];
         $package->description = $data['description'];
-        $package->creator_id = $data['creator_id'];
+        $package->creator_id = $user->id;
         $package->save();
 
         foreach ($data['foods'] as $food) {
