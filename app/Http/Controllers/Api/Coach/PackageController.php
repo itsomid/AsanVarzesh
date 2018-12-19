@@ -38,21 +38,6 @@ class PackageController extends Controller
         $user = auth('api')->user();
         $data = $request->all();
 
-        $messsages = array(
-            'title.required'=>'فیلد عنوان را پر کنید',
-            'meal_id.required'=>'وعده غذایی را انتخاب کنید',
-            'description.required'=>'توضیحات را انتخاب کنید',
-        );
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|numeric|unique:users',
-            'meal_id' => 'required',
-            'description' => 'required'
-        ],$messsages);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()],406);
-        }
-
         $package = new Package();
         $package->title = $user->id;
         $package->meal_id = $data['meal_id'];
