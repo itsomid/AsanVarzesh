@@ -17,6 +17,12 @@ class ConversationsController extends Controller
 
     }
 
+    public function show($id) {
+
+        $conversation = Conversation::with('program.sport','messages.user.profile')->where('id',$id)->first();
+        return $conversation;
+    }
+
     public function UnallowedKeywords()
     {
 

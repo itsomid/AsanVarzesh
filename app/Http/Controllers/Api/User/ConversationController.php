@@ -99,7 +99,7 @@ class ConversationController extends Controller
         if(!is_null($request->attachment)) {
             $ext = $request->attachment->getClientOriginalExtension();
             $path = $request->attachment->storeAs('/', md5(time()).'.'.$ext, 'file_message');
-            $url_file = 'storage/accessories/'.$path;
+            $url_file = 'storage/file_message/'.$path;
 
         }
 

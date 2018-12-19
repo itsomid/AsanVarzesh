@@ -12,6 +12,7 @@ class RolePermissions extends Seeder
     public function run()
     {
         //
+
         $owner = new \App\Model\Role();
         $owner->name         = 'admin';
         $owner->display_name = 'Admin'; // optional
@@ -37,6 +38,10 @@ class RolePermissions extends Seeder
         $owner->display_name = 'Corrective Doctor'; // optional
         $owner->save();
 
+        $owner = new \App\Model\Role();
+        $owner->name         = 'operator';
+        $owner->display_name = 'Operator'; // optional
+        $owner->save();
 
     }
 }

@@ -12,7 +12,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth('api')->user();
-        $user = User::where('id',$user->id)->with('profile')->first();
+        $user = User::where('id',$user->id)->with('profile','Roles')->first();
         return $user;
     }
 

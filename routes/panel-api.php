@@ -24,9 +24,12 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
     Route::group(['middleware' => 'api','prefix' => 'control-panel/auth'], function ($router) {
 
         Route::post('login', 'Api\Panel\AuthController@login');
+        Route::post('forget-password', 'Api\Panel\AuthController@forgetPassword');
         Route::post('logout', 'Api\Panel\AuthController@logout');
         Route::post('refresh', 'Api\User\AuthController@refresh');
         Route::post('me', 'Api\User\AuthController@me');
+
+
 
     });
 
@@ -37,7 +40,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
 
     Route::group(
         [
-            'middleware' => ['jwtauth','AdminRole'],
+            'middleware' => ['jwtauth','AdminRole','OperatorRole'],
             'prefix' => 'control-panel'
         ], function () {
 
@@ -49,6 +52,10 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/athletes/{user_id}','Api\Panel\AthletesController@show');
             Route::post('/athletes/store','Api\Panel\AthletesController@store');
             Route::post('/athletes/update/{user_id}','Api\Panel\AthletesController@update');
+
+            Route::get('/admins','Api\Panel\AdminController@index');
+            Route::get('/admins/{admin_id}','Api\Panel\AdminController@show');
+            Route::post('/admins/store','Api\Panel\AdminController@store');
 
             Route::get('/coaches','Api\Panel\CoachController@index');
             Route::get('/coaches/{coach_id}','Api\Panel\CoachController@show');
@@ -73,6 +80,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('/sports/store','Api\Panel\SportsController@store');
 
             Route::get('conversations','Api\Panel\ConversationsController@index');
+            Route::get('conversations/{id}','Api\Panel\ConversationsController@show');
             Route::get('conversations/unallowed-keywords','Api\Panel\ConversationsController@UnallowedKeywords');
             Route::get('conversations/search/{keyword}','Api\Panel\ConversationsController@search');
 

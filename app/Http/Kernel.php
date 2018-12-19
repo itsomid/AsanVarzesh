@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
 
         /* Control Panel */
         'AdminRole' =>  \App\Http\Middleware\AdminRole::class,
+        'OperatorRole' =>  \App\Http\Middleware\OperatorRole::class,
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

@@ -18,7 +18,6 @@ class CheckAuth extends BaseMiddleware
      */
     public function handle($request, \Closure $next)
     {
-        //return dd(response()->json(auth()->user()));
 
 
 

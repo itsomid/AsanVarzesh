@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Panel;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','forgetPassword']]);
     }
 
     /**
@@ -29,8 +30,8 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        return $this->respondWithToken($token);
+        $profile = User::with('profile','Roles')->where('email',$request->email)->first();
+        return $this->respondWithToken($token,$profile);
 
 
 
@@ -58,6 +59,22 @@ class AuthController extends Controller
         return $this->respondWithToken(auth('api')->refresh());
     }
 
+    public function forgetPassword(Request $request) {
+
+        /* if email is valid send token */
+        if(User::where('email',$request->email)->first()) {
+
+            // Create Token
+            return response()->json(['message' => 'ایمیل خود را چک کنید'],200);
+
+        }
+
+        return response()->json(['message' => 'ایمیل معتبر نمیباشد'],200);
+
+
+
+    }
+
     /**
      * Get the token array structure.
      *
@@ -65,12 +82,13 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$profile)
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL()
+            'expires_in' => auth('api')->factory()->getTTL(),
+            'profile' => $profile
         ]);
     }
 
