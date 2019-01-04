@@ -17,13 +17,12 @@ class ConversationController extends Controller
         $user = auth('api')->user();
 
         return $coach = User::with([
-                                'conversations_public.program.sport',
-                                'conversations_public.user.profile',
-                                'conversations_public.user.Roles',
-                                'conversations_public.lastMessage'
-                            ])
-                            ->where('id',$user->id)
-                            ->first();
+            'conversations_public.program.sport',
+            'conversations_public.user.profile',
+            'conversations_public.user.Roles',
+            'conversations_public.lastMessage'
+        ])->where('id',$user->id)
+        ->first();
 
 
 
@@ -77,7 +76,7 @@ class ConversationController extends Controller
 
         $user = auth('api')->user();
 
-        $conversation = Conversation::with(['messages.user.profile','user'])->find($conversation_id)->toArray();
+        $conversation = Conversation::with(['messages.user.profile','messages.user.Roles','user'])->find($conversation_id)->toArray();
         //return $conversation;
 
         if($conversation['type'] == 'group') {
@@ -87,7 +86,6 @@ class ConversationController extends Controller
 
 
         return $conversation;
-
     }
 
     public function sendMessage(Request $request) {
@@ -100,17 +98,22 @@ class ConversationController extends Controller
             $ext = $request->attachment->getClientOriginalExtension();
             $path = $request->attachment->storeAs('/', md5(time()).'.'.$ext, 'file_message');
             $url_file = 'storage/file_message/'.$path;
-
         }
+
+        $conversation = Conversation::where('id',$data['conversation_id'])->first();
 
 
         $message = new Message();
+        $read_status = $conversation['read_status'];
+        $read_status[$user->id] = true;
         $message->conversation_id = $data['conversation_id'];
         $message->text = $data['text'];
         $message->user_id = $user->id;
         $message->attachment = $url_file;
         $message->type = $data['type'];
+        $message->read_status = $read_status;
         $message->save();
+
 
         return [
             'message' => 'message recieved',
@@ -177,6 +180,24 @@ class ConversationController extends Controller
         $read_status[$user->id] = true;
         $conversation->read_status = $read_status;
         $conversation->save();
+
+        return response()->json([
+            'status' => 200
+        ],200);
+
+    }
+
+    public function readMessage(Request $request) {
+
+
+        $user = auth('api')->user();
+        $data = $request->all();
+
+        $message = Message::find($data['message_id']);
+        $read_status = $message->read_status;
+        $read_status[$user->id] = true;
+        $message->read_status = $read_status;
+        $message->save();
 
         return response()->json([
             'status' => 200

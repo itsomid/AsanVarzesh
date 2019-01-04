@@ -114,6 +114,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('conversations/show-messages/{conversation_id}','Api\User\ConversationController@showMessages');
             Route::post('conversations/send-message/','Api\User\ConversationController@sendMessage');
             Route::post('conversations/read/','Api\User\ConversationController@readConversation');
+            Route::post('conversations/message/read/','Api\Coach\ConversationController@readMessage');
 
         });
 

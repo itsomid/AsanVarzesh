@@ -39,7 +39,7 @@ class PackageController extends Controller
         $data = $request->all();
 
         $package = new Package();
-        $package->title = $user->id;
+        $package->title = $data['title'];
         $package->meal_id = $data['meal_id'];
         $package->description = $data['description'];
         $package->creator_id = $user->id;

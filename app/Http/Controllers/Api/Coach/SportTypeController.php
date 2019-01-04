@@ -12,11 +12,20 @@ class SportTypeController extends Controller
     public function index()
     {
 
-
         $coach = auth('api')->user();
-        return $coach->sports;
+        $allSports = [];
+        foreach ($coach->sports as $sport) {
 
+            $programs_count = Programs::where('sport_id',$sport->id)
+                                        ->where('coach_id',1)
+                                        ->where('status','active')
+                                        ->count();
+            $sportArray = $sport->toArray();
+            $sportArray['number_of_users'] = $programs_count;
+            array_push($allSports,$sportArray);
+        }
 
+        return $allSports;
 
     }
 

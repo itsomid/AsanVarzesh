@@ -83,6 +83,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('conversations/show-messages/{conversation_id}','Api\Coach\ConversationController@showMessages');
             Route::post('conversations/send-message/','Api\Coach\ConversationController@sendMessage');
             Route::post('conversations/read/','Api\Coach\ConversationController@readConversation');
+            Route::post('conversations/message/read/','Api\Coach\ConversationController@readMessage');
 
             // Programs
             Route::get('programs/{id}','Api\Coach\ProgramController@show');

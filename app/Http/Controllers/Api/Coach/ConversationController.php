@@ -76,7 +76,7 @@ class ConversationController extends Controller
 
         $coach = auth('api')->user();
 
-        $conversation = Conversation::with(['messages.user.profile','user'])->find($conversation_id)->toArray();
+        $conversation = Conversation::with(['messages.user.profile','messages.user.Roles','user'])->find($conversation_id)->toArray();
         //return $conversation;
 
         if($conversation['type'] == 'group') {
@@ -100,14 +100,20 @@ class ConversationController extends Controller
             $url_file = 'storage/file_message/'.$path;
         }
 
+        $conversation = Conversation::where('id',$data['conversation_id'])->first();
+
 
         $message = new Message();
+        $read_status = $conversation['read_status'];
+        $read_status[$user->id] = true;
         $message->conversation_id = $data['conversation_id'];
         $message->text = $data['text'];
         $message->user_id = $user->id;
         $message->attachment = $url_file;
         $message->type = $data['type'];
+        $message->read_status = $read_status;
         $message->save();
+
 
         return [
             'message' => 'message recieved',
@@ -117,7 +123,6 @@ class ConversationController extends Controller
     }
 
     public function SendingMessagePermission($user_id,$program_id) {
-
 
         $program = Programs::where($program_id)
                             ->orWhere('user_id',$user_id)
@@ -150,8 +155,8 @@ class ConversationController extends Controller
             }
         }
 
-
         //Compare
+
         foreach ($coach_conversations_array as $item) {
             if(in_array($item,$user_conversations_array)) {
                 return [
@@ -175,6 +180,24 @@ class ConversationController extends Controller
         $read_status[$user->id] = true;
         $conversation->read_status = $read_status;
         $conversation->save();
+
+        return response()->json([
+            'status' => 200
+        ],200);
+
+    }
+
+    public function readMessage(Request $request) {
+
+
+        $coach = auth('api')->user();
+        $data = $request->all();
+
+        $message = Message::find($data['message_id']);
+        $read_status = $message->read_status;
+        $read_status[$coach->id] = true;
+        $message->read_status = $read_status;
+        $message->save();
 
         return response()->json([
             'status' => 200

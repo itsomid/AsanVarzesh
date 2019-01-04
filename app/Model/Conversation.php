@@ -16,6 +16,10 @@ class Conversation extends Model
         'read_status' => 'array'
     ];
 
+    protected $appends = [
+        'unreadMessages'
+    ];
+
     public function user()
     {
         return $this->belongsToMany('App\User');
@@ -39,5 +43,23 @@ class Conversation extends Model
     public function lastMessage()
     {
         return $this->hasOne('App\Model\Message')->orderBy('id','DESC');
+    }
+
+
+    public function getunreadMessagesAttribute() {
+
+        $user = auth('api')->user();
+        $count = 0;
+        $messages = $this->messages;
+        foreach ($messages as $message) {
+            $message;
+            if($message->read_status[$user->id] == false) {
+                ++$count;
+            }
+
+        }
+
+        return $count;
+
     }
 }

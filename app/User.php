@@ -148,12 +148,12 @@ class User extends Authenticatable implements JWTSubject
     public function today_training()
     {
         // Todo: After completed Apps query with today_date
-        $today_date = '2018-10-09 00:00:00';
+        $today_date = Carbon::today();
         return $this->hasMany('App\Model\Calendar','user_id','id')
             ->where('training_id','!=',null)
             ->where('type','training')
             ->orderBy('id','DESC')
-            ->where('day_number',7)
+            ->where('date',$today_date)
             /*->where('date',$today_date)*/;
 
     }

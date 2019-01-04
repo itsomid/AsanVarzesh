@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Message extends Model
 {
+
+    protected $casts = [
+        'read_status' => 'array'
+    ];
+
     public function user()
     {
         return $this->hasOne('App\User','id','user_id');
