@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Panel;
 use App\Model\Training;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class TrainingsController extends Controller
 {
