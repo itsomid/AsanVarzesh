@@ -33,14 +33,14 @@ class CoachController extends Controller
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'city.required'=>'شهر را انتخاب کنید',
-            'avatar.required'=>'آواتار را انتخاب کنید',
+            //'avatar.required'=>'آواتار را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users',
             'first_name' => 'required',
             'last_name' => 'required',
             'city' => 'required',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+            //'avatar' => 'mimes:jpeg,jpg,png,gif|required'
         ],$messsages);
 
         if ($validator->fails()) {
@@ -48,6 +48,8 @@ class CoachController extends Controller
             return response()->json(['message' => $validator->errors()->first()],406);
 
         }
+
+
 
         $user = new User();
         $user->mobile = $data['mobile'];
@@ -60,9 +62,14 @@ class CoachController extends Controller
         $user->roles()->attach(3,['sport_id' => $data['sport']]);
         $user->Coaches()->attach($data['sport'],['price' => $data['price']]);
 
-        $ext = $request->avatar->getClientOriginalExtension();
-        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-        $avatar_url = 'storage/avatars'.$path;
+        if(array_key_exists('avatar',$data)) {
+            $ext = $request->avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars'.$path;
+        } else {
+            $avatar_url = '';
+        }
+
 
         $profile = new Profiles();
         $profile->avatar = $avatar_url;
