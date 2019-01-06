@@ -19,7 +19,7 @@ class UserCalendarTrainingsController extends Controller
                                         ->where('type','training')
                                         ->where('program_id',$program_id)
                                         /*->where('training_id','!=',null)*/
-                                        ->orderby('id','DESC')
+                                        ->orderby('date','DESC')
                                         ->get()
                                         ->groupBy('date')->toArray();
 
