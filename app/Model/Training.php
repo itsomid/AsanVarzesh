@@ -36,5 +36,22 @@ class Training extends Model
 //        return null;
 //    }
 
+    public function getimageAttribute()
+    {
+        if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
+            return url($this->attributes['image']);
+        }
+        return null;
+
+    }
+
+    public function getattachmentAttribute()
+    {
+        if($this->attributes['attachment'] != null OR $this->attributes['attachment'] != '') {
+            return url($this->attributes['attachment']);
+        }
+        return null;
+
+    }
 
 }
