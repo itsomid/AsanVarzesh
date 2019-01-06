@@ -62,7 +62,7 @@ class CoachController extends Controller
         $user->roles()->attach(3,['sport_id' => $data['sport']]);
         $user->Coaches()->attach($data['sport'],['price' => $data['price']]);
 
-        if(array_key_exists('avatar',$data)) {
+        if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
             $ext = $request->avatar->getClientOriginalExtension();
             $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
             $avatar_url = 'storage/avatars'.$path;
