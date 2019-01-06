@@ -63,7 +63,7 @@ class Profiles extends Model
             foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
                 array_push($photos,url('/').$item);
             }
-
+            return $photos;
         }
         return null;
 
