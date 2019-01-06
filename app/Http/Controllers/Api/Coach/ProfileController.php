@@ -111,7 +111,7 @@ class ProfileController extends Controller
 
         $ext = $request->photo->getClientOriginalExtension();
         $path = $request->photo->storeAs('/', $coach->id.'-'.md5(microtime()).'.'.$ext, 'photos');
-        $url = 'storage/photos/'.$path;
+        $url = '/storage/photos/'.$path;
 
         $profile = $coach->profile;
         $photos = $profile->photos;
@@ -142,7 +142,7 @@ class ProfileController extends Controller
 
             $ext = $request->avatar->getClientOriginalExtension();
             $path = $request->avatar->storeAs('/', $user->id . '.' . $ext, 'avatars');
-            $url = 'storage/avatars' . $path;
+            $url = '/storage/avatars' . $path;
 
             $profile = Profiles::where('user_id', $user->id)->first();
             $profile->avatar = $url;
