@@ -91,7 +91,7 @@ class TrainingsController extends Controller
         );
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:users',
+            'title' => 'required',
             'sport_id' => 'required',
             'image' => 'required',
             'attachment' => 'required',
@@ -103,6 +103,7 @@ class TrainingsController extends Controller
             return response()->json(['message' => $validator->errors()->first()],406);
 
         }
+
 
         $ext = $request->image->getClientOriginalExtension();
         $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
@@ -118,7 +119,7 @@ class TrainingsController extends Controller
         $training->attachment = $video_image;
         $training->difficulty = $data['difficulty'];
         $training->details = $data['details'];
-        $training->attribute = $data['attribute'];
+        $training->attribute = json_decode($data['attribute']);
         $training->image = $training_image;
         $training->save();
 

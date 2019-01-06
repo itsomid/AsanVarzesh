@@ -36,14 +36,14 @@ class DoctorController extends Controller
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            'city_id.required'=>'شهر را انتخاب کنید',
+            'city.required'=>'شهر را انتخاب کنید',
             'avatar.required'=>'آواتار را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users',
             'first_name' => 'required',
             'last_name' => 'required',
-            'city_id' => 'required',
+            'city' => 'required',
             'avatar' => 'mimes:jpeg,jpg,png,gif|required'
         ],$messsages);
 
