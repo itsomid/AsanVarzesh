@@ -114,6 +114,9 @@ class ProfileController extends Controller
 
         $profile = $coach->profile;
         $photos = $profile->photos;
+        if($photos == null) {
+            $photos = [];
+        }
         array_push($photos,$url);
 
         $profile->photos = $photos;
