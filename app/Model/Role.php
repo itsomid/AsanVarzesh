@@ -11,7 +11,7 @@ use Zizaco\Entrust\EntrustRole;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  * @mixin \Eloquent
  */
-class Role extends EntrustRole
+class   Role extends EntrustRole
 {
     //
 }
