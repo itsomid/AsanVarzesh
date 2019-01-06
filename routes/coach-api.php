@@ -76,8 +76,10 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
             Route::post('profile/add-to-basket','Api\Coach\ProfileController@addtoBasket');
             Route::post('profile/upload-photo','Api\Coach\ProfileController@uploadImage');
+            Route::post('profile/upload-avatar','Api\Coach\ProfileController@setAvatar');
 
-            // Conversations
+
+        // Conversations
             Route::get('conversations','Api\Coach\ConversationController@index');
             Route::post('conversations/create','Api\Coach\ConversationController@createConversation');
             Route::get('conversations/show-messages/{conversation_id}','Api\Coach\ConversationController@showMessages');

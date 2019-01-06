@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Model\Profiles;
 use App\Model\Programs;
 use App\Model\Training;
 use App\User;
@@ -125,6 +126,40 @@ class ProfileController extends Controller
         return response()->json([
             'message' => 'آلبوم عکس شما به روز شد.'
         ],200);
+
+    }
+
+    public function setAvatar(Request $request)
+    {
+        $data = $request->all();
+        $user = auth('api')->user();
+
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|image'
+        ]);
+
+        if (!$validator->fails()) {
+
+            $ext = $request->avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('/', $user->id . '.' . $ext, 'avatars');
+            $url = 'storage/avatars' . $path;
+
+            $profile = Profiles::where('user_id', $user->id)->first();
+            $profile->avatar = $url;
+            $profile->save();
+
+            return response()->json([
+                'profile' => $profile,
+                'avatar_url' => url('storage/avatars/' . $path),
+                'status' => 200
+            ], 200);
+
+        } else {
+            return response()->json([
+                'msg' => 'فرمت فایل مورد نظر معتبر نیست.',
+                'status' => 400
+            ], 400);
+        }
 
     }
 }
