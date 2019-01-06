@@ -60,7 +60,7 @@ class AthletesController extends Controller
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            'city_id.required'=>'شهر را انتخاب کنید',
+            'city.required'=>'شهر را انتخاب کنید',
             'avatar.required'=>'آواتار را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
