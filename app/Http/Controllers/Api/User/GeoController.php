@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Model\Cities;
 use App\Model\Countries;
 use App\Model\States;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class _GeoController extends Controller
+class GeoController extends Controller
 {
     //
     public function getAllCountries() {
@@ -39,10 +40,15 @@ class _GeoController extends Controller
     }
 
 
-    public function getCities($state_id) {
+    public function getCities($state_id = null) {
 
-        $state = States::find($state_id);
-        return $state->cities;
+        if($state_id != null) {
+            $state = States::find($state_id);
+            return $state->cities;
+        } else {
+            $cities = Cities::all();
+            return $cities;
+        }
 
     }
 }

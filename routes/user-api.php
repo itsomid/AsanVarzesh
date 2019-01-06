@@ -30,6 +30,13 @@ Route::group(['prefix' => '/v1'],function() {
 
     });
 
+        /* Get Countries, States, Cities */
+//        Route::get('/user/geo/countries','Api\User\GeoController@index');
+        Route::get('/user/geo/countries','Api\User\GeoController@getAllCountries');
+        Route::get('/user/geo/countries/{id}','Api\User\GeoController@countryItem');
+        Route::get('/user/geo/states/{country_id}','Api\User\GeoController@getStates');
+        Route::get('/user/geo/cities/{state_id?}','Api\User\GeoController@getCities');
+
     Route::group(
         [
             'middleware' => ['jwtauth','UserRole'],
@@ -51,11 +58,7 @@ Route::group(['prefix' => '/v1'],function() {
         Route::post('/save-step','Api\User\ProfileController@saveStep');
         Route::get('/get-step','Api\User\ProfileController@getStep');
 
-        /* Get Countries, States, Cities */
-        Route::get('geo/countries','Api\User\GeoController@getAllCountries');
-        Route::get('geo/countries/{id}','Api\User\GeoController@countryItem');
-        Route::get('geo/states/{country_id}','Api\User\GeoController@getStates');
-        Route::get('geo/cities/{state_id}','Api\User\GeoController@getCities');
+
 
         // Choose sport type
         Route::get('/choose-sport-type','Api\User\SportTypeController@index');
