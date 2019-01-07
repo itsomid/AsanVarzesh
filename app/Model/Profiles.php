@@ -61,7 +61,7 @@ class Profiles extends Model
         $photos = [];
         if(isset($this->attributes['photos']) OR $this->attributes['photos'] != null) {
             foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
-                array_push($photos,url('/').$item);
+                array_push($photos,$item);
             }
             return $photos;
         }
