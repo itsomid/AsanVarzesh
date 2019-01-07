@@ -40,6 +40,7 @@ class DoctorController extends Controller
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'city.required'=>'شهر را انتخاب کنید',
+            'experiences.required' => 'تجربیات را وارد کنید'
             //'avatar.required'=>'آواتار را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
@@ -48,6 +49,7 @@ class DoctorController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'city' => 'required',
+            'experiences' => 'required'
             //'avatar' => 'mimes:jpeg,jpg,png,gif|required'
         ],$messsages);
 
@@ -84,12 +86,13 @@ class DoctorController extends Controller
         $profile->city_id = $data['city'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
-        $profile->experiences = $data['experiences'];
-        $profile->expertise = $data['expertise'];
-        $profile->gender = $data['gender'];
-        $profile->height = $data['height'];
-        $profile->national_code = $data['national_code'];
-        $profile->weight = $data['weight'];
+
+        $profile->experiences = !isset($data['experiences']) ? '' : $data['experiences'];
+        $profile->expertise = !isset($data['expertise']) ? '' : $data['expertise'];
+        $profile->gender = !isset($data['gender']) ? 'male' : $data['gender'];
+        $profile->height = !isset($data['height']) ? 0 : $data['height'];
+        $profile->national_code = !isset($data['national_code']) ? 0 : $data['national_code'];
+        $profile->weight = !isset($data['weight']) ? 0 : $data['weight'];
         $profile->save();
 
 
