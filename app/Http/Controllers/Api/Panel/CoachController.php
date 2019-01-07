@@ -30,6 +30,9 @@ class CoachController extends Controller
 
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
+            'mobile.unique' => 'تلفن همراه تکراریست',
+            'email.required'=>'فیلد ایمیل را پر کنید',
+            'email.unique'=> 'ایمیل تکراریست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'city.required'=>'شهر را انتخاب کنید',
@@ -37,6 +40,7 @@ class CoachController extends Controller
         );
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users',
+            'email' => 'required|unique:users',
             'first_name' => 'required',
             'last_name' => 'required',
             'city' => 'required',
