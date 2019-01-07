@@ -61,9 +61,15 @@ class DoctorController extends Controller
         $user->save();
         $user->roles()->attach($data['dr_role_id']);
 
-        $ext = $request->avatar->getClientOriginalExtension();
-        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-        $avatar_url = 'storage/avatars'.$path;
+        if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
+            $ext = $request->avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars'.$path;
+        } else {
+            $avatar_url = '';
+        }
+
+
 
         $profile = new Profiles();
         $profile->avatar = $avatar_url;
