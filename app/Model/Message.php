@@ -26,4 +26,13 @@ class Message extends Model
     {
         return $this->hasOne('App\Model\Conversation','id','conversation_id');
     }
+
+    public function getattachmentAttribute()
+    {
+        if($this->attributes['attachment'] != null OR $this->attributes['attachment'] != '') {
+            return url($this->attributes['attachment']);
+        }
+        return null;
+
+    }
 }
