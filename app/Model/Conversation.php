@@ -53,7 +53,7 @@ class Conversation extends Model
         $messages = $this->messages;
         foreach ($messages as $message) {
             $message;
-            if($message->read_status[$user->id] == false) {
+            if(isset($message->read_status[$user->id]) && $message->read_status[$user->id] == false) {
                 ++$count;
             }
 
