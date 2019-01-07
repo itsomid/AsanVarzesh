@@ -36,6 +36,7 @@ class CoachController extends Controller
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'city.required'=>'شهر را انتخاب کنید',
+            'price.required' => 'قیمت را وارد کنید'
             //'avatar.required'=>'آواتار را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
@@ -44,6 +45,7 @@ class CoachController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'city' => 'required',
+            'price' => 'required'
             //'avatar' => 'mimes:jpeg,jpg,png,gif|required'
         ],$messsages);
 
