@@ -18,7 +18,7 @@ class SportTypeController extends Controller
 
             $programs_count = Programs::where('sport_id',$sport->id)
                                         ->where('coach_id',1)
-                                        ->where('status','active')
+                                        ->whereIn('status',['active','pending'])
                                         ->count();
             $sportArray = $sport->toArray();
             $sportArray['number_of_users'] = $programs_count;
