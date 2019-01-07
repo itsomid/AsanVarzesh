@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Model\Profiles
@@ -61,7 +62,7 @@ class Profiles extends Model
         $photos = [];
         if(isset($this->attributes['photos']) OR $this->attributes['photos'] != null) {
             foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
-                array_push($photos,$item);
+                array_push($photos,Storage::url($item));
             }
             return $photos;
         }
