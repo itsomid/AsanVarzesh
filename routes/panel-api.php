@@ -56,6 +56,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/admins','Api\Panel\AdminController@index');
             Route::get('/admins/{admin_id}','Api\Panel\AdminController@show');
             Route::post('/admins/store','Api\Panel\AdminController@store');
+            Route::post('/admins/update/{admin_id}','Api\Panel\AdminController@update');
 
             Route::get('/coaches','Api\Panel\CoachController@index');
             Route::get('/coaches/{coach_id}','Api\Panel\CoachController@show');

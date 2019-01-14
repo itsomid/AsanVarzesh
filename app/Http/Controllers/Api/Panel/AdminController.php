@@ -35,7 +35,7 @@ class AdminController extends Controller
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            'avatar.required'=>'آواتار را انتخاب کنید',
+            'avatar.mimes'=>'فرمت آواتار درست نیست',
 
         );
         $validator = Validator::make($request->all(), [
@@ -44,8 +44,10 @@ class AdminController extends Controller
             'mobile' => 'required|numeric|unique:users',
             'first_name' => 'required',
             'last_name' => 'required',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+            'avatar' => 'mimes:jpeg,jpg,png,gif'
         ],$messsages);
+
+
 
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()->first()],406);
@@ -57,12 +59,15 @@ class AdminController extends Controller
         $user->email = $data['email'];
         $user->code = 0;
         $user->save();
-
         $user->roles()->attach(6,['sport_id' => null]);
 
-        $ext = $request->avatar->getClientOriginalExtension();
-        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-        $avatar_url = 'storage/avatars'.$path;
+        if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
+            $ext = $request->avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars'.$path;
+        } else {
+            $avatar_url = '';
+        }
 
         $profile = new Profiles();
         $profile->avatar = $avatar_url;
@@ -88,17 +93,18 @@ class AdminController extends Controller
 
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
-            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
-            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            'city.required'=>'شهر را انتخاب کنید',
-            'avatar.required'=>'آواتار را انتخاب کنید',
+            'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'profile.city_id.required'=>'شهر را انتخاب کنید',
+            'profile.new_avatar.mimes'=>'فرمت آواتار درست نیست',
         );
+
         $validator = Validator::make($request->all(), [
-            'mobile' => 'required|numeric|unique:users',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'city' => 'required',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+            'mobile' => 'required|numeric|unique:users,id,'.$user_id,
+            'profile.first_name' => 'required',
+            'profile.last_name' => 'required',
+            'profile.city_id' => 'required',
+            'profile.new_avatar' => 'mimes:jpeg,jpg,png,gif'
         ],$messsages);
 
         if ($validator->fails()) {
@@ -108,27 +114,40 @@ class AdminController extends Controller
         }
 
         $user = User::findorFail($user_id);
+        if(array_key_exists('new_avatar',$data['profile']) && !is_null($data['profile']['new_avatar']) && $data['profile']['new_avatar'] != '') {
+            $ext = $request->new_avatar->getClientOriginalExtension();
+            $path = $request->new_avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars'.$path;
+        } else {
+            $avatar_url = $data['profile']['avatar'];
+        }
 
-        $user->profile->first_name = $data['first_name'];
-        $user->profile->last_name = $data['last_name'];
-        $user->profile->birth_date = $data['birth_date'];
-        $user->profile->height = (float) $data['height'];
-        $user->profile->city_id = $data['city_id'];
-        $user->profile->weight = $data['weight'];
-        $user->profile->appetite = $data['appetite'];
-        $user->profile->blood_type = $data['blood_type'];
-        $user->profile->budget = $data['budget'];
-        $user->profile->diseases = $data['diseases'];
-        $user->profile->education = $data['education'];
-        $user->profile->education_title = $data['education_title'];
-        $user->profile->address = $data['address'];
-        $user->profile->coach_rate = $data['coach_rate'];
-        $user->profile->covered_area = $data['covered_area'];
-        $user->profile->education = $data['education'];
-        $user->profile->education_title = $data['education_title'];
-        $user->profile->experiences = $data['experiences'];
-        $user->profile->expertise = $data['expertise'];
-        $user->profile->maim = $data['maim'];
+
+        $user->mobile = $data['mobile'];
+        $user->email = $data['email'];
+        $user->save();
+
+        $user->profile->first_name = $data['profile']['first_name'];
+        $user->profile->last_name = $data['profile']['last_name'];
+        $user->profile->birth_date = $data['profile']['birth_date'];
+        $user->profile->height = (float) $data['profile']['height'];
+        $user->profile->city_id = $data['profile']['city_id'];
+        $user->profile->avatar = $avatar_url;
+        $user->profile->weight = $data['profile']['weight'];
+        $user->profile->appetite = $data['profile']['appetite'];
+        $user->profile->blood_type = $data['profile']['blood_type'];
+        $user->profile->budget = $data['profile']['budget'];
+        $user->profile->diseases = $data['profile']['diseases'];
+        $user->profile->education = $data['profile']['education'];
+        $user->profile->education_title = $data['profile']['education_title'];
+        $user->profile->address = $data['profile']['address'];
+        $user->profile->coach_rate = $data['profile']['coach_rate'];
+        $user->profile->covered_area = $data['profile']['covered_area'];
+        $user->profile->education = $data['profile']['education'];
+        $user->profile->education_title = $data['profile']['education_title'];
+        $user->profile->experiences = $data['profile']['experiences'];
+        $user->profile->expertise = $data['profile']['expertise'];
+        $user->profile->maim = $data['profile']['maim'];
 
         $user->profile->save();
 

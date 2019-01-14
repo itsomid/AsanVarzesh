@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Panel;
 
+use App\Helpers\Helper;
 use App\Model\Calendar;
 use App\Model\Profiles;
 use App\User;
@@ -55,20 +56,21 @@ class AthletesController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $helper = new Helper();
 
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'city.required'=>'شهر را انتخاب کنید',
-            'avatar.required'=>'آواتار را انتخاب کنید',
+            'avatar.mimes'=>'فرمت آواتار درست نیست',
         );
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|numeric|unique:users',
             'first_name' => 'required',
             'last_name' => 'required',
-            'city_id' => 'required',
-            'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+            'city' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png,gif'
         ],$messsages);
 
 
@@ -79,24 +81,27 @@ class AthletesController extends Controller
         }
 
         $user = new User();
-        $user->mobile = $data['mobile'];
+        $user->mobile = $helper->convert($data['mobile']);
         $user->status = 'active';
         $user->code = 0;
-        $user->password = bcrypt($data['mobile']);
+        $user->password = bcrypt($helper->convert($data['mobile']));
 
         $user->save();
         $user->roles()->attach(2);
 
-        $ext = $request->avatar->getClientOriginalExtension();
-        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-        $avatar_url = 'storage/avatars'.$path;
+        if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
+            $ext = $request->avatar->getClientOriginalExtension();
+            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars'.$path;
+        } else {
+            $avatar_url = '';
+        }
 
         $profile = new Profiles();
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
         $profile->avatar = $avatar_url;
-        $profile->height = $data['height'];
         $profile->birth_date = $data['birth_date'];
         $profile->appetite = $data['appetite'];
         $profile->blood_type = $data['blood_type'];
@@ -106,10 +111,10 @@ class AthletesController extends Controller
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->gender = $data['gender'];
-        $profile->height = (float) $data['height'];
+        $profile->height = (float) $helper->convert($data['height']);
         $profile->maim = $data['maim'];
         $profile->military_services = $data['military_services'];
-        $profile->national_code = $data['national_code'];
+        $profile->national_code = $helper->convert($data['national_code']);
         $profile->save();
 
         return response()->json(['message' => 'کاربر جدید اضافه شد'],200);
