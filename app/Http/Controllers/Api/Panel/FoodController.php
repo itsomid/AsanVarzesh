@@ -36,7 +36,7 @@ class FoodController extends Controller
             'image.required'=>'تصویر را انتخاب کنید'
         );
         $validator = Validator::make($request->all(), [
-            'title' => 'required|numeric|unique:users',
+            'title' => 'required',
             'description' => 'required',
             'food_category_id' => 'required',
             'image' => 'mimes:jpeg,jpg,png,gif|required'

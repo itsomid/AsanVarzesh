@@ -8,6 +8,7 @@ use App\Model\Profiles;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class AthletesController extends Controller
@@ -97,6 +98,8 @@ class AthletesController extends Controller
             $avatar_url = '';
         }
 
+
+
         $profile = new Profiles();
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
@@ -123,24 +126,37 @@ class AthletesController extends Controller
     public function update(Request $request, $user_id)
     {
 
-        $data = $request->all();
+         $data = $request->all();
 
         $user = User::findorFail($user_id);
-        ///$user->mobile = $data['mobile'];
+        $user->mobile = $data['mobile'];
+        $user->email = $data['email'];
+        $user->save();
 
-        $user->profile->first_name = $data['first_name'];
-        $user->profile->last_name = $data['last_name'];
-        $user->profile->birth_date = $data['birth_date'];
-        $user->profile->height = (float) $data['height'];
-        $user->profile->city_id = $data['city_id'];
-        $user->profile->weight = $data['weight'];
-        $user->profile->appetite = $data['appetite'];
-        $user->profile->blood_type = $data['blood_type'];
-        $user->profile->budget = $data['budget'];
-        $user->profile->diseases = $data['diseases'];
-        $user->profile->education = $data['education'];
-        $user->profile->education_title = $data['education_title'];
-        $user->profile->maim = $data['maim'];
+
+        if(array_key_exists('new_avatar',$data) AND !is_null($data['new_avatar']) && $data['new_avatar'] != '') {
+            $ext = $request->new_avatar->getClientOriginalExtension();
+            $path = $request->new_avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars_new'.$path;
+        } else {
+            $avatar_url = $request->avatar;
+        }
+
+
+        $user->profile->first_name = $data['profile']['first_name'];
+        $user->profile->last_name = $data['profile']['last_name'];
+        $user->profile->birth_date = $data['profile']['birth_date'];
+        $user->profile->height = (float) $data['profile']['height'];
+        $user->profile->city_id = $data['profile']['city_id'];
+        $user->profile->weight = $data['profile']['weight'];
+        $user->profile->appetite = $data['profile']['appetite'];
+        $user->profile->blood_type = $data['profile']['blood_type'];
+        $user->profile->budget = $data['profile']['budget'];
+        $user->profile->diseases = $data['profile']['diseases'];
+        $user->profile->education = $data['profile']['education'];
+        $user->profile->avatar = $avatar_url;
+        $user->profile->education_title = $data['profile']['education_title'];
+        $user->profile->maim = $data['profile']['maim'];
 
         $user->profile->save();
 

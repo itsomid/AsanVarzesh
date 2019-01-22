@@ -66,6 +66,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('/coaches/{coach_id}/payments','Api\Panel\CoachController@payments');
             Route::get('/coaches/{coach_id}/sports','Api\Panel\CoachController@sports');
             Route::get('/coaches/{coach_id}/programs/{status?}','Api\Panel\CoachController@programs');
+            Route::post('/coaches/{coach_id}/upload-photo','Api\Panel\CoachController@uploadPhoto');
+
 
             Route::get('/doctors/{role_id}','Api\Panel\DoctorController@index');
             Route::get('/doctors/{role_id}/{doctor_id}','Api\Panel\DoctorController@show');
@@ -77,13 +79,15 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('/requests/store','Api\Panel\RequestsController@store');
 
             Route::get('/sports','Api\Panel\SportsController@index');
+            Route::get('/sports/{id}','Api\Panel\SportsController@show');
+            Route::post('/sports/{id}/update','Api\Panel\SportsController@update');
             Route::get('/federations','Api\Panel\SportsController@federations');
             Route::post('/sports/store','Api\Panel\SportsController@store');
 
             Route::get('conversations','Api\Panel\ConversationsController@index');
             Route::get('conversations/{id}','Api\Panel\ConversationsController@show');
             Route::get('conversations/unallowed-keywords','Api\Panel\ConversationsController@UnallowedKeywords');
-            Route::get('conversations/search/{keyword}','Api\Panel\ConversationsController@search');
+            Route::get('conversations/actions/search','Api\Panel\ConversationsController@search');
 
             Route::get('programs','Api\Panel\ProgramsController@index');
             Route::post('programs/store','Api\Panel\ProgramsController@store');
@@ -96,6 +100,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::get('meals','Api\Panel\MealsController@index');
 
             Route::get('packages','Api\Panel\PackageController@index');
+            Route::get('packages/{id}','Api\Panel\PackageController@show');
+            Route::post('packages/update/{id}','Api\Panel\PackageController@update');
             Route::post('packages/store','Api\Panel\PackageController@store');
 
             Route::get('foods','Api\Panel\FoodController@index');
@@ -104,6 +110,8 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
 
             Route::get('settings','Api\Panel\SettingController@index');
             Route::post('settings/store','Api\Panel\SettingController@store');
+
+            Route::get('payments','Api\Panel\PaymentControlller@index');
 
 
     }

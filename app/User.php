@@ -66,7 +66,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function sports()
     {
-        return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id');
+        return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id')->withPivot('price');
+    }
+
+    public function sport()
+    {
+        return $this->belongsToMany('App\Model\Sport','coach_sport','coach_id','sport_id')->withPivot('price');
     }
 
     public function profile() {
@@ -188,6 +193,16 @@ class User extends Authenticatable implements JWTSubject
     public function payments_by_coach()
     {
         return $this->hasMany('App\Model\Payment','coach_id','id');
+    }
+
+    public function payments_by_corrective()
+    {
+        return $this->hasMany('App\Model\Payment','corrective_doctor_id','id');
+    }
+
+    public function payments_by_nutrition()
+    {
+        return $this->hasMany('App\Model\Payment','nutrition_doctor_id','id');
     }
 
     public function getField() {

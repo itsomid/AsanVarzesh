@@ -62,7 +62,7 @@ class Programs extends Model
 
     public function conversations()
     {
-        return $this->belongsTo('App\Model\Conversation','program_id','id');
+        return $this->belongsTo('App\Model\Conversation','id','program_id');
     }
 
     public function subscription()

@@ -34,6 +34,18 @@ class Payment extends Model
         return $this->hasOne('App\User','id','coach_id');
     }
 
+    public function corrective()
+    {
+        return $this->hasOne('App\User','id','coach_id');
+    }
+
+    public function nutrition()
+    {
+        return $this->hasOne('App\User','id','coach_id');
+    }
+
+
+
     public function user()
     {
         return $this->hasOne('App\User','id','user_id');

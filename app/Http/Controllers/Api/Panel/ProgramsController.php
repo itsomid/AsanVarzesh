@@ -28,14 +28,14 @@ class ProgramsController extends Controller
         $data = $request->all();
 
 
-        $program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
-        if($program != null ) {
-            return response()->json(['message' => 'برای این ورزش یک برنامه پیش فرض ساخته شده است'],406);
-        }
+//        $program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
+//        if($program != null ) {
+//            return response()->json(['message' => 'برای این ورزش یک برنامه پیش فرض ساخته شده است'],406);
+//        }
 
         $conf = [
-            'trainings' => $data['trainings'],
-            'nutrition' => $data['nutrition']
+            'trainings' => \GuzzleHttp\json_decode($data['trainings'],true),
+            'nutrition' => \GuzzleHttp\json_decode($data['nutrition'],true)
         ];
 
         $orphan_program = new \App\Model\Programs();

@@ -6,6 +6,7 @@ use App\Model\Federation;
 use App\Model\Sport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class SportsController extends Controller
 {
@@ -23,6 +24,35 @@ class SportsController extends Controller
 
     }
 
+    public function show($id) {
+
+        $sport = Sport::find($id);
+        return $sport;
+
+    }
+
+    public function update(Request $request,$id) {
+
+        $data = $request->all();
+
+        if(array_key_exists('new_image',$data) AND !is_null($data['new_image']) && $data['new_image'] != '') {
+            $ext = $request->new_image->getClientOriginalExtension();
+            $path = $request->new_image->storeAs('/', microtime(time()).'.'.$ext, 'sports');
+            $image = 'storage/sports/'.$path;
+        } else {
+            $image = $data['image'];
+        }
+
+        $sport = Sport::find($id);
+        $sport->title = $data['title'];
+        $sport->description = $data['description'];
+        $sport->federation_id = $data['federation_id'];
+        $sport->image = $image;
+        $sport->save();
+        return [$sport,$data];
+
+    }
+
     public function store(Request $request)
     {
 
@@ -34,7 +64,7 @@ class SportsController extends Controller
             'federation_id.required'=>'فدراسیون را انتخاب کنید',
         );
         $validator = Validator::make($request->all(), [
-            'title' => 'required|numeric|unique:users',
+            'title' => 'required',
             'description' => 'required',
             'federation_id' => 'required'
         ],$messsages);
@@ -46,8 +76,8 @@ class SportsController extends Controller
         }
 
         $ext = $request->image->getClientOriginalExtension();
-        $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
-        $sport_url = 'storage/photos/'.$path;
+        $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'sports');
+        $sport_url = 'storage/sports/'.$path;
 
         $sport = new Sport();
         $sport->title = $data['title'];

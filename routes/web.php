@@ -478,7 +478,10 @@ Route::get('users',function () {
 
 Route::get('/discount-code',function() {
 
-    $promotions = \App\Model\Promotion::all(['code']);
-    return $promotions;
+//    $promotions = \App\Model\Promotion::all(['code']);
+//    return $promotions;
+    $program = \App\Model\Programs::with('coach','sport')->where('status','!=','orphan')->first();
+
 
 });
+

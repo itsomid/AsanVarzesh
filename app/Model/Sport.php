@@ -38,6 +38,15 @@ class Sport extends Model
         return $user = $this->hasOne('App\Model\Federation','id','federation_id');
     }
 
+    public function getImageAttribute()
+    {
+        if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
+            return url($this->attributes['image']);
+        }
+        return null;
+
+    }
+
     public function getUrlImageAttribute()
     {
         if($this->image == '') {

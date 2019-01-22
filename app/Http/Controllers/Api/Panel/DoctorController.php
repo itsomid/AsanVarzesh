@@ -110,12 +110,24 @@ class DoctorController extends Controller
         } else {
             $relation = 'programs_by_corrective_doctor';
         }
+
+        if($role_id == '4') {
+            $relation_payment = 'payments_by_nutrition';
+        } else {
+            $relation_payment = 'payments_by_corrective';
+        }
+
         $user = User::with([
+            'conversations.program.user.profile',
+            'conversations.program.coach.profile',
+            'conversations.program.sport',
+            'conversations.user.profile',
             'profile',$relation.'.sport',
             $relation.'.user.profile',
             $relation.'.coach.profile',
             $relation.'.corrective_doctor.profile',
             $relation.'.nutrition_doctor.profile',
+            $relation_payment.'.program.sport'
         ])->where('id',$coach_id)->first()->toArray();
 
         return response()->json($user,200);

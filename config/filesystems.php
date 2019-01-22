@@ -75,9 +75,19 @@ return [
             'root'   => storage_path('app/public/photos'), // previously storage_path();
         ],
 
+        'sports' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/sports'), // previously storage_path();
+        ],
+
         'videos' => [
             'driver' => 'local',
             'root'   => storage_path('app/public/videos'), // previously storage_path();
+        ],
+
+        'audios' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/audios'), // previously storage_path();
         ],
 
 

@@ -71,7 +71,7 @@ class CoachController extends Controller
         if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
             $ext = $request->avatar->getClientOriginalExtension();
             $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-            $avatar_url = 'storage/avatars'.$path;
+            $avatar_url = 'storage/avatars/'.$path;
         } else {
             $avatar_url = '';
         }
@@ -110,18 +110,15 @@ class CoachController extends Controller
         $data = $request->all();
 
         $messsages = array(
-            //'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
-            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
-            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            //'city.required'=>'شهر را انتخاب کنید',
-            'avatar.required'=>'آواتار را انتخاب کنید',
+            'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'profile.new_avatar.mimes'=>'فرمت آواتار درست نیست',
         );
         $validator = Validator::make($request->all(), [
             //'mobile' => 'required|numeric|unique:users',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            //'city' => 'required',
-            //'avatar' => 'mimes:jpeg,jpg,png,gif|required'
+            'profile.first_name' => 'required',
+            'profile.last_name' => 'required',
+            'profile.new_avatar' => 'mimes:jpeg,jpg,png,gif'
         ],$messsages);
 
         if ($validator->fails()) {
@@ -131,27 +128,29 @@ class CoachController extends Controller
         }
 
         $user = User::findorFail($user_id);
+        $user->mobile = $data['mobile'];
+        $user->save();
 
-        $user->profile->first_name = $data['first_name'];
-        $user->profile->last_name = $data['last_name'];
-        $user->profile->birth_date = $data['birth_date'];
-        $user->profile->height = (float) $data['height'];
-        $user->profile->city_id = $data['city_id'];
-        $user->profile->weight = $data['weight'];
-        $user->profile->appetite = $data['appetite'];
-        $user->profile->blood_type = $data['blood_type'];
-        $user->profile->budget = $data['budget'];
-        $user->profile->diseases = $data['diseases'];
-        $user->profile->education = $data['education'];
-        $user->profile->education_title = $data['education_title'];
-        $user->profile->address = $data['address'];
-        $user->profile->coach_rate = $data['coach_rate'];
-        $user->profile->covered_area = $data['covered_area'];
-        $user->profile->education = $data['education'];
-        $user->profile->education_title = $data['education_title'];
-        $user->profile->experiences = $data['experiences'];
-        $user->profile->expertise = $data['expertise'];
-        $user->profile->maim = $data['maim'];
+        $user->profile->first_name = $data['profile']['first_name'];
+        $user->profile->last_name = $data['profile']['last_name'];
+        $user->profile->birth_date = $data['profile']['birth_date'];
+        $user->profile->height = (float) $data['profile']['height'];
+        $user->profile->city_id = $data['profile']['city_id'];
+        $user->profile->weight = $data['profile']['weight'];
+        $user->profile->appetite = $data['profile']['appetite'];
+        $user->profile->blood_type = $data['profile']['blood_type'];
+        $user->profile->budget = $data['profile']['budget'];
+        $user->profile->diseases = $data['profile']['diseases'];
+        $user->profile->education = $data['profile']['education'];
+        $user->profile->education_title = $data['profile']['education_title'];
+        $user->profile->address = $data['profile']['address'];
+        $user->profile->coach_rate = $data['profile']['coach_rate'];
+        $user->profile->covered_area = $data['profile']['covered_area'];
+        $user->profile->education = $data['profile']['education'];
+        $user->profile->education_title = $data['profile']['education_title'];
+        $user->profile->experiences = $data['profile']['experiences'];
+        $user->profile->expertise = $data['profile']['expertise'];
+        $user->profile->maim = $data['profile']['maim'];
 
         $user->profile->save();
 
@@ -163,6 +162,10 @@ class CoachController extends Controller
     {
 
         $user = User::with([
+            'conversations.program.user.profile',
+            'conversations.program.coach.profile',
+            'conversations.program.sport',
+            'conversations.user.profile',
             'profile',
             'programs_by_coach.sport',
             'programs_by_coach.user.profile',
@@ -208,5 +211,34 @@ class CoachController extends Controller
 
         return $programs;
     }
+
+    public function uploadPhoto(Request $request,$user_id) {
+
+        $user = User::find($user_id);
+
+        $validator = Validator::make($request->all(), [
+            'photo' => 'required|image'
+        ]);
+
+        $ext = $request->photo->getClientOriginalExtension();
+        $path = $request->photo->storeAs('/', $user->id.'-'.md5(microtime()).'.'.$ext, 'photos');
+        $url = '/storage/photos/'.$path;
+
+        $profile = $user->profile;
+        $photos = $profile->photos;
+        if($photos == null) {
+            $photos = [];
+        }
+        array_push($photos,$url);
+
+        $profile->photos = $photos;
+        $profile->save();
+
+        return response()->json([
+            'message' => 'آلبوم عکس شما به روز شد.'
+        ],200);
+
+    }
+
 
 }

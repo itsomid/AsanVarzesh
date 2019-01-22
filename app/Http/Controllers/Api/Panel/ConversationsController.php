@@ -28,10 +28,10 @@ class ConversationsController extends Controller
 
     }
 
-    public function search($keyword)
+    public function search(Request $request)
     {
-
-        $messages = Message::with(['conversation','user.profile'])->where('text','like','%'.$keyword.'%')->orderby('id','DESC')->get();
+        $data = $request->all();
+        $messages = Message::with(['conversation','user.profile'])->where('text','like','%'.$data['keyword'].'%')->orderby('id','DESC')->get();
 
         return response()->json($messages,200);
 

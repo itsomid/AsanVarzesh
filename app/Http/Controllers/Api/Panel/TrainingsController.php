@@ -48,28 +48,46 @@ class TrainingsController extends Controller
 
         if(array_key_exists('new_image',$data)) {
             $ext = $request->new_image->getClientOriginalExtension();
-            $path = $request->new_image->storeAs('/', md5(time()).'.'.$ext, 'photos');
-            $training_image = 'storage/photos/'.$path;
+            $path = $request->new_image->storeAs('/', md5(time()) . '.' . $ext, 'photos');
+            $image = 'storage/photos/' . $path;
         } else {
-            $training_image = $data['image'];
+            $image = $data['image'];
         }
 
         if(array_key_exists('new_attachment',$data)) {
             $ext = $request->new_attachment->getClientOriginalExtension();
-            $path = $request->new_attachment->storeAs('/', md5(time()).'.'.$ext, 'videos');
-            $video_image = 'storage/videos/'.$path;
+            $path = $request->new_attachment->storeAs('/', md5(time()) . '.' . $ext, 'videos');
+            $video = 'storage/videos/' . $path;
         } else {
-            $video_image = $data['attachment'];
+            $video = $data['attachment'];
+        }
+
+        if(array_key_exists('new_audio_short',$data)) {
+            $ext = $request->new_audio_short->getClientOriginalExtension();
+            $path = $request->new_audio_short->storeAs('/', md5(time()) . '.' . $ext, 'audios');
+            $audio_short = 'storage/audios/' . $path;
+        } else {
+            $audio_short = $data['audio_short'];
+        }
+
+        if(array_key_exists('new_audio_full',$data)) {
+            $ext = $request->new_audio_full->getClientOriginalExtension();
+            $path = $request->new_audio_full->storeAs('/', md5(time()) . '.' . $ext, 'audios');
+            $audio_full = 'storage/audios/' . $path;
+        } else {
+            $audio_full = $data['audio_full'];
         }
 
         $training = Training::find($id);
         $training->title = $data['title'];
         $training->sport_id = $data['sport_id'];
-        $training->attachment = $video_image;
         $training->difficulty = $data['difficulty'];
         $training->details = $data['details'];
         $training->attribute = json_decode($data['attribute']);
-        $training->image = $training_image;
+        $training->attachment = $video;
+        $training->audio_full = $audio_full;
+        $training->audio_short = $audio_short;
+        $training->image = $image;
         $training->save();
 
 
@@ -85,17 +103,17 @@ class TrainingsController extends Controller
         $messsages = array(
             'title.required'=>'پرکردن فیلد عنوان الزامی ست',
             'sport_id.required'=>'انتخاب ورزش الزامی ست',
-            'image.required'=>'تصویر را انتخاب کنید',
-            'attachment.required'=>'ویدیو را انتخاب کنید',
-            'difficulty.required'=>'میزان سختی را انتخاب کنید',
+            //'image.required'=>'تصویر را انتخاب کنید',
+            //'attachment.required'=>'ویدیو را انتخاب کنید',
+            //'difficulty.required'=>'میزان سختی را انتخاب کنید',
         );
 
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'sport_id' => 'required',
             'image' => 'required',
-            'attachment' => 'required',
-            'difficulty' =>'required',
+            //'attachment' => 'required',
+            //'difficulty' =>'required',
         ],$messsages);
 
         if ($validator->fails()) {
@@ -104,23 +122,48 @@ class TrainingsController extends Controller
 
         }
 
+        if(array_key_exists('image',$data)) {
+            $ext = $request->image->getClientOriginalExtension();
+            $path = $request->image->storeAs('/', md5(time()) . '.' . $ext, 'photos');
+            $image = 'storage/photos/' . $path;
+        } else {
+            $image = '';
+        }
 
-        $ext = $request->image->getClientOriginalExtension();
-        $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'photos');
-        $training_image = 'storage/photos/'.$path;
+        if(array_key_exists('attachment',$data)) {
+            $ext = $request->attachment->getClientOriginalExtension();
+            $path = $request->attachment->storeAs('/', md5(time()) . '.' . $ext, 'videos');
+            $video = 'storage/videos/' . $path;
+        } else {
+            $video = '';
+        }
 
-        $ext = $request->attachment->getClientOriginalExtension();
-        $path = $request->attachment->storeAs('/', md5(time()).'.'.$ext, 'videos');
-        $video_image = 'storage/videos/'.$path;
+        if(array_key_exists('audio_short',$data)) {
+            $ext = $request->audio_short->getClientOriginalExtension();
+            $path = $request->audio_short->storeAs('/', md5(time()) . '.' . $ext, 'audios');
+            $audio_short = 'storage/audios/' . $path;
+        } else {
+            $audio_short = '';
+        }
+
+        if(array_key_exists('audio_full',$data)) {
+            $ext = $request->audio_full->getClientOriginalExtension();
+            $path = $request->audio_full->storeAs('/', md5(time()) . '.' . $ext, 'audios');
+            $audio_full = 'storage/audios/' . $path;
+        } else {
+            $audio_full = '';
+        }
 
         $training = new Training();
         $training->title = $data['title'];
         $training->sport_id = $data['sport_id'];
-        $training->attachment = $video_image;
+        $training->attachment = $video;
+        $training->audio_full = $audio_full;
+        $training->audio_short = $audio_short;
+        $training->image = $image;
         $training->difficulty = $data['difficulty'];
         $training->details = $data['details'];
         $training->attribute = json_decode($data['attribute']);
-        $training->image = $training_image;
         $training->save();
 
         return response()->json(['message' => 'تمرین جدید اضافه شد'],200);

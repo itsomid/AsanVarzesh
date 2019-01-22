@@ -54,4 +54,22 @@ class Training extends Model
 
     }
 
+    public function getAudioShortAttribute()
+    {
+        if($this->attributes['audio_short'] != null OR $this->attributes['audio_short'] != '') {
+            return url($this->attributes['audio_short']);
+        }
+        return null;
+
+    }
+
+    public function getAudioFullAttribute()
+    {
+        if($this->attributes['audio_full'] != null OR $this->attributes['audio_full'] != '') {
+            return url($this->attributes['audio_full']);
+        }
+        return null;
+
+    }
+
 }
