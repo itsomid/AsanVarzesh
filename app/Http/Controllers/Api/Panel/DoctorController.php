@@ -31,6 +31,8 @@ class DoctorController extends Controller
     {
 
         $data = $request->all();
+        $helper = new Helper();
+        $data['mobile'] = $helper->convert($data['mobile']);
 
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',

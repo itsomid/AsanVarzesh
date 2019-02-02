@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Panel;
 
+use App\Helpers\Helper;
 use App\Model\Profiles;
 use App\Model\Programs;
 use App\User;
@@ -27,7 +28,8 @@ class CoachController extends Controller
     {
 
         $data = $request->all();
-
+        $helper = new Helper();
+        $data['mobile'] = $helper->convert($data['mobile']);
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'mobile.unique' => 'تلفن همراه تکراریست',
@@ -108,7 +110,8 @@ class CoachController extends Controller
     {
 
         $data = $request->all();
-
+        $helper = new Helper();
+        $data['mobile'] = $helper->convert($data['mobile']);
         $messsages = array(
             'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',

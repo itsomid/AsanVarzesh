@@ -58,7 +58,7 @@ class AthletesController extends Controller
     {
         $data = $request->all();
         $helper = new Helper();
-
+        $data['mobile'] = $helper->convert($data['mobile']);
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'first_name.required'=>'پرکردن فیلد نام الزامی ست',
@@ -126,8 +126,9 @@ class AthletesController extends Controller
     public function update(Request $request, $user_id)
     {
 
-         $data = $request->all();
-
+        $data = $request->all();
+        $helper = new Helper();
+        $data['mobile'] = $helper->convert($data['mobile']);
         $user = User::findorFail($user_id);
         $user->mobile = $data['mobile'];
         $user->email = $data['email'];
