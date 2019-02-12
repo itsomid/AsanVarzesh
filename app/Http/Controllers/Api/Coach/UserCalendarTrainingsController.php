@@ -89,9 +89,9 @@ class UserCalendarTrainingsController extends Controller
     public function createItem(Request $request) {
         $data = $request->all();
 
-        $calendar = new Calendar();
 
         foreach ($data['items'] as $item) {
+            $calendar = new Calendar();
             $program = Programs::find($item['program_id']);
             $resource_calendar_item = Calendar::where('program_id',$item['program_id'])->where('day_number',$item['day_number'])->first();
             $calendar->day_number = $item['day_number'];
@@ -106,7 +106,6 @@ class UserCalendarTrainingsController extends Controller
             $calendar->user_id = $program->user_id;
             $calendar->save();
         }
-
 
         return response()->json([
             'message' => 'آیتم جدید اضافه شد'
