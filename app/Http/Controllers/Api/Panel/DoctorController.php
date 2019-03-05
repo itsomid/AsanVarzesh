@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Panel;
 
+use App\Helpers\Helper;
 use App\Model\Profiles;
 use App\Model\Programs;
 use App\User;
@@ -72,7 +73,7 @@ class DoctorController extends Controller
         if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
             $ext = $request->avatar->getClientOriginalExtension();
             $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-            $avatar_url = 'storage/avatars'.$path;
+            $avatar_url = 'storage/avatars/'.$path;
         } else {
             $avatar_url = '';
         }
@@ -95,6 +96,7 @@ class DoctorController extends Controller
         $profile->height = !isset($data['height']) ? 0 : $data['height'];
         $profile->national_code = !isset($data['national_code']) ? 0 : $data['national_code'];
         $profile->weight = !isset($data['weight']) ? 0 : $data['weight'];
+        $profile->photos = [];
         $profile->save();
 
 

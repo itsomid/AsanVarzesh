@@ -108,15 +108,15 @@ class AthletesController extends Controller
         $profile->birth_date = $data['birth_date'];
         $profile->appetite = $data['appetite'];
         $profile->blood_type = $data['blood_type'];
-        $profile->budget = $data['budget'];
+        $profile->budget = array_key_exists('budget',$data) ? $data['budget'] : '';
         $profile->city_id = $data['city'];
-        $profile->diseases = $data['diseases'];
+        $profile->diseases = array_key_exists('diseases',$data) ? $data['diseases'] : '';
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->gender = $data['gender'];
         $profile->height = (float) $helper->convert($data['height']);
-        $profile->maim = $data['maim'];
-        $profile->military_services = $data['military_services'];
+        $profile->maim = array_key_exists('maim',$data) ? $data['maim'] : '';
+        $profile->military_services = array_key_exists('military_services',$data);
         $profile->national_code = $helper->convert($data['national_code']);
         $profile->save();
 

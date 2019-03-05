@@ -25,7 +25,6 @@ class AdminController extends Controller
     {
 
         $data = $request->all();
-
         $messsages = array(
 
             'email.required'=>'پرکردن فیلد ایمیل الزامی ست',
@@ -75,7 +74,7 @@ class AdminController extends Controller
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
         $profile->city_id = $data['city'];
-        $profile->address = $data['address'];
+        $profile->address = array_key_exists('address',$data) ? $data['address'] : '';
         $profile->gender = $data['gender'];
         $profile->save();
 
@@ -90,13 +89,12 @@ class AdminController extends Controller
     {
 
         $data = $request->all();
-
         $messsages = array(
             'mobile.required'=>'پرکردن فیلد موبایل الزامی ست',
             'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
-            'profile.city_id.required'=>'شهر را انتخاب کنید',
-            'profile.new_avatar.mimes'=>'فرمت آواتار درست نیست',
+            'profile.city_id.required' => 'شهر را انتخاب کنید',
+            'new_avatar.mimes' => 'فرمت آواتار درست نیست',
         );
 
         $validator = Validator::make($request->all(), [
@@ -104,7 +102,7 @@ class AdminController extends Controller
             'profile.first_name' => 'required',
             'profile.last_name' => 'required',
             'profile.city_id' => 'required',
-            'profile.new_avatar' => 'mimes:jpeg,jpg,png,gif'
+            'new_avatar' => 'mimes:jpeg,jpg,png,gif'
         ],$messsages);
 
         if ($validator->fails()) {
@@ -114,7 +112,7 @@ class AdminController extends Controller
         }
 
         $user = User::findorFail($user_id);
-        if(array_key_exists('new_avatar',$data['profile']) && !is_null($data['profile']['new_avatar']) && $data['profile']['new_avatar'] != '') {
+        if(array_key_exists('new_avatar',$data) && !is_null($data['new_avatar']) && $data['new_avatar'] != '') {
             $ext = $request->new_avatar->getClientOriginalExtension();
             $path = $request->new_avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
             $avatar_url = 'storage/avatars'.$path;

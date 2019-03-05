@@ -57,8 +57,6 @@ class CoachController extends Controller
 
         }
 
-
-
         $user = new User();
         $user->mobile = $data['mobile'];
         $user->password = bcrypt($data['mobile']);
@@ -96,7 +94,9 @@ class CoachController extends Controller
         $profile->gender = $data['gender'];
         $profile->height = $data['height'];
         $profile->national_code = $data['national_code'];
+
         $profile->weight = $data['weight'];
+        $profile->photos = [];
         $profile->save();
 
 
@@ -112,6 +112,8 @@ class CoachController extends Controller
         $data = $request->all();
         $helper = new Helper();
         $data['mobile'] = $helper->convert($data['mobile']);
+        $user = User::findorFail($user_id);
+
         $messsages = array(
             'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
@@ -130,12 +132,21 @@ class CoachController extends Controller
 
         }
 
+        if(array_key_exists('new_avatar',$data) AND !is_null($data['new_avatar']) && $data['new_avatar'] != '') {
+            $ext = $request->new_avatar->getClientOriginalExtension();
+            $path = $request->new_avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+            $avatar_url = 'storage/avatars/'.$path;
+        } else {
+            $avatar_url = $data['profile']['avatar'];
+        }
+
         $user = User::findorFail($user_id);
         $user->mobile = $data['mobile'];
         $user->save();
 
         $user->profile->first_name = $data['profile']['first_name'];
         $user->profile->last_name = $data['profile']['last_name'];
+        $user->profile->avatar = $avatar_url;
         $user->profile->birth_date = $data['profile']['birth_date'];
         $user->profile->height = (float) $data['profile']['height'];
         $user->profile->city_id = $data['profile']['city_id'];
@@ -151,10 +162,10 @@ class CoachController extends Controller
         $user->profile->covered_area = $data['profile']['covered_area'];
         $user->profile->education = $data['profile']['education'];
         $user->profile->education_title = $data['profile']['education_title'];
-        $user->profile->experiences = $data['profile']['experiences'];
+        $user->profile->experiences = array_key_exists('experiences',$data['profile']) ? $data['profile']['experiences'] : '';
         $user->profile->expertise = $data['profile']['expertise'];
         $user->profile->maim = $data['profile']['maim'];
-
+        $user->profile->military_services = $data['profile']['military_services'];
         $user->profile->save();
 
         return response()->json(['message' => 'پروفایل کاربر ویرایش شد'],200);

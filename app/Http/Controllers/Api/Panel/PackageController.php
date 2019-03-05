@@ -65,7 +65,6 @@ class PackageController extends Controller
             $package->foods()->attach($food['food_id'],['title' => $data['title'],'unit' => $food['unit'],'size' => $food['size']]);
         }
 
-
         return response()->json(['message' => '','package' => $package],200);
 
 
@@ -106,7 +105,7 @@ class PackageController extends Controller
         $package->description = $data['description'];
         $package->how_to_cooking = $data['how_to_cooking'];
         $package->image = $url;
-        return $package->nutritional_value = $this->nutValues(\GuzzleHttp\json_decode($data['foods'],1));;
+        $package->nutritional_value = $this->nutValues(\GuzzleHttp\json_decode($data['foods'],1));;
         $package->save();
 
 
