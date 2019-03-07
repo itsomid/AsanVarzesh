@@ -24,20 +24,25 @@ class CoachController extends Controller
         $capacity_full = $request->capacity_full;
         $by_price = $request->price;
 
-        return $sports = Sport::with(['coaches.profile' =>
+        $sports = Sport::with(['coaches.profile' =>
             function($query) use ($keywords) {
 
-                $query->where('keywords','like','%'.$keywords.'%');
+                ///$query->where('keywords','like','%'.$keywords.'%');
 
             }])->where('id',$sport_id)->first();
 
         $coaches = [];
 
+        return $sports->coaches;
+
         foreach ($sports->coaches as $coach) {
             if($coach['profile']) {
+
                 array_push($coaches,$coach->profile);
             }
         }
+
+
 
         return response()->json($coaches,200);
 

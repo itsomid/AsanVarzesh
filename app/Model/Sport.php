@@ -60,13 +60,22 @@ class Sport extends Model
     public function gethighestPriceAttribute()
     {
         $coach_sport = Coach_sport::whereRaw('price = (select max(`price`) from coach_sport)')->first(['price']);
-        return $coach_sport->price;
+        if(count($coach_sport) > 0) {
+            return $coach_sport->price;
+        } else {
+            return 0;
+        }
     }
 
     public function getlowestPriceAttribute()
     {
         $coach_sport = Coach_sport::whereRaw('price = (select min(`price`) from coach_sport)')->first(['price']);
-        return $coach_sport->price;
+        if(count($coach_sport) > 0) {
+            return $coach_sport->price;
+        } else {
+            return 0;
+        }
+
     }
 
     public function trainings() {
