@@ -76,6 +76,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
             Route::post('profile/add-to-basket','Api\Coach\ProfileController@addtoBasket');
             Route::post('profile/upload-photo','Api\Coach\ProfileController@uploadImage');
+            Route::post('profile/remove-photo','Api\Coach\ProfileController@removeImage');
             Route::post('profile/upload-avatar','Api\Coach\ProfileController@setAvatar');
 
 

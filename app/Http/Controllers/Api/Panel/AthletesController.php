@@ -88,15 +88,15 @@ class AthletesController extends Controller
         $user->password = bcrypt($helper->convert($data['mobile']));
 
         $user->save();
-        $user->roles()->attach(2);
+        $user->roles()->attach(2);if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
+        $ext = $request->avatar->getClientOriginalExtension();
+        $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
+        $avatar_url = 'storage/avatars'.$path;
+    } else {
+        $avatar_url = '';
+    }
 
-        if(array_key_exists('avatar',$data) AND !is_null($data['avatar']) && $data['avatar'] != '') {
-            $ext = $request->avatar->getClientOriginalExtension();
-            $path = $request->avatar->storeAs('/', $user->id.'.'.$ext, 'avatars');
-            $avatar_url = 'storage/avatars'.$path;
-        } else {
-            $avatar_url = '';
-        }
+
 
 
 

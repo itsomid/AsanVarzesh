@@ -144,6 +144,8 @@ class CoachController extends Controller
         $user->mobile = $data['mobile'];
         $user->save();
 
+
+
         $user->profile->first_name = $data['profile']['first_name'];
         $user->profile->last_name = $data['profile']['last_name'];
         $user->profile->avatar = $avatar_url;

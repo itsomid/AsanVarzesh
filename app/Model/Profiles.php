@@ -26,7 +26,8 @@ class Profiles extends Model
     ];
 
     protected $appends = [
-        'weight'
+        'weight',
+        'nourlphotos'
     ];
 
 
@@ -70,6 +71,10 @@ class Profiles extends Model
 
     }
 
+    public function getNourlphotosAttribute() {
+        return \GuzzleHttp\json_decode($this->attributes['photos'],1);
+    }
+
     public function user()
     {
         return $this->hasOne('App\User','id','user_id');
@@ -99,6 +104,5 @@ class Profiles extends Model
     {
         return $this->belongsToMany('App\Model\Sport');
     }
-
 
 }

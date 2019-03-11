@@ -162,4 +162,23 @@ class ProfileController extends Controller
         }
 
     }
+
+    public function removeImage(Request $request) {
+        $data = $request->all();
+        $user = auth('api')->user();
+
+        //$profile = $user->profile;
+        $photos = $user->profile->nourlphotos;
+
+        $new_photos = [];
+        foreach ($photos as $photo) {
+            if($photo != $data['photo']) {
+                array_push($new_photos,$photo);
+            }
+        }
+
+        $profile = Profiles::find($user->profile->id);
+        $profile->photos = $new_photos;
+        $profile->save();
+    }
 }

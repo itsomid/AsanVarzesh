@@ -37,6 +37,14 @@ class AuthController extends Controller
 
         }
 
+        foreach($user->roles as $role) {
+            if($role->name != 'coach' || $role->name != 'nutrition-doctor' || $role->name != 'corrective-doctor') {
+                return response()->json([
+                    'message' => 'شما مجاز نیستید'
+                ],400);
+            }
+        }
+
         $code = $this->generateLoginCode();
         $user->code = $code;
         $user->save();

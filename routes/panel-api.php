@@ -48,6 +48,11 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
 
             Route::get('/profile','Api\Panel\ProfileController@index');
 
+            Route::get('/people/','Api\Panel\PeopleController@index');
+            Route::get('/people/{user_id}','Api\Panel\PeopleController@show');
+            Route::post('/people/update/{user_id}','Api\Panel\PeopleController@update');
+            Route::post('/people/store','Api\Panel\PeopleController@store');
+
             Route::get('/athletes','Api\Panel\AthletesController@index');
             Route::get('/athletes/{user_id}','Api\Panel\AthletesController@show');
             Route::post('/athletes/store','Api\Panel\AthletesController@store');

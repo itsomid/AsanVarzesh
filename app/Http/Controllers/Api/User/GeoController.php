@@ -42,13 +42,15 @@ class GeoController extends Controller
 
     public function getCities($state_id = null) {
 
-        if($state_id != null) {
-            $state = States::find($state_id);
-            return $state->cities;
-        } else {
-            $cities = Cities::all();
-            return $cities;
-        }
+//        if($state_id != null) {
+//            $state = States::find($state_id);
+//            return $state->cities;
+//        } else {
+//            $cities = Cities::all();
+//            return $cities;
+//        }
+
+        return States::all();
 
     }
 }
