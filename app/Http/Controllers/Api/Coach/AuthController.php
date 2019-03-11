@@ -140,9 +140,7 @@ class AuthController extends Controller
         $can = false;
         foreach ($roles as $role) {
             $roleName = $role->name;
-            if($roleName != 'coach' OR $roleName != 'nutrition-doctor' OR $roleName != 'corrective-doctor') {
-
-            } else {
+            if($roleName == 'coach' OR $roleName == 'nutrition-doctor' OR $roleName == 'corrective-doctor') {
                 $can = true;
             }
         }
