@@ -67,12 +67,12 @@ class Profiles extends Model
             }
             return $photos;
         }
-        return null;
+        return [];
 
     }
 
     public function getNourlphotosAttribute() {
-        return \GuzzleHttp\json_decode($this->attributes['photos'],1);
+        return $this->attributes['photos'];
     }
 
     public function user()

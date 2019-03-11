@@ -24,17 +24,7 @@ class AuthController extends Controller
         $user = User::where('mobile',$request['username'])->first();
         $type = "registered before";
         if(!$user) {
-
-            /*$user = new User();
-            $user->mobile = $request->username;
-            $user->save();
-
-            // Add Role to User
-            $user->roles()->attach(2);
-            $type = 'new user';*/
-
             return response()->json(['status' => 404,'message' => 'این شماره موبایل یافت نشد'],404);
-
         }
 
         foreach($user->roles as $role) {

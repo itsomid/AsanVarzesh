@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Model\Profiles;
 use App\Model\Subscription;
 use App\User;
 use Carbon\Carbon;
@@ -35,13 +36,33 @@ class AuthController extends Controller
             $user->roles()->attach(2);
             $type = 'new user';
 
+            // Add Profile
+            $profile = new Profiles();
+            $profile->user_id = $user->id;
+            $profile->first_name = '';
+            $profile->last_name = '';
+            $profile->birth_date = '';
+            $profile->blood_type = '+A';
+            $profile->diseases = 0;
+            $profile->maim = 0;
+            $profile->city_id = 117;
+            $profile->address = '';
+            $profile->nutrition_info = '';
+            $profile->gender = 'male';
+            $profile->national_code = '';
+            $profile->education = '';
+            $profile->education_title = '';
+            $profile->height = 0;
+            $profile->weight = 0;
+            $profile->save();
+
             // Trial Subscription
-            $today = Carbon::today();
-            $subscription = new Subscription();
-            $subscription->user_id = $user->id;
-            $subscription->from = $today;
-            $subscription->to = $today->addDay(3);
-            $subscription->save();
+            // $today = Carbon::today();
+            // $subscription = new Subscription();
+            // $subscription->user_id = $user->id;
+            // $subscription->from = $today;
+            // $subscription->to = $today->addDay(3);
+            // $subscription->save();
 
         }
 
