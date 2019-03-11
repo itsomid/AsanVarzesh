@@ -74,6 +74,7 @@ class ProfileController extends Controller
         $profile->birth_date = $data['birth_date'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
+        $profile->national_code = $data['national_code'];
         $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->save();
 
