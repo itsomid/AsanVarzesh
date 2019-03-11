@@ -71,6 +71,9 @@ class ProfileController extends Controller
         $profile->gender = $data['gender'];
         $profile->height = $data['height'];
         $profile->weight = $data['weight'];
+        $profile->birth_date = $data['birth_date'];
+        $profile->education = $data['education'];
+        $profile->education_title = $data['education_title'];
         $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->save();
 
@@ -109,6 +112,7 @@ class ProfileController extends Controller
         $profile->last_name = $data['last_name'];
         $profile->height = $data['height'];
         $profile->blood_type = $data['blood_type'];
+        $profile->birth_date = $data['birth_date'];
         $profile->diseases = $data['diseases'];
         $profile->maim = $data['maim'];
         $profile->city_id = $data['city_id'];
@@ -153,7 +157,7 @@ class ProfileController extends Controller
 
             $ext = $request->avatar->getClientOriginalExtension();
             $path = $request->avatar->storeAs('/', $user->id . '.' . $ext, 'avatars');
-            $url = 'storage/avatars' . $path;
+            $url = 'storage/avatars/' . $path;
 
             $profile = Profiles::where('user_id', $user->id)->first();
             $profile->avatar = $url;
@@ -173,6 +177,8 @@ class ProfileController extends Controller
         }
 
     }
+
+
 
     public function saveStep(Request $request)
     {

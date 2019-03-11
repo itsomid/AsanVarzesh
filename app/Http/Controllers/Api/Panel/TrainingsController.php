@@ -88,6 +88,7 @@ class TrainingsController extends Controller
         $training->audio_full = $audio_full;
         $training->audio_short = $audio_short;
         $training->image = $image;
+        $training->enable = $data['enable'];
         $training->save();
 
 
