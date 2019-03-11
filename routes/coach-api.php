@@ -71,7 +71,7 @@ Route::group(['prefix' => '/v1'],function() {
 
 
             // Coach Profile
-            Route::get('profile','Api\Coach\ProfileController@index');
+            Route::get('profile/index','Api\Coach\ProfileController@index');
             Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
             Route::post('profile/add-to-basket','Api\Coach\ProfileController@addtoBasket');

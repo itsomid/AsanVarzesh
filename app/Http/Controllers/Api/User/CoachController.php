@@ -48,7 +48,7 @@ class CoachController extends Controller
 
     public function show($coach_id) {
 
-        $user = User::with('profile','sports')->where('id',$coach_id)->first();
+        $user = User::with('profile.city','sports')->where('id',$coach_id)->first();
         return response()->json($user,200);
 
     }

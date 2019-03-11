@@ -29,7 +29,7 @@ class ProfileController extends Controller
         }
 
         $user = User::with([
-            'profile',
+            'profile.city',
             'programs.corrective_doctor',
             'programs.nutrition_doctor',
             'programs.coach',
