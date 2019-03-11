@@ -29,8 +29,8 @@ class AuthController extends Controller
 
 
         foreach($user->roles as $role) {
-
-            if($role->name != 'coach') {
+            $roleName = $role->name;
+            if($roleName != 'coach' OR $roleName != 'nutrition-doctor' OR $roleName != 'corrective-doctor') {
                 return response()->json([
                     'message' => 'شما مجاز نیستید'
                 ],400);
