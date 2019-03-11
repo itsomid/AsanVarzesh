@@ -28,13 +28,19 @@ class AuthController extends Controller
         }
 
 
-        foreach($user->roles as $role) {
-            $roleName = $role->name;
-            if($roleName != 'coach' OR $roleName != 'nutrition-doctor' OR $roleName != 'corrective-doctor') {
-                return response()->json([
-                    'message' => 'شما مجاز نیستید'
-                ],400);
-            }
+//        foreach($user->roles as $role) {
+//            $roleName = $role->name;
+//            if($roleName != 'coach' OR $roleName != 'nutrition-doctor' OR $roleName != 'corrective-doctor') {
+//                return response()->json([
+//                    'message' => 'شما مجاز نیستید'
+//                ],400);
+//            }
+//        }
+
+        if(!$this->checkRoles($user->roles)) {
+            return response()->json([
+                'message' => 'شما مجاز نیستید'
+            ],400);
         }
 
         $code = $this->generateLoginCode();
@@ -128,5 +134,18 @@ class AuthController extends Controller
 
         return mt_rand(10000,999999);
 
+    }
+
+    protected function checkRoles($roles) {
+        $can = false;
+        foreach ($roles as $role) {
+            $roleName = $role->name;
+            if($roleName != 'coach' OR $roleName != 'nutrition-doctor' OR $roleName != 'corrective-doctor') {
+
+            } else {
+                $can = true;
+            }
+        }
+        return $can;
     }
 }
