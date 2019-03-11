@@ -27,6 +27,8 @@ class AuthController extends Controller
             return response()->json(['status' => 404,'message' => 'این شماره موبایل یافت نشد'],404);
         }
 
+        return $user->roles;
+
         foreach($user->roles as $role) {
             if($role->name != 'coach' || $role->name != 'nutrition-doctor' || $role->name != 'corrective-doctor') {
                 return response()->json([
