@@ -18,11 +18,18 @@ class PeopleController extends Controller
         $qs = $request;
         if(isset($qs['role_id'])) {
             $role_id = $qs['role_id'];
-            $users = User::with('profile.city')->whereHas('roles', function ($query) use ($role_id) {
+            $users = User::with('profile')->whereHas('profile',function($query) use ($request) {
+                if($request->has('keyword')) {
+                    $query->where('first_name','like','%'.$request->keyword.'%')
+                    ->orWhere('last_name','like','%'.$request->keyword.'%');
+                } else {
+                    $query;
+                }
+            })->whereHas('roles', function ($query) use ($role_id) {
                 $query->where('id', '=', $role_id);
             })->orderby('id','DESC')->paginate(5);
         } else {
-            $users = User::with('profile.city')->orderby('id','DESC')->paginate(5);
+            $users = User::with('profile')->orderby('id','DESC')->paginate(5);
         }
 
         return response()->json($users,200);
@@ -45,7 +52,6 @@ class PeopleController extends Controller
             'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'profile.city_id.required'=>'شهر را انتخاب کنید',
             'profile.avatar.image' => 'فرمت آواتار درست نیست',
-
         );
 
         $rules = [
@@ -246,7 +252,7 @@ class PeopleController extends Controller
         // Sync Coach Team, Sport & Price
         if($data['role_id'] == 3) {
 
-            $user->Coaches()->sync($data['user']['sport_id'],['price' => $data['user']['price']]);
+            $user->Coaches()->sync([$data['user']['sport_id'] => ['price' => $data['user']['price']]]);
 
 
         }
