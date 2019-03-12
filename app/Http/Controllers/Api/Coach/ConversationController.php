@@ -18,7 +18,7 @@ class ConversationController extends Controller
 
         return $user = User::with([
             'conversations_public.program.sport',
-            'conversations_public.user.profile',
+            'conversations_public.user.profile.city',
             'conversations_public.user.Roles',
             'conversations_public.lastMessage'
         ])->where('id',$coach->id)

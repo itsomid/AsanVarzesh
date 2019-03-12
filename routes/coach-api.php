@@ -45,7 +45,7 @@ Route::group(['prefix' => '/v1'],function() {
             Route::get('users/sports/{sport_id}','Api\Coach\SportTypeController@show');
 
             // Users
-            Route::get('users/fe/{user_id}','Api\Coach\UserProfileController@show');
+            Route::get('users/profile/{user_id}','Api\Coach\UserProfileController@show');
             Route::get('users/profile/{user_id}/diet','Api\Coach\UserProfileController@diet');
             Route::get('users/profile/{user_id}/training','Api\Coach\UserProfileController@trainings');
 
@@ -71,7 +71,7 @@ Route::group(['prefix' => '/v1'],function() {
 
 
             // Coach Profile
-            Route::get('profile','Api\Coach\ProfileController@index');
+            Route::get('profile/index','Api\Coach\ProfileController@index');
             Route::get('profile/team/{program_id?}','Api\Coach\ProfileController@team');
             Route::get('profile/basket','Api\Coach\ProfileController@basket');
             Route::post('profile/add-to-basket','Api\Coach\ProfileController@addtoBasket');

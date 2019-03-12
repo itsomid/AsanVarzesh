@@ -30,7 +30,7 @@ class AuthController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $profile = User::with('profile','Roles')->where('email',$request->email)->first();
+        $profile = User::with('profile.city','Roles')->where('email',$request->email)->first();
         return $this->respondWithToken($token,$profile);
 
 

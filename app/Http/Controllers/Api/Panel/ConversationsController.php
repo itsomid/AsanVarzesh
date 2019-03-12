@@ -12,14 +12,14 @@ class ConversationsController extends Controller
 
     public function index() {
 
-        $conversations = Conversation::with(['user.profile','program.sport','program.user.profile','program.coach.profile','lastMessage'])->orderby('id','DESC')->get();
+        $conversations = Conversation::with(['user.profile.city','program.sport','program.user.profile','program.coach.profile','lastMessage'])->orderby('id','DESC')->get();
         return response()->json($conversations,200);
 
     }
 
     public function show($id) {
 
-        $conversation = Conversation::with('program.sport','messages.user.profile')->where('id',$id)->first();
+        $conversation = Conversation::with('program.sport','messages.user.profile.city')->where('id',$id)->first();
         return $conversation;
     }
 
@@ -31,7 +31,7 @@ class ConversationsController extends Controller
     public function search(Request $request)
     {
         $data = $request->all();
-        $messages = Message::with(['conversation','user.profile'])->where('text','like','%'.$data['keyword'].'%')->orderby('id','DESC')->get();
+        $messages = Message::with(['conversation','user.profile.city'])->where('text','like','%'.$data['keyword'].'%')->orderby('id','DESC')->get();
 
         return response()->json($messages,200);
 

@@ -88,7 +88,7 @@ class SportTypeController extends Controller
                             ->where($field,$coach->id)
                             ->whereIn('status',['accept','active'])
                             ->orderby('id','DESC')
-                            ->with('user.profile')
+                            ->with('user.profile.city')
                             ->get();
 
         return $programs;

@@ -18,11 +18,11 @@ class PeopleController extends Controller
         $qs = $request;
         if(isset($qs['role_id'])) {
             $role_id = $qs['role_id'];
-            $users = User::with('profile')->whereHas('roles', function ($query) use ($role_id) {
+            $users = User::with('profile.city')->whereHas('roles', function ($query) use ($role_id) {
                 $query->where('id', '=', $role_id);
             })->orderby('id','DESC')->paginate(5);
         } else {
-            $users = User::with('profile')->orderby('id','DESC')->paginate(5);
+            $users = User::with('profile.city')->orderby('id','DESC')->paginate(5);
         }
 
         return response()->json($users,200);

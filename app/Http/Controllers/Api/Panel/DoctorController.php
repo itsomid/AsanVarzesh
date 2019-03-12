@@ -22,7 +22,7 @@ class DoctorController extends Controller
             $relation = 'programs_by_corrective_doctor';
         }
         $user_role = \App\Model\Role::find($role_id);
-        $doctors = $user_role->users()->with(['profile',$relation.'.sport',$relation.'.user.profile'])->orderby('id','DESC')->get();
+        $doctors = $user_role->users()->with(['profile.city',$relation.'.sport',$relation.'.user.profile'])->orderby('id','DESC')->get();
 
         return response()->json($doctors,200);
 
@@ -122,15 +122,15 @@ class DoctorController extends Controller
         }
 
         $user = User::with([
-            'conversations.program.user.profile',
-            'conversations.program.coach.profile',
+            'conversations.program.user.profile.city',
+            'conversations.program.coach.profile.city',
             'conversations.program.sport',
-            'conversations.user.profile',
+            'conversations.user.profile.city',
             'profile',$relation.'.sport',
-            $relation.'.user.profile',
-            $relation.'.coach.profile',
-            $relation.'.corrective_doctor.profile',
-            $relation.'.nutrition_doctor.profile',
+            $relation.'.user.profile.city',
+            $relation.'.coach.profile.city',
+            $relation.'.corrective_doctor.profile.city',
+            $relation.'.nutrition_doctor.profile.city',
             $relation_payment.'.program.sport'
         ])->where('id',$coach_id)->first()->toArray();
 
@@ -156,16 +156,16 @@ class DoctorController extends Controller
 
     public function athletes($dr_id)
     {
-        $programs = Programs::with('user.profile','sport')->where('corrective_doctor_id', $dr_id)->orWhere('nutrition_doctor_id',$dr_id)->orderby('id','DESC')->get();
+        $programs = Programs::with('user.profile.city','sport')->where('corrective_doctor_id', $dr_id)->orWhere('nutrition_doctor_id',$dr_id)->orderby('id','DESC')->get();
         return $programs;
     }
 
     public function programs($coach_id,$status = null)
     {
         if($status == null) {
-            $programs = Programs::with('user.profile','sport')->where('coach_id',$coach_id)->orderby('id','DESC')->get();
+            $programs = Programs::with('user.profile.city','sport')->where('coach_id',$coach_id)->orderby('id','DESC')->get();
         } else {
-            $programs = Programs::with('user.profile','sport')->where('status',$status)->where('coach_id',$coach_id)->orderby('id','DESC')->get();
+            $programs = Programs::with('user.profile.city','sport')->where('status',$status)->where('coach_id',$coach_id)->orderby('id','DESC')->get();
         }
 
         return $programs;

@@ -15,10 +15,10 @@ class ConversationSeeder extends Seeder
 
         // Conversation Group For Programs
         $programs = \App\Model\Programs::with([
-                            'user.profile',
-                            'coach.profile',
-                            'nutrition_doctor.profile',
-                            'corrective_doctor.profile'])
+                            'user.profile.city',
+                            'coach.profile.city',
+                            'nutrition_doctor.profile.city',
+                            'corrective_doctor.profile.city'])
                             ->where('status','!=','orphan')
                             ->take(5)
                             ->get();
