@@ -168,10 +168,10 @@ class ProfileController extends Controller
         $user = auth('api')->user();
 
         //$profile = $user->profile;
-        return $photos = $user->profile->nourlphotos;
+        $photos = $user->profile->nourlphotos;
 
         $new_photos = [];
-        foreach ($photos as $photo) {
+        foreach (\GuzzleHttp\json_decode($photos,1) as $photo) {
             if($photo != $data['photo']) {
                 array_push($new_photos,$photo);
             }
