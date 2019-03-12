@@ -12,9 +12,11 @@ class SportTypeController extends Controller
     public function index()
     {
         $user = auth('api')->user();
-        $role = $user->roles[0];
-        $allSports = [];
+        $role = $user->roles[0]->name;
+
         if($role == 'coach') {
+
+            $allSports = [];
             foreach ($user->sports as $sport) {
                 $programs_count = Programs::where('sport_id',$sport->id)
                     ->where('coach_id',$user->id)
@@ -36,9 +38,40 @@ class SportTypeController extends Controller
                 array_push($sports,$sport);
             }
 
-            return $sports;
+            $allSports = [];
+            foreach ($sports as $sport) {
+                $programs_count = Programs::where('sport_id',$sport->id)
+                    ->where('nutrition_doctor_id',$user->id)
+                    ->whereIn('status',['active','pending','accept'])
+                    ->count();
+                $sportArray = $sport->toArray();
+                $sportArray['number_of_users'] = $programs_count;
+                array_push($allSports,$sportArray);
+            }
+            return $allSports;
 
         } elseif($role == 'corrective-doctor') {
+
+            $programs = Programs::with('sport')->where('corrective_doctor_id',$user->id)
+                ->whereIn('status',['active','pending','accept'])
+                ->get();
+            $sports = [];
+            foreach ($programs as $program) {
+                $sport = $program->sport;
+                array_push($sports,$sport);
+            }
+
+            $allSports = [];
+            foreach ($sports as $sport) {
+                $programs_count = Programs::where('sport_id',$sport->id)
+                    ->where('corrective_doctor_id',$user->id)
+                    ->whereIn('status',['active','pending','accept'])
+                    ->count();
+                $sportArray = $sport->toArray();
+                $sportArray['number_of_users'] = $programs_count;
+                array_push($allSports,$sportArray);
+            }
+            return $allSports;
 
         }
 
