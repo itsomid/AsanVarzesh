@@ -21,7 +21,6 @@ class RequestsController extends Controller
         $programs = Programs::where('status','orphan')->get();
 
         foreach ($programs as $program) {
-
             $program = [
                 'user' => [
                     'id' => 2,

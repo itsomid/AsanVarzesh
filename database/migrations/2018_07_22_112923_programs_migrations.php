@@ -41,7 +41,7 @@ class ProgramsMigrations extends Migration
             $table->float('waist')->nullable();
             $table->string('place_for_sport')->nullable();
             $table->json('time_of_exercises')->nullable(); // Days of the week
-            $table->enum('level',['amateur','semi-professional','professional']);
+            $table->text('level')->nullable();
             $table->text('target')->nullable();
             $table->text('sport_habits')->nullable();
 

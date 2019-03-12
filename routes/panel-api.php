@@ -110,6 +110,7 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('packages/store','Api\Panel\PackageController@store');
 
             Route::get('foods','Api\Panel\FoodController@index');
+            Route::get('foods/{id}','Api\Panel\FoodController@index');
             Route::get('foods/category','Api\Panel\FoodController@category');
             Route::post('foods/store','Api\Panel\FoodController@store');
 

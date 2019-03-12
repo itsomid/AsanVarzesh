@@ -11,10 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class FoodController extends Controller
 {
     public function index() {
-
         $foods = Food::orderby('id','DESC')->get();
         return response()->json($foods,200);
+    }
 
+    public function show($id) {
+        $food = Food::find($id);
+        return response()->json($food,200);
     }
 
     public function category() {

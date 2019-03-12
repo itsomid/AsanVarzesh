@@ -150,7 +150,7 @@ class ProgramsController extends Controller
 
 
         $coach_sport = Coach_sport::where('sport_id',$data['sport_id'])->where('coach_id',$data['coach_id'])->first();
-        $orphan_program = Programs::where('sport_id',$data['sport_id'])->where('status','orphan')->first();
+        $orphan_program = Programs::where('sport_id',$data['sport_id'])->orderby('id','DESC')->where('status','orphan')->first();
         $sport = Sport::with('federation')->find($data['sport_id']);
         $coach = User::find($data['coach_id']);
 
