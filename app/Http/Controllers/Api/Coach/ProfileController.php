@@ -164,7 +164,7 @@ class ProfileController extends Controller
     }
 
     public function removeImage(Request $request) {
-        $data = $request->all();
+        return $data = $request->all();
         $user = auth('api')->user();
 
         //$profile = $user->profile;

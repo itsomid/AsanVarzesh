@@ -21,11 +21,8 @@ class FoodController extends Controller
     }
 
     public function category() {
-
         $cats = FoodCategory::all();
-
         return $cats;
-
     }
 
     public function store(Request $request)
