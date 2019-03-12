@@ -164,11 +164,11 @@ class ProfileController extends Controller
     }
 
     public function removeImage(Request $request) {
-        return $data = $request->all();
+        $data = $request->all();
         $user = auth('api')->user();
 
         //$profile = $user->profile;
-        $photos = $user->profile->nourlphotos;
+        return $photos = $user->profile->nourlphotos;
 
         $new_photos = [];
         foreach ($photos as $photo) {
