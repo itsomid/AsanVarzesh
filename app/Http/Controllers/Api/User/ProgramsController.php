@@ -46,7 +46,7 @@ class ProgramsController extends Controller
         $coach = User::find($data['coach_id']);
         $user = auth('api')->user();
 
-        return $subscription = Subscription::where('user_id')->orderby('id','DESC')->first();
+        $subscription = Subscription::where('user_id')->orderby('id','DESC')->first();
 
         $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                                     ->where('sport_id',$data['sport_id'])
@@ -156,9 +156,8 @@ class ProgramsController extends Controller
         $sport = Sport::with('federation')->find($data['sport_id']);
         $coach = User::find($data['coach_id']);
 
-        if($data['trial'] == true) {
+        if($data['trial'] === true) {
             $reference = 'trial';
-
             $to_days = 7;
             $price = 0;
             if($coach->trial == false) {
@@ -170,6 +169,7 @@ class ProgramsController extends Controller
         } else {
             $reference = md5(time()); /* Get Reference ID From Payment Gateway, It's Test Now */
             $to_days = 30;
+
             $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                 ->where('sport_id',$data['sport_id'])
                 ->first();
