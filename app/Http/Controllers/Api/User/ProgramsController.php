@@ -46,6 +46,8 @@ class ProgramsController extends Controller
         $coach = User::find($data['coach_id']);
         $user = auth('api')->user();
 
+        return $subscription = Subscription::where('user_id')->orderby('id','DESC')->first();
+
         $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                                     ->where('sport_id',$data['sport_id'])
                                     ->first();

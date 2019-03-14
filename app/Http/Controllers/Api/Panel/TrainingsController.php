@@ -10,7 +10,7 @@ use Validator;
 class TrainingsController extends Controller
 {
     public function index() {
-        $trainings = Training::with('sport')->orderBy('id','DESC')->get();
+        $trainings = Training::with('sport')->where('enable',true)->orderBy('id','DESC')->get();
         return response()->json($trainings,200);
     }
 

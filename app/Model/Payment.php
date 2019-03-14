@@ -13,11 +13,11 @@ class Payment extends Model
 {
 
     public static function tax() {
-        return 0.9;
+        return 0.09;
     }
 
     public static function calTax($price) {
-        return $price * self::tax();
+        return ceil($price * self::tax());
     }
 
     public static function insurance() {

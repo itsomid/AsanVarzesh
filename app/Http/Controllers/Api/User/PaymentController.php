@@ -23,6 +23,12 @@ class PaymentController extends Controller
 
     }
 
+    public function callback() {
+
+
+
+    }
+
     public function Increase() {
 
     }
