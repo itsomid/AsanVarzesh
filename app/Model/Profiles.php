@@ -27,14 +27,21 @@ class Profiles extends Model
 
     protected $appends = [
         'weight',
-        'nourlphotos'
+        'nourlphotos',
+        'arm',
+        'wrist',
+        'abdominal',
+        'waist',
+        'sport_habit',
+        'sport_desc',
+        'nutrition_desc'
     ];
 
 
 
     public function getweightAttribute()
     {
-        $program = Programs::where('user_id',$this->id)->orderby('id','DESC')->first();
+        $program = Programs::where('user_id',$this->user_id)->orderby('id','DESC')->first();
         if($program != null) {
             return (string) $program->weight;
         } else {
@@ -103,6 +110,66 @@ class Profiles extends Model
     public function sports()
     {
         return $this->belongsToMany('App\Model\Sport');
+    }
+
+    public function lastProgram() {
+        return $program = Programs::where('user_id',$this->user_id)->orderby('id','DESC')->first();
+    }
+
+    public function getArmAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->arm;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getWristAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->wrist;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getAbdominalAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->abdominal;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getWaistAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->waist;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSportHabitAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->sport_habit;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getSportDescAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->sport_desc;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getNutritionDescAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return $this->lastProgram()->nutrition_desc;
+        } else {
+            return 0;
+        }
     }
 
 }

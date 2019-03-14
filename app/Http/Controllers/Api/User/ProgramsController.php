@@ -198,6 +198,9 @@ class ProgramsController extends Controller
         $program->wrist = $data['wrist'];
         //$program->hip = $data['hip'];
         $program->waist = $data['waist'];
+        $program->sport_habit = $data['sport_habit'];
+        $program->sport_desc = $data['sport_desc'];
+        $program->nutrition_desc = $data['nutrition_desc'];
         $program->place_for_sport = $data['place_for_sport'];
         $program->save();
 
