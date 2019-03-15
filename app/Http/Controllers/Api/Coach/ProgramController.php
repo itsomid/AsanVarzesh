@@ -18,7 +18,7 @@ class ProgramController extends Controller
 
        $calendar_trainings = Calendar::with('training.accessories')
                                         ->where('type','training')
-                                        ->where('sport_id',$program_id)
+                                        ->where('program_id',$program_id)
                                         ->where('training_id','!=',null)
                                         ->orderby('day_number','ASC')
                                         ->get()
