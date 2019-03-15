@@ -118,57 +118,57 @@ class Profiles extends Model
 
     public function getArmAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->arm;
+            return (string) $this->lastProgram()->arm;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getWristAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->wrist;
+            return (string) $this->lastProgram()->wrist;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getAbdominalAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->abdominal;
+            return (string) $this->lastProgram()->abdominal;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getWaistAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->waist;
+            return (string) $this->lastProgram()->waist;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getSportHabitAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->sport_habit;
+            return (string) $this->lastProgram()->sport_habit;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getSportDescAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->sport_desc;
+            return (string) $this->lastProgram()->sport_desc;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
     public function getNutritionDescAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return $this->lastProgram()->nutrition_desc;
+            return (string) $this->lastProgram()->nutrition_desc;
         } else {
-            return 0;
+            return (string) 0;
         }
     }
 
