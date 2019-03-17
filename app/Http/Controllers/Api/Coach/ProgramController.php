@@ -23,7 +23,7 @@ class ProgramController extends Controller
                                         ->orderby('day_number','ASC')
                                         ->get()
                                         ->groupBy('date')->toArray();
-
+ 
         $calendar_trainings_transformed = [];
         foreach ($calendar_trainings as $key => $day) {
             $aDay['day_number'] = $day[0]['day_number'];
