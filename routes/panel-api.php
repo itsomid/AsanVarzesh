@@ -120,7 +120,13 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('motivisionals/delete/{id}','Api\Panel\MotivisionalController@delete');
 
 
-            Route::get('settings','Api\Panel\SettingController@index');
+            Route::get('accessories','Api\Panel\AccessoryController@index');
+            Route::get('accessories/{id}','Api\Panel\AccessoryController@show');
+            Route::post('accessories/store','Api\Panel\AccessoryController@store');
+            Route::post('accessories/update/{id}','Api\Panel\AccessoryController@update');
+
+
+        Route::get('settings','Api\Panel\SettingController@index');
             Route::post('settings/store','Api\Panel\SettingController@store');
 
             Route::get('payments','Api\Panel\PaymentControlller@index');
