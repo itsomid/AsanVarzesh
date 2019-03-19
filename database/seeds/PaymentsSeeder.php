@@ -15,8 +15,7 @@ class PaymentsSeeder extends Seeder
         $programs = \App\Model\Programs::where('status','!=','orphan')->get();
         foreach ($programs as $program)
         {
-            $coach_sport = \App\Model\Coach_sport::where('sport_id',$program['sport_id'])->where('coach_id',$program['coach_id'])->first();
-
+            return $coach_sport = \App\Model\Coach_sport::where('sport_id',$program['sport_id'])->where('coach_id',$program['coach_id'])->first();
             $price = $coach_sport->price;
             $insurance = 20000;
             $tax = $price * 0.09;

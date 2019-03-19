@@ -39,6 +39,9 @@ class AccessoryController extends Controller
         }
 
 
+        $ext = $request->image->getClientOriginalExtension();
+        $path = $request->image->storeAs('/', md5(time()).'.'.$ext, 'accessories');
+        $img = 'storage/accessories/'.$path;
 
         $accessory = new Accessory();
         $accessory->name = $data['name'];
