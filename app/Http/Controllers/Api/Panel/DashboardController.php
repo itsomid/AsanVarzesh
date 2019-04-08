@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $nutrition_role = \App\Model\Role::find(4);
         $nutritions = count($nutrition_role->users);
 
-        $corrective_role = \App\Model\Role::find(4);
+        $corrective_role = \App\Model\Role::find(5);
         $correctives = count($corrective_role->users);
 
         return [
