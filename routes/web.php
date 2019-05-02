@@ -19,7 +19,13 @@ Route::get('/',function() {
 Route::get('/get-token',function() {
 
     $irankish = new \App\Helpers\IranKish();
-    $irankish->getToken();
+    $token = $irankish->getToken();
+
+    return '<form method="post" action="https://ikc.shaparak.ir/TPayment/Payment/index">
+        <p><input type ="hidden" name ="token" value="<?php print  $result->MakeTokenResult->token?>" ></p>
+        <p><input type ="text" name ="merchantId"  value="J5E7"></p>
+        <p><input type ="submit" value="DoPayment" ></p>
+    </form>';
 
 });
 
