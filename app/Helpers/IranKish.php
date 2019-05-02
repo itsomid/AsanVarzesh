@@ -6,22 +6,22 @@
  * Time: 7:12 PM
  */
 namespace App\Helpers;
-
-use GuzzleHttp\Client;
-use Illuminate\Http\Request;
+use SoapClient;
 
 class IranKish
 {
-    public $getToken = 'https://ikc.shaparak.ir/XToken/Tokens.xml';
+    public $getToken = 'https://ikc.shaparak.ir/TToken/Tokens.svc';
+    protected $merchantId = 'J5E7';
+    public $sha1 = '22338240992352910814917221751200141041845518824222260';
 
     public function getToken() {
-        $params['amount'] = 100;
-        $params['merchantId'] = '02013314';
-        $params['invoiceNo'] = time();
-        $params['paymentId'] = time();
-        $params['specialPaymentId'] = time();
-        $params['revertURL'] = 'http://google.com';
-        $params['description'] = "";
+        $params['Amount'] = 2060;
+        $params['MerchantId'] = $this->merchantId;
+        $params['InvoiceNumber'] = '1';
+        $params['PaymentId'] = '1';
+        $params['specialPaymentId'] = '1';
+        $params['RevertURL'] = 'http://asanvarzesh.online';
+        $params['Description'] = "test";
 
         $options = array(
             'cache_wsdl' => 0,
@@ -35,7 +35,7 @@ class IranKish
             )
         ));
 
-        $client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $options);
+        $client = new SoapClient($this->getToken, $options);
 
         $result = $client->__soapCall("MakeToken", array($params));
         $token = $result->MakeTokenResult->token;
