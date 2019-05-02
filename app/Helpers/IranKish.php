@@ -27,7 +27,5 @@ class IranKish
         return $result->MakeTokenResult->token;
 
 
-
-
     }
 }
