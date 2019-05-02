@@ -12,6 +12,7 @@
 */
 
 Route::get('/',function() {
+    App\Helpers\Helper::sendSMS('09354412285','sasdasd dasdasd');
    return 'index page';
 });
 
