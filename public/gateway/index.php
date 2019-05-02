@@ -5,7 +5,7 @@
  * @copyright 2016
  */
  //// User complet this value : ////
-$MerchantId = 'A4CA';
+$MerchantId = 'J5E7';
 $admin_email = 'aa@aa.aa';
 $sha1Key = '22338240992352910814917221751200141041845518824222260';
 ///////////////////////////////////
