@@ -10,7 +10,7 @@
 
 if($_POST['referenceId'] !="")
 {
-    $client = new SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', array('soap_version'   => SOAP_1_1));
+    $client = new \SoapClient('https://ikc.shaparak.ir/XVerify/Verify.xml', array('soap_version'   => SOAP_1_1));
     $params['token'] =  $_POST["token"]; // please replace currentToken
     $params['merchantId'] = "A4CA";
     $params['referenceNumber'] = $_POST['referenceId'];
@@ -22,7 +22,7 @@ if($_POST['referenceId'] !="")
 else
 {
 
-    $client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
+    $client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
 
     $params['amount'] = "1000";
     $params['merchantId'] = "A4CA";
