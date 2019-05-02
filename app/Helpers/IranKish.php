@@ -17,29 +17,31 @@ class IranKish
     public function getToken() {
         $params['Amount'] = 2060;
         $params['MerchantId'] = $this->merchantId;
-        $params['InvoiceNumber'] = '1';
+        $params['InvoiceNumber'] = '2';
         $params['PaymentId'] = '1';
-        $params['specialPaymentId'] = '1';
+        $params['specialPaymentId'] = '2';
         $params['RevertURL'] = 'http://asanvarzesh.online';
         $params['Description'] = "test";
 
-        $options = array(
-            'cache_wsdl' => 0,
-            'trace' => 1,
-            'stream_context' => stream_context_create(array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            )
-        ));
+//        $options = array(
+//            'cache_wsdl' => 0,
+//            'trace' => 1,
+//            'stream_context' => stream_context_create(array(
+//                'ssl' => array(
+//                    'verify_peer' => false,
+//                    'verify_peer_name' => false,
+//                    'allow_self_signed' => true
+//                )
+//            )
+//        ));
+
+        $options = array('soap_version'   => SOAP_1_1);
 
         $client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $options);
 
         $result = $client->__soapCall("MakeToken", array($params));
         $token = $result->MakeTokenResult->token;
-        return var_dump($token);
+        return $token;
 
 
 
