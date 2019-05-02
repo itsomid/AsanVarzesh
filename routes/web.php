@@ -21,20 +21,9 @@ Route::get('/get-token',function() {
     $irankish = new \App\Helpers\IranKish();
     $token = $irankish->getToken();
     return dd($token);
-    $client = new GuzzleHttp\Client();
-    $response = $client->request('POST', 'https://ikc.shaparak.ir/TPayment/Payment/index', [
-        'form_params' => [
-            'token' => $token,
-            'merchantId' => 'J5E7',
-
-        ]
-    ]);
-    $response->getBody();
-//    return '<form method="post" action="https://ikc.shaparak.ir/TPayment/Payment/index">
-//        <p><input type ="hidden" name ="token" value={{$token}} ></p>
-//        <p><input type ="text" name ="merchantId"  value="J5E7"></p>
-//        <p><input type ="submit" value="DoPayment" ></p>
-//    </form>";
+    $data['token'] = $_SESSION['token'];
+    $data['merchantId'] = $_SESSION['merchantId'];
+    redirect_post('https://ikc.shaparak.ir/TPayment/Payment/index',$data);
 
 });
 
