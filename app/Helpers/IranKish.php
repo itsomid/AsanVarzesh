@@ -39,7 +39,7 @@ class IranKish
 
         $result = $client->__soapCall("MakeToken", array($params));
         $token = $result->MakeTokenResult->token;
-        return $token;
+        return $result;
 
 
 
