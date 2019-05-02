@@ -16,13 +16,13 @@ class IranKish
 
     public function getToken() {
         $client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
-        $params['Amount'] = 2060;
-        $params['MerchantId'] = 'J5E7';
-        $params['InvoiceNumber'] = '2';
-        $params['PaymentId'] = '3';
-        $params['specialPaymentId'] = '2';
-        $params['RevertURL'] = 'http://asanvarzesh.online/result';
-        $params['Description'] = "test";
+        $params['amount'] =  2060;
+        $params['merchantId'] = 'J5E7';
+        $params['invoiceNo'] = 1;
+        $params['paymentId'] = 1;
+        $params['specialPaymentId'] = 1;
+        $params['revertURL'] = 'http://asanvarzesh.online/result';
+        $params['description'] = "";
         $result = $client->__soapCall("MakeToken", array($params));
         return $result->MakeTokenResult->token;
 
