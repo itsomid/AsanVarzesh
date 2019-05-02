@@ -17,9 +17,6 @@ Route::get('/',function() {
 });
 
 Route::get('/get-token',function() {
-
-    So
-
 });
 
 Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
