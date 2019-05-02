@@ -27,7 +27,7 @@ if($_POST['action'] == 'pay')
 			$_SESSION['email'] =$_POST['email'];
 			$revertURL = 'http://'.$_SERVER[HTTP_HOST].dirname($_SERVER[PHP_SELF]).'/back.php';
 			
-			$client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
+			$client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
 
 			$params['amount'] =  $_SESSION['amount'];
 			$params['merchantId'] = $MerchantId;
