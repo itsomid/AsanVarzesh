@@ -23,19 +23,17 @@ class IranKish
         $params['RevertURL'] = 'http://asanvarzesh.online';
         $params['Description'] = "test";
 
-//        $options = array(
-//            'cache_wsdl' => 0,
-//            'trace' => 1,
-//            'stream_context' => stream_context_create(array(
-//                'ssl' => array(
-//                    'verify_peer' => false,
-//                    'verify_peer_name' => false,
-//                    'allow_self_signed' => true
-//                )
-//            )
-//        ));
-
-        $options = array('soap_version'   => SOAP_1_1);
+        $options = array(
+            'cache_wsdl' => 0,
+            'trace' => 1,
+            'stream_context' => stream_context_create(array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            )
+        ));
 
         $client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $options);
 
