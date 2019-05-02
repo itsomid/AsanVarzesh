@@ -28,12 +28,12 @@ else
 
     $client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
 
-    $params['amount'] = "1000";
-    $params['merchantId'] = "A4CA";
+    $params['amount'] = "2060";
+    $params['merchantId'] = "J5E7";
     $params['invoiceNo'] = "12345678";
     $params['paymentId'] = "12345678";
     $params['specialPaymentId'] = "123456789123";
-    $params['revertURL'] = "http://healthtime.ir/payment.php";
+    $params['revertURL'] = "http://asanvarzesh.online/payment.php";
     $params['description'] = "aaaaa";
     $result = $client->__soapCall("MakeToken", array($params));
 
