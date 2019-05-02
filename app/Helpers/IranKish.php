@@ -35,7 +35,7 @@ class IranKish
             )
         ));
 
-        $client = new SoapClient($this->getToken, $options);
+        $client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', $options);
 
         $result = $client->__soapCall("MakeToken", array($params));
         $token = $result->MakeTokenResult->token;
