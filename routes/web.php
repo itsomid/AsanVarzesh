@@ -16,6 +16,12 @@ Route::get('/',function() {
    return 'index page';
 });
 
+Route::get('/get-token',function() {
+
+    So
+
+});
+
 Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
 
     Route::get('/protect',function(){

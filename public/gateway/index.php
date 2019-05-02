@@ -11,29 +11,29 @@ $sha1Key = '22338240992352910814917221751200141041845518824222260';
 ///////////////////////////////////
 session_start();
 $Err = '';
-if($_POST['action'] == 'pay')
-{
-
-	if(intval($_POST['PayAmount']) >= 1000)
-	{
-		if(!empty($_POST['fullname']))
-		{
+//if($_POST['action'] == 'pay')
+//{
+//
+//	if(intval($_POST['PayAmount']) >= 1000)
+//	{
+//		if(!empty($_POST['fullname']))
+//		{
 			$_SESSION['merchantId'] = $MerchantId;
 			$_SESSION['sha1Key'] = $sha1Key;
 			$_SESSION['admin_email'] = $admin_email;
-			$_SESSION['amount'] =$_POST['PayAmount'] ;
-			$_SESSION['PayOrderId'] =$_POST['PayOrderId'];
-			$_SESSION['fullname'] =$_POST['fullname'];
-			$_SESSION['email'] =$_POST['email'];
+			$_SESSION['amount'] = 2060 ;
+			$_SESSION['PayOrderId'] = '1';
+			$_SESSION['fullname'] = 'Ali A. Jafari';
+			$_SESSION['email'] = 'aajafari87@gmail.com';
 			$revertURL = 'http://'.$_SERVER[HTTP_HOST].dirname($_SERVER[PHP_SELF]).'/back.php';
 			
 			$client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
 
-			$params['amount'] =  $_SESSION['amount'];
+			$params['amount'] =  2060;
 			$params['merchantId'] = $MerchantId;
-			$params['invoiceNo'] = $_POST['PayOrderId'];
-			$params['paymentId'] = $_POST['PayOrderId'];
-			$params['specialPaymentId'] = $_POST['PayOrderId'];
+			$params['invoiceNo'] = 1;
+			$params['paymentId'] = 1;
+			$params['specialPaymentId'] = 1;
 			$params['revertURL'] = $revertURL;
 			$params['description'] = "";
 			$result = $client->__soapCall("MakeToken", array($params));
@@ -41,17 +41,17 @@ if($_POST['action'] == 'pay')
 			$data['token'] = $_SESSION['token'];
 			$data['merchantId'] = $_SESSION['merchantId'];
 			redirect_post('https://ikc.shaparak.ir/TPayment/Payment/index',$data);
-		}
-		else
-		{
-			$Err .='نام را وارد کنید<br/>';
-		}
-	}else
-	{
-		$Err .='مبلغ صحیح نیست <br/>';
-	}
-	
-}
+//		}
+//		else
+//		{
+//			$Err .='نام را وارد کنید<br/>';
+//		}
+//	}else
+//	{
+//		$Err .='مبلغ صحیح نیست <br/>';
+//	}
+//
+//}
 function redirect_post($url, array $data)
 {
 
