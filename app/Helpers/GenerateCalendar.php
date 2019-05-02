@@ -259,6 +259,9 @@ class GenerateCalendar
 
     public function week_days($index) {
 
+
+
+
         $days = [
             0 => 'Saturday',
             1 => 'Sunday',
