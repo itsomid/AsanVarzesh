@@ -17,6 +17,10 @@ Route::get('/',function() {
 });
 
 Route::get('/get-token',function() {
+
+    $irankish = new \App\Helpers\IranKish();
+    $irankish->getToken();
+
 });
 
 Route::group(['middleware' => ['CheckAuth','UserRole']], function () {
