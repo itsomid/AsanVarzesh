@@ -21,7 +21,7 @@ class IranKish
         $params['InvoiceNumber'] = '2';
         $params['PaymentId'] = '3';
         $params['specialPaymentId'] = '2';
-        $params['RevertURL'] = 'http://asanvarzesh.online';
+        $params['RevertURL'] = 'http://asanvarzesh.online/result';
         $params['Description'] = "test";
         $result = $client->__soapCall("MakeToken", array($params));
         return $result->MakeTokenResult->token;
