@@ -27,7 +27,7 @@ $Err = '';
 			$_SESSION['email'] = 'aajafari87@gmail.com';
 			$revertURL = 'http://'.$_SERVER[HTTP_HOST].dirname($_SERVER[PHP_SELF]).'/back.php';
 			
-			$client = new SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
+			$client = new \SoapClient('https://ikc.shaparak.ir/XToken/Tokens.xml', array('soap_version'   => SOAP_1_1));
 
 			$params['amount'] =  2060;
 			$params['merchantId'] = $MerchantId;
