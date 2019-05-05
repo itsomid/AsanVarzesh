@@ -16,7 +16,7 @@
     <div class="container">
 
         <!-- Navbar Logo -->
-        <a class="ui-variable-logo navbar-brand" href={{url('/')}} title="Qikoo">
+        <a class="ui-variable-logo navbar-brand" href={{url('/  ')}} title="Qikoo">
             <!-- Default Logo -->
             <img class="logo-default" src="assets/img/logo/asan-varzesh.png" alt="Qikoo"
                  data-uhd>
