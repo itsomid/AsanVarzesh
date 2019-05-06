@@ -239,7 +239,7 @@ class PeopleController extends Controller
 
         $user = User::find($user_id);
         if(array_key_exists('email',$data['user']) && $data['user']['email'] != '') {
-            $user->user = $data['user']['email'];
+            $user->email = $data['user']['email'];
         }
         $user->mobile = $data['user']['mobile'];
         $user->status = $data['user']['status'];
