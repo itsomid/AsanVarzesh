@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helpers\Helper;
 use App\Model\Profiles;
 use App\Model\Subscription;
 use App\User;
@@ -66,20 +67,29 @@ class AuthController extends Controller
 
         }
 
+        $roleFlag = false;
         foreach($user->roles as $role) {
             if($role->name != 'user') {
-                return response()->json([
-                    'message' => 'شما مجاز نیستید'
-                ],400);
+                $roleFlag = true;
             }
+        }
+
+        if(!$roleFlag) {
+            return response()->json([
+                'message' => 'شما مجاز نیستید'
+            ],400);
         }
 
         $code = $this->generateLoginCode();
         $user->code = $code;
         $user->save();
 
+        $message = 'برای ورود به اپلیکیشن آسان ورزش کد را وارد کنید:';
+        $message .= $code;
+        $sendSMS = Helper::sendSMS($user->mobile,$message);
+
+
         return response()->json([
-            'code' => $user->code,
             'message' => 'کد ورود به شماره تلفن '.$user->mobile.' ارسال شد.',
             'status' => 200,
             'type' => $type

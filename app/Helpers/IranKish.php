@@ -25,7 +25,5 @@ class IranKish
         $params['description'] = "";
         $result = $client->__soapCall("MakeToken", array($params));
         return $result->MakeTokenResult->token;
-
-
     }
 }
