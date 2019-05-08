@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Coach;
 
+use App\Helpers\Helper;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
