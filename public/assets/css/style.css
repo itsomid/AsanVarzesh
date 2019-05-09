@@ -6119,7 +6119,14 @@ a.text-dark:focus, a.text-dark:hover {
 .invisible {
   visibility: hidden !important; }
 
-/*** 02 :: Font Awesome* ----------------------------------------------------------------------- *** Homepage: http://fontawesome.io* Author: @davegandy* License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)*/
+/**
+* 02 :: Font Awesome
+* ----------------------------------------------------------------------- *
+*
+* Homepage: http://fontawesome.io
+* Author: @davegandy
+* License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+*/
 @font-face {
   font-family: 'FontAwesome';
   src: url("../icons/fontawesome-webfont.eot?v=4.7.0");
@@ -8301,7 +8308,15 @@ a.text-dark:focus, a.text-dark:hover {
   src: url("../fonts/Vazir-Thin.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir-Thin.woff2") format("woff2"), url("../fonts/Vazir-Thin.woff") format("woff"), url("../fonts/Vazir-Thin.ttf") format("truetype");
   font-weight: 100; }
 
-/*** 04. Owl Carousel* ----------------------------------------------------------------------- *** Homepage: http://owlcarousel2.github.io/* Author: David Deutsch* Author URL: https://github.com/daviddeutsch* License - MIT License*/
+/**
+* 04. Owl Carousel
+* ----------------------------------------------------------------------- *
+*
+* Homepage: http://owlcarousel2.github.io/
+* Author: David Deutsch
+* Author URL: https://github.com/daviddeutsch
+* License - MIT License
+*/
 .owl-carousel {
   display: none;
   direction: ltr;
@@ -8480,7 +8495,15 @@ a.text-dark:focus, a.text-dark:hover {
     .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
       background: #8089ff; }
 
-/*** 03. Simple Line Icons* ----------------------------------------------------------------------- *** Homepage: http://simplelineicons.com* Author: Sabbir Ahmed* Author URL: https://github.com/thesabbir* License - MIT License*/
+/**
+* 03. Simple Line Icons
+* ----------------------------------------------------------------------- *
+*
+* Homepage: http://simplelineicons.com
+* Author: Sabbir Ahmed
+* Author URL: https://github.com/thesabbir
+* License - MIT License
+*/
 @font-face {
   font-family: "simple-line-icons";
   src: url("../icons/Simple-Line-Icons.eot?v=2.4.0");
@@ -9067,7 +9090,14 @@ a.text-dark:focus, a.text-dark:hover {
 .icon-social-steam:before {
   content: "\e620"; }
 
-/*** 05. SliderPro* ----------------------------------------------------------------------- *** Homepage: http://bqworks.com/slider-pro/* Author: bqworks* Author URL: http://bqworks.com/*/
+/**
+* 05. SliderPro
+* ----------------------------------------------------------------------- *
+*
+* Homepage: http://bqworks.com/slider-pro/
+* Author: bqworks
+* Author URL: http://bqworks.com/
+*/
 .slider-pro {
   position: relative;
   margin: 0 auto; }
@@ -14676,3 +14706,6 @@ body.coming-soon .ui-counter {
     .error404-page .main .error404-wrapper .heading {
       font-size: 3.6rem;
       margin: 2rem 0; }
+
+
+

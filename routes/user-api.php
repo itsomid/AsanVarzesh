@@ -37,6 +37,10 @@ Route::group(['prefix' => '/v1'],function() {
         Route::get('/user/geo/states/{country_id}','Api\User\GeoController@getStates');
         Route::get('/user/geo/cities/{state_id?}','Api\User\GeoController@getCities');
 
+        Route::get('user/payments/pay/{program_id}','Api\User\PaymentController@pay');
+        Route::get('user/payments/check/{reference}','Api\User\PaymentController@check');
+        Route::post('user/payments/callback/','Api\User\PaymentController@callback');
+
     Route::group(
         [
             'middleware' => ['jwtauth','UserRole'],
@@ -98,15 +102,14 @@ Route::group(['prefix' => '/v1'],function() {
         // Motivate
         Route::get('motivational/random','Api\User\MotivationalController@random');
 
+        // Payment
+        Route::get('payments','Api\User\PaymentController@index');
+
         Route::group(['middleware' => ['checkSubscription']], function () {
 
             // Calendars
             //Route::get('calendars/','Api\User\CalendarController@index');
             Route::post('calendars/update','Api\User\CalendarController@update');
-
-            // Payment
-            Route::get('payments','Api\User\PaymentController@index');
-            Route::get('payments/check/{reference}','Api\User\PaymentController@check');
 
             // Dashboard
             Route::get('dashboard/{date?}','Api\User\DashboardController@index');

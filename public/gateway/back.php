@@ -10,7 +10,7 @@ function messeg2($result)
 {
 	switch ($result) 
 	{
-		case '-20':
+		    case '-20':
 				return "در درخواست کارکتر های غیر مجاز وجو دارد";
 			break;
 			case '-30':
@@ -38,7 +38,7 @@ function messeg($resultCode)
 	switch ($resultCode) 
 	{
 		case 110:
-				return " انصراف دارنده کارت";
+            return " انصراف دارنده کارت";
 			break;
 		case 120:
 			return"   موجودی کافی نیست";

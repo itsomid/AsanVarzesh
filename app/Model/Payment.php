@@ -21,7 +21,8 @@ class Payment extends Model
     }
 
     public static function insurance() {
-        return 10000;
+        return 100000;
+        // TODO: MUST RIAL
     }
 
     public function program()
@@ -57,9 +58,7 @@ class Payment extends Model
     }
 
     public static function calculatePrice($price,$promotion) {
-
         return round(  ( $price + ($price * self::tax()) + self::insurance() ) - $promotion );
-
     }
 
 

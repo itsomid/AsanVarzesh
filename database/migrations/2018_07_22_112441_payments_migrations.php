@@ -27,7 +27,10 @@ class PaymentsMigrations extends Migration
             $table->enum('type',['credit','debit']);
             $table->string('via')->nullable();
             $table->enum('status',['failed', 'pending', 'success','return']);
+            $table->string('gateway_status',5)->nullable();
+            $table->string('gateway_message')->nullable();
             $table->string('reference_id')->nullable();
+            $table->string('token')->nullable();
             $table->integer('promotion_id')->nullable();
             $table->timestamps();
 

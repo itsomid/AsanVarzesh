@@ -20,6 +20,7 @@ class Users extends Seeder
         $user->password = bcrypt('ali123456');
         $user->save();
         $user->roles()->attach(1);
+        $user->roles()->attach(2);
         $user->roles()->attach(6);
 
         $first_name = 'علی';

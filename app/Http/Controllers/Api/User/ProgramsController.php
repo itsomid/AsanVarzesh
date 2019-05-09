@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helpers\IranKish;
 use App\Model\Calendar;
 use App\Model\Coach_sport;
 use App\Model\Payment;
-use App\Model\Plan;
 use App\Model\Programs;
 use App\Model\Promotion;
-use App\Model\Role;
 use App\Model\Sport;
 use App\Model\Subscription;
 use App\User;
@@ -46,8 +45,6 @@ class ProgramsController extends Controller
         $coach = User::find($data['coach_id']);
         $user = auth('api')->user();
 
-        $subscription = Subscription::where('user_id')->orderby('id','DESC')->first();
-
         $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                                     ->where('sport_id',$data['sport_id'])
                                     ->first();
@@ -58,7 +55,7 @@ class ProgramsController extends Controller
             if($promotion == null) {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'not found'
+                    'message' => 'Not Found'
                 ],404);
             }
             $discount = $promotion->apply($user->id,$promotion->code,$coach_price->price,$coach->id,$data['sport_id']);
@@ -83,7 +80,7 @@ class ProgramsController extends Controller
 
         } else {
 
-            return response()->json(['message' => 'not Found'],404);
+            return response()->json(['message' => 'Not Found'],404);
 
         }
 
@@ -167,13 +164,27 @@ class ProgramsController extends Controller
             }
 
         } else {
-            $reference = md5(time()); /* Get Reference ID From Payment Gateway, It's Test Now */
             $to_days = 30;
-
             $coach_price = Coach_sport::where('coach_id',$data['coach_id'])
                 ->where('sport_id',$data['sport_id'])
                 ->first();
-            $price = ($coach_price->price * 0.09) + 1000;
+
+            $discount = 0;
+            if($data['discount_code'] != null) {
+                $promotion = Promotion::where('code',$data['discount_code'])->first();
+                if($promotion == null) {
+                    return response()->json([
+                        'status' => 404,
+                        'message' => 'not found'
+                    ],404);
+                }
+                $discount = $promotion->apply($user->id,$promotion->code,$coach_price->price,$coach->id,$data['sport_id']);
+                if($discount == false) {
+                    return response()->json(['status' => 406,'message' => 'discount code is not valid'],406);
+                }
+            }
+            $price = Payment::calculatePrice($coach_price->price,$discount);
+
         }
 
         // Add Program
@@ -204,10 +215,6 @@ class ProgramsController extends Controller
         $program->place_for_sport = $data['place_for_sport'];
         $program->save();
 
-
-
-
-
         // Add Subscription
         $start_date = explode('-',$data['start_date']);
         $from = Carbon::today()->format('Y-m-d H:i:s');
@@ -223,9 +230,7 @@ class ProgramsController extends Controller
         $program->subscription_id = $subscription->id;
         $program->save();
 
-
         // Add Payments
-
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
         $payment->program_id = $program->id;
@@ -233,25 +238,40 @@ class ProgramsController extends Controller
         $payment->subscription_id = $program->subscription_id;
         $payment->price = $price;
         $payment->via = 'Iran Kish';
-        $payment->status = 'success';
-        $payment->reference_id = $reference;
+        $payment->status = 'pending';
         $payment->promotion_id = null;
         $payment->save();
-        if(isset($data['promotion_code'])) {
 
+        if(isset($data['promotion_code'])) {
             // Todo: Add Promotion Model & find it by id
             $promotion_id = 1;
             $payment->promotion_id = $promotion_id;
-
         }
         $payment->save();
 
-        $response_date = [
-            'gateway_url' => 'http://zarinpal.com/gateway',
-            'reference' => $reference
-        ];
+        if($data['trial'] !== true) {
 
-        return response($response_date,200);
+            // Update Payment -- add reference to payment item
+            $gateway = new IranKish();
+            $token = $gateway->getToken($price,$program->id,$payment->id);
+            $payment = Payment::find($payment->id);
+            $payment->token = $token;
+            $payment->save();
+            $response_data = [
+                'pay' => url('api/v1/user/payments/pay/'.$program->id),
+                'trial' => false
+            ];
+
+        } else {
+            $response_data = [
+                'pay' => '',
+                'trial' => true
+            ];
+        }
+        return response($response_data,200);
+
+
+
         
     }
 
