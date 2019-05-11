@@ -21,7 +21,7 @@ class Payment extends Model
     }
 
     public static function insurance() {
-        return 100000;
+        return 0;
         // TODO: MUST RIAL
     }
 
