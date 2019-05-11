@@ -67,14 +67,14 @@ class AuthController extends Controller
 
         }
 
-        $roleFlag = false;
-        foreach($user->roles as $role) {
-            if($role->name != 'user') {
-                $roleFlag = true;
-            }
-        }
+//        $roleFlag = false;
+//        foreach($user->roles as $role) {
+//            if($role->name != 'user') {
+//                $roleFlag = true;
+//            }
+//        }
 
-        if(!$roleFlag) {
+        if(!$this->checkRoles($user->roles)) {
             return response()->json([
                 'message' => 'شما مجاز نیستید'
             ],400);
@@ -175,5 +175,17 @@ class AuthController extends Controller
 
         return mt_rand(10000,999999);
 
+    }
+
+
+    protected function checkRoles($roles) {
+        $can = false;
+        foreach ($roles as $role) {
+            $roleName = $role->name;
+            if($roleName == 'user') {
+                $can = true;
+            }
+        }
+        return $can;
     }
 }
