@@ -262,10 +262,11 @@ class PeopleController extends Controller
 
         // Sync Coach Team, Sport & Price
         if($data['role_id'] == 3) {
-
-            $user->Coaches()->sync([$data['user']['sport_id'] => ['price' => $data['user']['price']]]);
-
-
+            $coach_sport = [];
+            foreach ($data['coach_sport'] as $item) {
+                $coach_sport[ $item['sport_id'] ] = [ 'price' => $item['price'] ];
+            }
+            $user->Coaches()->sync($coach_sport);
         }
 
         $user->profile->first_name = $data['profile']['first_name'];
@@ -293,6 +294,8 @@ class PeopleController extends Controller
         $user->profile->experiences = $data['profile']['experiences'];
         //$user->profile->photos = [];
         $user->profile->save();
+
+        return response()->json($user,200);
 
     }
 }

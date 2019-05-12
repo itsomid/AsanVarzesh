@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Helpers\IranKish;
 use App\Model\Payment;
+use App\Model\Programs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +25,7 @@ class PaymentController extends Controller
 
     public function pay($program_id)
     {
-        $payment = Payment::where('program_id',$program_id)->first();
+        $payment = Payment::where('program_id',$program_id)->where('status','pending')->first();
         if(!$payment) {
             return response()->json([
                 'Not Found'
@@ -42,6 +43,7 @@ class PaymentController extends Controller
         $data = $request->all();
         $iranKish = new IranKish();
         $payment = Payment::find($data['paymentId']);
+        $program = Programs::find($payment->program_id);
         $referenceId = isset($data['referenceId']) ? $data['referenceId'] : 0;
         $gateway_status = 0;
 
@@ -55,24 +57,31 @@ class PaymentController extends Controller
                 $status = 'success';
                 $gateway_status = 100;
                 $message = 'پرداخت موفقیت آمیز';
+
+                $payment->status = $status;
+                $payment->reference_id = $referenceId;
+                $payment->gateway_status = $gateway_status;
+                $payment->gateway_message = $message;
+                $payment->save();
+
             } else{
                 // Unsuccessfull Payment
                 $status = 'failed';
                 $gateway_status = $result;
                 $message = $iranKish->lessThan100Message($result);
+                $payment->delete();
+                $program->delete();
             }
         } else {
             // Unsuccessfull Payment
             $status = 'pending';
             $gateway_status = $data['resultCode'];
             $message = $iranKish->moreThan100messages($data['resultCode']);
+            $payment->delete();
+            $program->delete();
         }
 
-        $payment->status = $status;
-        $payment->reference_id = $referenceId;
-        $payment->gateway_status = $gateway_status;
-        $payment->gateway_message = $message;
-        $payment->save();
+
 
         return view('gateway_callback', ['payment' => $payment]);
     }
