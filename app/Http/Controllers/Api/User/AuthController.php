@@ -57,22 +57,15 @@ class AuthController extends Controller
             $profile->weight = 0;
             $profile->save();
 
-            // Trial Subscription
-            // $today = Carbon::today();
-            // $subscription = new Subscription();
-            // $subscription->user_id = $user->id;
-            // $subscription->from = $today;
-            // $subscription->to = $today->addDay(3);
-            // $subscription->save();
-
         }
 
 
-
         if(!$this->checkRoles($user->roles)) {
-            return response()->json([
-                'message' => 'شما مجاز نیستید'
-            ],400);
+            $user->roles()->attach(2);
+            $type = 'new user';
+//            return response()->json([
+//                'message' => 'شما مجاز نیستید'
+//            ],400);
         }
 
         $code = $this->generateLoginCode();
