@@ -67,12 +67,7 @@ class AuthController extends Controller
 
         }
 
-//        $roleFlag = false;
-//        foreach($user->roles as $role) {
-//            if($role->name != 'user') {
-//                $roleFlag = true;
-//            }
-//        }
+
 
         if(!$this->checkRoles($user->roles)) {
             return response()->json([

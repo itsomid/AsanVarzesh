@@ -46,8 +46,8 @@ class PeopleController extends Controller
             'user.mobile.unique' => 'شماره موبایل تکراری ست',
             'user.corrective_doctor.required' => 'متخصص اصلاحی را انتخاب کنید',
             'user.nutrition_doctor.required' => 'متخصص اصلاحی را انتخاب کنید',
-            'user.price.required' => 'قیمت را وارد کنید',
-            'user.sport_id.required' => 'ورزش را انتخاب کنید',
+            //'user.price.required' => 'قیمت را وارد کنید',
+            //'user.sport_id.required' => 'ورزش را انتخاب کنید',
             'profile.first_name.required'=>'پرکردن فیلد نام الزامی ست',
             'profile.last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
             'profile.city_id.required'=>'شهر را انتخاب کنید',
@@ -69,9 +69,17 @@ class PeopleController extends Controller
         if($data['role_id'] == 3) {
             $rules['user.corrective_doctor'] = 'required';
             $rules['user.nutrition_doctor'] = 'required';
-            $rules['user.price'] = 'required';
-            $rules['user.sport_id'] = 'required';
+
+            foreach($request->coach_sport as $key => $val)
+            {
+                $rules["coach_sport.$key.sport_id"] = 'required';
+                $rules["coach_sport.$key.price"] = 'required';
+                $messsages["coach_sport.$key.price.required"] = "هزینه و ورزش شماره ".($key+1)." را به درستی وارد کنید. ";
+                $messsages["coach_sport.$key.sport_id.required"] = "هزینه و ورزش شماره ".($key+1)." را به درستی وارد کنید ";
+            }
+
         }
+
 
         $validator = Validator::make($request->all(), $rules, $messsages);
         if ($validator->fails()) {
@@ -95,7 +103,10 @@ class PeopleController extends Controller
 
         // Create Team
         if($data['role_id'] == 3) {
-            $user->Coaches()->attach($data['user']['sport_id'],['price' => $data['user']['price']]);
+            foreach ($data['coach_sport'] as $item) {
+                $user->Coaches()->attach($item['sport_id'],['price' => $item['price']]);
+            }
+
         }
 
         if(array_key_exists('avatar',$data['profile']) AND !is_null($data['profile']['avatar']) && $data['profile']['avatar'] != '') {
