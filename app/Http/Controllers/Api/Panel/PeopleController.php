@@ -117,6 +117,12 @@ class PeopleController extends Controller
             $avatar_url = '';
         }
 
+        if($data['profile']['birth_date'] == null OR $data['profile']['birth_date'] == ''){
+            $birth_date = null;
+        } else {
+            $birth_date = $data['profile']['birth_date'];
+        }
+
         $profile = new Profiles();
         $profile->first_name = $data['profile']['first_name'];
         $profile->last_name = $data['profile']['last_name'];
@@ -126,7 +132,7 @@ class PeopleController extends Controller
         $profile->address = $data['profile']['address'];
         $profile->military_services = $data['profile']['military_services'];
         $profile->national_code = $data['profile']['national_code'];
-        $profile->birth_date = $data['profile']['birth_date'];
+        $profile->birth_date = $birth_date;
         $profile->blood_type = $data['profile']['blood_type'];
         $profile->education = $data['profile']['education'];
         $profile->education_title = $data['profile']['education_title'];
