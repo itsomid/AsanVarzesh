@@ -23,14 +23,16 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','mobile']]);
     }
 
-    public function mobile(Request $request) {
+    public function mobile(Request $request, Helper $helper) {
 
-        $user = User::where('mobile',$request['username'])->first();
+        $username = $helper->convert($request->username);
+
+        $user = User::where('mobile',$username)->first();
         $type = "registered before";
         if(!$user) {
 
             $user = new User();
-            $user->mobile = $request->username;
+            $user->mobile = $username;
             $user->save();
 
             // Add Role to User
