@@ -13,3 +13,8 @@
 
 Route::get('/','Web\WebController@index');
 Route::get('/rules','Web\WebController@rules');
+
+Route::get('/aala',function () {
+
+
+});

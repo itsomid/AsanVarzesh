@@ -187,6 +187,18 @@ class ProgramsController extends Controller
 
         }
 
+        // Change Time of exercises
+        $time_of_exercises = [];
+        foreach ($data['time_of_exercises'] as $item) {
+            $row = [
+                'day_number' => intval($item['day_number']),
+                'start_time' => $item['start_time'],
+                'end_time' => $item['end_time'],
+            ];
+
+            array_push($time_of_exercises,$row);
+        }
+
         // Add Program
         $program = new Programs();
         $program->user_id = $user->id;
@@ -196,7 +208,7 @@ class ProgramsController extends Controller
         $program->corrective_doctor_id = $coach->team['corrective_doctor'];
         $program->start_date = Carbon::today();
         $program->status = 'awaiting_payment';
-        $program->time_of_exercises = $data['time_of_exercises'];
+        $program->time_of_exercises = $time_of_exercises;
         $program->configuration = $orphan_program->configuration;
         $program->federation_id = $sport->federation->id;
         $program->target = $data['target'];
