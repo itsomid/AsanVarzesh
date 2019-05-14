@@ -52,8 +52,8 @@ class Programs extends Model
 
     public function sport()
     {
-        //return $this->hasOne('App\Model\Sport','id','sport_id');
-        return $this->hasMany('App\Model\Sport','id','sport_id');
+        return $this->hasOne('App\Model\Sport','id','sport_id');
+//        return $this->hasMany('App\Model\Sport','id','sport_id');
     }
 
     public function calendar()

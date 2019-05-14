@@ -17,8 +17,8 @@ class RequestsController extends Controller
     public function index() {
 
         $response_json = [];
-
-        $programs = Programs::where('status','orphan')->get();
+        $coach = auth('api')->user();
+        $programs = Programs::where('coach_id',$coach->id)->where('status','orphan')->get();
 
         foreach ($programs as $program) {
             $program = [
