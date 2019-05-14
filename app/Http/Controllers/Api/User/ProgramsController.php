@@ -195,7 +195,7 @@ class ProgramsController extends Controller
         $program->nutrition_doctor_id = $coach->team['nutrition_doctor'];
         $program->corrective_doctor_id = $coach->team['corrective_doctor'];
         $program->start_date = Carbon::today();
-        $program->status = 'pending';
+        $program->status = 'awaiting_payment';
         $program->time_of_exercises = $data['time_of_exercises'];
         $program->configuration = $orphan_program->configuration;
         $program->federation_id = $sport->federation->id;

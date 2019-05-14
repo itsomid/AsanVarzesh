@@ -25,7 +25,7 @@ class PaymentController extends Controller
 
     public function pay($program_id)
     {
-        $payment = Payment::where('program_id',$program_id)->where('status','pending')->first();
+        $payment = Payment::where('program_id',$program_id)->where('status','awaiting_payment')->first();
         if(!$payment) {
             return response()->json([
                 'Not Found'
@@ -64,21 +64,31 @@ class PaymentController extends Controller
                 $payment->gateway_message = $message;
                 $payment->save();
 
+                $program->status = 'pending';
+                $program->save();
+
             } else{
                 // Unsuccessfull Payment
                 $status = 'failed';
                 $gateway_status = $result;
                 $message = $iranKish->lessThan100Message($result);
-                $payment->delete();
-                $program->delete();
+
+                $payment->gateway_status = $gateway_status;
+                $payment->status = $status;
+                $payment->message = $message;
+                $payment->save();
             }
         } else {
             // Unsuccessfull Payment
             $status = 'pending';
             $gateway_status = $data['resultCode'];
             $message = $iranKish->moreThan100messages($data['resultCode']);
-            $payment->delete();
-            $program->delete();
+
+            $payment->gateway_status = $gateway_status;
+            $payment->status = $status;
+            $payment->message = $message;
+            $payment->save();
+
         }
 
 
