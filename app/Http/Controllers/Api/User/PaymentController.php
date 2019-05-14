@@ -75,7 +75,7 @@ class PaymentController extends Controller
 
                 $payment->gateway_status = $gateway_status;
                 $payment->status = $status;
-                $payment->message = $message;
+                $payment->gateway_message = $message;
                 $payment->save();
             }
         } else {
@@ -86,7 +86,7 @@ class PaymentController extends Controller
 
             $payment->gateway_status = $gateway_status;
             $payment->status = $status;
-            $payment->message = $message;
+            $payment->gateway_message = $message;
             $payment->save();
 
         }
