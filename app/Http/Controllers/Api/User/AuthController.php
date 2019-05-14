@@ -76,11 +76,11 @@ class AuthController extends Controller
 
         $message = 'برای ورود به اپلیکیشن آسان ورزش کد را وارد کنید:';
         $message .= $code;
-        $sendSMS = Helper::sendSMS($user->mobile,$message);
+        $sendSMS = Helper::sendSMS($username,$message);
 
 
         return response()->json([
-            'message' => 'کد ورود به شماره تلفن '.$user->mobile.' ارسال شد.',
+            'message' => 'کد ورود به شماره تلفن '.$username.' ارسال شد.',
             'status' => 200,
             'type' => $type
         ],200);
