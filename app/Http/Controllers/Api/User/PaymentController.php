@@ -25,7 +25,7 @@ class PaymentController extends Controller
 
     public function pay($program_id)
     {
-        $payment = Payment::where('program_id',$program_id)->where('status','awaiting_payment')->first();
+        $payment = Payment::where('program_id',$program_id)->where('status','pending')->first();
         if(!$payment) {
             return response()->json([
                 'Not Found'
