@@ -45,7 +45,7 @@
             <h1>{{$payment->gateway_message}}</h1>
             <p>مبلغ: {{$payment->price}} ریال</p>
             <p>کدپیگیری: {{$payment->reference_id}}</p>
-            <a href="#" class="back-to-app">بازگشت به آسان ورزش</a>
+            <a href="asanvarzesh://" class="back-to-app">بازگشت به آسان ورزش</a>
         </div>
 
 
