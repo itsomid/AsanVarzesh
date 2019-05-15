@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Api\Panel;
 
 use App\Helpers\Helper;
 use App\Model\Profiles;
-use App\Model\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class PeopleController extends Controller
 {

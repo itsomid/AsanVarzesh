@@ -90,6 +90,11 @@ return [
             'root'   => storage_path('app/public/audios'), // previously storage_path();
         ],
 
+        'federations' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/federations'), // previously storage_path();
+        ],
+
 
         's3' => [
             'driver' => 's3',

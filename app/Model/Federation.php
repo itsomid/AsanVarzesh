@@ -16,9 +16,11 @@ class Federation extends Model
 {
     //
     protected $appends = [
+        'url_image',
         'sportCount',
         'coachCount'
     ];
+
     public function sports()
     {
         return $this->hasMany('App\Model\Sport');
@@ -39,7 +41,15 @@ class Federation extends Model
         }
 
         return $count;
+    }
 
+    public function getUrlImageAttribute()
+    {
+        if($this->image == '') {
+            return url('images/placeholder.png');
+        } else {
+            return url($this->image);
+        }
 
     }
 

@@ -19,8 +19,6 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() {
 
-    //Route::post('control-panel/auth/login','Api\Panel\AuthController@login');
-
     Route::group(['middleware' => 'api','prefix' => 'control-panel/auth'], function ($router) {
 
         Route::post('login', 'Api\Panel\AuthController@login');
@@ -88,6 +86,12 @@ Route::group(['middleware' => ['api'/*, 'cors'*/],'prefix' => '/v1'],function() 
             Route::post('/sports/{id}/update','Api\Panel\SportsController@update');
             Route::get('/federations','Api\Panel\SportsController@federations');
             Route::post('/sports/store','Api\Panel\SportsController@store');
+
+
+            Route::get('/federations/all','Api\Panel\FederationController@index');
+            Route::get('/federations/{id}','Api\Panel\FederationController@show');
+            Route::post('/federations/store','Api\Panel\FederationController@store');
+            Route::post('/federations/update/{id}','Api\Panel\FederationController@update');
 
             Route::get('conversations','Api\Panel\ConversationsController@index');
             Route::get('conversations/{id}','Api\Panel\ConversationsController@show');
