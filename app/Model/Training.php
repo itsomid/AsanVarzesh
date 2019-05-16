@@ -45,7 +45,7 @@ class Training extends Model
 
     }
 
-    public function getattachmentAttribute()
+    public function getAttachmentAttribute()
     {
         if($this->attributes['attachment'] != null OR $this->attributes['attachment'] != '') {
             return url($this->attributes['attachment']);
