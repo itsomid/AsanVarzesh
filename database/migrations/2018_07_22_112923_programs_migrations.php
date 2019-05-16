@@ -31,14 +31,21 @@ class ProgramsMigrations extends Migration
             $table->json('configuration')->nullable();
             $table->text('text')->nullable();
 
-
-            // Sport Info
-            $table->decimal('weight')->nullable();
+            // Body Info
+            $table->float('weight')->nullable();
             $table->float('abdominal')->nullable();
             $table->float('arm')->nullable();
             $table->float('wrist')->nullable();
             $table->float('hip')->nullable();
             $table->float('waist')->nullable();
+            $table->float('foot_thighs')->nullable();
+                $table->float('ankle')->nullable();
+            $table->float('chest')->nullable();
+            $table->float('shoulder')->nullable();
+            $table->float('forearm')->nullable();
+
+
+            // Sport Info
             $table->string('place_for_sport')->nullable();
             $table->json('time_of_exercises')->nullable(); // Days of the week
             $table->text('level')->nullable();

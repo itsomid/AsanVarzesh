@@ -219,8 +219,15 @@ class ProgramsController extends Controller
         $program->abdominal = $data['abdominal'];
         $program->arm = $data['arm'];
         $program->wrist = $data['wrist'];
-        //$program->hip = $data['hip'];
+        $program->hip = $data['hip'];
         $program->waist = $data['waist'];
+        $program->foot_thighs = $data['foot_thighs'];
+        $program->ankle = $data['ankle'];
+        $program->chest = $data['chest'];
+        $program->shoulder = $data['shoulder'];
+        $program->forearm = $data['forearm'];
+
+
         $program->sport_habits = $data['sport_habits'];
         $program->sport_desc = $data['sport_desc'];
         $program->nutrition_desc = $data['nutrition_desc'];
