@@ -14,7 +14,6 @@
 Route::get('/','Web\WebController@index');
 Route::get('/rules','Web\WebController@rules');
 
-Route::get('/aala',function () {
-
-
+Route::get('/test',function () {
+    return \App\Model\Federation::all();
 });

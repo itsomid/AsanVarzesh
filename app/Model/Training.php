@@ -32,11 +32,7 @@ class Training extends Model
         return $this->belongsToMany('App\Model\Accessory');
     }
 
-//    public function getImageAttribute() {
-//        return null;
-//    }
-
-    public function getimageAttribute()
+    public function getImageAttribute()
     {
         if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
             return url($this->attributes['image']);

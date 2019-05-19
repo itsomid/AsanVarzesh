@@ -16,7 +16,6 @@ class Federation extends Model
 {
     //
     protected $appends = [
-        'url_image',
         'sportCount',
         'coachCount'
     ];
@@ -26,12 +25,12 @@ class Federation extends Model
         return $this->hasMany('App\Model\Sport');
     }
 
-    public function getsportCountAttribute()
+    public function getSportCountAttribute()
     {
         return $this->hasMany('App\Model\Sport')->count();
     }
 
-    public function getcoachCountAttribute()
+    public function getCoachCountAttribute()
     {
         $sports = $this->hasMany('App\Model\Sport')->with('coaches')->get();
         $count = 0;
@@ -43,13 +42,12 @@ class Federation extends Model
         return $count;
     }
 
-    public function getUrlImageAttribute()
+    public function getImageAttribute()
     {
-        if($this->image == '') {
-            return url('images/placeholder.png');
-        } else {
-            return url($this->image);
+        if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
+            return url($this->attributes['image']);
         }
+        return null;
 
     }
 
