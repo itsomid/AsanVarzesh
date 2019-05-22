@@ -32,9 +32,15 @@ class Profiles extends Model
         'wrist',
         'abdominal',
         'waist',
+        'foot_thighs',
+        'ankle',
+        'chest',
+        'shoulder',
+        'forearm',
+        'hip',
         'sport_habit',
         'sport_desc',
-        'nutrition_desc'
+        'nutrition_desc',
     ];
 
 
@@ -143,6 +149,54 @@ class Profiles extends Model
     public function getWaistAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
             return (string) $this->lastProgram()->waist;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getFootThighsAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getAnkleAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getChestAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getShoulderAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getForearmAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
+        } else {
+            return (string) 0;
+        }
+    }
+
+    public function getHipAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->foot_thighs;
         } else {
             return (string) 0;
         }

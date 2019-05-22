@@ -17,7 +17,7 @@ class UserProfileController extends Controller
         $coach = auth('api')->user();
         $field = $coach->getField();
 
-        $user = User::with([
+        return $user = User::with([
             'profile.city',
             'activities',
             'active_programs.sport',
@@ -97,8 +97,6 @@ class UserProfileController extends Controller
         }
 
         return $transformed_calendars;
-
-        return $calendars;
 
     }
 }
