@@ -15,15 +15,30 @@ class ConversationController extends Controller
     public function index() {
 
         $coach = auth('api')->user();
+        if($coach->hasRole('coach')) {
 
-        return $user = User::with([
-            'conversations_public.program.sport',
-            'conversations_public.user.profile.city',
-            'conversations_public.user.Roles',
-            'conversations_public.lastMessage'
-        ])->where('id',$coach->id)
-        ->first();
+            $program_ids = Programs::where('coach_id',$coach->id)->pluck('id');
+            return $user = User::with(
+                ['conversations_public' => function($q) use ($program_ids) {
+                    $q->whereIn('conversations.program_id', $program_ids)
+                        ->with([
+                            'program.sport',
+                            'user.profile.city',
+                            'user.Roles',
+                            'lastMessage'
+                        ]);
+                }])->first();
 
+        } else {
+
+            return $user = User::with([
+                'conversations_public.program.sport',
+                'conversations_public.user.profile.city',
+                'conversations_public.user.Roles',
+                'conversations_public.lastMessage'
+            ])->where('id',$coach->id)
+            ->first();
+        }
 
 
     }
