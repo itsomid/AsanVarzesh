@@ -17,7 +17,7 @@ class ConversationController extends Controller
         $coach = auth('api')->user();
         if($coach->hasRole('coach')) {
 
-            $program_ids = Programs::where('user_id',$coach->id)->pluck('id');
+            $program_ids = Programs::where('coach_id',$coach->id)->pluck('id');
             return $user = User::with(
                 ['conversations_public' => function($q) use ($program_ids) {
                     $q->whereIn('conversations.program_id', $program_ids)
