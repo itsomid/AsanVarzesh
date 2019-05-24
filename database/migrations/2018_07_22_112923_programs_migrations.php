@@ -39,7 +39,7 @@ class ProgramsMigrations extends Migration
             $table->float('hip')->nullable();
             $table->float('waist')->nullable();
             $table->float('foot_thighs')->nullable();
-                $table->float('ankle')->nullable();
+            $table->float('ankle')->nullable();
             $table->float('chest')->nullable();
             $table->float('shoulder')->nullable();
             $table->float('forearm')->nullable();

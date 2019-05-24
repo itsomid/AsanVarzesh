@@ -24,8 +24,20 @@ class ProfileMigration extends Migration
             $table->text('text')->nullable();
             $table->text('avatar')->nullable();
             $table->json('photos')->nullable();
+
             $table->float('height')->nullable();
             $table->float('weight')->nullable();
+            $table->float('abdominal')->nullable();
+            $table->float('arm')->nullable();
+            $table->float('wrist')->nullable();
+            $table->float('hip')->nullable();
+            $table->float('waist')->nullable();
+            $table->float('foot_thighs')->nullable();
+            $table->float('ankle')->nullable();
+            $table->float('chest')->nullable();
+            $table->float('shoulder')->nullable();
+            $table->float('forearm')->nullable();
+
             $table->enum('blood_type',['O-','O+','A-','+A','B-','B+','AB-','AB+']);
             $table->text('diseases')->nullable();
             $table->text('maim')->nullable();

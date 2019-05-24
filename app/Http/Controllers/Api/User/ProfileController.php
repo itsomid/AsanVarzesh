@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Helpers\Helper;
 use App\Model\Profiles;
+use App\Model\Programs;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,7 +62,6 @@ class ProfileController extends Controller
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
-        $profile->height = $data['height'];
         $profile->blood_type = $data['blood_type'];
         $profile->diseases = $data['diseases'];
         $profile->maim = $data['maim'];
@@ -69,14 +69,43 @@ class ProfileController extends Controller
         $profile->address = $data['address'];
         $profile->nutrition_info = $data['nutrition_info'];
         $profile->gender = $data['gender'];
+
         $profile->height = $data['height'];
         $profile->weight = $data['weight'];
+        $profile->abdominal = $data['abdominal'];
+        $profile->arm = $data['arm'];
+        $profile->wrist = $data['wrist'];
+        $profile->hip = $data['hip'];
+        $profile->waist = $data['waist'];
+        $profile->foot_thighs = $data['foot_thighs'];
+        $profile->ankle = $data['ankle'];
+        $profile->chest = $data['chest'];
+        $profile->shoulder = $data['shoulder'];
+        $profile->forearm = $data['forearm'];
+
         $profile->birth_date = $data['birth_date'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
         $profile->national_code = $data['national_code'];
         $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->save();
+
+        $lastProgram = Programs::where('user_id')->ordeby('id','DESC')->first();
+        if($lastProgram) {
+            $lastProgram->weight = $data['weight'];
+            $lastProgram->abdominal = $data['abdominal'];
+            $lastProgram->arm = $data['arm'];
+            $lastProgram->wrist = $data['wrist'];
+            $lastProgram->hip = $data['hip'];
+            $lastProgram->waist = $data['waist'];
+            $lastProgram->foot_thighs = $data['foot_thighs'];
+            $lastProgram->ankle = $data['ankle'];
+            $lastProgram->chest = $data['chest'];
+            $lastProgram->shoulder = $data['shoulder'];
+            $lastProgram->forearm = $data['forearm'];
+            $lastProgram->save();
+        }
+
 
         return response()->json([
                 'profile' => $profile,
@@ -111,7 +140,7 @@ class ProfileController extends Controller
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];
         $profile->last_name = $data['last_name'];
-        $profile->height = $data['height'];
+
         $profile->blood_type = $data['blood_type'];
         $profile->birth_date = $data['birth_date'];
         $profile->diseases = $data['diseases'];
@@ -124,8 +153,20 @@ class ProfileController extends Controller
         $profile->national_code = $data['national_code'];
         $profile->education = $data['education'];
         $profile->education_title = $data['education_title'];
+
         $profile->height = $data['height'];
         $profile->weight = $data['weight'];
+        $profile->abdominal = $data['abdominal'];
+        $profile->arm = $data['arm'];
+        $profile->wrist = $data['wrist'];
+        $profile->hip = $data['hip'];
+        $profile->waist = $data['waist'];
+        $profile->foot_thighs = $data['foot_thighs'];
+        $profile->ankle = $data['ankle'];
+        $profile->chest = $data['chest'];
+        $profile->shoulder = $data['shoulder'];
+        $profile->forearm = $data['forearm'];
+
         $profile->save();
 
         $user->steps = 'profile';

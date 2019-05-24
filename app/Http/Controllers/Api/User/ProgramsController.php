@@ -145,6 +145,18 @@ class ProgramsController extends Controller
         $user->profile->appetite = $data['appetite'];
         $user->profile->budget = $data['budget'];
         $user->profile->military_services = $data['military_services'];
+        $user->profile->height = $data['height'];
+        $user->profile->weight = $data['weight'];
+        $user->profile->abdominal = $data['abdominal'];
+        $user->profile->arm = $data['arm'];
+        $user->profile->wrist = $data['wrist'];
+        $user->profile->hip = $data['hip'];
+        $user->profile->waist = $data['waist'];
+        $user->profile->foot_thighs = $data['foot_thighs'];
+        $user->profile->ankle = $data['ankle'];
+        $user->profile->chest = $data['chest'];
+        $user->profile->shoulder = $data['shoulder'];
+        $user->profile->forearm = $data['forearm'];
         $user->profile->save();
 
 

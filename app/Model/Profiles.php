@@ -26,18 +26,18 @@ class Profiles extends Model
     ];
 
     protected $appends = [
-        'weight',
+//        'weight',
         'nourlphotos',
-        'arm',
-        'wrist',
-        'abdominal',
-        'waist',
-        'foot_thighs',
-        'ankle',
-        'chest',
-        'shoulder',
-        'forearm',
-        'hip',
+//        'arm',
+//        'wrist',
+//        'abdominal',
+//        'waist',
+//        'foot_thighs',
+//        'ankle',
+//        'chest',
+//        'shoulder',
+//        'forearm',
+//        'hip',
         'sport_habit',
         'sport_desc',
         'nutrition_desc',
@@ -45,24 +45,24 @@ class Profiles extends Model
 
 
 
-    public function getweightAttribute()
-    {
-        $program = Programs::where('user_id',$this->user_id)->orderby('id','DESC')->first();
-        if($program != null) {
-            return (string) $program->weight;
-        } else {
-            return (string) $this->attributes['weight'];
-        }
+//    public function getWeightAttribute()
+//    {
+//        $program = Programs::where('user_id',$this->user_id)->orderby('id','DESC')->first();
+//        if($program != null) {
+//            return (string) $program->weight;
+//        } else {
+//            return (string) $this->attributes['weight'];
+//        }
+//
+//    }
+//
+//    public function getHeightAttribute()
+//    {
+//        return (string) $this->attributes['height'];
+//
+//    }
 
-    }
-
-    public function getheightAttribute()
-    {
-        return (string) $this->attributes['height'];
-
-    }
-
-    public function getavatarAttribute()
+    public function getAvatarAttribute()
     {
         if($this->attributes['avatar'] != null OR $this->attributes['avatar'] != '') {
             return url($this->attributes['avatar']);
@@ -128,85 +128,85 @@ class Profiles extends Model
         return $program = Programs::where('user_id',$this->user_id)->orderby('id','DESC')->first();
     }
 
-    public function getArmAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->arm;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getWristAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->wrist;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getAbdominalAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->abdominal;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getWaistAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->waist;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getFootThighsAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getAnkleAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getChestAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getShoulderAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getForearmAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
-
-    public function getHipAttribute() {
-        if($this->lastProgram() != null && $this->lastProgram() != '') {
-            return (string) $this->lastProgram()->foot_thighs;
-        } else {
-            return (string) 0;
-        }
-    }
+//    public function getArmAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->arm;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getWristAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->wrist;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getAbdominalAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->abdominal;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getWaistAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->waist;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getFootThighsAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getAnkleAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getChestAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getShoulderAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getForearmAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
+//
+//    public function getHipAttribute() {
+//        if($this->lastProgram() != null && $this->lastProgram() != '') {
+//            return (string) $this->lastProgram()->foot_thighs;
+//        } else {
+//            return (string) 0;
+//        }
+//    }
 
     public function getSportHabitAttribute() {
         if($this->lastProgram() != null && $this->lastProgram() != '') {
