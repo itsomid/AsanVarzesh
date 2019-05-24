@@ -85,7 +85,13 @@ class Profiles extends Model
     }
 
     public function getNourlphotosAttribute() {
-        return json_decode($this->attributes['photos'],true);
+        if(isset($this->attributes['photos']) OR $this->attributes['photos'] != null) {
+            foreach (\GuzzleHttp\json_decode($this->attributes['photos'],1) as $item) {
+                array_push($photos,url($item));
+            }
+            return $photos;
+        }
+        return [];
     }
 
     public function user()
