@@ -71,7 +71,7 @@ class Profiles extends Model
 
     }
 
-    public function getphotosAttribute()
+    public function getPhotosAttribute()
     {
         $photos = [];
         if(isset($this->attributes['photos']) OR $this->attributes['photos'] != null) {
