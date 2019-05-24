@@ -85,7 +85,7 @@ class Profiles extends Model
     }
 
     public function getNourlphotosAttribute() {
-        return $this->attributes['photos'];
+        return \GuzzleHttp\json_decode($this->attributes['photos'],true);
     }
 
     public function user()

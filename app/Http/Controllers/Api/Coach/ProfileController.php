@@ -150,7 +150,7 @@ class ProfileController extends Controller
 
             return response()->json([
                 'profile' => $profile,
-                'avatar_url' => url('storage/avatars/' . $path),
+                'avatar_url' => 'storage/avatars/' . $path,
                 'status' => 200
             ], 200);
 
