@@ -102,4 +102,51 @@ class Programs extends Model
         $profile = Profiles::where('user_id',$this->user_id)->first(['appetite']);
         return $profile->appetite;
     }
+
+    public function getWeightAttribute()
+    {
+        return (string) $this->attributes['weight'];
+    }
+
+
+    public function getArmAttribute() {
+        return (string) $this->attributes['arm'];
+    }
+
+    public function getWristAttribute() {
+        return (string) $this->attributes['wrist'];
+    }
+
+    public function getAbdominalAttribute() {
+        return (string) $this->attributes['abdominal'];
+    }
+
+    public function getWaistAttribute() {
+        return (string) $this->attributes['waist'];
+    }
+
+    public function getFootThighsAttribute() {
+        return (string) $this->attributes['foot_thighs'];
+    }
+
+    public function getAnkleAttribute() {
+        return (string) $this->attributes['ankle'];
+    }
+
+    public function getChestAttribute() {
+        return (string) $this->attributes['chest'];
+    }
+
+    public function getShoulderAttribute() {
+        return (string) $this->attributes['shoulder'];
+    }
+
+    public function getForearmAttribute() {
+        return (string) $this->attributes['forearm'];
+    }
+
+    public function getHipAttribute() {
+        return (string) $this->attributes['hip'];
+    }
+
 }
