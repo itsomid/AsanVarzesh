@@ -37,6 +37,7 @@ class ConversationController extends Controller
                 'conversations_public.user.Roles',
                 'conversations_public.lastMessage'
             ])->where('id',$coach->id)
+            ->where('id',$coach->id)
             ->first();
         }
 
