@@ -71,7 +71,6 @@ class ProfileController extends Controller
             array_push($co_workers,$program->nutrition_doctor);
             array_push($co_workers,$program->corrective_doctor);
             array_push($co_workers,$program->coach);
-//            array_push($co_workers,$program->nutrition_doctor);
 
         }
 

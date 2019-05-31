@@ -11,6 +11,8 @@ class SportTypeController extends Controller
 
     public function index()
     {
+
+
         $user = auth('api')->user();
         $role = $user->roles[0]->name;
 
@@ -27,6 +29,7 @@ class SportTypeController extends Controller
                 array_push($allSports,$sportArray);
             }
             return $allSports;
+
         } elseif($role == 'nutrition-doctor') {
 
             $programs = Programs::with('sport')->where('nutrition_doctor_id',$user->id)

@@ -26,7 +26,7 @@ class ConversationController extends Controller
                         'user.Roles',
                         'lastMessage'
                     ]);
-            }])->first();
+            }])->where('id',$user->id)->first();
 
 //        return $coach = User::with([
 //            'conversations_public.program.sport',
