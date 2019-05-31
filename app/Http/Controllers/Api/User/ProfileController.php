@@ -90,7 +90,7 @@ class ProfileController extends Controller
         $profile->location = [$data['location'][0], $data['location'][1]]; // Point
         $profile->save();
 
-        $lastProgram = Programs::where('user_id')->ordeby('id','DESC')->first();
+        $lastProgram = Programs::where('user_id')->orderby('id','DESC')->first();
         if($lastProgram) {
             $lastProgram->weight = $data['weight'];
             $lastProgram->abdominal = $data['abdominal'];
