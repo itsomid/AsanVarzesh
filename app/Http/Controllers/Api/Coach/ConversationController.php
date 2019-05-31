@@ -27,7 +27,7 @@ class ConversationController extends Controller
                             'user.Roles',
                             'lastMessage'
                         ]);
-                }])->first();
+                }])->where('id',$coach->id)->first();
 
         } else {
 
