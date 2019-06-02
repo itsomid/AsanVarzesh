@@ -96,7 +96,7 @@ class DoctorController extends Controller
         $profile->height = !isset($data['height']) ? 0 : $data['height'];
         $profile->national_code = !isset($data['national_code']) ? 0 : $data['national_code'];
         $profile->weight = !isset($data['weight']) ? 0 : $data['weight'];
-        $profile->photos = [];
+        $profile->photos = null;
         $profile->save();
 
 

@@ -71,6 +71,7 @@ class ProfileController extends Controller
             array_push($co_workers,$program->nutrition_doctor);
             array_push($co_workers,$program->corrective_doctor);
             array_push($co_workers,$program->coach);
+//            array_push($co_workers,$program->nutrition_doctor);
 
         }
 
@@ -169,15 +170,19 @@ class ProfileController extends Controller
         //$profile = $user->profile;
         $photos = $user->profile->nourlphotos;
 
+        if(gettype($photos) == 'string') {
+            $photos = \GuzzleHttp\json_decode($photos);
+        }
+
         $new_photos = [];
-        foreach (\GuzzleHttp\json_decode($photos,1) as $photo) {
+        foreach ($photos as $photo) {
             if($photo != $data['photo']) {
                 array_push($new_photos,$photo);
             }
         }
 
         $profile = Profiles::find($user->profile->id);
-        $profile->photos = $new_photos;
+        $profile->photos = count($new_photos) == 0 ? null : $new_photos;
         $profile->save();
     }
 }

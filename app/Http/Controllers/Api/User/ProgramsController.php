@@ -31,6 +31,7 @@ class ProgramsController extends Controller
                                     'corrective_doctor.profile',
                                     'nutrition_doctor.profile'])
             ->where('user_id',$user->id)
+
             ->orderby('id','DESC')
             ->get();
 
@@ -211,13 +212,24 @@ class ProgramsController extends Controller
             array_push($time_of_exercises,$row);
         }
 
+
+        // Last User Program
+        $lastProgram = Programs::where('user_id',$user->id)->orderby('id','DESC')->first();
+        $nutrition_doctor_id = $coach->team['nutrition_doctor'];
+        $corrective_doctor_id = $coach->team['corrective_doctor'];
+        if($lastProgram) {
+            $nutrition_doctor_id = $lastProgram->nutrition_doctor_id;
+            $corrective_doctor_id = $lastProgram->corrective_doctor_id;
+        }
+
+
         // Add Program
         $program = new Programs();
         $program->user_id = $user->id;
         $program->coach_id = $data['coach_id'];
         $program->sport_id = $data['sport_id'];
-        $program->nutrition_doctor_id = $coach->team['nutrition_doctor'];
-        $program->corrective_doctor_id = $coach->team['corrective_doctor'];
+        $program->nutrition_doctor_id = $nutrition_doctor_id;
+        $program->corrective_doctor_id = $corrective_doctor_id;
         $program->start_date = Carbon::today();
         $program->status = 'awaiting_payment';
         $program->time_of_exercises = $time_of_exercises;

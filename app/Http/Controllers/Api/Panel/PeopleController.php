@@ -145,7 +145,7 @@ class PeopleController extends Controller
         $profile->expertise = $data['profile']['expertise'];
         $profile->avatar = $avatar_url;
         $profile->experiences = $data['profile']['experiences'];
-        $profile->photos = [];
+        $profile->photos = null;
         $profile->save();
 
         return response()->json(['message' => 'کاربر جدید اضافه شد'],200);

@@ -116,7 +116,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function active_programs()
     {
-        return $this->hasMany('App\Model\Programs')->where('status','pending')->orwhere('status','active')->orWhere('status','accept');
+        return $this->hasMany('App\Model\Programs')->where('status','active');
     }
 
     public function programs() {
@@ -216,6 +216,8 @@ class User extends Authenticatable implements JWTSubject
         }
 
     }
+
+
 
 
 

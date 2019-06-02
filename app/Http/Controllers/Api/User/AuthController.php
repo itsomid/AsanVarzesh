@@ -57,6 +57,7 @@ class AuthController extends Controller
             $profile->education_title = '';
             $profile->height = 0;
             $profile->weight = 0;
+            $profile->photos = null;
             $profile->save();
 
         }

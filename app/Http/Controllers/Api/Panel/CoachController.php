@@ -96,7 +96,7 @@ class CoachController extends Controller
         $profile->national_code = $data['national_code'];
 
         $profile->weight = $data['weight'];
-        $profile->photos = [];
+        $profile->photos = null;
         $profile->save();
 
 

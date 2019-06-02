@@ -105,48 +105,47 @@ class Programs extends Model
 
     public function getWeightAttribute()
     {
-        return (string) $this->attributes['weight'];
+        return (string) (int) $this->attributes['weight'];
     }
 
-
     public function getArmAttribute() {
-        return (string) $this->attributes['arm'];
+        return (string) (int) $this->attributes['arm'];
     }
 
     public function getWristAttribute() {
-        return (string) $this->attributes['wrist'];
+        return (string) (int) $this->attributes['wrist'];
     }
 
     public function getAbdominalAttribute() {
-        return (string) $this->attributes['abdominal'];
+        return (string) (int) $this->attributes['abdominal'];
     }
 
     public function getWaistAttribute() {
-        return (string) $this->attributes['waist'];
+        return (string) (int) $this->attributes['waist'];
     }
 
     public function getFootThighsAttribute() {
-        return (string) $this->attributes['foot_thighs'];
+        return (string) (int) $this->attributes['foot_thighs'];
     }
 
     public function getAnkleAttribute() {
-        return (string) $this->attributes['ankle'];
+        return (string) (int) $this->attributes['ankle'];
     }
 
     public function getChestAttribute() {
-        return (string) $this->attributes['chest'];
+        return (string) (int) $this->attributes['chest'];
     }
 
     public function getShoulderAttribute() {
-        return (string) $this->attributes['shoulder'];
+        return (string) (int) $this->attributes['shoulder'];
     }
 
     public function getForearmAttribute() {
-        return (string) $this->attributes['forearm'];
+        return (string) (int) $this->attributes['forearm'];
     }
 
     public function getHipAttribute() {
-        return (string) $this->attributes['hip'];
+        return (string) (int) $this->attributes['hip'];
     }
 
 }

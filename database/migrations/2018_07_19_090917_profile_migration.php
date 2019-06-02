@@ -54,6 +54,7 @@ class ProfileMigration extends Migration
             $table->text('budget')->nullable();
             $table->text('appetite')->nullable();
             $table->enum('gender',['male','female']);
+            $table->text('nutrition_habits')->nullable();
             $table->timestamps();
 
 
