@@ -22,9 +22,9 @@ class Training extends Model
 //        'image'
 //    ];
 
-    public function sports() {
-        return $this->belongsToMany('App\Model\Sport');
-    }
+//    public function sports() {
+//        return $this->belongsToMany('App\Model\Sport');
+//    }
 
     public function sport()
     {
