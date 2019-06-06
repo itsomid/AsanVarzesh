@@ -48,10 +48,6 @@ class DashboardController extends Controller
 
             }
 
-
-
-
-
         }
 
         $calendar_nutrition = Calendar::where('user_id',$user->id)
@@ -71,9 +67,13 @@ class DashboardController extends Controller
         $arr_nutrition = [];
         array_push($arr_nutrition,$calendar_nutrition);
 
-        return response()->json([
-            'trainings' => $arr_training,
-            'nutrition' => $arr_nutrition],200);
+        return response()->json(
+            [
+                'trainings' => $arr_training,
+                'nutrition' => $arr_nutrition
+            ],
+        200
+        );
 
 
     }
