@@ -80,7 +80,7 @@ class Sport extends Model
 
     public function trainings() {
 
-        return $this->hasMany('App\Model\Training');
+        return $this->belongsToMany('App\Model\Training');
 
     }
 

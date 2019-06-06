@@ -22,6 +22,10 @@ class Training extends Model
 //        'image'
 //    ];
 
+    public function sports() {
+        return $this->belongsToMany('App\Model\Sport');
+    }
+
     public function sport()
     {
         return $this->hasOne('App\Model\Sport','id','sport_id');

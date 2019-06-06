@@ -180,6 +180,7 @@ class TrainingsController extends Controller
         $training->enable = true;
         $training->save();
 
+
         $training->accessories()->attach($accessories);
 
         return response()->json(['message' => 'تمرین جدید اضافه شد'],200);

@@ -40,13 +40,10 @@ class SportTypeController extends Controller
                 $sport = $program->sport;
                 array_push($sports,$sport);
             }
-
+            $sports = array_unique($sports);
             $allSports = [];
             foreach ($sports as $sport) {
-                $programs_count = Programs::where('sport_id',$sport->id)
-                    ->where('nutrition_doctor_id',$user->id)
-                    ->whereIn('status',['active','pending','accept'])
-                    ->count();
+                $programs_count = $programs->where('sport_id',$sport->id)->count();
                 $sportArray = $sport->toArray();
                 $sportArray['number_of_users'] = $programs_count;
                 array_push($allSports,$sportArray);
@@ -58,18 +55,17 @@ class SportTypeController extends Controller
             $programs = Programs::with('sport')->where('corrective_doctor_id',$user->id)
                 ->whereIn('status',['active','pending','accept'])
                 ->get();
+
             $sports = [];
             foreach ($programs as $program) {
                 $sport = $program->sport;
                 array_push($sports,$sport);
             }
 
+            $sports = array_unique($sports);
             $allSports = [];
             foreach ($sports as $sport) {
-                $programs_count = Programs::where('sport_id',$sport->id)
-                    ->where('corrective_doctor_id',$user->id)
-                    ->whereIn('status',['active','pending','accept'])
-                    ->count();
+                $programs_count = $programs->where('sport_id',$sport->id)->count();
                 $sportArray = $sport->toArray();
                 $sportArray['number_of_users'] = $programs_count;
                 array_push($allSports,$sportArray);
