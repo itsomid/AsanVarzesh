@@ -41,6 +41,9 @@ class Profiles extends Model
         'sport_habit',
         'sport_desc',
         'nutrition_desc',
+        'place_for_sport',
+        'level',
+        'target'
     ];
 
 
@@ -187,5 +190,30 @@ class Profiles extends Model
             return "";
         }
     }
+
+    public function getPlaceForSportAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->place_for_sport;
+        } else {
+            return "";
+        }
+    }
+
+    public function getLevelAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->level;
+        } else {
+            return "";
+        }
+    }
+
+    public function getTargetAttribute() {
+        if($this->lastProgram() != null && $this->lastProgram() != '') {
+            return (string) $this->lastProgram()->target;
+        } else {
+            return "";
+        }
+    }
+
 
 }

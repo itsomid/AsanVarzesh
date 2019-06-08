@@ -22,7 +22,7 @@ class TrainingsController extends Controller
     }
 
     public function update(Request $request,$id) {
-        return $data = $request->all();
+        $data = $request->all();
         $accessories = json_decode($data['accessories'],1);
 
         $messsages = array(
