@@ -32,6 +32,7 @@ class UserProfileController extends Controller
 
         $program = Programs::where('user_id',$user_id)
                             ->where($field,$coach->id)
+                            ->where('status','active')
                             ->orderBy('id','DESC')
                             ->first();
 
