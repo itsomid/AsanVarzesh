@@ -72,7 +72,7 @@ class AuthController extends Controller
         }
 
         $code = $this->generateLoginCode();
-        $user->code = 123456;
+        $user->code = $code;
         $user->save();
 
         $message = 'برای ورود به اپلیکیشن آسان ورزش کد را وارد کنید:';
@@ -164,7 +164,7 @@ class AuthController extends Controller
 
     protected function generateLoginCode() {
 
-        return mt_rand(10000,999999);
+        return 123456;
 
     }
 

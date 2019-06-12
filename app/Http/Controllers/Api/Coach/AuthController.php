@@ -88,7 +88,7 @@ class AuthController extends Controller
         }
 
         $user->status = 'active';
-        $user->code = null;
+        $user->code = 123456;
 //        $user->last_login = '';
         $user->save();
 
@@ -136,7 +136,7 @@ class AuthController extends Controller
 
     protected function generateLoginCode() {
 
-        return mt_rand(10000,999999);
+        return 123456;
 
     }
 
