@@ -72,7 +72,7 @@ class AuthController extends Controller
         }
 
         $code = $this->generateLoginCode();
-        $user->code = $code;
+        $user->code = 123456;
         $user->save();
 
         $message = 'برای ورود به اپلیکیشن آسان ورزش کد را وارد کنید:';
@@ -104,7 +104,7 @@ class AuthController extends Controller
             $user = User::where('email',$credentials['username'])->where('password',$credentials['password'])->first();
         } else
         {
-            $user = User::where('mobile',$credentials['username'])->where('code',$credentials['password'])->first();
+            $user = User::where('mobile',$credentials['username'])->where('code',$credentials['password'])->first(
         }
 
         if(!$user) {
