@@ -104,7 +104,7 @@ class AuthController extends Controller
             $user = User::where('email',$credentials['username'])->where('password',$credentials['password'])->first();
         } else
         {
-            $user = User::where('mobile',$credentials['username'])->where('code',$credentials['password'])->first(
+            $user = User::where('mobile',$credentials['username'])->where('code',$credentials['password'])->first();
         }
 
         if(!$user) {
