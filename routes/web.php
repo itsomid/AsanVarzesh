@@ -15,7 +15,7 @@ Route::get('/','Web\WebController@index');
 Route::get('/rules','Web\WebController@rules');
 
 Route::get('/test',function (\Illuminate\Http\Request $request) {
-
+    return $date_carbon = \Carbon\Carbon::today();
 //    $keywords = $request->keywords;
 //    $capacity_full = $request->capacity_full;
 //    $by_price = $request->price;
