@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
             $calendars_by_user = Calendar::with(['training','user.profile'])
                 ->whereIn('program_id',$programs_by_type)
-                ->where('date',$date)
+                ->where('date',$date_carbon)
                 ->where('training_id','!=',null)
                 ->get()->groupBy('user_id');
 
