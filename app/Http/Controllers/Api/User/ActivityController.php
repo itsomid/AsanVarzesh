@@ -51,8 +51,8 @@ class ActivityController extends Controller
                     $activity->unit_speed = $attributes['unit_speed'];
                     $activity->set = $attributes['set'];
                     $activity->each_set = $attributes['each_set'];
-                    $activity->time_each_set = $attributes['time_each_set '];
-                    $activity->calendar_id = $data['calendar_id'];
+                    $activity->time_each_set = $attributes['time_each_set'];
+                        $activity->calendar_id = $data['calendar_id'];
                     $activity->save();
 
                     // Update Calendar Status

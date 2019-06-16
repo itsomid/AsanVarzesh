@@ -9,8 +9,14 @@ use Validator;
 
 class TrainingsController extends Controller
 {
-    public function index() {
-        $trainings = Training::with('sport')->where('enable',true)->orderBy('id','DESC')->get();
+    public function index(Request $request) {
+        $data = $request->all();
+        if(isset($data['search'])) {
+            $trainings = Training::with('sport')->where('title','LIKE','%'.$data['search'].'%')->where('enable',true)->orderBy('id','DESC')->get();
+        } else {
+            $trainings = Training::with('sport')->where('enable',true)->orderBy('id','DESC')->get();
+        }
+
         return response()->json($trainings,200);
     }
 
@@ -107,6 +113,7 @@ class TrainingsController extends Controller
 
         $data = $request->all();
         $accessories = json_decode($data['accessories'],1);
+        $attribute = \GuzzleHttp\json_decode($data['attribute'],1);
 
         $messsages = array(
             'title.required'=>'پرکردن فیلد عنوان الزامی ست',
@@ -116,18 +123,43 @@ class TrainingsController extends Controller
             'difficulty.required'=>'میزان دشواری را انتخاب کنید',
         );
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'title' => 'required',
             'sport_id' => 'required',
             'image' => 'required',
             //'attachment' => 'required',
             'difficulty' =>'required',
-        ],$messsages);
+        ];
+
+        $validator = Validator::make($request->all(), $rules,$messsages);
+        if($data['type'] == 0) {
+            $validator->after(function ($validator) use ($attribute) {
+                if(
+                    $attribute['distance'] == 0 ||
+                    $attribute['speed'] == 0 ||
+                    $attribute['time'] == 0 ||
+                    $attribute['unit_speed'] == ''
+                ) {
+
+                    $validator->errors()->add('attributes', 'فیلدهای ویژگی را پر کنید');
+                }
+            });
+        }
+
+        if($data['type'] == 1) {
+            $validator->after(function ($validator) use ($attribute) {
+                if(
+                    $attribute['each_set'] == 0 ||
+                    $attribute['set'] == 0 ||
+                    $attribute['time_each_set'] == 0
+                ) {
+                    $validator->errors()->add('attributes', 'فیلدهای ویژگی را پر کنید');
+                }
+            });
+        }
 
         if ($validator->fails()) {
-
             return response()->json(['message' => $validator->errors()->first()],406);
-
         }
 
 
@@ -164,6 +196,16 @@ class TrainingsController extends Controller
             $audio_full = '';
         }
 
+        if($data['type'] == 0) {
+            $attribute['set'] = null;
+            $attribute['each_set'] = null;
+            $attribute['time_each_set'] = null;
+        } else {
+            $attribute['distance'] = null;
+            $attribute['speed'] = null;
+            $attribute['time'] = null;
+            $attribute['unit_speed'] = null;
+        }
 
         $training = new Training();
         $training->title = $data['title'];
@@ -176,7 +218,7 @@ class TrainingsController extends Controller
         if(isset($data['details'])) {
             $training->details = $data['details'];
         }
-        $training->attribute = json_decode($data['attribute']);
+        $training->attribute = \GuzzleHttp\json_decode($data['attribute'],1);
         $training->enable = true;
         $training->save();
 

@@ -296,13 +296,14 @@ class ProgramsController extends Controller
 
             // Update Payment -- add reference to payment item
             $gateway = new IranKish();
-            $token = $gateway->getToken($price,$program->id,$payment->id);
+            $token = $gateway->getToken($price*10,$program->id,$payment->id);
             $payment = Payment::find($payment->id);
             $payment->token = $token;
             $payment->save();
             $response_data = [
                 'pay' => url('api/v1/user/payments/pay/'.$program->id),
-                'trial' => false
+                'trial' => false,
+                'price' => $payment->price
             ];
 
         } else {
