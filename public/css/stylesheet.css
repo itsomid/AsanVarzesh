@@ -1,0 +1,414 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'vazir-light';
+    src: url('/fonts/Vazir-Light-FD.eot');
+    src: url('/fonts/Vazir-Light-FD.woff') format('woff'),
+    url('/fonts/Vazir-Light-FD.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'vazir-medium';
+    src: url('/fonts/Vazir-Medium-FD.eot');
+    src: url('/fonts/Vazir-Medium-FD.woff') format('woff'),
+    url('/fonts/Vazir-Medium-FD.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'vazir-black';
+    src: url('/fonts/Vazir-Black-FD.eot');
+    src: url('/fonts/Vazir-Black-FD.woff') format('woff'),
+    url('/fonts/Vazir-Black-FD.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'vazir-bold';
+    src: url('/fonts/Vazir-Bold-FD.eot');
+    src: url('/fonts/Vazir-Bold-FD.woff') format('woff'),
+    url('/fonts/Vazir-Bold-FD.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'vazir-Thin';
+    src: url('/fonts/Vazir-Thin-FD.eot');
+    src: url('/fonts/Vazir-Thin-FD.woff') format('woff'),
+    url('/fonts/Vazir-Thin-FD.ttf') format('truetype');
+}
+
+.container{
+    width: 1280px;
+    margin: auto;
+    height: 100%;
+}
+.header{
+    width: 100%;
+    float: right;
+    background: url("/images/Section1.jpg");
+    background-size: 100%;
+    padding: 27px;
+}
+.logo{
+    width:230px;
+    float: right;
+}
+.logo img{
+    width: 100%;
+    float: right;
+}
+.info{
+    width: 184px;
+    float: left;
+}
+.text-header{
+    font-size:18px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: vazir-light;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.Av-application{
+    width: 100%;
+    float: right;
+    margin-top: 200px;
+    text-align: right;
+}
+.Av{
+    width: 100%;
+    float: right;
+    text-align: right;
+    color: #FFFFFF;
+    font-size: 85px;
+    font-family: vazir-medium;
+}
+.info-Av{
+    width: 100%;
+    float: right;
+    text-align: right;
+    color: #FFFFFF;
+    font-size: 25px;
+    font-family: vazir-light;
+}
+.test-btn{
+    width: 250px;
+    height: 50px;
+    float: right;
+    background: #FF6868;
+    padding-top: 12px;
+    margin:30px 50px 254px 0;
+    border-radius: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+
+
+}
+.test-btn span{
+    width:100%;
+    float: right;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: vazir-light;
+
+}
+.content{
+    width: 100%;
+    float: right;
+    background: url("/images/Section2.jpg");
+    background-size:100%;
+    background-repeat: no-repeat;
+    padding: 160px 0 0 150px;
+}
+.Av-content{
+    width: 40%;
+    float: left;
+
+}
+.how-Av {
+    text-align: center;
+    color: #FF6868;
+    font-size: 64px;
+    font-family: vazir-bold;
+    display: block;
+}
+.about-Av{
+    display: block;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family:vazir-light;
+    margin-top: 20px;
+}
+.img-mobile{
+    width: 32%;
+    float: left;
+    margin-top:13.5%;
+    padding-right: 2%;
+}
+.img-mobile img{
+    width: 100%;
+    float: left;
+}
+.information-Av{
+    width: 100%;
+    float: right;
+    background: #48494D;
+}
+.logo-img{
+    width: 40%;
+    float: right;
+    padding-top: 264px;
+}
+.logo-img img{
+    width: 100%;
+    float: right;
+    margin-bottom: 160px;
+}
+.information{
+    width: 50%;
+    float: right;
+    direction: rtl;
+    margin-right: 50px;
+    padding-top: 184px;
+}
+.title-information{
+    width: 100%;
+    float: right;
+    color: #FF6868;
+    font-size: 64px;
+    font-family: vazir-medium;
+}
+.title2{
+    width: 100%;
+    float: right;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: vazir-medium;
+}
+.about{
+    text-align: right;
+    color: #CCCCCC;
+    font-size: 15px;
+    font-family:'vazir-Thin';
+}
+.options{
+    width: 100%;
+    float: right;
+    background: url("/images/section4.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 207px 90px 0 0 ;
+
+}
+.title-div{
+    width:100%;
+    float: right;
+    text-align: right;
+}
+.options-title{
+    font-size: 60px;
+    color: #FF6868;
+    font-family: vazir-medium;
+}
+.numbers{
+    font-size: 23px;
+    text-align: right;
+    color: #FFFFFF;
+    font-family: vazir-Thin;
+    margin-bottom: 135px;
+    list-style: white;
+    direction: rtl;
+
+}
+ol {
+    list-style: none;
+    counter-reset: my-awesome-counter;
+}
+li {
+    counter-increment: my-awesome-counter;
+
+}
+li::before {
+    content: counter(my-awesome-counter);
+    background: #FFFFFF;
+    font-size: 20px;
+    width: 2rem;
+    height: 2rem;
+    font-family: vazir-bold;
+    border-radius: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    line-height: 2rem;
+    color: black;
+    text-align: center;
+    margin-left: 10px;
+    margin-top: 25px;
+}
+.application-download{
+    width: 100%;
+    float: right;
+    background: url("/images/section5.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 150px 0 0 50px;
+}
+.div-application{
+    width: 50%;
+    float: left;
+}
+.logo-application{
+    width: 100%;
+    float: right;
+}
+.logo-application img{
+    width: 181px;
+    height: 181px;
+    float: right;
+    margin-right: 215px;
+}
+.logo-application span{
+    width: 100%;
+    float: right;
+    font-size: 25px;
+    font-family: vazir-medium;
+    text-align: center;
+    color: #FFFFFF;
+}
+.links span{
+    width: 100%;
+    float: right;
+    font-size: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: vazir-medium;
+    margin-top: 20px;
+}
+.app-img{
+    width: 100%;
+    float: right;
+    margin: 30px 80px 200px 0;
+
+}
+.links img{
+    width: 32%;
+    float: right;
+    margin-right: 20px;
+}
+.last-page{
+    width: 100%;
+    float: right;
+    background: url("/images/section6.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding: 60px 200px 0 200px;
+}
+.right{
+    width: 50%;
+    float: right;
+    margin-right: 65px;
+}
+.right span{
+    width: 100%;
+    float: right;
+    font-size: 50px;
+    font-family: vazir-light;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 78px;
+
+}
+.right div{
+    width: 268px;
+    height: 50px;
+    float: right;
+    background: #2D2E30;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+    color: #FFFFFF;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 24px;
+    font-family: vazir-light;
+    border-radius: 100px;
+    border-radius: 30px;
+    margin:20px 70px 0 0;
+}
+.left{
+    width: 40%;
+    float: right;
+    margin-bottom: 60px;
+
+}
+.left img{
+    width: 80%;
+    float: right;
+    margin-right: 70px;
+}
+.footer{
+    width: 100%;
+    float: right;
+    background:black;
+    padding: 70px;
+}
+.f-right{
+    width: 40%;
+    float: right;
+}
+.f-right img{
+    width: 50%;
+    float: right;
+    margin: 40px 30px 0 0;
+}
+.f-center{
+    width: 30%;
+    float: right;
+}
+.f-center img{
+    width: 30%;
+    float: right;
+    margin-right:40px;
+}
+.f-left{
+    width: 30%;
+    float: left;
+    margin-top: 20px;
+}
+.contact-with-us{
+    width: 100%;
+    float: right;
+}
+.contact-us{
+    width: 50%;
+    float: right;
+    font-family: Vazir-light;
+    font-size: 18px;
+    color: #949494;
+    text-align: right;
+}
+.email{
+    width: 50%;
+    float: left;
+    font-family: Vazir-light;
+    font-size: 18px;
+    color: #E3E3E3;
+    text-align: right;
+}
+.phone{
+    width: 100%;
+    float: left;
+    font-family: Vazir-light;
+    font-size: 18px;
+    color: #E3E3E3;
+    text-align: left;
+}
+.Social-Networks img{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+
+
