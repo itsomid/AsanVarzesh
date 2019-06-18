@@ -93,6 +93,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getTurnOverAttribute()
     {
+
         return 26000;
     }
 

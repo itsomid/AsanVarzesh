@@ -29,7 +29,8 @@ class TrainingsController extends Controller
 
     public function update(Request $request,$id) {
         $data = $request->all();
-        $accessories = json_decode($data['accessories'],1);
+        $accessories = \GuzzleHttp\json_decode($data['accessories'],1);
+        $attribute = \GuzzleHttp\json_decode($data['attribute'],1);
 
         $messsages = array(
             'title.required'=>'پرکردن فیلد عنوان الزامی ست',
@@ -49,6 +50,32 @@ class TrainingsController extends Controller
             'difficulty' =>'required',
         ],$messsages);
 
+        if($data['type'] == 0) {
+            $validator->after(function ($validator) use ($attribute) {
+                if(
+                    $attribute['distance'] == 0 ||
+                    $attribute['speed'] == 0 ||
+                    $attribute['time'] == 0 ||
+                    $attribute['unit_speed'] == ''
+                ) {
+
+                    $validator->errors()->add('attributes', 'فیلدهای ویژگی را پر کنید');
+                }
+            });
+        }
+
+        if($data['type'] == 1) {
+            $validator->after(function ($validator) use ($attribute) {
+                if(
+                    $attribute['each_set'] == 0 ||
+                    $attribute['set'] == 0 ||
+                    $attribute['time_each_set'] == 0
+                ) {
+                    $validator->errors()->add('attributes', 'فیلدهای ویژگی را پر کنید');
+                }
+            });
+        }
+
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()->first()],406);
         }
@@ -58,7 +85,7 @@ class TrainingsController extends Controller
             $path = $request->new_image->storeAs('/', md5(time()) . '.' . $ext, 'photos');
             $image = 'storage/photos/' . $path;
         } else {
-            $image = $data['image'];
+            $image = $data['image_path'];
         }
 
         if(array_key_exists('new_attachment',$data)) {
@@ -66,7 +93,7 @@ class TrainingsController extends Controller
             $path = $request->new_attachment->storeAs('/', md5(time()) . '.' . $ext, 'videos');
             $video = 'storage/videos/' . $path;
         } else {
-            $video = $data['attachment'];
+            $video = $data['attachment_path'];
         }
 
         if(array_key_exists('new_audio_short',$data)) {
@@ -74,7 +101,7 @@ class TrainingsController extends Controller
             $path = $request->new_audio_short->storeAs('/', md5(time()) . '.' . $ext, 'audios');
             $audio_short = 'storage/audios/' . $path;
         } else {
-            $audio_short = $data['audio_short'];
+            $audio_short = $data['audio_short_path'];
         }
 
         if(array_key_exists('new_audio_full',$data)) {
@@ -82,10 +109,19 @@ class TrainingsController extends Controller
             $path = $request->new_audio_full->storeAs('/', md5(time()) . '.' . $ext, 'audios');
             $audio_full = 'storage/audios/' . $path;
         } else {
-            $audio_full = $data['audio_full'];
+            $audio_full = $data['audio_full_path'];
         }
 
-
+        if($data['type'] == 0) {
+            $attribute['set'] = null;
+            $attribute['each_set'] = null;
+            $attribute['time_each_set'] = null;
+        } else {
+            $attribute['distance'] = null;
+            $attribute['speed'] = null;
+            $attribute['time'] = null;
+            $attribute['unit_speed'] = null;
+        }
 
         $training = Training::find($id);
         $training->title = $data['title'];

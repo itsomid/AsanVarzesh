@@ -101,6 +101,7 @@ class UserCalendarTrainingsController extends Controller
             $calendar->date = $resource_calendar_item->date;
             $calendar->time_from = $resource_calendar_item->time_from;
             $calendar->time_to = $resource_calendar_item->time_to;
+            $calendar->description = $item['description'];
             $calendar->type = 'training';
             $calendar->status = 'did_not_do';
             $calendar->user_id = $program->user_id;
@@ -119,6 +120,7 @@ class UserCalendarTrainingsController extends Controller
             $calendar = Calendar::where('id', $item['calendar_id'])->first();
             $calendar->training_id = $item['training_id'];
             $calendar->attributes = $item['attributes'];
+            $calendar->description = $item['description'];
             $calendar->save();
         }
         return response()->json([

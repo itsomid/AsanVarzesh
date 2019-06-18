@@ -18,9 +18,12 @@ class Training extends Model
         'attribute' => 'array'
     ];
 
-//    protected $appends = [
-//        'image'
-//    ];
+    protected $appends = [
+        'image_path',
+        'audio_short_path',
+        'audio_full_path',
+        'attachment_path',
+    ];
 
 //    public function sports() {
 //        return $this->belongsToMany('App\Model\Sport');
@@ -41,7 +44,16 @@ class Training extends Model
         if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
             return url($this->attributes['image']);
         }
-        return null;
+        return '';
+
+    }
+
+    public function getImagePathAttribute()
+    {
+        if($this->attributes['image'] != null OR $this->attributes['image'] != '') {
+            return $this->attributes['image'];
+        }
+        return '';
 
     }
 
@@ -50,7 +62,16 @@ class Training extends Model
         if($this->attributes['attachment'] != null OR $this->attributes['attachment'] != '') {
             return url($this->attributes['attachment']);
         }
-        return null;
+        return '';
+
+    }
+
+    public function getAttachmentPathAttribute()
+    {
+        if($this->attributes['attachment'] != null OR $this->attributes['attachment'] != '') {
+            return $this->attributes['attachment'];
+        }
+        return '';
 
     }
 
@@ -59,7 +80,16 @@ class Training extends Model
         if($this->attributes['audio_short'] != null OR $this->attributes['audio_short'] != '') {
             return url($this->attributes['audio_short']);
         }
-        return null;
+        return '';
+
+    }
+
+    public function getAudioShortPathAttribute()
+    {
+        if($this->attributes['audio_short'] != null OR $this->attributes['audio_short'] != '') {
+            return $this->attributes['audio_short'];
+        }
+        return '';
 
     }
 
@@ -68,8 +98,17 @@ class Training extends Model
         if($this->attributes['audio_full'] != null OR $this->attributes['audio_full'] != '') {
             return url($this->attributes['audio_full']);
         }
-        return null;
+        return '';
 
     }
+
+    public function getAudioFullPathAttribute()
+    {
+        if($this->attributes['audio_full'] != null OR $this->attributes['audio_full'] != '') {
+            return $this->attributes['audio_full'];
+        }
+        return '';
+    }
+
 
 }
