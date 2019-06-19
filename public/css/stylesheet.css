@@ -38,6 +38,9 @@
     src: url('/fonts/Vazir-Thin-FD.woff') format('woff'),
     url('/fonts/Vazir-Thin-FD.ttf') format('truetype');
 }
+body{
+    background: #48494D;
+}
 
 .container{
     width: 1280px;
@@ -122,15 +125,15 @@
     background: url("/images/Section2.jpg");
     background-size:100%;
     background-repeat: no-repeat;
-    padding: 160px 0 0 150px;
+    padding: 140px 0 0 150px;
 }
 .Av-content{
     width: 40%;
     float: left;
 
 }
-.how-Av {
-    text-align: center;
+.benefits-Av {
+    text-align: right;
     color: #FF6868;
     font-size: 64px;
     font-family: vazir-bold;
@@ -138,17 +141,30 @@
 }
 .about-Av{
     display: block;
-    text-align: center;
+    text-align:right;
     color: #FFFFFF;
     font-size: 24px;
     font-family:vazir-light;
-    margin-top: 20px;
+    margin-top: 10px;
+    direction: rtl;
+
+}
+.about.two{
+    width: 100%;
+    float: right;
+    text-align: right;
+    font-size: 15px;
+    color: #CCCCCC;
+    font-family:'vazir-Thin';
+    direction: rtl;
+    padding-top: 5px;
 }
 .img-mobile{
     width: 32%;
     float: left;
     margin-top:13.5%;
     padding-right: 2%;
+    margin-bottom: 30px;
 }
 .img-mobile img{
     width: 100%;
@@ -169,12 +185,24 @@
     float: right;
     margin-bottom: 160px;
 }
-.information{
+.information.one{
     width: 50%;
     float: right;
     direction: rtl;
     margin-right: 50px;
     padding-top: 184px;
+}
+.information.two{
+    width: 50%;
+    float: right;
+    direction: rtl;
+    margin-right: 50px;
+    margin-top: 90px;
+}
+.address{
+    width: 100%;
+    float: right;
+    margin-top: 10px;
 }
 .title-information{
     width: 100%;
@@ -220,7 +248,7 @@
     text-align: right;
     color: #FFFFFF;
     font-family: vazir-Thin;
-    margin-bottom: 135px;
+    margin-bottom: 120px;
     list-style: white;
     direction: rtl;
 
@@ -348,67 +376,76 @@ li::before {
     float: right;
     margin-right: 70px;
 }
-.footer{
+.footer {
     width: 100%;
     float: right;
-    background:black;
-    padding: 70px;
+    background: url("/images/Av-footer.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 50px;
 }
-.f-right{
-    width: 40%;
+.footer-information{
+    width: 20%;
     float: right;
 }
-.f-right img{
-    width: 50%;
-    float: right;
-    margin: 40px 30px 0 0;
-}
-.f-center{
-    width: 30%;
-    float: right;
-}
-.f-center img{
-    width: 30%;
-    float: right;
-    margin-right:40px;
-}
-.f-left{
-    width: 30%;
-    float: left;
-    margin-top: 20px;
-}
-.contact-with-us{
+.f-logo{
     width: 100%;
     float: right;
 }
-.contact-us{
-    width: 50%;
+.footer-information.one span{
+    width: 100%;
     float: right;
-    font-family: Vazir-light;
+    text-align:center;
+    direction: rtl;
+    color: #CCCCCC;
     font-size: 18px;
-    color: #949494;
+    font-family: vazir-light;
+    padding-top: 20px;
+}
+.social-media{
+    width: 100%;
+    float: right;
+}
+.social-media img{
+    float: right;
+    margin:15px 20px 0 0;
+    cursor: pointer;
+}
+.f-div{
+    width: 100%;
+    float: right;
+    margin-right: 30px;
+}
+.f-div a{
+    float: right;
+    font-size: 15px;
     text-align: right;
-}
-.email{
-    width: 50%;
-    float: left;
-    font-family: Vazir-light;
-    font-size: 18px;
-    color: #E3E3E3;
-    text-align: right;
-}
-.phone{
-    width: 100%;
-    float: left;
-    font-family: Vazir-light;
-    font-size: 18px;
-    color: #E3E3E3;
-    text-align: left;
-}
-.Social-Networks img{
+    color: #CCCCCC;
+    font-family: vazir-light;
+    text-decoration: none;
+    direction: rtl;
     margin-top: 5px;
-    margin-right: 10px;
 }
-
-
-
+.footer-information.five img{
+    width:50%;
+    float: right;
+    margin-right: 25%;
+}
+.footer-information.five span{
+    width: 100%;
+    float: right;
+    color: #CCCCCC;
+    font-size: 17px;
+    text-align: center;
+    font-family: vazir-light;
+    margin-top: 10px;
+}
+.footer-information.two{
+    margin-top: 75px;
+}
+.footer-information.three{
+    margin-top: 75px;
+}
+.footer-information.four{
+    margin-top: 75px;
+}
