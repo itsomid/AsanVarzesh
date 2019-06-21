@@ -91,10 +91,14 @@ class PaymentController extends Controller
                 $payment->status = $status;
                 $payment->gateway_message = $message;
                 $payment->save();
+
+                $program->status = 'cancel';
+                $program->save();
+
             }
         } else {
             // Unsuccessfull Payment
-            $status = 'pending';
+            $status = 'failed';
             $gateway_status = $data['resultCode'];
             $message = $iranKish->moreThan100messages($data['resultCode']);
 
@@ -102,6 +106,9 @@ class PaymentController extends Controller
             $payment->status = $status;
             $payment->gateway_message = $message;
             $payment->save();
+
+            $program->status = 'cancel';
+            $program->save();
 
         }
 

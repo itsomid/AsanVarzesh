@@ -24,7 +24,14 @@ class ProgramsMigrations extends Migration
             $table->integer('corrective_doctor_id')->nullable();
             $table->integer('subscription_id')->nullable();
             $table->dateTime('start_date')->nullable();
-            $table->enum('status',['active', 'pending','awaiting_payment', 'inactive', 'orphan', 'accept', 'reject','cancel']);
+            $table->enum('status',[
+                'active',
+                'pending',
+                'awaiting_payment',
+                'inactive',
+                'orphan','accept','reject',
+                'cancel']
+            );
             $table->boolean('trainings_confirmation')->default(false);
             $table->boolean('meals_confirmation')->default(false);
             $table->integer('federation_id');
