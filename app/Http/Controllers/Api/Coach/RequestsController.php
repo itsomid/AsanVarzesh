@@ -147,23 +147,30 @@ class RequestsController extends Controller
 
         if($status == 'reject' && $program->payment != null && $program->status != 'reject') {
 
-            $credit_payment = new Payment();
-            $credit_payment->user_id = $program->payment->user_id;
-            $credit_payment->program_id = $program->payment->program_id;
-            $credit_payment->coach_id = $program->payment->coach_id;
-            $credit_payment->subscription_id = $program->payment->subscription_id;
-            $credit_payment->price = $program->payment->price;
-            $credit_payment->type = 'credit';
-            $credit_payment->status = 'return';
-            $credit_payment->save();
+            $program->status = $status;
+            $program->text = $data['text'];
+            $program->save();
 
             $subscription = Subscription::find($program->subscription_id);
             $subscription->delete();
 
+            $payment = \App\Model\Payment::where('type','debit')
+                ->where('program_id',$program->id)
+                ->first();
 
-            $program->status = $status;
-            $program->text = $data['text'];
-            $program->save();
+            if($payment) {
+
+                $payment->status = 'failed';
+                $payment->save();
+
+                $credit_payment = new \App\Model\Payment();
+                $credit_payment->user_id = $payment->user_id;
+                $credit_payment->price = $payment->price;
+                $credit_payment->type = 'credit';
+                $credit_payment->status = 'return';
+                $credit_payment->save();
+
+            }
 
             return response()->json([
                 'message' => 'برنامه رد شد و هزینه دریافتی به کیف پول کاربر اضافه شد',
@@ -185,8 +192,7 @@ class RequestsController extends Controller
                 'status' => 200
             ],200);
 
-
-
+            
         } else {
             return response()->json([
                 'message' => 'وضعیت این برنامه قبلا مشخص شده است',

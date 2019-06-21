@@ -72,7 +72,6 @@ class PaymentController extends Controller
                 $debit_payment->nutrition_doctor_id = $coach->team['nutrition_doctor'];
                 $debit_payment->federation_id = $program->sport->federation->id;
                 $debit_payment->program_id = $program->id;
-                //$debit_payment->subscription_id = $program->subscription_id;
                 $debit_payment->price = $payment->price;
                 $debit_payment->type = 'debit';
                 $debit_payment->status = 'success';

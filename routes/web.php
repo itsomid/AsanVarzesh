@@ -61,7 +61,26 @@ Route::get('/payment/{id}',function($id) {
 
 });
 
+Route::get('user/{id}',function($id) {
+   return \App\User::with('payments')->find($id);
+});
 
+Route::get('program/{id}',function ($id) {
+    $program = \App\Model\Programs::find($id);
+    $payment = \App\Model\Payment::where('type','debit')
+    ->where('program_id',$program->id)
+    ->first();
+    $payment->status = 'failed';
+    $payment->save();
+
+    $credit_payment = new \App\Model\Payment();
+    $credit_payment->user_id = $payment->user_id;
+    $credit_payment->price = $payment->price;
+    $credit_payment->type = 'credit';
+    $credit_payment->status = 'return';
+    $credit_payment->save();
+
+});
 
 Route::get('/test',function (\Illuminate\Http\Request $request) {
     $coach= \App\User::find(11);

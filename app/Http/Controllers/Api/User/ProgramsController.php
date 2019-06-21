@@ -281,6 +281,7 @@ class ProgramsController extends Controller
             ->orderby('id','DESC')
             ->where('created_at','>',\Carbon\Carbon::now()->subYear(1))
             ->first();
+
         if(!$last_payment) {
             $price = $price + $payment->create_file;
         }

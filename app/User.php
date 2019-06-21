@@ -102,13 +102,13 @@ class User extends Authenticatable implements JWTSubject
     {
         $totalPrice = 0;
         $payments = Payment::where('user_id',$this->id)
-            ->where('status','success')
+            ->whereIn('status',['success','failed'])
             ->get();
         foreach ($payments as $payment) {
             if($payment->type == 'credit') {
-                $totalPrice += $payment->price;
+                $totalPrice = $totalPrice + $payment->price;
             } else {
-                $totalPrice -= $payment->price;
+                $totalPrice = $totalPrice - $payment->price;
             }
         }
         return $totalPrice;
