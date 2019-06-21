@@ -134,7 +134,7 @@ class ProgramsController extends Controller
         $check_prevs_programs = Programs::where('sport_id',$data['sport_id'])
                                                 ->where('user_id',$user->id)
                                                 //->whereIn('status',['accept','active','pending','awaiting_payment'])
-                                                ->whereIn('status',['accept','active'])
+                                                ->whereIn('status',['accept','active','pending'])
                                                 ->count();
 
         if($check_prevs_programs >= 1) {
