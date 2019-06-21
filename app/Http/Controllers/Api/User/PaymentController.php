@@ -44,6 +44,7 @@ class PaymentController extends Controller
         $iranKish = new IranKish();
         $payment = Payment::find($data['paymentId']);
         $program = Programs::find($payment->program_id);
+        $coach = User::find($program->coach_id);
         $referenceId = isset($data['referenceId']) ? $data['referenceId'] : 0;
         $gateway_status = 0;
 
@@ -63,6 +64,20 @@ class PaymentController extends Controller
                 $payment->gateway_status = $gateway_status;
                 $payment->gateway_message = $message;
                 $payment->save();
+
+                $debit_payment = new Payment();
+                $debit_payment->user_id = $program->user_id;
+                $debit_payment->coach_id = $program->coach_id;
+                $debit_payment->corrective_doctor_id = $coach->team['corrective_doctor'];
+                $debit_payment->nutrition_doctor_id = $coach->team['nutrition_doctor'];
+                $debit_payment->federation_id = $program->sport->federation->id;
+                $debit_payment->program_id = $program->id;
+                //$debit_payment->subscription_id = $program->subscription_id;
+                $debit_payment->price = $payment->price;
+                $debit_payment->type = 'debit';
+                $debit_payment->status = 'success';
+                $debit_payment->promotion_id = null;
+                $debit_payment->save();
 
                 $program->status = 'pending';
                 $program->save();

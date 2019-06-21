@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Payment;
 use App\Model\Programs;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
@@ -25,7 +26,10 @@ class User extends Authenticatable implements JWTSubject
 
     protected $appends = [
         'coachCountUser',
-        'turn_over'
+        'user_turn_over',
+        'coach_turn_over',
+        'nutrition_turn_over',
+        'corrective_turn_over'
     ];
 
     protected $casts = [
@@ -41,6 +45,9 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    protected $coach_share = 0.7;
+    protected $nutrition_share = 0.1;
+    protected $corrective_share = 0.1;
 
     public function getJWTIdentifier()
     {
@@ -91,10 +98,59 @@ class User extends Authenticatable implements JWTSubject
        return count(Programs::where('coach_id',$this->id)->get());
     }
 
-    public function getTurnOverAttribute()
+    public function getUserTurnOverAttribute()
     {
+        $totalPrice = 0;
+        $payments = Payment::where('user_id',$this->id)
+            ->where('status','success')
+            ->get();
+        foreach ($payments as $payment) {
+            if($payment->type == 'credit') {
+                $totalPrice += $payment->price;
+            } else {
+                $totalPrice -= $payment->price;
+            }
+        }
+        return $totalPrice;
+    }
 
-        return 26000;
+    public function getCoachTurnOverAttribute()
+    {
+        $totalPrice = 0;
+        $payments = \App\Model\Payment::where('coach_id',$this->id)
+            ->where('type','debit')
+            ->where('status','success')
+            ->get();
+        foreach ($payments as $payment) {
+            $totalPrice += ($payment->price*$this->coach_share);
+        }
+        return $totalPrice;
+    }
+
+    public function getNutritionTurnOverAttribute()
+    {
+        $totalPrice = 0;
+        $payments = \App\Model\Payment::where('nutrition_doctor_id',$this->id)
+            ->where('type','debit')
+            ->where('status','success')
+            ->get();
+        foreach ($payments as $payment) {
+            $totalPrice += ($payment->price*$this->nutrition_share);
+        }
+        return $totalPrice;
+    }
+
+    public function getCorrectiveTurnOverAttribute()
+    {
+        $totalPrice = 0;
+        $payments = \App\Model\Payment::where('corrective_doctor_id',$this->id)
+            ->where('type','debit')
+            ->where('status','success')
+            ->get();
+        foreach ($payments as $payment) {
+            $totalPrice += ($payment->price*$this->corrective_share);
+        }
+        return $totalPrice;
     }
 
     public function conversations() {

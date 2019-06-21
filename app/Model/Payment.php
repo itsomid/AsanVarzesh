@@ -25,6 +25,12 @@ class Payment extends Model
         // TODO: MUST RIAL
     }
 
+    public $coach_share = 0.7;
+    public $nutrition_share = 0.1;
+    public $corrective_share = 0.1;
+    public $create_file = 2000;
+
+
     public function program()
     {
         return $this->hasOne('App\Model\Programs','id','program_id');

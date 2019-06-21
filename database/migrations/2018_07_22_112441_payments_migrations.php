@@ -22,6 +22,7 @@ class PaymentsMigrations extends Migration
             $table->integer('coach_id')->nullable();
             $table->integer('nutrition_doctor_id')->nullable();
             $table->integer('corrective_doctor_id')->nullable();
+            $table->integer('federation_id')->nullable();
             $table->integer('subscription_id')->nullable();
             $table->integer('price')->nullable();
             $table->enum('type',['credit','debit']);

@@ -14,8 +14,58 @@
 Route::get('/','Web\WebController@index');
 Route::get('/rules','Web\WebController@rules');
 
-Route::get('/test',function (\Illuminate\Http\Request $request) {
+Route::get('payment/cancel-payment/{id}',function ($id) {
+   $payment = \App\Model\Payment::where('type','debit')->where('id',$id)->first();
+   $payment->status = 'return';
+   $payment->save();
+});
 
+Route::get('payment/debit/{payment_id}',function($payment_id) {
+    $payment = \App\Model\Payment::find($payment_id);
+    $program = \App\Model\Programs::find($payment->program_id);
+    $coach = \App\User::find($program->coach_id);
+
+    $debit_payment = new \App\Model\Payment();
+    $debit_payment->user_id = $program->user_id;
+    $debit_payment->coach_id = $program->coach_id;
+    $debit_payment->corrective_doctor_id = $coach->team['corrective_doctor'];
+    $debit_payment->nutrition_doctor_id = $coach->team['nutrition_doctor'];
+    $debit_payment->federation_id = $program->sport->federation->id;
+    $debit_payment->program_id = $program->id;
+    //$debit_payment->subscription_id = $program->subscription_id;
+    $debit_payment->price = $payment->price;
+    $debit_payment->type = 'debit';
+    $debit_payment->status = 'success';
+    $debit_payment->promotion_id = null;
+    $debit_payment->save();
+
+    $program->status = 'pending';
+    $program->save();
+});
+
+Route::get('/payment/{id}',function($id) {
+
+    $last_payment = \App\Model\Payment::where('type','debit')
+                                        ->where('status','success')
+                                        ->where('user_id',$id)
+                                        ->orderby('id','DESC')
+                                        ->where('created_at','>',\Carbon\Carbon::now()->subYear(1))
+                                        ->first();
+
+
+    if(!$last_payment) {
+        return 1;
+    }
+
+
+
+});
+
+
+
+Route::get('/test',function (\Illuminate\Http\Request $request) {
+    $coach= \App\User::find(11);
+    return $coach->team['nutrition_doctor'];
     $date_carbon = \Carbon\Carbon::today();
 //    $keywords = $request->keywords;
 //    $capacity_full = $request->capacity_full;

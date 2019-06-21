@@ -125,7 +125,7 @@ class ProgramsController extends Controller
     }
 
     // Assign a User & a Coach to Program
-    public function store(Request $request) {
+    public function store(Request $request, Payment $payment) {
 
         $data = $request->all();
 
@@ -275,6 +275,15 @@ class ProgramsController extends Controller
         $program->save();
 
         // Add Payments
+        $last_payment = \App\Model\Payment::where('type','debit')
+            ->where('status','success')
+            ->where('user_id',$user->id)
+            ->orderby('id','DESC')
+            ->where('created_at','>',\Carbon\Carbon::now()->subYear(1))
+            ->first();
+        if(!$last_payment) {
+            $price = $price + $payment->create_file;
+        }
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
         $payment->program_id = $program->id;
