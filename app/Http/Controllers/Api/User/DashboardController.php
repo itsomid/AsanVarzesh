@@ -61,11 +61,11 @@ class DashboardController extends Controller
             ->get()
             ->toArray();
 
-        $arr_training = [];
-        array_push($arr_training,$all_trainings_by_sport);
+        $arr_training = $all_trainings_by_sport;
+        //array_push($arr_training,$all_trainings_by_sport);
 
         $arr_nutrition = $calendar_nutrition;
-
+        //array_push($arr_nutrition,$calendar_nutrition);
 
         return response()->json(
             [
