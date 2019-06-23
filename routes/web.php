@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/','Web\WebController@index');
-Route::get('/rules','Web\WebController@rules');
+Route::get('/','Web\WebController@index')->name('home');
+Route::get('/coach','Web\WebController@coach')->name('coach');
+Route::get('/experts','Web\WebController@experts')->name('experts');
+Route::get('/specialists','Web\WebController@specialists')->name('specialists');
 
 Route::get('payment/cancel-payment/{id}',function ($id) {
    $payment = \App\Model\Payment::where('type','debit')->where('id',$id)->first();
