@@ -15,16 +15,16 @@
         </div>
 
         <div class="info">
-            <a class="text-header" href="index.html">
+            <a class="text-header" href="{{route('home')}}">
                 صفحه اصلی
             </a>
-            <a class="text-header" href="experts.html">
+            <a class="text-header" href="{{route('experts')}}">
                 کارشناسان تغذیه
             </a>
-            <a class="text-header" href="specialists.html">
+            <a class="text-header" href="{{route('specialists')}}">
                 متخصصین
             </a>
-            <a href="coach.html" class="text-header">
+            <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
             <a href="" class="text-header">
