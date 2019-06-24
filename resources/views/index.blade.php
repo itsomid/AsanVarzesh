@@ -7,16 +7,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="app.js"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".cafe-bazaar").click(function () {
-                swal("نسخه اندروید شاگرد و مربی به زودی...");
-            })
-        })
-    </script>
+
 </head>
 <body>
 <div class="container">
@@ -46,8 +39,6 @@
         </div>
 
 
-
-
         <div class="Av-application">
             <span class="Av">اپلیکیشن آو</span>
             <span class="info-Av">تناسب اندام را با حرفه ای ها شروع کنید</span>
@@ -58,7 +49,6 @@
             </div>
         </div>
     </div>
-
 
 
     <div class="content">
@@ -74,8 +64,6 @@
             <img src="images/App.png">
         </div>
     </div>
-
-
 
 
     <div class="information-Av">
@@ -96,7 +84,6 @@
     </div>
 
 
-
     <div class="options">
         <div class="title-div">
             <span class="options-title">
@@ -106,7 +93,7 @@
                 <li>برنامه روزانه ورزشی با حرفه ای ترین مربی‌ها</li>
                 <li>ردیابی تمرینات و نظارت بر پیشرفت تمرینات توسط مربی</li>
                 <li>امکان شرکت در رشته های ورزشی متنوع به صورت همزمان</li>
-                <li>برنامه غذایی تحت نظر متخصص تغذیه </li>
+                <li>برنامه غذایی تحت نظر متخصص تغذیه</li>
                 <li>مشاوره آنلاین با مربی،‌متخصص تغذیه و پزشک اصلاحی</li>
                 <li>اندازه گیری میزان دویدن</li>
             </ol>
@@ -114,9 +101,9 @@
     </div>
 
 
-
     <div class="information-Av">
-        <<div class="logo-img">
+        <
+        <div class="logo-img">
             <img src="images/Logo.png">
         </div>
         <div class="information one">
@@ -136,123 +123,111 @@
                 میدان جهاد، خیابان شهید گمنام، پلاک ۱۴، واحد ۱۱ و ۱۲، طبقه ۶
             </span>
         </div>
-
-
     </div>
 
 
-</div>
-
-
-
-
-
-</div>
-
-
-
-
-
-<div class="application-download">
-    <div class="div-application">
-        <div class="logo-application">
-            <img src="images/user@3x@2x.png">
-            <span>Av training</span>
-        </div>
-        <div class="links">
+    <div class="application-download">
+        <div class="div-application">
+            <div class="logo-application">
+                <img src="images/user@3x@2x.png">
+                <span>Av training</span>
+            </div>
+            <div class="links">
                 <span>تناسب اندام راهمین امروز<br>
 با نصب اپلیکیشن آو شروع کنید
                 </span>
-            <div class="app-img">
-                <img class="cafe-bazaar" src="images/Group%203.png">
-                <a href="https://sibche.com/applications/asanvarzesh">
-                    <img src="images/Group%204.png">
-                </a>
+                <div class="app-img">
+                    <img class="cafe-bazaar" src="images/Group%203.png">
+                    <a href="https://sibche.com/applications/asanvarzesh">
+                        <img src="images/Group%204.png">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-
-
-
-<div class="last-page">
-    <div class="right">
-        <span>متخصصان<br> با اپلیکیشن مربی<br> در هر لحظه با<br>.شما همراه هستند </span>
-        <a href="coach.html">
-            <div>مربی هستم</div>
-        </a>
-    </div>
-    <div class="left">
-        <img src="images/Morabi.png">
-    </div>
-</div>
-
-
-
-<div class="footer">
-    <div class="footer-information one">
-        <div class="f-logo">
-            <img src="images/logotype.svg">
+    <div class="last-page">
+        <div class="right">
+            <span>متخصصان<br> با اپلیکیشن مربی<br> در هر لحظه با<br>.شما همراه هستند </span>
+            <a href="coach.html">
+                <div>مربی هستم</div>
+            </a>
         </div>
-        <span>آو سامانه هوشمند ورزش، تناسب اندام و تغذیه سلامت</span>
-        <div class="social-media">
-            <img src="images/instagram@1x.svg">
-            <img src="images/twitter@1x.svg">
-            <img src="images/facebook@1x.svg">
+        <div class="left">
+            <img src="images/Morabi.png">
         </div>
     </div>
 
 
-    <div class="footer-information two">
-        <div class="f-div">
-            <a href="coach.html">مربیان</a>
+    <div class="footer">
+        <div class="footer-information one">
+            <div class="f-logo">
+                <img src="images/logotype.svg">
+            </div>
+            <span>آو سامانه هوشمند ورزش، تناسب اندام و تغذیه سلامت</span>
+            <div class="social-media">
+                <img src="images/instagram@1x.svg">
+                <img src="images/twitter@1x.svg">
+                <img src="images/facebook@1x.svg">
+            </div>
         </div>
-        <div class="f-div">
-            <a href="experts.html">کارشناسان تغذیه</a>
-        </div>
-        <div class="f-div">
-            <a href="specialists.html">متخصصان حرکت های اصلاحی</a>
-        </div>
-        <div class="f-div">
-            <a href="https://sibche.com/applications/asanvarzesh-couch">دانلود اپلیکیشن مربی</a>
-        </div>
-    </div>
 
 
-    <div class="footer-information three">
-        <div class="f-div">
-            <a href="#">درباره ما</a>
+        <div class="footer-information two">
+            <div class="f-div">
+                <a href="coach.html">مربیان</a>
+            </div>
+            <div class="f-div">
+                <a href="experts.html">کارشناسان تغذیه</a>
+            </div>
+            <div class="f-div">
+                <a href="specialists.html">متخصصان حرکت های اصلاحی</a>
+            </div>
+            <div class="f-div">
+                <a href="https://sibche.com/applications/asanvarzesh-couch">دانلود اپلیکیشن مربی</a>
+            </div>
         </div>
-        <div class="f-div">
-            <a href="#">تماس با ما</a>
-        </div>
-        <div class="f-div">
-            <a href="#">سوالات متداول</a>
-        </div>
-    </div>
 
 
-    <div class="footer-information four">
-        <div class="f-div">
-            <a href="#">شرایط و قوانین هنرجویان</a>
+        <div class="footer-information three">
+            <div class="f-div">
+                <a href="#">درباره ما</a>
+            </div>
+            <div class="f-div">
+                <a href="#">تماس با ما</a>
+            </div>
+            <div class="f-div">
+                <a href="#">سوالات متداول</a>
+            </div>
         </div>
-        <div class="f-div">
-            <a href="coach.html">شرایط و قوانین مربیان، کارشناسان</a>
-        </div>
-        <div class="f-div">
-            <a href="#">فرصت های شغلی</a>
-        </div>
-    </div>
 
 
-    <div class="footer-information five">
-        <img src="images/LOGO-fedrasion.png">
-        <span>info@asanvarzesh.online</span>
-        <span>۰۲۱-۸۸۹۵۱۹۱۴</span>
+        <div class="footer-information four">
+            <div class="f-div">
+                <a href="#">شرایط و قوانین هنرجویان</a>
+            </div>
+            <div class="f-div">
+                <a href="coach.html">شرایط و قوانین مربیان، کارشناسان</a>
+            </div>
+            <div class="f-div">
+                <a href="#">فرصت های شغلی</a>
+            </div>
+        </div>
+
+
+        <div class="footer-information five">
+            <img src="images/LOGO-fedrasion.png">
+            <span>info@asanvarzesh.online</span>
+            <span>۰۲۱-۸۸۹۵۱۹۱۴</span>
+        </div>
     </div>
 </div>
-</div>
-
+<script>
+    $(document).ready(function () {
+        $(".cafe-bazaar").click(function () {
+            swal("نسخه اندروید شاگرد و مربی به زودی...");
+        })
+    })
+</script>
 </body>
 </html>
