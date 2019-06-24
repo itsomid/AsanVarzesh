@@ -39,7 +39,7 @@
     url('/fonts/Vazir-Thin-FD.ttf') format('truetype');
 }
 body{
-    background: #48494D;
+    background:#000000;
 }
 
 .container{
@@ -54,6 +54,7 @@ body{
     background-size: 100%;
     padding: 27px;
 }
+
 .logo{
     width:230px;
     float: right;
@@ -63,16 +64,18 @@ body{
     float: right;
 }
 .info{
-    width: 184px;
+    width: 550px;
     float: left;
 }
 .text-header{
     font-size:18px;
     text-align: center;
     color: #FFFFFF;
+    text-decoration: none;
     font-family: vazir-light;
     margin-right: 20px;
     cursor: pointer;
+
 }
 .Av-application{
     width: 100%;
@@ -110,13 +113,14 @@ body{
 
 
 }
-.test-btn span{
+.test-btn a{
     width:100%;
     float: right;
     text-align: center;
     color: #FFFFFF;
     font-size: 18px;
     font-family: vazir-light;
+    text-decoration: none;
 
 }
 .content{
@@ -133,13 +137,26 @@ body{
 
 }
 .benefits-Av {
-    text-align: right;
+    width: 100%;
+    float: right;
+    text-align: center;
     color: #FF6868;
     font-size: 64px;
     font-family: vazir-bold;
     display: block;
 }
+.benefits-Av.title{
+    width: 100%;
+    float: right;
+    text-align: right;
+    color:#FF6868;
+    font-size: 24px;
+    font-family: vazir-medium;
+    direction: rtl;
+}
 .about-Av{
+    width: 100%;
+    float:right;
     display: block;
     text-align:right;
     color: #FFFFFF;
@@ -147,6 +164,18 @@ body{
     font-family:vazir-light;
     margin-top: 10px;
     direction: rtl;
+
+}
+.about-one{
+    width: 100%;
+    float: right;
+    text-align: center;
+    font-size: 24px;
+    color: #CCCCCC;
+    font-family:'vazir-Thin';
+    direction: rtl;
+    padding-top: 5px;
+
 
 }
 .about.two{
@@ -327,6 +356,24 @@ li::before {
     float: right;
     margin-right: 20px;
 }
+.swal-text{
+    font-family: vazir-medium;
+    color: #FF6868;
+    font-size: 20px;
+    direction: rtl;
+}
+.swal-button{
+    text-align: center;
+    float: right;
+    margin-right: 180px;
+    background: #48494D;
+}
+.swal-button:not([disabled]):hover {
+    background-color: #FF6868;
+}
+.cafe-bazaar{
+    cursor: pointer;
+}
 .last-page{
     width: 100%;
     float: right;
@@ -448,4 +495,58 @@ li::before {
 }
 .footer-information.four{
     margin-top: 75px;
+}
+.div-benefits-Av{
+    width: 60%;
+    float: left;
+    margin-top: 60px;
+    margin-bottom: 45px;
+}
+.div-benefits-Av.specialists{
+    margin-bottom: 50px;
+}
+.header.coach{
+    position: relative;
+    background:url("/images/sectionex1.jpg");
+    background-repeat:no-repeat;
+    background-size: 100%;
+
+}
+.header.experts{
+    background: url("/images/sectionex2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.header.specialists{
+    background: url("/images/sectionex3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.download-coach-app{
+    margin-top:0%;
+    margin-right: 60%;
+    width: 250px;
+    height: 50px;
+    float: right;
+    background: #FF6868;
+    padding-top: 12px;
+    border-radius: 100px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
+
+    text-align: center;
+    color: #FFFFFF;
+    font-size:18px;
+    font-family: vazir-light;
+    text-decoration: none
+}
+.download-coach-app a{
+    width: 100%;
+    float: right;
+    text-align: center;
+    color: #FFFFFF;
+    font-size:18px;
+    font-family: vazir-light;
+    text-decoration: none ;
 }

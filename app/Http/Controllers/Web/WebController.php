@@ -11,7 +11,13 @@ class WebController extends Controller
         return view('index');
     }
 
-    public function rules() {
-        return view('rules');
+    public function coach() {
+        return view('coach');
+    }
+    public function experts() {
+        return view('experts');
+    }
+    public function specialists() {
+        return view('specialists');
     }
 }
