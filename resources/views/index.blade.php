@@ -149,7 +149,7 @@
     <div class="last-page">
         <div class="right">
             <span>متخصصان<br> با اپلیکیشن مربی<br> در هر لحظه با<br>.شما همراه هستند </span>
-            <a href="coach.html">
+            <a href="{{route('coach')}}">
                 <div>مربی هستم</div>
             </a>
         </div>
@@ -175,13 +175,13 @@
 
         <div class="footer-information two">
             <div class="f-div">
-                <a href="coach.html">مربیان</a>
+                <a href="{{route('coach')}}">مربیان</a>
             </div>
             <div class="f-div">
-                <a href="experts.html">کارشناسان تغذیه</a>
+                <a href="{{route('experts')}}">کارشناسان تغذیه</a>
             </div>
             <div class="f-div">
-                <a href="specialists.html">متخصصان حرکت های اصلاحی</a>
+                <a href="{{route('specialists')}}">متخصصان حرکت های اصلاحی</a>
             </div>
             <div class="f-div">
                 <a href="https://sibche.com/applications/asanvarzesh-couch">دانلود اپلیکیشن مربی</a>
@@ -207,7 +207,7 @@
                 <a href="#">شرایط و قوانین هنرجویان</a>
             </div>
             <div class="f-div">
-                <a href="coach.html">شرایط و قوانین مربیان، کارشناسان</a>
+                <a href="{{route('coach')}}">شرایط و قوانین مربیان، کارشناسان</a>
             </div>
             <div class="f-div">
                 <a href="#">فرصت های شغلی</a>
