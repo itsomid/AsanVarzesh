@@ -29,7 +29,8 @@ class User extends Authenticatable implements JWTSubject
         'user_turn_over',
         'coach_turn_over',
         'nutrition_turn_over',
-        'corrective_turn_over'
+        'corrective_turn_over',
+        'all_payments'
     ];
 
     protected $casts = [
@@ -241,6 +242,21 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function payments()
+    {
+        return $this->hasMany('App\Model\Payment');
+    }
+
+    public function getAllPaymentsAttribute() {
+        $payments = Payment::where('user_id',$this->id)
+            ->orWhere('coach_id',$this->id)
+            ->orWhere('nutrition_doctor_id',$this->id)
+            ->orWhere('corrective_doctor_id',$this->id)
+            ->orderby('id','DESC')
+            ->get();
+        return $payments;
+    }
+
+    public function payments_by_user()
     {
         return $this->hasMany('App\Model\Payment');
     }

@@ -184,6 +184,8 @@ class PeopleController extends Controller
             'programs_by_nutrition_doctor.corrective_doctor.profile',
             'programs_by_nutrition_doctor.nutrition_doctor.profile',
 
+            'payments',
+            'payments_by_user.program.sport',
             'payments_by_coach.program.sport',
             'payments_by_corrective.program.sport',
             'payments_by_nutrition.program.sport',
