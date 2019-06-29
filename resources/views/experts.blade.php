@@ -11,7 +11,7 @@
     <div class="header experts">
 
         <div class="logo">
-            <img src="images/Logotype.png">
+            <img src="/images/Logotype.png">
         </div>
 
         <div class="info">
