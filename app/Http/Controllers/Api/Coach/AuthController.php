@@ -135,9 +135,7 @@ class AuthController extends Controller
     }
 
     protected function generateLoginCode() {
-
-        return 123456;
-
+        return mt_rand(10000,999999);
     }
 
     protected function checkRoles($roles) {

@@ -110,5 +110,24 @@ class Training extends Model
         return '';
     }
 
+    public function getAttributeAttribute()
+    {
+        $attrib = \GuzzleHttp\json_decode($this->attributes['attribute'],true);
+
+        return [
+            'set' => ($attrib['set'] == 0 OR $attrib['set'] == '')  ? null : (string) $attrib['set'],
+            'time' => ($attrib['time'] == 0 OR $attrib['time'] == '')  ? null : (string) $attrib['time'],
+            'speed' => ($attrib['speed'] == 0 OR $attrib['speed'] == '')  ? null : (string) $attrib['speed'],
+            'energy' => ($attrib['energy'] == 0 OR $attrib['energy'] == '')  ? null : (string) $attrib['energy'],
+            'distance' => ($attrib['distance'] == 0 OR $attrib['distance'] == '')  ? null : (string) $attrib['distance'],
+            'each_set' => ($attrib['each_set'] == 0 OR $attrib['each_set'] == '')  ? null : (string) $attrib['each_set'],
+            'unit_speed' => ($attrib['unit_speed'] == 0 OR $attrib['unit_speed'] == '')  ? null : (string) $attrib['unit_speed'],
+            'time_each_set' => ($attrib['time_each_set'] == 0 OR $attrib['time_each_set'] == '')  ? null : (string) $attrib['time_each_set'],
+        ];
+
+    }
+
+
+
 
 }

@@ -67,6 +67,11 @@ Route::get('user/{id}',function($id) {
    return \App\User::with('payments')->find($id);
 });
 
+Route::get('training',function(\App\Model\Payment $payment) {
+    return \App\Model\Payment::$create_file;
+    return \App\Model\Training::find(1);
+});
+
 Route::get('program/{id}',function ($id) {
     $program = \App\Model\Programs::find($id);
     $payment = \App\Model\Payment::where('type','debit')

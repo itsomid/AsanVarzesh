@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helpers\Helper;
 use App\Helpers\IranKish;
 use App\Model\Calendar;
 use App\Model\Coach_sport;
@@ -41,6 +42,7 @@ class ProgramsController extends Controller
 
     public function programFactor(Request $request) {
 
+        Payment::$create_file;
         $data = $request->all();
 
         $coach = User::find($data['coach_id']);
@@ -74,7 +76,7 @@ class ProgramsController extends Controller
                 'tax' => Payment::calTax($coach_price->price),
                 'insurance' => Payment::insurance(),
                 'discount' => $discount,
-                'total' => Payment::calculatePrice($coach_price->price,$discount)
+                'total' => Payment::calculatePrice($coach_price->price,$discount) + Payment::$create_file
             ];
 
             return response()->json($response,200);
@@ -283,7 +285,7 @@ class ProgramsController extends Controller
             ->first();
 
         if(!$last_payment) {
-            $price = $price + $payment->create_file;
+            $price = $price + $payment::$create_file;
         }
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
@@ -323,6 +325,8 @@ class ProgramsController extends Controller
                 'trial' => true
             ];
         }
+
+        Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
         return response($response_data,200);
 
 
