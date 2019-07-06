@@ -20,7 +20,7 @@ class SportsMigrations extends Migration
             $table->text('description');
             $table->integer('federation_id');
             $table->text('image')->nullable();
-            $table->boolean('enable');
+            $table->boolean('enable')->default(1)->change();
             $table->timestamps();
         });
     }
