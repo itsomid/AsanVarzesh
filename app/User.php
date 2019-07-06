@@ -291,7 +291,19 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function getFieldProgram() {
+        $roles = $this->roles;
+        foreach ($roles as $role) {
+            if($role->name == 'coach') {
+                return 'coach_id';
+            }
+        }
+        $role = $roles[0];
+        if($role->name == 'nutrition-doctor') {
+            return 'nutrition_doctor_id';
+        } elseif($role->name == 'corrective-doctor') {
+            return 'corrective_doctor_id';
+        }
 
-
-
+    }
 }
