@@ -83,7 +83,7 @@ class PaymentController extends Controller
                 $program->save();
 
                 // Send Message To Coach
-                Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
+                Helper::sendSMS($coach->mobile,'یک پرونده ورزشی جدید برای شما ارسال شد.');
 
 
             } else{
