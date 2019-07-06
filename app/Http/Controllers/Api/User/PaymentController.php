@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helpers\Helper;
 use App\Helpers\IranKish;
 use App\Model\Payment;
 use App\Model\Programs;
@@ -80,6 +81,10 @@ class PaymentController extends Controller
 
                 $program->status = 'pending';
                 $program->save();
+
+                // Send Message To Coach
+                Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
+
 
             } else{
                 // Unsuccessfull Payment

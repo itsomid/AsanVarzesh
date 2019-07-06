@@ -326,7 +326,7 @@ class ProgramsController extends Controller
             ];
         }
 
-        Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
+//        Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
         return response($response_data,200);
 
 
