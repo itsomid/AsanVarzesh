@@ -137,7 +137,9 @@
 با نصب اپلیکیشن آو شروع کنید
                 </span>
                 <div class="app-img">
-                    <img class="cafe-bazaar" src="images/Group%203.png">
+                    <a href="apps/av_user_releas_v1.apk" download target="_blank">
+                        <img class="cafe-bazaar" src="images/Group%203.png">
+                    </a>
                     <a href="https://sibche.com/applications/asanvarzesh">
                         <img src="images/Group%204.png">
                     </a>
@@ -224,9 +226,9 @@
 </div>
 <script>
     $(document).ready(function () {
-        $(".cafe-bazaar").click(function () {
-            swal("نسخه اندروید شاگرد و مربی به زودی...");
-        })
+        // $(".cafe-bazaar").click(function () {
+        //     swal("نسخه اندروید شاگرد و مربی به زودی...");
+        // })
     })
 </script>
 </body>

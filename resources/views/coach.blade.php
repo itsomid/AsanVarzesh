@@ -59,7 +59,8 @@
                 از پیشنهادهای ویژه برای متخصصین آو بهره‌مند شوید؛ پیشنهادهایی برای کسب درآمد و رفاه بیش‌تر.طرح‌های تشویقی، جایزه‌ها و خدماتی که آو برای کارشناسان در نظر می‌گیرد، پیوسته رو به بهبود است و کیفیت زندگی حرفه‌ای شما را تحت‌تاثیر قرار می‌دهد.
             </span>
         </div>
-        <a href="https://sibche.com/applications/asanvarzesh-couch">
+        {{--<a href="https://sibche.com/applications/asanvarzesh-couch">--}}
+        <a href="apps/assanvarzesh_v4.apk" download target="_blank">
             <div class="download-coach-app">
                 دانلود اپلیکیشن مربی
             </div>
