@@ -60,11 +60,13 @@
             </span>
         </div>
         {{--<a href="https://sibche.com/applications/asanvarzesh-couch">--}}
-        <a href="apps/assanvarzesh_v4.apk" download target="_blank">
+
+        <a href="apps/asanvarzesh_v4.apk" download target="_blank">
             <div class="download-coach-app">
-                دانلود اپلیکیشن مربی
+                دانلود اپلیکیشن مربی اندروید
             </div>
         </a>
+
     </div>
 
 
