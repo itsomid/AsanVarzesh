@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Helpers\IranKish;
 use App\Model\Payment;
 use App\Model\Programs;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -51,8 +52,7 @@ class PaymentController extends Controller
         if($data['resultCode'] == '100') {
             // Verify
             $result = $iranKish->verifyPayment($payment->token,$referenceId);
-
-            if(floatval($result) > 0 && floatval($result) == floatval($payment->price)) {
+            if(floatval($result) > 0 && floatval($result) == (floatval($payment->price))*10) {
 
                 // Successful Payment
                 $status = 'success';
@@ -76,6 +76,7 @@ class PaymentController extends Controller
                 $debit_payment->type = 'debit';
                 $debit_payment->status = 'success';
                 $debit_payment->promotion_id = null;
+                $debit_payment->result_code = $data['resultCode'];
                 $debit_payment->save();
 
                 $program->status = 'pending';
@@ -90,6 +91,8 @@ class PaymentController extends Controller
                 $payment->gateway_status = $gateway_status;
                 $payment->status = $status;
                 $payment->gateway_message = $message;
+                $payment->result_code = $data['resultCode'];
+                $payment->reference_id = $referenceId;
                 $payment->save();
 
                 $program->status = 'cancel';
@@ -105,6 +108,7 @@ class PaymentController extends Controller
             $payment->gateway_status = $gateway_status;
             $payment->status = $status;
             $payment->gateway_message = $message;
+            $payment->result_code = $data['resultCode'];
             $payment->save();
 
             $program->status = 'cancel';
@@ -116,5 +120,34 @@ class PaymentController extends Controller
 
         return view('gateway_callback', ['payment' => $payment]);
     }
+
+    public function verifyPayment($reference_id,Payment $payment)
+    {
+
+        $iranKish = new IranKish();
+        $check_credit = $payment->where('reference_id', $reference_id)->first();
+        if ($check_credit) {
+            $result = $iranKish->verifyPayment($check_credit->token, $check_credit->reference_id);
+
+            if (floatval($result) > 0 && floatval($result) == (floatval($check_credit->price)) * 10) {
+                // Successful Payment
+                $status = 'success';
+                $gateway_status = 100;
+                $message = 'پرداخت موفقیت آمیز';
+                $payment->status = $status;
+                $check_credit->gateway_status = $gateway_status;
+                $check_credit->gateway_message = $message;
+                $check_credit->save();
+                response()->json(['payment updated'],200);
+
+            } else {
+                response()->json(['payment updated'],400);
+            }
+        }
+
+    }
+
+
+
 
 }

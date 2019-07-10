@@ -40,6 +40,7 @@ Route::group(['prefix' => '/v1'],function() {
         Route::get('user/payments/pay/{program_id}','Api\User\PaymentController@pay');
         Route::get('user/payments/check/{reference}','Api\User\PaymentController@check');
         Route::post('user/payments/callback/','Api\User\PaymentController@callback');
+        Route::get('user/payments/verify/{reference_id}','Api\User\PaymentController@verifyPayment');
 
     Route::group(
         [
