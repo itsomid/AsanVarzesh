@@ -200,7 +200,6 @@ class ProgramsController extends Controller
                 }
             }
             $price = Payment::calculatePrice($coach_price->price,$discount);
-
         }
 
         // Change Time of exercises
@@ -262,19 +261,19 @@ class ProgramsController extends Controller
         $program->save();
 
         // Add Subscription
-        $start_date = explode('-',$data['start_date']);
-        $from = Carbon::today()->format('Y-m-d H:i:s');
-        $to = Carbon::today()->addDay($to_days);
-
-        $subscription = new Subscription();
-        $subscription->user_id = $user->id;
-        $subscription->from = $from;
-        $subscription->to = $to;
-        $subscription->program_id = $program->id;
-        $subscription->coach_sport_id = $coach_sport->id;
-        $subscription->save();
-        $program->subscription_id = $subscription->id;
-        $program->save();
+//        $start_date = explode('-',$data['start_date']);
+//        $from = Carbon::today()->format('Y-m-d H:i:s');
+//        $to = Carbon::today()->addDay($to_days);
+//
+//        $subscription = new Subscription();
+//        $subscription->user_id = $user->id;
+//        $subscription->from = $from;
+//        $subscription->to = $to;
+//        $subscription->program_id = $program->id;
+//        $subscription->coach_sport_id = $coach_sport->id;
+//        $subscription->save();
+//        $program->subscription_id = $subscription->id;
+//        $program->save();
 
         // Add Payments
         $last_payment = \App\Model\Payment::where('type','debit')
@@ -326,7 +325,7 @@ class ProgramsController extends Controller
             ];
         }
 
-        Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
+//        Helper::sendSMS($coach->mobile,'شما برنامه جدید دارید.');
         return response($response_data,200);
 
 

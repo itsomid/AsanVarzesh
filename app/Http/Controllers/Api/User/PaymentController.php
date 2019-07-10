@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Helpers\Helper;
 use App\Helpers\IranKish;
+use App\Model\Coach_sport;
 use App\Model\Payment;
 use App\Model\Programs;
 use App\User;
+use App\Model\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -79,8 +82,30 @@ class PaymentController extends Controller
                 $debit_payment->result_code = $data['resultCode'];
                 $debit_payment->save();
 
+                // Subscription
+                $from = Carbon::today()->format('Y-m-d H:i:s');
+                $to = Carbon::today()->addDay(30);
+                $coach_sport = Coach_sport::where('sport_id',$program->sport_id)
+                    ->where('coach_id',$program->coach_id)
+                    ->first();
+
+                $subscription = new Subscription();
+                $subscription->user_id = $program->user_id;
+                $subscription->from = $from;
+                $subscription->to = $to;
+                $subscription->program_id = $program->id;
+                $subscription->coach_sport_id = $coach_sport->id;
+                $subscription->save();
+
                 $program->status = 'pending';
+                $program->subscription_id = $subscription->id;
                 $program->save();
+
+
+
+                // Send Message To Coach
+                Helper::sendSMS($coach->mobile,'یک پرونده ورزشی جدید برای شما ارسال شد.');
+
 
             } else{
                 // Unsuccessfull Payment
