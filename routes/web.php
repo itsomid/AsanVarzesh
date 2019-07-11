@@ -140,9 +140,9 @@ Route::get('/payment-test',function() {
 });
 
 
-Route::get('/payment-by-date',function() {
+Route::get('/delete-by-payment',function() {
 
-    return $payments = \App\Model\Payment::where('created_at','<=',\Carbon\Carbon::now()->subDays(4)->format('Y-m-d'))->get();
+    $payments = \App\Model\Payment::where('created_at','<=',\Carbon\Carbon::now()->subDays(4)->format('Y-m-d'))->get();
     foreach ($payments as $payment) {
         $payment->delete();
     }
