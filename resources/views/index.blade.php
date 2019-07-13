@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="yandex-verification" content="97d27b8b84e93472" />
 
 </head>
 <body>
