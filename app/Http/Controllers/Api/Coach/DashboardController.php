@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $date_carbon = Carbon::parse($date);
         }
 
-        $coach_programs = Programs::where($field,$coach->id)->whereIn('status',['accept','active'])->get();
+        $coach_programs = Programs::where($field,$coach->id)->whereIn('status',['active'])->get();
         $programs_by_types['public'] = [];
         $programs_by_types['specialized'] = [];
 
