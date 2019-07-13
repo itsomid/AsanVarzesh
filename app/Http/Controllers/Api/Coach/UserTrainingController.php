@@ -15,7 +15,7 @@ class UserTrainingController extends Controller
     {
 
         $coach = auth('api')->user();
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
         $user = User::with(['profile','today_training.training.sport','today_nutrition.package.foods.category','today_nutrition.meal'])->find($user_id);
         $user_arr = $user->toArray();
 
