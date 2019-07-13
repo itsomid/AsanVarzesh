@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index($date = null) {
         $coach = auth('api')->user();
 
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
 
         if($date == null) {
             $date_carbon = Carbon::today();
