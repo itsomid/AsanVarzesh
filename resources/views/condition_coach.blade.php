@@ -32,7 +32,7 @@
                 مربیان
             </a>
 
-            <a href="conditions-av.html" class="text-header">
+            <a href="{{route('rules/av')}}" class="text-header">
                 شرایط و قوانین
             </a>
         </div>

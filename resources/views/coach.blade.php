@@ -29,7 +29,7 @@
             <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
-            <a href="#" class="text-header">
+            <a href="{{route('rules/av')}}" class="text-header">
                 شرایط و قوانین
             </a>
 
@@ -78,7 +78,7 @@
                         دانلود اپلیکیشن مربی
                     </div>
                 </a>
-                <a href="https://sibche.com/applications/asanvarzesh-couch">
+                <a href="https://sibche.com/applications/asanvarzesh-couch" target="_blank">
                     <div class="download-coach-app ios">
                         <i class="fab fa-apple"></i>
                         دانلود اپلیکیشن مربی

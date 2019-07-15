@@ -27,7 +27,7 @@
             <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
-            <a href="" class="text-header">
+            <a href="{{route('rules/av')}}" class="text-header">
                 شرایط و قوانین
             </a>
 

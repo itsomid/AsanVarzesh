@@ -45,7 +45,7 @@
             <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
-            <a href="#" class="text-header">
+            <a href="{{route('rules/av')}}" class="text-header">
                 شرایط و قوانین
             </a>
 
@@ -156,7 +156,10 @@
 با نصب اپلیکیشن آو شروع کنید
                 </span>
                 <div class="app-img">
-                    <img class="cafe-bazaar" src="images/Group%203.png">
+                    <a href="apps/av_user_release_v1.apk" download>
+                        <img class="cafe-bazaar" src="images/Group%203.png">
+                    </a>
+
                     <a href="https://sibche.com/applications/asanvarzesh">
                         <img src="images/Group%204.png">
                     </a>

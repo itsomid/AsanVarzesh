@@ -617,19 +617,19 @@ body{
 
 
 .header.coach{
-    background:url("../images/coach.img.jpg") no-repeat;
+    background:url("/images/coach.jpg") no-repeat;
     background-size:100%;
 }
 
 
 .header.experts{
-    background: url("../images/experts.img.jpg")no-repeat;
+    background: url("/images/experts.jpg")no-repeat;
     background-size:100%;
 }
 
 
 .header.specialists{
-    background: url("../images/specialists.jpg")no-repeat;
+    background: url("/images/specialists.jpg")no-repeat;
     background-size:100%;
 }
 .header.conditions{

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
@@ -33,7 +33,7 @@
             <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
-            <a href="conditions-av.html" class="text-header">
+            <a href="{{route('rules/av')}}" class="text-header">
                 شرایط و قوانین
             </a>
 
