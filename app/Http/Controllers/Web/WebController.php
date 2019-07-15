@@ -20,4 +20,17 @@ class WebController extends Controller
     public function specialists() {
         return view('specialists');
     }
+
+    public function ruleCoach()
+    {
+        return view('condition_coach');
+    }
+    public function ruleAv()
+    {
+        return view('condition_av');
+    }
+    public function ruleUser()
+    {
+        return view('condition_user');
+    }
 }

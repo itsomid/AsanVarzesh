@@ -6,67 +6,80 @@
 
 @font-face {
     font-family: 'vazir-light';
-    src: url('/fonts/Vazir-Light-FD.eot');
-    src: url('/fonts/Vazir-Light-FD.woff') format('woff'),
-    url('/fonts/Vazir-Light-FD.ttf') format('truetype');
+    src: url('../fonts/Vazir-Light-FD.eot');
+    src: url('../fonts/Vazir-Light-FD.woff') format('woff'),
+    url('../fonts/Vazir-Light-FD.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'vazir-medium';
-    src: url('/fonts/Vazir-Medium-FD.eot');
-    src: url('/fonts/Vazir-Medium-FD.woff') format('woff'),
-    url('/fonts/Vazir-Medium-FD.ttf') format('truetype');
+    src: url('../fonts/Vazir-Medium-FD.eot');
+    src: url('../fonts/Vazir-Medium-FD.woff') format('woff'),
+    url('../fonts/Vazir-Medium-FD.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'vazir-black';
-    src: url('/fonts/Vazir-Black-FD.eot');
-    src: url('/fonts/Vazir-Black-FD.woff') format('woff'),
-    url('/fonts/Vazir-Black-FD.ttf') format('truetype');
+    src: url('../fonts/Vazir-Black-FD.eot');
+    src: url('../fonts/Vazir-Black-FD.woff') format('woff'),
+    url('../fonts/Vazir-Black-FD.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'vazir-bold';
-    src: url('/fonts/Vazir-Bold-FD.eot');
-    src: url('/fonts/Vazir-Bold-FD.woff') format('woff'),
-    url('/fonts/Vazir-Bold-FD.ttf') format('truetype');
+    src: url('../fonts/Vazir-Bold-FD.eot');
+    src: url('../fonts/Vazir-Bold-FD.woff') format('woff'),
+    url('../fonts/Vazir-Bold-FD.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'vazir-Thin';
-    src: url('/fonts/Vazir-Thin-FD.eot');
-    src: url('/fonts/Vazir-Thin-FD.woff') format('woff'),
-    url('/fonts/Vazir-Thin-FD.ttf') format('truetype');
+    src: url('../fonts/Vazir-Thin-FD.eot');
+    src: url('../fonts/Vazir-Thin-FD.woff') format('woff'),
+    url('../fonts/Vazir-Thin-FD.ttf') format('truetype');
 }
+
+
 body{
     background:#000000;
 }
+
 
 .container{
     width: 1280px;
     margin: auto;
     height: 100%;
+
 }
+
+
 .header{
     width: 100%;
     float: right;
-    background: url("/images/Section1.jpg");
-    background-size: 100%;
+    background: url("../images/Section1.jpg") no-repeat;
+    background-size: auto 100%;
     padding: 27px;
 }
+
 
 .logo{
     width:230px;
     float: right;
 }
+
+
 .logo img{
     width: 100%;
     float: right;
 }
+
+
 .info{
     width: 550px;
     float: left;
 }
+
+
 .text-header{
     font-size:18px;
     text-align: center;
@@ -75,14 +88,17 @@ body{
     font-family: vazir-light;
     margin-right: 20px;
     cursor: pointer;
-
 }
+
+
 .Av-application{
     width: 100%;
     float: right;
     margin-top: 200px;
     text-align: right;
 }
+
+
 .Av{
     width: 100%;
     float: right;
@@ -91,6 +107,8 @@ body{
     font-size: 85px;
     font-family: vazir-medium;
 }
+
+
 .info-Av{
     width: 100%;
     float: right;
@@ -99,6 +117,8 @@ body{
     font-size: 25px;
     font-family: vazir-light;
 }
+
+
 .test-btn{
     width: 250px;
     height: 50px;
@@ -113,6 +133,8 @@ body{
 
 
 }
+
+
 .test-btn a{
     width:100%;
     float: right;
@@ -123,19 +145,25 @@ body{
     text-decoration: none;
 
 }
+
+
 .content{
     width: 100%;
     float: right;
-    background: url("/images/Section2.jpg");
-    background-size:100%;
+    background: url("../images/Section2.jpg");
+    background-size: 100%;
     background-repeat: no-repeat;
     padding: 140px 0 0 150px;
 }
+
+
 .Av-content{
     width: 40%;
     float: left;
 
 }
+
+
 .benefits-Av {
     width: 100%;
     float: right;
@@ -145,6 +173,8 @@ body{
     font-family: vazir-bold;
     display: block;
 }
+
+
 .benefits-Av.title{
     width: 100%;
     float: right;
@@ -154,6 +184,8 @@ body{
     font-family: vazir-medium;
     direction: rtl;
 }
+
+
 .about-Av{
     width: 100%;
     float:right;
@@ -166,6 +198,8 @@ body{
     direction: rtl;
 
 }
+
+
 .about-one{
     width: 100%;
     float: right;
@@ -178,6 +212,8 @@ body{
 
 
 }
+
+
 .about.two{
     width: 100%;
     float: right;
@@ -188,6 +224,8 @@ body{
     direction: rtl;
     padding-top: 5px;
 }
+
+
 .img-mobile{
     width: 32%;
     float: left;
@@ -195,25 +233,35 @@ body{
     padding-right: 2%;
     margin-bottom: 30px;
 }
+
+
 .img-mobile img{
     width: 100%;
     float: left;
 }
+
+
 .information-Av{
     width: 100%;
     float: right;
     background: #48494D;
 }
+
+
 .logo-img{
     width: 40%;
     float: right;
     padding-top: 264px;
 }
+
+
 .logo-img img{
     width: 100%;
     float: right;
     margin-bottom: 160px;
 }
+
+
 .information.one{
     width: 50%;
     float: right;
@@ -221,6 +269,8 @@ body{
     margin-right: 50px;
     padding-top: 184px;
 }
+
+
 .information.two{
     width: 50%;
     float: right;
@@ -228,11 +278,15 @@ body{
     margin-right: 50px;
     margin-top: 90px;
 }
+
+
 .address{
     width: 100%;
     float: right;
     margin-top: 10px;
 }
+
+
 .title-information{
     width: 100%;
     float: right;
@@ -240,6 +294,8 @@ body{
     font-size: 64px;
     font-family: vazir-medium;
 }
+
+
 .title2{
     width: 100%;
     float: right;
@@ -247,31 +303,41 @@ body{
     font-size: 24px;
     font-family: vazir-medium;
 }
+
+
 .about{
     text-align: right;
     color: #CCCCCC;
     font-size: 15px;
     font-family:'vazir-Thin';
 }
+
+
 .options{
     width: 100%;
     float: right;
-    background: url("/images/section4.jpg");
-    background-size: 100%;
+    background: url("../images/section4.jpg");
+    background-size:auto 100%;
     background-repeat: no-repeat;
     padding: 207px 90px 0 0 ;
 
 }
+
+
 .title-div{
     width:100%;
     float: right;
     text-align: right;
 }
+
+
 .options-title{
     font-size: 60px;
     color: #FF6868;
     font-family: vazir-medium;
 }
+
+
 .numbers{
     font-size: 23px;
     text-align: right;
@@ -280,17 +346,19 @@ body{
     margin-bottom: 120px;
     list-style: white;
     direction: rtl;
+    list-style: none;
+    counter-reset:my-awsome-counter;
 
 }
-ol {
-    list-style: none;
-    counter-reset: my-awesome-counter;
-}
-li {
+
+
+.numbers li {
     counter-increment: my-awesome-counter;
 
 }
-li::before {
+
+
+.numbers li::before {
     content: counter(my-awesome-counter);
     background: #FFFFFF;
     font-size: 20px;
@@ -306,28 +374,37 @@ li::before {
     margin-left: 10px;
     margin-top: 25px;
 }
+
+
 .application-download{
     width: 100%;
     float: right;
-    background: url("/images/section5.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: url("../images/section5.jpg")no-repeat;
+    background-size:auto 100%;
     padding: 150px 0 0 50px;
 }
+
+
 .div-application{
     width: 50%;
     float: left;
 }
+
+
 .logo-application{
     width: 100%;
     float: right;
 }
+
+
 .logo-application img{
     width: 181px;
     height: 181px;
     float: right;
     margin-right: 215px;
 }
+
+
 .logo-application span{
     width: 100%;
     float: right;
@@ -336,6 +413,8 @@ li::before {
     text-align: center;
     color: #FFFFFF;
 }
+
+
 .links span{
     width: 100%;
     float: right;
@@ -345,48 +424,44 @@ li::before {
     font-family: vazir-medium;
     margin-top: 20px;
 }
+
+
 .app-img{
     width: 100%;
     float: right;
     margin: 30px 80px 200px 0;
 
 }
+
+
 .links img{
     width: 32%;
     float: right;
     margin-right: 20px;
 }
-.swal-text{
-    font-family: vazir-medium;
-    color: #FF6868;
-    font-size: 20px;
-    direction: rtl;
-}
-.swal-button{
-    text-align: center;
-    float: right;
-    margin-right: 180px;
-    background: #48494D;
-}
-.swal-button:not([disabled]):hover {
-    background-color: #FF6868;
-}
+
+
 .cafe-bazaar{
     cursor: pointer;
 }
+
+
 .last-page{
     width: 100%;
     float: right;
-    background: url("/images/section6.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+    background: url("../images/section6.jpg") no-repeat;
+    background-size:auto 100%;
     padding: 60px 200px 0 200px;
 }
+
+
 .right{
     width: 50%;
     float: right;
     margin-right: 65px;
 }
+
+
 .right span{
     width: 100%;
     float: right;
@@ -395,8 +470,9 @@ li::before {
     text-align: center;
     color: #FFFFFF;
     padding-top: 78px;
-
 }
+
+
 .right div{
     width: 268px;
     height: 50px;
@@ -412,33 +488,44 @@ li::before {
     border-radius: 30px;
     margin:20px 70px 0 0;
 }
+
+
 .left{
     width: 40%;
     float: right;
     margin-bottom: 60px;
 
 }
+
+
 .left img{
     width: 80%;
     float: right;
     margin-right: 70px;
 }
+
+
 .footer {
     width: 100%;
     float: right;
-    background: url("/images/Av-footer.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background: url("../images/Av-footer.png") no-repeat;
+    background-size:auto 100%;
     padding: 50px;
 }
+
+
 .footer-information{
     width: 20%;
     float: right;
 }
+
+
 .f-logo{
     width: 100%;
     float: right;
 }
+
+
 .footer-information.one span{
     width: 100%;
     float: right;
@@ -449,20 +536,28 @@ li::before {
     font-family: vazir-light;
     padding-top: 20px;
 }
+
+
 .social-media{
     width: 100%;
     float: right;
 }
+
+
 .social-media img{
     float: right;
     margin:15px 20px 0 0;
     cursor: pointer;
 }
+
+
 .f-div{
     width: 100%;
     float: right;
     margin-right: 30px;
 }
+
+
 .f-div a{
     float: right;
     font-size: 15px;
@@ -473,11 +568,15 @@ li::before {
     direction: rtl;
     margin-top: 5px;
 }
+
+
 .footer-information.five img{
     width:50%;
     float: right;
     margin-right: 25%;
 }
+
+
 .footer-information.five span{
     width: 100%;
     float: right;
@@ -487,60 +586,78 @@ li::before {
     font-family: vazir-light;
     margin-top: 10px;
 }
+
+
 .footer-information.two{
     margin-top: 75px;
 }
+
+
 .footer-information.three{
     margin-top: 75px;
 }
+
+
 .footer-information.four{
     margin-top: 75px;
 }
+
+
 .div-benefits-Av{
     width: 60%;
     float: left;
     margin-top: 60px;
     margin-bottom: 45px;
 }
+
+
 .div-benefits-Av.specialists{
     margin-bottom: 50px;
 }
-.header.coach{
-    position: relative;
-    background:url("/images/sectionex1.jpg");
-    background-repeat:no-repeat;
-    background-size: 100%;
 
+
+.header.coach{
+    background:url("../images/coach.img.jpg") no-repeat;
+    background-size:100%;
 }
+
+
 .header.experts{
-    background: url("/images/sectionex2.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background: url("../images/experts.img.jpg")no-repeat;
+    background-size:100%;
 }
+
+
 .header.specialists{
-    background: url("/images/sectionex3.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background: url("../images/specialists.jpg")no-repeat;
+    background-size:100%;
 }
+.header.conditions{
+    background: #48494D;
+}
+.button-download{
+    margin-right: 18%;
+    margin-top: 20px;
+}
+
 .download-coach-app{
-    margin-top:0%;
-    margin-right: 60%;
     width: 250px;
     height: 50px;
     float: right;
+    margin-left:2px;
     background: #FF6868;
     padding-top: 12px;
     border-radius: 100px;
     border-radius: 30px;
-    cursor: pointer;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26);
-
     text-align: center;
     color: #FFFFFF;
     font-size:18px;
     font-family: vazir-light;
-    text-decoration: none
+    text-decoration: none;
 }
+
+
 .download-coach-app a{
     width: 100%;
     float: right;
@@ -550,3 +667,313 @@ li::before {
     font-family: vazir-light;
     text-decoration: none ;
 }
+.terms-and-conditions{
+    width: 100%;
+    height: 100%;
+    float: right;
+    background: #48494D;
+    padding: 50px;
+}
+.terms-and-conditions div{
+    width: 100%;
+    float: right;
+}
+.terms-title{
+    width: 100%;
+    float: right;
+    text-align: right;
+    font-size: 50px;
+    color: #FF6868;
+    font-family: vazir-medium;
+    direction: rtl;
+
+}
+
+.terms-info{
+    width: 100%;
+    float: right;
+    color: #FFFFFF;
+    font-size: 20px;
+    text-align: right;
+    font-family: vazir-medium;
+    margin: 10px;
+    direction: rtl;
+
+}
+.article{
+    width: 100%;
+    float: right;
+    text-align: right;
+    margin: 10px;
+    font-size: 20px;
+    color: #CCCCCC;
+    font-family: vazir-medium;
+    direction: rtl;
+}
+.terms-and-conditions ul{
+    width: 100%;
+    float: right;
+    text-align: right;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family:'vazir-Thin';
+    direction: rtl;
+    padding-top: 5px;
+    margin: 5px;
+}
+.terms-and-conditions li{
+    margin: 10px;
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+
+    .container{width:100%}
+    .logo{width: 100%;
+        margin-bottom: 50px;
+    }
+    .logo img{
+        width: 60%;
+        margin-right: 20%;
+
+    }
+    .info{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .text-header{
+        text-align: right;
+        font-size: 20px;
+
+    }
+    .Av{
+        text-align: center;
+        margin-top: 0;
+    }
+    .info-Av{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .test-btn{
+        width: 100%;
+        float: right;
+        margin: 0 0 0 0;
+    }
+    .content{
+        background: url("../images/crop.jpg") no-repeat;
+        background-size:100%;
+        padding: 0;
+    }
+
+    .Av-content{
+        width: 100%;
+        float: right;
+        text-align: center;
+    }
+    .benefits-Av{
+        width:100%;
+        margin-top: 50px;
+        float: left;
+        text-align: center;
+        font-size:85px;
+    }
+    .img-mobile{
+        width: 50%;
+        margin-left:26%;
+    }
+    .information-Av{
+        position: relative;
+    }
+    .logo-img {
+        width: 100%;
+        opacity:0.5;
+        padding-top:50px;
+        margin-bottom: 0;
+    }
+    .logo-img img{
+        margin-bottom: 0;
+
+    }
+    .information.one{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-right:0;
+        padding: 30px;
+    }
+
+    .title-information {
+        text-align: center;
+    }
+    .options{
+        padding: 50px;
+    }
+    .title-div{
+        width: 100%;
+        float: right;
+        text-align: center;
+    }
+    .numbers{
+        width: 100%;
+        float: right;
+        text-align: right;
+    }
+    .address{
+        width: 100%;
+        float: right;
+        text-align: center;
+        margin-top: 5%;
+    }
+    .title2{
+        margin-top: 5%;
+    }
+    .application-download{
+        width: 100%;
+        float: right;
+        background: url("../images/Section5-responsive.JPG")no-repeat;
+        background-size:auto 100%;
+        padding:50px;
+    }
+    .div-application{
+        width: 100%;
+        float: right;
+    }
+    .logo-application{
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    .logo-application img{
+        width: 181px;
+        height: 181px;
+        margin-right: 0;
+    }
+    .logo-application span{
+        width: 100%;
+        float: right;
+        text-align: center;
+    }
+
+    .links{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0 0 0 ;
+    }
+    .app-img{
+        margin: 0 0 0 0;
+    }
+    .links img{
+        width: 50%;
+        margin-right: 0;
+    }
+
+    .last-page{
+        width: 100%;
+        float: right;
+        padding: 20px;
+    }
+    .right{
+        width: 100%;
+        float: right;
+        text-align: center;
+        margin: 0;
+    }
+    .right div{
+        width: 100%;
+        margin:20px 0 0 0;
+    }
+    .left{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+        margin: 0;
+    }
+    .left img{
+        width: 40%;
+        height: auto;
+        margin: 0;
+    }
+    .footer{
+        width: 100%;
+        float: right;
+    }
+    .footer-information.one{
+        width: 100%;
+        float: right;
+    }
+    .f-logo{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-media{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .footer-information{
+        width: 33%;
+        float: right;
+        margin-top: 20px;
+    }
+    .f-div{
+        width: 99%;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 0;
+    }
+    .f-div a{
+        width: 100%;
+        float: right;
+        text-align: center;
+    }
+    .footer-information.five{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-information.five img{
+        width: 30%;
+        margin-right: 0;
+    }
+    .header.coach{
+        background: url("../images/crop.jpg") no-repeat;
+        background-size:100%;
+    }
+    .div-benefits-Av{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+    .benefits-Av{
+        margin:20px 0 20px 0;
+    }
+    .header.specialists{
+        background: url("../images/responsive.specialists.jpg") no-repeat;
+        background-size:auto 100%;
+    }
+    .header.experts{
+        background: url("../images/responsive.expert.jpg") no-repeat;
+        background-size: auto 100%;
+    }
+
+}
+

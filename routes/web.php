@@ -15,6 +15,9 @@ Route::get('/','Web\WebController@index')->name('home');
 Route::get('/coach','Web\WebController@coach')->name('coach');
 Route::get('/experts','Web\WebController@experts')->name('experts');
 Route::get('/specialists','Web\WebController@specialists')->name('specialists');
+Route::get('/rules/coach','Web\WebController@ruleCoach')->name('rules/coach');
+Route::get('/rules/asan-varzesh','Web\WebController@ruleAv')->name('rules/av');
+Route::get('/rules/user','Web\WebController@ruleUser')->name('rules/user');
 
 Route::get('payment/cancel-payment/{id}',function ($id) {
    $payment = \App\Model\Payment::where('type','debit')->where('id',$id)->first();

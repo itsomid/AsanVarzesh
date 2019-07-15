@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>آسان ورزش</title>
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link type="text/css" rel="stylesheet" href="css/stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var scrolllink = $(".scroll");
+            scrolllink.click(function (e) {
+                e.preventDefault();
+                $('body,html').animate({
+                    scrollTop:$(this.hash).offset().top
+                })
+            })
 
+        })
+    </script>
 </head>
 <body>
 <div class="container">
@@ -32,23 +43,23 @@
             <a href="{{route('coach')}}" class="text-header">
                 مربیان
             </a>
-            <a href="" class="text-header">
+            <a href="#" class="text-header">
                 شرایط و قوانین
             </a>
 
         </div>
 
-
         <div class="Av-application">
             <span class="Av">اپلیکیشن آو</span>
             <span class="info-Av">تناسب اندام را با حرفه ای ها شروع کنید</span>
             <div class="test-btn">
-                <a href="https://sibche.com/applications/asanvarzesh">
+                <a class="scroll" href="#download">
                     می خواهم امتحان کنم
                 </a>
             </div>
         </div>
     </div>
+
 
 
     <div class="content">
@@ -66,6 +77,8 @@
     </div>
 
 
+
+
     <div class="information-Av">
         <div class="logo-img">
             <img src="images/Logo.png">
@@ -78,10 +91,11 @@
                 جامعه سلامت، جامعه سفید
             </span>
             <span class="about">
-                موسسه رایان راحیل ایرانیان تحت برند آسان ورزش و آو فعالیت خود را در پروژه آسان ورزش از<br> سال ۱۳۹۵ آغاز نمود و همچنین از ابتدای سال ۱۳۹۷ فعالیت رسمی آو را در کنار فدراسیون<br> بدنسازی و پرورش اندام شروع شد، اپلیکیشن آو اهداف بلندی را دنبال می کند که تمامی این<br> اهداف همگی همسو با منافع فدراسیون ها، مربیان و جامعه مخاطبین آنها یعنی ورزشکاران می <br>باشند، همینطور آو سیاست پیروی کامل از قوانین رسمی جاری کشور را دنبال می کند، لذا همه<br> فعالیت ها به صورت کاملا قانونی و با دریافت مجوزهای لازم صورت گرفته است. آو با شعار <br>جامعه سلامت جامعه سفید، رویای داشتن یک جامعه بزرگ ورزشکار و سلامت رو دنبال می<br> کند و معتقد هستیم که هر فردی از روزی که به دنیا می آید، تا روزی که از دنیا می رود، می <br>تواند با داشتن یک مربی ورزشی، یک کارشناس تغذیه و یک متخصص حرکت های اصلاحی<br> زندگی سرشار از سلامتی را تجربه نماید، به همین دلیل آو را همراه سلامتی مردم فهمیم ایران <br>می دانیم. لازم به ذکر است که فعالیت اپلیکیشن آو به همراه ایستگاهای سلامت و دستبندهای <br>هوشمند که به ترتیب رونمایی خواهند شد ، یک فعالیت بین المللی خواهد بود و به زودی در <br>چندین کشور فعالیت رسمی خود را آغاز خواهد نمود.
+                موسسه رایان راحیل ایرانیان تحت برند آسان ورزش و آو فعالیت خود را در پروژه آسان ورزش از سال ۱۳۹۵ آغاز نمود و همچنین از ابتدای سال ۱۳۹۷ فعالیت رسمی آو را در کنار فدراسیون بدنسازی و پرورش اندام شروع شد، اپلیکیشن آو اهداف بلندی را دنبال می کند که تمامی این اهداف همگی همسو با منافع فدراسیون ها، مربیان و جامعه مخاطبین آنها یعنی ورزشکاران می باشند، همینطور آو سیاست پیروی کامل از قوانین رسمی جاری کشور را دنبال می کند، لذا همه فعالیت ها به صورت کاملا قانونی و با دریافت مجوزهای لازم صورت گرفته است. آو با شعار جامعه سلامت جامعه سفید، رویای داشتن یک جامعه بزرگ ورزشکار و سلامت رو دنبال می کند و معتقد هستیم که هر فردی از روزی که به دنیا می آید، تا روزی که از دنیا می رود، می تواند با داشتن یک مربی ورزشی، یک کارشناس تغذیه و یک متخصص حرکت های اصلاحی زندگی سرشار از سلامتی را تجربه نماید، به همین دلیل آو را همراه سلامتی مردم فهمیم ایران می دانیم. لازم به ذکر است که فعالیت اپلیکیشن آو به همراه ایستگاهای سلامت و دستبندهای هوشمند که به ترتیب رونمایی خواهند شد ، یک فعالیت بین المللی خواهد بود و به زودی در چندین کشور فعالیت رسمی خود را آغاز خواهد نمود.
             </span>
         </div>
     </div>
+
 
 
     <div class="options">
@@ -93,7 +107,7 @@
                 <li>برنامه روزانه ورزشی با حرفه ای ترین مربی‌ها</li>
                 <li>ردیابی تمرینات و نظارت بر پیشرفت تمرینات توسط مربی</li>
                 <li>امکان شرکت در رشته های ورزشی متنوع به صورت همزمان</li>
-                <li>برنامه غذایی تحت نظر متخصص تغذیه</li>
+                <li>برنامه غذایی تحت نظر متخصص تغذیه </li>
                 <li>مشاوره آنلاین با مربی،‌متخصص تغذیه و پزشک اصلاحی</li>
                 <li>اندازه گیری میزان دویدن</li>
             </ol>
@@ -101,8 +115,8 @@
     </div>
 
 
+
     <div class="information-Av">
-        <
         <div class="logo-img">
             <img src="images/Logo.png">
         </div>
@@ -123,10 +137,13 @@
                 میدان جهاد، خیابان شهید گمنام، پلاک ۱۴، واحد ۱۱ و ۱۲، طبقه ۶
             </span>
         </div>
+
+
     </div>
 
 
-    <div class="application-download">
+
+    <div id="download" class="application-download">
         <div class="div-application">
             <div class="logo-application">
                 <img src="images/user@3x@2x.png">
@@ -137,9 +154,7 @@
 با نصب اپلیکیشن آو شروع کنید
                 </span>
                 <div class="app-img">
-                    <a href="apps/av_user_release_v1.apk" download target="_blank">
-                        <img class="cafe-bazaar" src="images/Group%203.png">
-                    </a>
+                    <img class="cafe-bazaar" src="images/Group%203.png">
                     <a href="https://sibche.com/applications/asanvarzesh">
                         <img src="images/Group%204.png">
                     </a>
@@ -148,10 +163,12 @@
         </div>
     </div>
 
+
+
     <div class="last-page">
         <div class="right">
             <span>متخصصان<br> با اپلیکیشن مربی<br> در هر لحظه با<br>.شما همراه هستند </span>
-            <a href="{{route('coach')}}">
+            <a href="coach.html">
                 <div>مربی هستم</div>
             </a>
         </div>
@@ -161,75 +178,9 @@
     </div>
 
 
-    <div class="footer">
-        <div class="footer-information one">
-            <div class="f-logo">
-                <img src="images/logotype.svg">
-            </div>
-            <span>آو سامانه هوشمند ورزش، تناسب اندام و تغذیه سلامت</span>
-            <div class="social-media">
-                <img src="images/instagram@1x.svg">
-                <img src="images/twitter@1x.svg">
-                <img src="images/facebook@1x.svg">
-            </div>
-        </div>
 
-
-        <div class="footer-information two">
-            <div class="f-div">
-                <a href="{{route('coach')}}">مربیان</a>
-            </div>
-            <div class="f-div">
-                <a href="{{route('experts')}}">کارشناسان تغذیه</a>
-            </div>
-            <div class="f-div">
-                <a href="{{route('specialists')}}">متخصصان حرکت های اصلاحی</a>
-            </div>
-            <div class="f-div">
-                <a href="https://sibche.com/applications/asanvarzesh-couch">دانلود اپلیکیشن مربی</a>
-            </div>
-        </div>
-
-
-        <div class="footer-information three">
-            <div class="f-div">
-                <a href="#">درباره ما</a>
-            </div>
-            <div class="f-div">
-                <a href="#">تماس با ما</a>
-            </div>
-            <div class="f-div">
-                <a href="#">سوالات متداول</a>
-            </div>
-        </div>
-
-
-        <div class="footer-information four">
-            <div class="f-div">
-                <a href="#">شرایط و قوانین هنرجویان</a>
-            </div>
-            <div class="f-div">
-                <a href="{{route('coach')}}">شرایط و قوانین مربیان، کارشناسان</a>
-            </div>
-            <div class="f-div">
-                <a href="#">فرصت های شغلی</a>
-            </div>
-        </div>
-
-
-        <div class="footer-information five">
-            <img src="images/LOGO-fedrasion.png">
-            <span>info@asanvarzesh.online</span>
-            <span>۰۲۱-۸۸۹۵۱۹۱۴</span>
-        </div>
-    </div>
+    @include('footer')
 </div>
-<script>
-    $(document).ready(function () {
-        // $(".cafe-bazaar").click(function () {
-        //     swal("نسخه اندروید شاگرد و مربی به زودی...");
-        // })
-    })
-</script>
+
 </body>
 </html>
