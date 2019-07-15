@@ -68,8 +68,7 @@
 
 
 
-
-    {{--@include('footer')--}}
+    @include('footer')
 
 
 
