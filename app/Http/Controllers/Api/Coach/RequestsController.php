@@ -94,7 +94,7 @@ class RequestsController extends Controller
 //        return $response_json;
 
         $coach = auth('api')->user();
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
         $programs = Programs::with('user.profile','sport')->where($field,$coach->id)->where('status','pending')->orderby('id','DESC')->get();
 
         return $programs;
@@ -105,7 +105,7 @@ class RequestsController extends Controller
     {
 
         $coach = auth('api')->user();
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
 
         $programs = Programs::with('user.profile','sport')
             ->where('id',$program_id)

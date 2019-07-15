@@ -15,7 +15,7 @@ class UserProfileController extends Controller
     {
 
         $coach = auth('api')->user();
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
 
         $user = User::with([
             'profile.city',

@@ -49,7 +49,7 @@ class UserCalendarTrainingsController extends Controller
 
         $data = $request->all();
         $program = Programs::find($data['program_id']);
-        if($program->trainings_confirmation == false && $program->status == 'accept') {
+        if($program->trainings_confirmation == false /*&& $program->status == 'accept'*/) {
 
             //$program->configuration = ['trainings' => $data['trainings'],'nutrition' => $program->configuration['nutrition']];
             $program->trainings_confirmation = true;

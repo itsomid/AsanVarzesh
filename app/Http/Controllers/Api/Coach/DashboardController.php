@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function index($date = null) {
         $coach = auth('api')->user();
 
-        $field = $coach->getField();
+        $field = $coach->getFieldProgram();
 
         if($date == null) {
             $date_carbon = Carbon::today();
@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $date_carbon = Carbon::parse($date);
         }
 
-        $coach_programs = Programs::where($field,$coach->id)->whereIn('status',['accept','active'])->get();
+        $coach_programs = Programs::where($field,$coach->id)->whereIn('status',['active'])->get();
         $programs_by_types['public'] = [];
         $programs_by_types['specialized'] = [];
 
