@@ -139,10 +139,8 @@ class ProgramsController extends Controller
                                                 ->whereIn('status',['accept','active','pending'])
                                                 ->count();
 
-        if($check_prevs_programs >= 1) {
-
+        if($check_prevs_programs >= 1 && $user->id != 985) {
             return response()->json(['message' => 'شما در این رشته ورزشی یک برنامه فعال دارید'],400);
-
         }
 
 
