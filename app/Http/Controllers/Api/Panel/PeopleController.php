@@ -52,6 +52,7 @@ class PeopleController extends Controller
             'profile.avatar.image' => 'فرمت آواتار درست نیست',
         );
 
+
         $rules = [
             'user.email' => 'nullable|unique:users,email',
             'user.mobile' => 'required|unique:users,mobile',
