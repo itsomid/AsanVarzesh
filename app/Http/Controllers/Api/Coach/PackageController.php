@@ -46,7 +46,7 @@ class PackageController extends Controller
         $package->save();
 
         foreach ($data['foods'] as $food) {
-            $package->foods()->attach($package->id,['food_id' => $food['id'],'unit' => $food['unit'],'size' => $food['size']]);
+            $package->foods()->attach($package->id,['food_id' => (string) $food['id'],'unit' => (string) $food['unit'],'size' => (string) $food['size']]);
         }
         $package = Package::with('foods')->where('id',$package->id)->first();
         return response()->json(['package' => $package],200);
