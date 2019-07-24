@@ -16,6 +16,7 @@ class SportTypeController extends Controller
         if($isCoach) {
             $allSports = [];
             foreach ($user->sports as $sport) {
+                
                 $programs_count = Programs::where('sport_id',$sport->id)
                     ->where('coach_id',$user->id)
                     ->whereIn('status',['active','accept'])
