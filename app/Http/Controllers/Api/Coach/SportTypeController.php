@@ -83,7 +83,7 @@ class SportTypeController extends Controller
 
         $programs = Programs::where('sport_id',$sport_id)
                             ->where($field,$user->id)
-                            ->whereIn('status',['active'])
+                            ->whereIn('status',['active','accept'])
                             ->orderby('id','DESC')
                             ->with('user.profile.city')
                             ->get();
