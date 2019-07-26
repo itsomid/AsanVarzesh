@@ -46,10 +46,9 @@ class Package extends Model
             $nutritional_value[2]['size'] = (string) $nutritional_value[2]['size'];
             return $nutritional_value;
         } else {
-            return '';
+            return [];
         }
         
-        return $nutritional_value = json_decode($this->attributes['nutritional_value'],1);
     }
 
 
