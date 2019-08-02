@@ -100,6 +100,18 @@ Route::get('/test',function (\Illuminate\Http\Request $request) {
 });
 
 
+Route::get('/test-program',function() {
+   $program = \App\Model\Programs::first();
+   $configuration = $program->configuration['trainings'];
+   foreach ($configuration as $key1 => $training) {
+       foreach ($training['training'] as $key2 => $item) {
+           $configuration[$key1]['training'][$key2]['training_id'] = 111;
+       }
+   }
+   return $configuration;
+});
+
+
 Route::get('/payment-test',function() {
 
 //    $programs = \App\Model\Programs::where('status','awaiting_payment')->orderby('id','DESC')->get();
