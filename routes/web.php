@@ -99,66 +99,25 @@ Route::get('/test',function (\Illuminate\Http\Request $request) {
 
 });
 
-
-Route::get('/test-program',function() {
-   $program = \App\Model\Programs::first();
-   $configuration = $program->configuration['trainings'];
-   foreach ($configuration as $key1 => $training) {
-       foreach ($training['training'] as $key2 => $item) {
-           $configuration[$key1]['training'][$key2]['training_id'] = 111;
+Route::get('/change-training-program/',function() {
+   $programs = \App\Model\Programs::all();
+   foreach ($programs as $program) {
+       $program = \App\Model\Programs::find($program->id);
+       $config = $program->configuration;
+       foreach ($config['trainings'] as $key1 => $day) {
+           foreach ($config['trainings'][$key1]['training'] as $key2 => $item) {
+               $config['trainings'][$key1]['training'][$key2]['training_id'] = (int) 111;
+           }
        }
+       $program->configuration = $config;
+       $program->save();
    }
-   return $configuration;
 });
 
-
-Route::get('/payment-test',function() {
-
-//    $programs = \App\Model\Programs::where('status','awaiting_payment')->orderby('id','DESC')->get();
-//
-//    foreach ($programs as $program) {
-//
-//        $payment = \App\Model\Payment::where('user_id',$program->user_id)->where('status','pending')->first();
-//        if($payment) {
-//
-//            $status = 'success';
-//            $gateway_status = 100;
-//            $message = 'پرداخت موفقیت آمیز';
-//
-//            $payment->status = $status;
-//            $payment->reference_id = '-';
-//            $payment->gateway_status = $gateway_status;
-//            $payment->gateway_message = $message;
-//            $payment->save();
-//
-//            $coach = \App\User::find($program->coach_id);
-//            $debit_payment = new \App\Model\Payment();
-//            $debit_payment->user_id = $program->user_id;
-//            $debit_payment->coach_id = $program->coach_id;
-//            $debit_payment->corrective_doctor_id = $coach->team['corrective_doctor'];
-//            $debit_payment->nutrition_doctor_id = $coach->team['nutrition_doctor'];
-//            $debit_payment->federation_id = $program->sport->federation->id;
-//            $debit_payment->program_id = $program->id;
-//            $debit_payment->price = $payment->price;
-//            $debit_payment->type = 'debit';
-//            $debit_payment->status = 'success';
-//            $debit_payment->promotion_id = null;
-//            $debit_payment->result_code = '-';
-//            $debit_payment->save();
-//
-//            $program->status = 'pending';
-//            $program->save();
-//        }
-//
-//    }
-
-});
-
-
-Route::get('/delete-by-payment',function() {
-
-    $payments = \App\Model\Payment::where('created_at','<=',\Carbon\Carbon::now()->subDays(4)->format('Y-m-d'))->get();
-    foreach ($payments as $payment) {
-        $payment->delete();
+Route::get('/change-training-calendar',function() {
+    $calendars = \App\Model\Calendar::where('training_id','<',111)->get();
+    foreach ($calendars as $calendar) {
+        $calendar->training_id = 111;
+        $calendar->save();
     }
 });
