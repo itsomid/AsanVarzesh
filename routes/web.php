@@ -106,7 +106,7 @@ Route::get('/change-training-program/',function() {
        $config = $program->configuration;
        foreach ($config['trainings'] as $key1 => $day) {
            foreach ($config['trainings'][$key1]['training'] as $key2 => $item) {
-               $config['trainings'][$key1]['training'][$key2]['training_id'] = (int) 111;
+               $config['trainings'][$key1]['training'][$key2]['training_id'] = (string) 111;
            }
        }
        $program->configuration = $config;
