@@ -114,6 +114,13 @@ Route::get('/change-training-program/',function() {
    }
 });
 
+
+Route::get('/generate-calendar/{id}',function($id) {
+    $program = \App\Model\Programs::find($id);
+    $generateCalendar = new \App\Helpers\GenerateCalendar();
+    $generateCalendar->generate($program->id,1);
+})
+
 Route::get('/change-training-calendar',function() {
     $calendars = \App\Model\Calendar::where('training_id','<',111)->get();
     foreach ($calendars as $calendar) {
