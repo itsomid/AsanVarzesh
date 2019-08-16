@@ -12,7 +12,6 @@ class PackageController extends Controller
 {
     public function index()
     {
-
         $packages = Package::with('foods')->get();
         return response()->json($packages,200);
     }
@@ -55,13 +54,10 @@ class PackageController extends Controller
 
 
     public function AddtoBasket(Request $request) {
-
         $data = $request->all();
         $coach  = auth('api')->user();
         $coach->PackageBasket()->attach($data['package_id']);
-
         return response()->json(['message' => 'package added'],200);
-
     }
 
     public function packageBasket() {

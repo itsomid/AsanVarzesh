@@ -107,6 +107,10 @@ Route::group(['prefix' => '/v1'],function() {
             // Trainings
             Route::get('trainings/{sport_id}','Api\Coach\TrainingController@trainings');
 
+            // Description Day
+            Route::get('description-days/{program_id}/{day_number}','Api\Coach\DescriptionController@show');
+            Route::post('description-days/','Api\Coach\DescriptionController@store');
+            Route::post('description-days/{description_id}','Api\Coach\DescriptionController@update');
 
     });
 

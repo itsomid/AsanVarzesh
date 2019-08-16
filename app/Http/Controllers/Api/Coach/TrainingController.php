@@ -10,7 +10,7 @@ class TrainingController extends Controller
 {
     public function trainings($sport_id) {
 
-        $trainings = Training::all();
+        $trainings = Training::where('enable',true)->all();
         return $trainings;
 
     }

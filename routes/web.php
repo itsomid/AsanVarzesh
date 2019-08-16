@@ -128,3 +128,42 @@ Route::get('/change-training-calendar',function() {
         $calendar->save();
     }
 });
+
+Route::get('turn-over',function() {
+
+    $turnOver = 0;
+    $all = 0;
+    $user = \App\User::with('payments')->where('id',7)->first();
+    $payments = \App\Model\Payment::where('coach_id',$user->id)
+                                    ->whereIn('status',['success','return'])
+                                    ->where('billing_id_coach',null)
+                                    ->get();
+
+    foreach ($payments as $payment) {
+        if($payment->status == 'success' && $payment->type == 'debit') {
+            $all += $payment->price;
+            $turnOver += $payment->price * 0.7;
+        } else if($payment->status == 'return' && $payment->type == 'credit') {
+            $all -= $payment->price;
+            $turnOver -= $payment->price * 0.7;
+        }
+    }
+
+    $billing = new \App\Model\Billing();
+    $billing->coach_id = $user->id;
+    $billing->price = round($turnOver);
+    $billing->description = 'asdasa';
+    $billing->status = 'paid';
+    $billing->save();
+
+    foreach ($payments as $payment) {
+        if($payment->status == 'success' && $payment->type == 'debit') {
+            $payment->billing_id_coach = $billing->id;
+            $payment->save();
+        } else if($payment->status == 'return' && $payment->type == 'credit') {
+            $payment->billing_id_coach = $billing->id;
+            $payment->save();
+        }
+    }
+
+});

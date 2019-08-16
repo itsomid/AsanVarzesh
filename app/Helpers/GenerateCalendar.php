@@ -45,9 +45,6 @@ class GenerateCalendar
             array_push($selected_start_days_date, date('Y-m-d 00:00:00', $day));
         }
 
-        //return $selected_start_days_date;
-
-
         // Update Subscription if first selected start day Bigger than Subscription Start Date
 
         if (strtotime($selected_start_days_date[0]) >= strtotime($program->subscription->from)) {
@@ -73,8 +70,6 @@ class GenerateCalendar
             array_push($selected_days_by_name,$this->week_days($day['day_number']));
         }
 
-
-        $j = 0;
         foreach ($trainings as $training)
         {
 
