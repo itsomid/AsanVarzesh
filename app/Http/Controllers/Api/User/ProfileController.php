@@ -137,6 +137,25 @@ class ProfileController extends Controller
         }
 
 
+
+        $messsages = array(
+            'first_name.required'=>'پرکردن فیلد نام الزامی ست',
+            'last_name.required'=>'پرکردن فیلد نام خانوادگی الزامی ست',
+            'city_id.required'=>'شهر را انتخاب کنید',
+        );
+
+        $rules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'city_id' => 'required',
+        ];
+
+        $validator = Validator::make($data, $rules, $messsages);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()],406);
+        }
+
+
         $profile = new Profiles();
         $profile->user_id = $user->id;
         $profile->first_name = $data['first_name'];

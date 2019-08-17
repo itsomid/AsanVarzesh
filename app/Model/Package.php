@@ -39,13 +39,16 @@ class Package extends Model
     }
 
     public function getNutritionalValueAttribute() {
-        $nutritional_value = json_decode($this->attributes['nutritional_value'],1);
-        $nutritional_value[0]['size'] = (string) $nutritional_value[0]['size'];
-        $nutritional_value[1]['size'] = (string) $nutritional_value[1]['size'];
-        $nutritional_value[2]['size'] = (string) $nutritional_value[2]['size'];
-
-        return $nutritional_value;
-
+        if($this->attributes['nutritional_value'] != null OR $this->attributes['nutritional_value'] != '') {
+            $nutritional_value = json_decode($this->attributes['nutritional_value'],1);
+            $nutritional_value[0]['size'] = (string) $nutritional_value[0]['size'];
+            $nutritional_value[1]['size'] = (string) $nutritional_value[1]['size'];
+            $nutritional_value[2]['size'] = (string) $nutritional_value[2]['size'];
+            return $nutritional_value;
+        } else {
+            return [];
+        }
+        
     }
 
 

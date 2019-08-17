@@ -88,7 +88,7 @@ class AuthController extends Controller
         }
 
         $user->status = 'active';
-        $user->code = 123456;
+        $user->code = $this->generateLoginCode();
 //        $user->last_login = '';
         $user->save();
 

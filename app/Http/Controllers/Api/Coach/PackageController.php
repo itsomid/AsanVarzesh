@@ -12,7 +12,6 @@ class PackageController extends Controller
 {
     public function index()
     {
-
         $packages = Package::with('foods')->get();
         return response()->json($packages,200);
     }
@@ -46,7 +45,7 @@ class PackageController extends Controller
         $package->save();
 
         foreach ($data['foods'] as $food) {
-            $package->foods()->attach($package->id,['food_id' => $food['id'],'unit' => $food['unit'],'size' => $food['size']]);
+            $package->foods()->attach($package->id,['food_id' => (string) $food['id'],'unit' => (string) $food['unit'],'size' => (string) $food['size']]);
         }
         $package = Package::with('foods')->where('id',$package->id)->first();
         return response()->json(['package' => $package],200);
@@ -55,13 +54,10 @@ class PackageController extends Controller
 
 
     public function AddtoBasket(Request $request) {
-
         $data = $request->all();
         $coach  = auth('api')->user();
         $coach->PackageBasket()->attach($data['package_id']);
-
         return response()->json(['message' => 'package added'],200);
-
     }
 
     public function packageBasket() {

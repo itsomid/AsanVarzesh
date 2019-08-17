@@ -30,7 +30,7 @@ class DashboardController extends Controller
 
             if($date >= $program['start_date']) {
                 $calendar_trainings = Calendar::where('user_id',$user->id)
-                    ->with(['training.accessories','training.sport'])
+                    ->with(['training.accessories','training.sport','description'])
                     ->where('type','training')
                     ->where('meal_id','=',null)
                     ->where('training_id','!=',null)

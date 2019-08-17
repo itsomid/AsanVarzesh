@@ -101,18 +101,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function getUserTurnOverAttribute()
     {
-        $totalPrice = 0;
-        $payments = Payment::where('user_id',$this->id)
-            ->whereIn('status',['success','failed'])
-            ->get();
-        foreach ($payments as $payment) {
-            if($payment->type == 'credit') {
-                $totalPrice = $totalPrice + $payment->price;
-            } else {
-                $totalPrice = $totalPrice - $payment->price;
-            }
-        }
-        return $totalPrice;
+        return [];
     }
 
     public function getCoachTurnOverAttribute()
@@ -122,8 +111,13 @@ class User extends Authenticatable implements JWTSubject
             ->where('type','debit')
             ->where('status','success')
             ->get();
+
         foreach ($payments as $payment) {
-            $totalPrice += ($payment->price*$this->coach_share);
+            if($payment->status == 'success' && $payment->type == 'debit') {
+                $totalPrice += $payment->price * $this->coach_share;
+            } else if($payment->status == 'return' && $payment->type == 'credit') {
+                $totalPrice -= $payment->price * $this->coach_share;
+            }
         }
         return $totalPrice;
     }
@@ -263,7 +257,9 @@ class User extends Authenticatable implements JWTSubject
 
     public function payments_by_coach()
     {
-        return $this->hasMany('App\Model\Payment','coach_id','id');
+        return $this->hasMany('App\Model\Payment','coach_id','id')
+            ->whereIn('status',['success','return'])
+            ->where('type','debit');
     }
 
     public function payments_by_corrective()

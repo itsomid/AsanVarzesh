@@ -49,4 +49,9 @@ class Calendar extends Model
         return $this->belongsToMany('App\Model\Package','calendar_package');
     }
 
+    public function description()
+    {
+        return $this->hasOne('App\Model\DescriptionDays','program_id','program_id');
+    }
+
 }

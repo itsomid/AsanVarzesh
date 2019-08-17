@@ -41,8 +41,6 @@ class ProgramsController extends Controller
     }
 
     public function programFactor(Request $request) {
-
-        Payment::$create_file;
         $data = $request->all();
 
         $coach = User::find($data['coach_id']);
@@ -67,16 +65,24 @@ class ProgramsController extends Controller
             }
         }
 
-
-
         if($coach_price != null) {
+            $last_payment = \App\Model\Payment::where('type','debit')
+                ->where('status','success')
+                ->where('user_id',$user->id)
+                ->orderby('id','DESC')
+                ->where('created_at','>',\Carbon\Carbon::now()->subYear(1))
+                ->first();
+            $price = Payment::calculatePrice($coach_price->price,$discount);
+            if(!$last_payment) {
+                $price = $price + Payment::$create_file;
+            }
 
             $response = [
                 'coach_price' => $coach_price->price,
                 'tax' => Payment::calTax($coach_price->price),
                 'insurance' => Payment::insurance(),
                 'discount' => $discount,
-                'total' => Payment::calculatePrice($coach_price->price,$discount) + Payment::$create_file
+                'total' => $price
             ];
 
             return response()->json($response,200);
@@ -139,10 +145,8 @@ class ProgramsController extends Controller
                                                 ->whereIn('status',['accept','active','pending'])
                                                 ->count();
 
-        if($check_prevs_programs >= 1) {
-
+        if($check_prevs_programs >= 1 && $user->id != 985) {
             return response()->json(['message' => 'شما در این رشته ورزشی یک برنامه فعال دارید'],400);
-
         }
 
 
@@ -286,6 +290,7 @@ class ProgramsController extends Controller
         if(!$last_payment) {
             $price = $price + $payment::$create_file;
         }
+//        $price = $price + $payment::$create_file;
         $payment = new \App\Model\Payment();
         $payment->user_id = $program->user_id;
         $payment->program_id = $program->id;

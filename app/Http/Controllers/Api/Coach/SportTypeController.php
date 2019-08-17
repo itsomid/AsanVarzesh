@@ -16,9 +16,10 @@ class SportTypeController extends Controller
         if($isCoach) {
             $allSports = [];
             foreach ($user->sports as $sport) {
+                
                 $programs_count = Programs::where('sport_id',$sport->id)
                     ->where('coach_id',$user->id)
-                    ->whereIn('status',['active'])
+                    ->whereIn('status',['active','accept'])
                     ->count();
                 $sportArray = $sport->toArray();
                 $sportArray['number_of_users'] = $programs_count;
@@ -82,7 +83,7 @@ class SportTypeController extends Controller
 
         $programs = Programs::where('sport_id',$sport_id)
                             ->where($field,$user->id)
-                            ->whereIn('status',['active'])
+                            ->whereIn('status',['active','accept'])
                             ->orderby('id','DESC')
                             ->with('user.profile.city')
                             ->get();
