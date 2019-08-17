@@ -156,7 +156,7 @@
 با نصب اپلیکیشن آو شروع کنید
                 </span>
                 <div class="app-img">
-                    <a href="apps/av_user_release_v1.apk" download>
+                    <a href="apps/av_user_release_v1.0.7.apk" download>
                         <img class="cafe-bazaar" src="images/Group%203.png">
                     </a>
 

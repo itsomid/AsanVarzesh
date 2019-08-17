@@ -72,7 +72,7 @@
 
             <div class="button-download">
 
-                <a href="apps/asanvarzesh_v4.apk" download target="_blank">
+                <a href="apps/av_coach_release_v1.0.11.apk" download target="_blank">
                     <div class="download-coach-app android">
                         <i class="fab fa-android"></i>
                         دانلود اپلیکیشن مربی
